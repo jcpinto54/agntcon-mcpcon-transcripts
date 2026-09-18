@@ -1,0 +1,18 @@
+# Audio recordings are never committed — they stay local.
+# Speakers own their talks; this repo publishes transcripts only.
+*.m4a
+*.wav
+*.mp3
+*.aac
+*.flac
+*.mp4
+*.mov
+
+# Local staging area for raw recordings
+recordings/
+
+# Transcription working files
+.transcribe-cache/
+
+# macOS
+.DS_Store
