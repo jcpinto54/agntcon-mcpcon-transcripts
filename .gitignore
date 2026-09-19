@@ -22,3 +22,6 @@ recordings/
 
 # Git worktrees created by parallel agent sessions
 .claude/worktrees/
+
+# Python bytecode from the skill scripts
+__pycache__/
