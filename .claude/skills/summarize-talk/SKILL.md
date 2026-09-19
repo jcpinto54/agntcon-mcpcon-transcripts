@@ -1,13 +1,19 @@
 ---
 name: summarize-talk
-description: Write the short summary that sits beside a transcript in this repo — talks/<slug>/summary.md, an abstract plus key points drawn only from what the speaker actually said. Use when someone asks for a talk to be summarised, or for summaries to be filled in across the archive.
+description: Write the summary that sits beside a transcript in this repo — talks/<slug>/summary.md, an opening, a section on each of the talk's main topics, and key points, drawn only from what the speaker actually said. Use when someone asks for a talk to be summarised, or for summaries to be filled in across the archive.
 ---
 
 # Summarising a talk
 
 Takes one `talks/<slug>/transcript.md` and produces one
-`talks/<slug>/summary.md` beside it. Roughly 200 words: a short paragraph on
-what the talk was about, then three to six key points.
+`talks/<slug>/summary.md` beside it. Roughly 500 to 700 words: a short opening
+on what the talk was about, then a section on each of the two to four topics
+the talk actually spent its time on, then the key points as a skimmable tail.
+
+The length is there to carry the specifics — the argument, the numbers, the
+worked example. It is not there to be filled. A padded 600-word summary is
+worse than a tight 200-word one, and the per-section minimum below exists to
+catch the version of this that is really a table of contents.
 
 ## The rule this lives under
 
@@ -52,12 +58,19 @@ summary.
 
 ## Stage 3 — Write the body
 
-Two sections, nothing else:
-
 ```markdown
 ## What it was about
 
-<One paragraph, ~80 words. What the speaker argued and why, in their terms.>
+<One paragraph, ~90 words. What the speaker argued and why, in their terms.>
+
+## <A topic the talk actually dwelt on>
+
+<A paragraph or two. The argument as the speaker made it, with the evidence
+they gave for it — the benchmark, the number, the story from their own team.>
+
+## <Another such topic>
+
+<Two to four of these in total.>
 
 ## Key points
 
@@ -65,12 +78,24 @@ Two sections, nothing else:
 - <Three to six of these. Specific beats general.>
 ```
 
+**Choose the topic sections by weight, not by interest.** What did the talk
+spend its minutes on? What did the speaker come back to twice? That is a
+topic. A remark you found striking, made once in passing, is not — it goes in
+the key points if it goes anywhere. Name each section after the thing itself,
+not "Background" or "Conclusion": a reader scanning the headings should be
+able to tell this talk from every other talk in the archive.
+
 Rules for the body:
 
 - **Only what is in the transcript.** No background on the speaker, no
   references to their other work, no context you happen to know. The speaker
   header in `transcript.md` already carries the background; this file carries
   the talk.
+- **Elaborate with specifics, never with words.** A topic section earns its
+  length by adding the detail the key points had to leave out — what the
+  benchmark measured, why the speaker thought the number mattered, what the
+  counter-argument was. If a section is restating its own heading in longer
+  form, cut it and make the talk a three-topic summary instead of a four.
 - **Attribute claims to the speaker.** "Horthy argues that review, not
   authorship, is now the bottleneck" — not "review is now the bottleneck". The
   archive records what was said; it does not endorse it.
@@ -100,10 +125,13 @@ python3 .claude/skills/summarize-talk/scripts/write_summary.py \
   --slug state-software-factory --body /tmp/summary-body.md
 ```
 
-`--body -` reads from stdin. The script refuses a body that is missing either
-heading, has fewer than three or more than six bullets, or lands outside
-120–320 words, and it warns on proper nouns that do not appear in the
-transcript. Those limits are the format; fix the body rather than the script.
+`--body -` reads from stdin. The script refuses a body whose opening or
+closing section is missing or out of order, that has fewer than two or more
+than four topic sections, that has a topic section under 60 words or with
+bullets in it, that has fewer than three or more than six key points, or that
+lands outside 400–750 words. It warns on proper nouns that do not appear in
+the transcript. Those limits are the format; fix the body rather than the
+script.
 
 ## Stage 5 — Rebuild the index
 

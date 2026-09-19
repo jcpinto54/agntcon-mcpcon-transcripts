@@ -17,8 +17,12 @@ DAY_NAME = {"thu": "Thursday 17 September 2026", "fri": "Friday 18 September 202
 
 ABOUT = "## What it was about"
 POINTS = "## Key points"
-MIN_WORDS, MAX_WORDS = 120, 320
+MIN_WORDS, MAX_WORDS = 400, 750
 MIN_POINTS, MAX_POINTS = 3, 6
+MIN_TOPICS, MAX_TOPICS = 2, 4
+# A topic section shorter than this is a heading with a sentence under it --
+# the table of contents the format exists to avoid.
+MIN_TOPIC_WORDS = 60
 
 # Words that start sentences or bullets and would otherwise look like invented
 # proper nouns. Everything else capitalised has to be in the transcript.
@@ -45,21 +49,54 @@ def frontmatter(path):
     return out, text[m.end():]
 
 
+def sections(body):
+    """Split the body into [(heading, text)] at level-2 headings, in order."""
+    parts = re.split(r"^(## .*)$", body, flags=re.M)
+    return [(parts[i].strip(), parts[i + 1])
+            for i in range(1, len(parts) - 1, 2)]
+
+
 def check_shape(body):
-    """Reject a body that is not the agreed two-section, ~200-word format."""
+    """Reject a body that is not the agreed format.
+
+    The shape is: what it was about, then two to four sections named after the
+    topics the talk actually dwelt on, then the key points. The per-section
+    minimum is the part that matters -- without it the format degrades into
+    the same short summary with more headings in it.
+    """
     problems = []
+    secs = sections(body)
+    headings = [h for h, _ in secs]
 
-    headings = re.findall(r"^#{1,6} .*$", body, re.M)
-    if ABOUT not in headings:
-        problems.append(f'missing the "{ABOUT}" heading')
+    deep = re.findall(r"^#{3,6} .*$", body, re.M)
+    if deep:
+        problems.append(f"{len(deep)} heading(s) below level 2 -- topic "
+                        "sections do not get sub-headings")
+
+    if not headings:
+        return [f'no sections at all -- expected "{ABOUT}" first'], 0
+    if headings[0] != ABOUT:
+        problems.append(f'first section must be "{ABOUT}", found "{headings[0]}"')
     if POINTS not in headings:
-        problems.append(f'missing the "{POINTS}" heading')
-    extra = [h for h in headings if h not in (ABOUT, POINTS)]
-    if extra:
-        problems.append(f"unexpected heading(s): {', '.join(extra)} -- the "
-                        "summary format is exactly two sections")
+        problems.append(f'missing the "{POINTS}" section')
+    elif headings[-1] != POINTS:
+        problems.append(f'"{POINTS}" must be the last section')
 
-    bullets = re.findall(r"^\s*[-*] ", body, re.M)
+    topics = [(h, t) for h, t in secs if h not in (ABOUT, POINTS)]
+    if not MIN_TOPICS <= len(topics) <= MAX_TOPICS:
+        problems.append(f"{len(topics)} topic section(s) between them "
+                        f"(want {MIN_TOPICS}-{MAX_TOPICS})")
+    for h, text in topics:
+        n = len(text.split())
+        if n < MIN_TOPIC_WORDS:
+            problems.append(f'"{h}" is {n} words (want at least '
+                            f"{MIN_TOPIC_WORDS}) -- elaborate it or drop it")
+        if re.search(r"^\s*[-*] ", text, re.M):
+            problems.append(f'"{h}" contains bullets -- topic sections are '
+                            "prose; bullets belong under Key points")
+
+    points = dict(secs).get(POINTS, "")
+    bullets = re.findall(r"^\s*[-*] ", points, re.M)
     if not MIN_POINTS <= len(bullets) <= MAX_POINTS:
         problems.append(f"{len(bullets)} key points (want {MIN_POINTS}-{MAX_POINTS})")
 
@@ -85,7 +122,10 @@ def unknown_proper_nouns(body, transcript):
     a name invented at the very start of a sentence goes unseen; read the
     summary against the transcript, do not lean on this alone.
     """
-    vocab = {w.lower() for w in re.findall(r"[A-Za-z0-9+.\-]+", transcript)}
+    # Strip surrounding dots so a word that ends a sentence in the transcript
+    # ("not good at UI.") still matches the bare word in the summary. Inner
+    # dots are kept, so "4.5" and "e.g" survive intact.
+    vocab = {w.lower().strip(".") for w in re.findall(r"[A-Za-z0-9+.\-]+", transcript)}
     prose = re.sub(r"^#{1,6} .*$", "", body, flags=re.M)
     opener = re.compile(r"(?:\A|[.!?][\"')\]]?\s|\n\s*[-*]\s)\s*\Z", re.S)
     seen, out = set(), []
@@ -93,7 +133,7 @@ def unknown_proper_nouns(body, transcript):
         w = m.group()
         if opener.search(prose[:m.start()]):
             continue
-        low = w.lower().rstrip(".")
+        low = w.lower().strip(".")
         if low.endswith("'s"):
             low = low[:-2]
         if low in COMMON or low in vocab or low in seen:

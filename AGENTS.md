@@ -25,7 +25,7 @@ guide/
 talks/
   <slug>/          One directory per talk, named from the talk title
     transcript.md    What the speaker said. Raw.
-    summary.md       ~200 words, derived. Optional — many talks have none yet.
+    summary.md       ~600 words, derived. Optional — many talks have none yet.
 recordings/        Raw audio. Gitignored — local only, never committed.
 .claude/skills/process-recording/
   SKILL.md         The full recording → transcript pipeline
