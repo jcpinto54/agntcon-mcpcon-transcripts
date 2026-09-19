@@ -10,6 +10,13 @@ set -euo pipefail
 AUDIO="${1:?usage: transcribe.sh <audio-file> [output-dir]}"
 OUTDIR="${2:-.transcribe-cache}"
 
+# Optional: once you know which talk this is, pass the speaker, company and
+# title to bias decoding toward the right spellings. Whisper reliably mangles
+# proper nouns ("Floris Fok at Prosus" came out as "Forrest Fock at Proces"),
+# and priming the decoder is the cheapest fix.
+#   PROMPT="Floris Fok, Prosus. Autonomous Organisations: Starting Small." ./transcribe.sh ...
+PROMPT="${PROMPT:-}"
+
 # large-v3, not turbo or a distilled variant. The speaker list is heavily
 # international and the smaller models mangle exactly the accented names and
 # protocol jargon (MCP, SemVer, "abliterated") this archive exists to capture.
@@ -48,11 +55,31 @@ fi
 
 mkdir -p "$OUTDIR"
 
+# --condition-on-previous-text False is NOT optional. With it left on (the
+# default), Whisper feeds each window its own previous output, and on a quiet
+# or unclear passage it locks into a repetition loop. A 31-minute talk came
+# back as 1382 segments of which only 261 were unique -- one sentence repeated
+# 1080 times -- and took 18x longer to produce that garbage than a clean run
+# takes. --temperature 0 keeps decoding deterministic.
 uvx --from mlx-whisper mlx_whisper \
     --model "$LOCAL_MODEL" \
     --output-dir "$OUTDIR" \
     --output-format all \
     --language en \
+    --condition-on-previous-text False \
+    --temperature 0 \
+    ${PROMPT:+--initial-prompt "$PROMPT"} \
     "$AUDIO"
 
-echo "Wrote $OUTDIR/$(basename "${AUDIO%.*}").{txt,srt,vtt,tsv,json}"
+TXT="$OUTDIR/$(basename "${AUDIO%.*}").txt"
+
+# Always check for the loop before trusting the output. Near-identical segment
+# and unique counts mean a clean run; a large gap means it hallucinated.
+total=$(grep -c . "$TXT" || true)
+uniq_n=$(sort -u "$TXT" | grep -c . || true)
+echo "Wrote $TXT"
+echo "Segments: $total, unique: $uniq_n"
+if [ "$total" -gt 20 ] && [ "$uniq_n" -lt $(( total * 7 / 10 )) ]; then
+  echo "WARNING: over 30% of segments are duplicates -- likely a hallucination" >&2
+  echo "loop. Inspect before using; do not commit this transcript." >&2
+fi

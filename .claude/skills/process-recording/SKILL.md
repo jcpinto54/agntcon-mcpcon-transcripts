@@ -53,16 +53,40 @@ it is cached. Keep `large-v3` rather than a distilled or turbo variant: the
 speaker list is heavily international, and the smaller models mangle exactly
 the accented names and protocol jargon this repo exists to preserve.
 
+Expect roughly 16x realtime — a 30-minute talk takes about two minutes.
+
+**Always check the output for a repetition loop before using it.** The script
+prints a segment count and a unique-segment count and warns when they diverge.
+Whisper can lock into repeating one sentence for the rest of a recording; the
+first run of this pipeline produced 1382 segments of which only 261 were
+unique, the same line 1080 times, and burned 18x the runtime doing it. The
+`--condition-on-previous-text False` flag in the script is what prevents it.
+If you see the warning, do not commit that transcript.
+
+If you already know which talk it is, prime the decoder with the names:
+
+```bash
+PROMPT="Floris Fok, Prosus. Autonomous Organisations: Starting Small." \
+  .claude/skills/process-recording/scripts/transcribe.sh recordings/<file>
+```
+
 Before transcribing, check for these two situations:
 
 - **Split recordings.** If one file ends within a minute or two of another
   starting, they are one talk that got interrupted. Concatenate the audio
   first (`ffmpeg -f concat`) and transcribe once, so the transcript reads
   continuously.
+- **Recordings that span several talks.** The Auditorium ran short
+  back-to-back slots, and a recording left running covers several of them. If
+  a recording is much longer than any single candidate session, expect
+  multiple talks inside it: find the speaker changes and write one file per
+  talk rather than forcing it into a single transcript.
 - **Duplicate recordings.** The same talk may have been captured on two devices
-  at once (a `.wav` recorder and an iPad). Overlapping windows with near
-  identical durations mean duplicates — transcribe the better-sounding one and
-  discard the other. Do not file both.
+  at once. Overlapping windows with near identical durations *suggest*
+  duplicates — but confirm it from the text before discarding anything. Two
+  files here started eight seconds apart and turned out to be entirely
+  different talks, because one was a `.wav` whose only timestamp was an
+  unreliable filesystem date. Compare vocabulary, not clocks.
 
 ## Stage 3 — Identify the talk for real
 
@@ -130,6 +154,9 @@ Rules for the transcript body:
   wall of unbroken text is unreadable and unsearchable.
 - Do not silently correct the speaker. Do fix Whisper's obvious mishearings of
   technical terms and proper nouns, using `sessions.json` to get names right.
+  Assume every name is wrong until checked — large-v3 rendered "Floris Fok, a
+  staff engineer at Prosus" as "Forrest Fock, a staff engineer at Proces". Note
+  the correction policy in the transcript so readers know what was touched.
 - If the recording is partial, say so plainly at the point it cuts:
   `*[Recording begins mid-talk]*` or `*[Recording ends here]*`.
 

@@ -97,7 +97,7 @@ which sessions are still missing.
 |   | 17:30 | G102 + G103 | MAS-Lab: An Open Framework for Spec-Driven, Interoperable Multi-Agent Systems | Jordan Augé |
 |   | 17:30 | G104 + G105 | The Unix Philosophy for AI Agents: Filesystems as the Context Primitive | Cannis Chan, Daniel Temesgen |
 
-### Friday 18 September  (0/41 transcribed)
+### Friday 18 September  (1/41 transcribed)
 
 | | Time | Room | Talk | Speakers |
 |---|---|---|---|---|
@@ -139,7 +139,7 @@ which sessions are still missing.
 |   | 15:00 | G106 + G107 | Evaluating Agents at Scale: From 50 Examples to a Production Flywheel | Bauke Brenninkmeijer |
 |   | 15:35 | Emerald Room | Most MCP Servers are Empty | David Golverdingen |
 |   | 15:35 | G102 + G103 | Infrastructure Red Teaming With Abliterated Models: What Actually Stops Agent Attacks | Roy Belio |
-|   | 15:35 | G104 + G105 | Autonomous Organisations: Starting Small | Floris Fok |
+| [x](talks/autonomous-organisations-starting-small.md) | 15:35 | G104 + G105 | [Autonomous Organisations: Starting Small](talks/autonomous-organisations-starting-small.md) | Floris Fok |
 |   | 15:35 | G106 + G107 | From Advisory to Autonomous: A Staged Model for Agent Adoption | Milos Mandic |
 |   | 16:10 | Auditorium | MCP Challenges & Opportunities | Sam Morrow, Angie Jones, Shaun Smith, Shub Argha |
 
