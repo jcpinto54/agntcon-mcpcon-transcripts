@@ -15,11 +15,21 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
     os.path.dirname(os.path.abspath(__file__))))))
 DAY_NAME = {"thu": "Thursday 17 September 2026", "fri": "Friday 18 September 2026"}
 
-ABOUT = "## What it was about"
-POINTS = "## Key points"
-MIN_WORDS, MAX_WORDS = 400, 750
-MIN_POINTS, MAX_POINTS = 3, 6
+# The section order, borrowed from how recaps and structured abstracts are
+# conventionally written: the claim first (inverted pyramid), then the stages
+# of thought that support it, then the reusable payload -- quotes and
+# takeaways. See SKILL.md for where each piece comes from.
+ONELINE = "## In one line"
+ARGUMENT = "## The argument"
+QUOTES = "## In their words"
+TAKEAWAYS = "## Takeaways"
+OPEN = "## What the talk leaves open"   # optional, always last
+
+MIN_WORDS, MAX_WORDS = 550, 950
+MIN_TAKEAWAYS, MAX_TAKEAWAYS = 3, 5
 MIN_TOPICS, MAX_TOPICS = 2, 4
+MIN_QUOTES, MAX_QUOTES = 2, 4
+MAX_ONELINE_WORDS = 45
 # A topic section shorter than this is a heading with a sentence under it --
 # the table of contents the format exists to avoid.
 MIN_TOPIC_WORDS = 60
@@ -56,35 +66,104 @@ def sections(body):
             for i in range(1, len(parts) - 1, 2)]
 
 
+def blockquotes(text):
+    """Contiguous runs of '>' lines, joined into one quote each."""
+    out, buf = [], []
+    for line in text.splitlines():
+        if line.lstrip().startswith(">"):
+            buf.append(line.lstrip()[1:].strip())
+        elif buf:
+            out.append(" ".join(buf).strip()); buf = []
+    if buf:
+        out.append(" ".join(buf).strip())
+    return [q for q in out if q]
+
+
+def normalise(s):
+    """Fold a string for verbatim comparison against the transcript.
+
+    The transcript is hard-wrapped at 80 columns and the summary is not, so a
+    quote that is word-for-word correct still will not match on whitespace
+    alone. Quote characters get folded too, because a writer typing the quote
+    by hand produces curly ones the transcript does not have.
+    """
+    s = s.replace("’", "'").replace("‘", "'")
+    s = s.replace("“", '"').replace("”", '"')
+    s = s.replace("—", " ").replace("–", " ")
+    # Punctuation goes first, then whitespace collapses -- otherwise a comma
+    # present on one side and absent on the other leaves a double space there
+    # and a single space here, and a correct quote fails to match.
+    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9' ]", " ", s.lower())).strip()
+
+
+def check_quotes(body, transcript):
+    """Every quoted line must appear word for word in the transcript.
+
+    This is the one check the archive is uniquely able to make: the source is
+    sitting in the next file. A summary that misquotes a speaker is worse than
+    one that does not quote at all, and a quote smoothed into tidier grammar
+    is a misquote.
+    """
+    problems = []
+    quotes = blockquotes(dict(sections(body)).get(QUOTES, ""))
+    if not MIN_QUOTES <= len(quotes) <= MAX_QUOTES:
+        problems.append(f"{len(quotes)} quote(s) in \"{QUOTES}\" "
+                        f"(want {MIN_QUOTES}-{MAX_QUOTES})")
+    hay = normalise(transcript)
+    for q in quotes:
+        if normalise(q) not in hay:
+            short = q if len(q) <= 60 else q[:57] + "..."
+            problems.append(f'not in the transcript word for word: "{short}"')
+    return problems
+
+
 def check_shape(body):
     """Reject a body that is not the agreed format.
 
-    The shape is: what it was about, then two to four sections named after the
-    topics the talk actually dwelt on, then the key points. The per-section
-    minimum is the part that matters -- without it the format degrades into
-    the same short summary with more headings in it.
+    Order is the claim, the argument behind it, the stages of thought, then
+    the reusable payload -- quotes and takeaways -- with an optional section
+    for what the speaker left unresolved. The per-section minimum is the part
+    that does the work: without it the format degrades into the same short
+    summary with more headings in it.
     """
     problems = []
     secs = sections(body)
     headings = [h for h, _ in secs]
+    fixed = (ONELINE, ARGUMENT, QUOTES, TAKEAWAYS, OPEN)
 
     deep = re.findall(r"^#{3,6} .*$", body, re.M)
     if deep:
-        problems.append(f"{len(deep)} heading(s) below level 2 -- topic "
-                        "sections do not get sub-headings")
+        problems.append(f"{len(deep)} heading(s) below level 2 -- sections "
+                        "do not get sub-headings")
 
     if not headings:
-        return [f'no sections at all -- expected "{ABOUT}" first'], 0
-    if headings[0] != ABOUT:
-        problems.append(f'first section must be "{ABOUT}", found "{headings[0]}"')
-    if POINTS not in headings:
-        problems.append(f'missing the "{POINTS}" section')
-    elif headings[-1] != POINTS:
-        problems.append(f'"{POINTS}" must be the last section')
+        return [f'no sections at all -- expected "{ONELINE}" first'], 0
 
-    topics = [(h, t) for h, t in secs if h not in (ABOUT, POINTS)]
+    for want, pos in ((ONELINE, 0), (ARGUMENT, 1)):
+        if len(headings) <= pos or headings[pos] != want:
+            found = headings[pos] if len(headings) > pos else "nothing"
+            problems.append(f'section {pos + 1} must be "{want}", found "{found}"')
+    for want in (QUOTES, TAKEAWAYS):
+        if want not in headings:
+            problems.append(f'missing the "{want}" section')
+    # Takeaways close the summary, unless the optional open-questions section
+    # follows them.
+    tail = [h for h in headings if h in (TAKEAWAYS, OPEN)]
+    if tail and headings[-len(tail):] != tail:
+        problems.append(f'"{TAKEAWAYS}" and "{OPEN}" must come last')
+    if QUOTES in headings and TAKEAWAYS in headings \
+            and headings.index(QUOTES) > headings.index(TAKEAWAYS):
+        problems.append(f'"{QUOTES}" must come before "{TAKEAWAYS}"')
+
+    one = dict(secs).get(ONELINE, "")
+    n = len(one.split())
+    if n > MAX_ONELINE_WORDS:
+        problems.append(f'"{ONELINE}" is {n} words (want at most '
+                        f"{MAX_ONELINE_WORDS}) -- it is the elevator sentence")
+
+    topics = [(h, t) for h, t in secs if h not in fixed]
     if not MIN_TOPICS <= len(topics) <= MAX_TOPICS:
-        problems.append(f"{len(topics)} topic section(s) between them "
+        problems.append(f"{len(topics)} topic section(s) "
                         f"(want {MIN_TOPICS}-{MAX_TOPICS})")
     for h, text in topics:
         n = len(text.split())
@@ -93,12 +172,12 @@ def check_shape(body):
                             f"{MIN_TOPIC_WORDS}) -- elaborate it or drop it")
         if re.search(r"^\s*[-*] ", text, re.M):
             problems.append(f'"{h}" contains bullets -- topic sections are '
-                            "prose; bullets belong under Key points")
+                            "prose; bullets belong under Takeaways")
 
-    points = dict(secs).get(POINTS, "")
-    bullets = re.findall(r"^\s*[-*] ", points, re.M)
-    if not MIN_POINTS <= len(bullets) <= MAX_POINTS:
-        problems.append(f"{len(bullets)} key points (want {MIN_POINTS}-{MAX_POINTS})")
+    bullets = re.findall(r"^\s*[-*] ", dict(secs).get(TAKEAWAYS, ""), re.M)
+    if not MIN_TAKEAWAYS <= len(bullets) <= MAX_TAKEAWAYS:
+        problems.append(f"{len(bullets)} takeaway(s) "
+                        f"(want {MIN_TAKEAWAYS}-{MAX_TAKEAWAYS})")
 
     words = len(re.sub(r"^#{1,6} .*$", "", body, flags=re.M).split())
     if not MIN_WORDS <= words <= MAX_WORDS:
@@ -161,6 +240,7 @@ def main():
             else open(a.body, encoding="utf-8").read()).strip()
 
     problems, words = check_shape(body)
+    problems += check_quotes(body, transcript)
     if problems:
         sys.exit("summary body is not in the archive format:\n  - " +
                  "\n  - ".join(problems))

@@ -61,11 +61,12 @@ writes the file in the right format.
 ## Summaries
 
 Optional, and a good way to contribute without a recording of your own: pick a
-talk that has a transcript but no `summary.md` and write one. Roughly 500 to
-700 words — a paragraph on what the talk was about, a section on each of the
-two to four topics it actually spent its time on, then three to six key points
-as a tail. All of it drawn from the transcript rather than from the abstract in
-the guide.
+talk that has a transcript but no `summary.md` and write one. Roughly 600 to
+850 words in a fixed structure: the claim in one line, the argument behind it,
+a section for each stage of the talk, two to four quotes and three to five
+takeaways. All of it drawn from the transcript rather than from the abstract in
+the guide — and the quotes have to be word for word, because the script checks
+them against the transcript and refuses the file if they are not.
 
 ```bash
 python3 .claude/skills/summarize-talk/scripts/write_summary.py \

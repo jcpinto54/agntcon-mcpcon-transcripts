@@ -25,7 +25,7 @@ guide/
 talks/
   <slug>/          One directory per talk, named from the talk title
     transcript.md    What the speaker said. Raw.
-    summary.md       ~600 words, derived. Optional — many talks have none yet.
+    summary.md       ~750 words, derived. Optional — many talks have none yet.
 recordings/        Raw audio. Gitignored — local only, never committed.
 .claude/skills/process-recording/
   SKILL.md         The full recording → transcript pipeline
@@ -84,9 +84,10 @@ python3 .claude/skills/process-recording/scripts/build_index.py
 ## Adding a summary
 
 Use the `summarize-talk` skill. It writes `talks/<slug>/summary.md` beside an
-existing transcript — a short paragraph on what the talk was about plus three
-to six key points, drawn only from what the speaker actually said and never
-from the abstract in `sessions.json`:
+existing transcript, in a fixed structure: the claim in one line, the
+argument, a section for each stage of the talk, two to four verbatim quotes
+and three to five takeaways — drawn only from what the speaker actually said
+and never from the abstract in `sessions.json`:
 
 ```
 .claude/skills/summarize-talk/SKILL.md
