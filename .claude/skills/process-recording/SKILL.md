@@ -54,38 +54,26 @@ gives you a shortlist of 3–6. The exception is keynotes, which are single-trac
 .claude/skills/process-recording/scripts/transcribe.sh recordings/<file>
 ```
 
-Runs Whisper `large-v3` on your own machine, picking a backend automatically:
-MLX on Apple Silicon, CTranslate2 everywhere else (CPU, or CUDA with
-`WHISPER_DEVICE=cuda`). Force one with `WHISPER_BACKEND=mlx|ct2`. First run
-downloads ~3GB; after that it is cached.
+Runs Whisper `large-v3` locally, picking a backend automatically: MLX on Apple
+Silicon, CTranslate2 everywhere else (CPU, or CUDA with `WHISPER_DEVICE=cuda`).
+Override with `WHISPER_BACKEND=mlx|ct2`. First run downloads ~3GB. Roughly 16x
+realtime on Apple Silicon, closer to 1x on CPU.
 
 Keep `large-v3` rather than a distilled or turbo variant: the speaker list is
 heavily international, and the smaller models mangle exactly the accented
 names and protocol jargon this repo exists to preserve.
 
-Expect roughly 16x realtime on Apple Silicon — a 30-minute talk takes about
-two minutes. On CPU, budget closer to realtime.
-
-**If this machine cannot run Whisper at all**, there is a hosted fallback:
+**If the machine cannot run Whisper at all**, there is a hosted fallback —
+second choice, not a peer, because it uploads the speaker's recording:
 
 ```bash
 GROQ_API_KEY=... .claude/skills/process-recording/scripts/transcribe_api.sh recordings/<file>
 ```
 
-It is the second choice, not a peer. Uploading means sending a recording that
-belongs to the speaker to a third party, so use the local path wherever you
-can, and read the API section of `README.md` first — it covers getting a key
-and switching retention off before you send anything. The script downmixes to
-16kHz mono before uploading (which is all Whisper listens to anyway) so a long
-talk fits under the provider's size cap, and writes the same one-segment-
-per-line `.txt` the local backends produce, so everything downstream is
-identical.
-
-One thing the hosted path cannot do: the APIs do not expose
-`condition-on-previous-text`, the flag that suppresses repetition loops
-locally. The loop check still runs on the result and `write_talk.py` still
-refuses a looped transcript, so the failure is loud — but expect to hit it
-more often than you would locally.
+Point people at the API section of `README.md` first; it covers the key and
+switching retention off. Output is identical to the local path. One catch: the
+APIs do not expose `condition-on-previous-text`, so repetition loops are
+likelier — the loop check and `write_talk.py` still catch them.
 
 **Always check the output for a repetition loop before using it.** The script
 prints a segment count and a unique-segment count and warns when they diverge.

@@ -45,22 +45,19 @@ writes the file in the right format.
    .claude/skills/process-recording/scripts/transcribe.sh recordings/<your-file>
    ```
 
-   Runs Whisper large-v3 on your machine — MLX on Apple Silicon, CTranslate2
-   on anything else, CPU or GPU. The first run downloads ~3GB of model
-   weights; after that it is cached. Needs `uv` and `ffmpeg`. Everything here
-   has only been tested on macOS — see
+   Runs Whisper large-v3 on your machine. First run downloads ~3GB. Needs
+   `uv` and `ffmpeg`. Only tested on macOS — see
    [A note on platforms](README.md#a-note-on-platforms).
 
-   No machine that can manage it? Use the hosted fallback instead:
+   Can't run it? Use the hosted fallback:
 
    ```bash
    GROQ_API_KEY=... .claude/skills/process-recording/scripts/transcribe_api.sh recordings/<your-file>
    ```
 
-   See [Transcribing without a capable machine](README.md#transcribing-without-a-capable-machine)
-   for how to get a key and how to switch retention off first. Local is still
-   the better option when it is open to you — the recording is the speaker's,
-   not ours.
+   [Transcribing without a capable machine](README.md#transcribing-without-a-capable-machine)
+   covers the key and the retention setting. Prefer local when you can — the
+   recording is the speaker's, not ours.
 
 3. **Write `talks/<slug>/transcript.md`** following the format of any existing
    transcript. Copy the frontmatter fields, including `session_id` from

@@ -44,78 +44,37 @@ which sessions are still missing.
 
 ## A note on platforms
 
-**This repo was built and run on macOS, on Apple Silicon, and that is the only
-place the tooling has actually been exercised.** Every transcript in the
-archive was produced there.
-
-The scripts are written to work on Linux and Windows too — a CTranslate2
-backend instead of MLX, a modification-time fallback where Spotlight is not
-available — but those paths have been written, not tested.
-
-**So if something breaks on your machine, it is a bug here and not a mistake
-on your part — please fix it and open a PR.** Portability fixes are as
-valuable a contribution as a transcript, and rather more reusable: every one
-of them makes the archive open to someone who could not add to it before. Say
-in the PR what platform you were on, so the note above can shrink over time.
-
-If you would rather not debug someone else's shell script, the hosted API path
-in the next section sidesteps most of what is likely to go wrong. On Windows,
-WSL is the path of least resistance.
+**Only tested on macOS (Apple Silicon).** The scripts have Linux and Windows
+paths, but nobody has run them. If something breaks, that's a bug here — fix
+it and open a PR, saying which platform you were on. On Windows, use WSL.
 
 ## Transcribing without a capable machine
 
-Transcribing locally is the default, and `transcribe.sh` will do it on most
-machines — MLX on Apple Silicon, CTranslate2 on anything else, CPU or CUDA.
-But it wants a 3GB model and real compute, and on a modest laptop a 30-minute
-talk takes about as long as the talk did.
+`transcribe.sh` needs a 3GB model and real compute. If that rules you out, use
+Groq — same `whisper-large-v3` the archive requires, ~$0.11 per hour of audio
+(about 5 cents a talk), free tier available, and it doesn't train on what you
+send. Prefer local when you can: this uploads someone else's talk.
 
-If that rules you out, there is a hosted fallback. It is genuinely a second
-choice: it means uploading a recording of someone else's talk to a company
-neither you nor they chose. Prefer local where you can.
-
-**Use Groq.** It serves the same `whisper-large-v3` this archive requires —
-not a turbo or distilled variant, which mangle exactly the accented names and
-protocol jargon the transcripts exist to preserve. At the time of writing it
-costs about **$0.11 per hour of audio**, so roughly 5 cents for a 25-minute
-talk, and there is a free tier. It does not train on what you send.
-
-1. **Turn retention off first.** Sign in at
-   [console.groq.com](https://console.groq.com/), open **Settings → Data
-   Controls**, and enable **Zero Data Retention**. By default audio is kept up
-   to 30 days for abuse monitoring; with ZDR on, nothing is retained once the
-   request completes. Do this before you upload anything.
-2. **Create a key.** In the same console, **API Keys → Create API Key**. Copy
-   it — it is shown once.
-3. **Keep it out of the repository.** Export it in your shell, or put it in a
-   file that is already ignored. It must never be committed:
-
-   ```bash
-   export GROQ_API_KEY="gsk_..."
-   ```
-
-4. **Transcribe.**
+1. At [console.groq.com](https://console.groq.com/), **Settings → Data
+   Controls → Zero Data Retention**. Do this first — the default keeps audio
+   30 days.
+2. **API Keys → Create API Key.** Shown once.
+3. `export GROQ_API_KEY="gsk_..."` — never commit it.
+4. Run it:
 
    ```bash
    .claude/skills/process-recording/scripts/transcribe_api.sh recordings/<your-file>
    ```
 
-   The script downmixes to 16kHz mono before uploading — all Whisper listens
-   to anyway — so a long talk stays under the size cap, and it writes exactly
-   the same `.txt` the local path does. Everything after this step is
-   identical.
+Output is identical to the local path, so everything downstream is unchanged.
 
-Other providers work if you prefer one: point `WHISPER_API_URL` and
-`WHISPER_API_MODEL` at any OpenAI-compatible transcription endpoint and set
-`WHISPER_API_KEY`. Check two things before you do — that it serves
-**large-v3** rather than a smaller variant, and what it retains. OpenAI's
-Whisper endpoint works and is about 3x the price, but its zero-retention
-option needs an arrangement with their sales team rather than a toggle you
-can reach yourself.
+Any OpenAI-compatible endpoint works instead via `WHISPER_API_URL`,
+`WHISPER_API_MODEL` and `WHISPER_API_KEY` — check it serves **large-v3**, not
+a smaller variant, and check what it retains. OpenAI's is ~3x the price and
+its zero-retention needs a sales conversation.
 
-One caveat: the hosted APIs do not expose `condition-on-previous-text`, the
-flag that stops Whisper locking into a repetition loop. The loop check still
-runs, and the transcript writer still refuses a looped result — so it fails
-loudly rather than silently — but expect to hit it more often than locally.
+One caveat: hosted APIs don't expose `condition-on-previous-text`, so
+repetition loops are likelier. The loop check still catches them.
 
 ## Known gaps in this batch
 

@@ -64,19 +64,15 @@ alone rarely identifies a talk. If the transcript content does not settle which
 session it was, set `confidence: uncertain` in the frontmatter and say why. A
 confidently mislabelled transcript is worse than an unlabelled one.
 
-**Transcribe locally where you can.** `transcribe.sh` runs Whisper on the
-contributor's own machine — MLX on Apple Silicon, CTranslate2 elsewhere — and
-that remains the default, because the recording belongs to the speaker rather
-than to us. Only the Apple Silicon path has actually been exercised; say so
-rather than promising the others work, and see the platform note in
-`README.md`.
+**Transcribe locally where you can.** The recording belongs to the speaker,
+not to us. `transcribe.sh` uses MLX on Apple Silicon and CTranslate2 elsewhere,
+though only the Apple Silicon path has actually been run — say so rather than
+promising the rest works.
 
-Not every contributor has the hardware, and an archive nobody can contribute
-to is not much of an archive, so `transcribe_api.sh` sends the audio to a
-hosted `large-v3` instead. Treat it as the fallback it is: suggest the local
-path first, and point anyone using the hosted one at the API section of
-`README.md`, which covers switching retention off before uploading. Never
-reach for it merely because it is faster.
+`transcribe_api.sh` uploads to a hosted `large-v3` for contributors without the
+hardware. It is the fallback: suggest local first, point people at the API
+section of `README.md` for the retention setting, and never reach for it just
+because it is faster.
 
 ## Adding a transcript
 
