@@ -33,7 +33,11 @@ Two traps this script already handles, which you must not "fix" by hand:
   every file's mtime to the moment of export — which will collapse an entire
   day of talks onto a single bogus timestamp and produce confident nonsense.
   The script warns when it had to fall back to filesystem dates (`.wav` files
-  have no container timestamp); treat those slots as unconfirmed.
+  have no container timestamp); treat those slots as unconfirmed. In this
+  archive's `.wav` files the filesystem date turned out to be when the
+  recording *stopped*, not when it started — the opposite of the container
+  timestamps — so a `.wav` slot is only meaningful once you subtract its
+  duration, and even then confirm from the text.
 - **Long blocks rank high for free.** A 95-minute workshop overlaps every
   25-minute talk inside its span, so it tops the overlap ranking for almost
   every recording. That is arithmetic, not evidence. The script flags these.
@@ -84,9 +88,16 @@ Before transcribing, check for these two situations:
 - **Duplicate recordings.** The same talk may have been captured on two devices
   at once. Overlapping windows with near identical durations *suggest*
   duplicates — but confirm it from the text before discarding anything. Two
-  files here started eight seconds apart and turned out to be entirely
-  different talks, because one was a `.wav` whose only timestamp was an
-  unreliable filesystem date. Compare vocabulary, not clocks.
+  files here looked simultaneous and turned out to be *consecutive halves* of
+  one talk: a `.wav` recorder stopped at 11:55 and an iPad started at the same
+  minute, and the second picks up the sentence the first was in the middle of.
+  Compare vocabulary and check whether one continues the other, rather than
+  trusting the clocks.
+
+- **Recordings with no usable speech.** A recording can be entirely silence —
+  a mic in a bag. Whisper fills the silence with a handful of "you" and
+  "Thank you" segments. `write_talk.py` refuses anything under 200 words for
+  this reason. Report it as unusable; do not file it.
 
 ## Stage 3 — Identify the talk for real
 
@@ -97,7 +108,15 @@ in `sessions.json`.
 
 Commit to a session id. If the transcript genuinely does not settle it, say so
 in the frontmatter (`confidence: uncertain`) rather than guessing — a wrongly
-attributed transcript is worse than an unattributed one.
+attributed transcript is worse than an unattributed one. If nothing fits at
+all, file it with `confidence: unidentified`, an empty `session_id` and a
+description of the content, and ask in the file for someone who was there to
+correct it. The conference also has a public schedule at
+<https://agntconmcpconeu26.sched.com/> which is a useful second source when
+the guide alone leaves it ambiguous.
+
+Watch for speakers who appear twice: at least one gave two separate talks, so
+a name alone does not identify a session.
 
 Some recordings will not match any session: hallway conversations, side
 meetups, anything in the evening. Those are fine to keep, but file them

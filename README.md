@@ -36,11 +36,25 @@ Were you there? Add the talks you recorded — see
 **[CONTRIBUTING.md](CONTRIBUTING.md)**. The coverage table below shows exactly
 which sessions are still missing.
 
+## Known gaps in this batch
+
+- **One recording is unidentified.** [Friday 15:08](talks/unidentified-friday-1508-loop-engineering.md)
+  is a real talk on harness and loop engineering, but no scheduled session is a
+  clear fit and the speaker never gives their name. If you recognise it, a PR
+  correcting the attribution is very welcome.
+- **Two attributions are marked `confidence: uncertain`** in their frontmatter,
+  with the reason stated in the file. Both are identified by content rather
+  than by a clean timestamp match.
+- **One recording captured no usable speech** (18 minutes of a muffled mic) and
+  is deliberately not filed.
+- Several recordings start after the speaker began; those transcripts are
+  marked *[Recording begins mid-talk]*.
+
 ## Coverage
 
 <!-- COVERAGE:START -->
 
-### Thursday 17 September  (8/52 transcribed)
+### Thursday 17 September  (11/52 transcribed)
 
 | | Time | Room | Talk | Speakers |
 |---|---|---|---|---|
@@ -57,8 +71,8 @@ which sessions are still missing.
 |   | 10:50 | Auditorium | An Orchestra of Agents: What I Learned Running a Multi-Agent System for 5,000+ Developers | Muhammad Ahsan Ayaz |
 |   | 10:50 | Emerald Room | Stateless: The Future of MCP Transports | Kurtis Van Gent, Shaun Smith |
 |   | 10:50 | G102 + G103 | Legal Implications Under EU Law When Deploying AI Agents | Mirela Takacs |
-|   | 10:50 | G104 + G105 | Beyond the Easy 80%: Bringing Legacy, Spatial, and Locked-Down Data to MCP | Sanae Mendoza |
-|   | 11:25 | Auditorium | When NOT To Use an Agent: Choosing Between Workflows, Services, and Agent Systems | Jigyasa Grover, Rishabh Misra |
+| [x](talks/beyond-easy-80-bringing-legacy-spatial-locked-down.md) | 10:50 | G104 + G105 | [Beyond the Easy 80%: Bringing Legacy, Spatial, and Locked-Down Data to MCP](talks/beyond-easy-80-bringing-legacy-spatial-locked-down.md) | Sanae Mendoza |
+| [x](talks/when-not-use-agent-choosing-between-workflows-services.md) | 11:25 | Auditorium | [When NOT To Use an Agent: Choosing Between Workflows, Services, and Agent Systems](talks/when-not-use-agent-choosing-between-workflows-services.md) | Jigyasa Grover, Rishabh Misra |
 |   | 11:25 | Emerald Room | Call Now, Fetch Later: Durable MCP Tasks on an Event Log | Jeremy Frenay |
 |   | 11:25 | G102 + G103 | CHAP, an Open Protocol for Auditable Human-Agent Collaboration | Dr Arsalan Shahid |
 |   | 11:25 | G104 + G105 | Agents, Infrastructure, and the Future of AI-native Applications | Kevin Cochrane |
@@ -92,12 +106,12 @@ which sessions are still missing.
 |   | 16:20 | G106 + G107 | Governing AI Agent Actions: MCP and Beyond | Shannon Williams, Chris Urwin |
 |   | 16:55 | Emerald Room | Distributed Mess: A Production Guide To Multi-Agent Failures | Huong Vu |
 |   | 16:55 | G102 + G103 | Skills Need SemVer Too | Pedro Rodrigues |
-|   | 16:55 | G104 + G105 | We Built an Agent, We Shipped a Compiler. Here's Why | Joel Verezhak |
+| [x](talks/we-built-agent-we-shipped-compiler-here-s.md) | 16:55 | G104 + G105 | [We Built an Agent, We Shipped a Compiler. Here's Why](talks/we-built-agent-we-shipped-compiler-here-s.md) | Joel Verezhak |
 | [x](talks/verify-abstain-amplify-field-guide-confidently-wrong-agents.md) | 17:30 | Emerald Room | [Verify, Abstain, or Amplify: A Field Guide To Confidently-Wrong Agents](talks/verify-abstain-amplify-field-guide-confidently-wrong-agents.md) | Michal Orzechowski |
 |   | 17:30 | G102 + G103 | MAS-Lab: An Open Framework for Spec-Driven, Interoperable Multi-Agent Systems | Jordan Augé |
 |   | 17:30 | G104 + G105 | The Unix Philosophy for AI Agents: Filesystems as the Context Primitive | Cannis Chan, Daniel Temesgen |
 
-### Friday 18 September  (5/41 transcribed)
+### Friday 18 September  (7/41 transcribed)
 
 | | Time | Room | Talk | Speakers |
 |---|---|---|---|---|
@@ -105,7 +119,7 @@ which sessions are still missing.
 |   | 09:07 | Auditorium | Catch Them Early | Manik Surtani |
 |   | 09:19 | Auditorium | Getting to Stateless MCP: In Production | Shaun Smith |
 |   | 09:29 | Auditorium | Three Doors to One Tool: MCP vs WebMCP vs CLI | Frédéric Barthelet, Dominic Farolino |
-|   | 09:41 | Auditorium | State of the Software Factory | Dexter Horthy |
+| [x](talks/state-software-factory.md) | 09:41 | Auditorium | [State of the Software Factory](talks/state-software-factory.md) | Dexter Horthy |
 |   | 10:20 | Auditorium | How we Reclaimed Significant Engineering Capacity at Salesforce with AI Agents | Axel Uhlig |
 |   | 10:20 | Emerald Room | Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal | Takashi Norimatsu |
 | [x](talks/pull-requests-dead-long-live-peer-review.md) | 10:20 | G102 + G103 | [Pull Requests Are Dead, Long Live Peer Review](talks/pull-requests-dead-long-live-peer-review.md) | Dylan Ratcliffe |
@@ -131,7 +145,7 @@ which sessions are still missing.
 |   | 14:25 | Auditorium | Agent-Smith: Never Send a Human To Do a Machine’s Job | Glenn ten Cate, Jorge Carvalho |
 |   | 14:25 | Emerald Room | Spotify’s Bet on MCP and Investment in Open Source | Reinoud Kruithof, Yannick Epstein |
 |   | 14:25 | G102 + G103 | Beyond Chatbots: Agentic UI With Open Standards | Manfred Steyer |
-|   | 14:25 | G104 + G105 | From Vibes To Data: Evaluating Agents on Your Real Work | Ville Hellman |
+| [x](talks/vibes-data-evaluating-agents-real-work.md) | 14:25 | G104 + G105 | [From Vibes To Data: Evaluating Agents on Your Real Work](talks/vibes-data-evaluating-agents-real-work.md) | Ville Hellman |
 |   | 15:00 | Auditorium | Gating High-Risk Agentic Actions at the Relying Party With Exogenous (Out-of-Band) Inputs | Andrew Bud |
 |   | 15:00 | Emerald Room | Attribution by Design: Skills, MCP, and Where Provenance Gets Built In | Ola Hungerford |
 |   | 15:00 | G102 + G103 | No Central Brain | Fausto Albers |

@@ -16,3 +16,6 @@ recordings/
 
 # macOS
 .DS_Store
+
+# Local editor state (Obsidian vault config)
+.obsidian/

@@ -51,8 +51,13 @@ def drop_looped_segments(lines):
 def check_not_hallucinated(lines):
     """Refuse a transcript dominated by one repeated phrase."""
     words = " ".join(lines).split()
+    # A real conference talk is thousands of words. Anything this short is a
+    # recording that captured silence -- Whisper emits a few "you"/"Thank you"
+    # segments over a dead mic, which survive loop-dropping because each is
+    # too short to look like a loop.
     if len(words) < 200:
-        return
+        sys.exit(f"only {len(words)} words after cleaning -- this recording "
+                 "captured no usable speech. Do not file it as a transcript.")
     grams = [" ".join(words[i:i+5]).lower() for i in range(len(words) - 4)]
     phrase, count = collections.Counter(grams).most_common(1)[0]
     # A real talk repeats a stock phrase a handful of times; a loop repeats one
