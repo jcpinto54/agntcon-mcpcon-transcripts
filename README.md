@@ -42,6 +42,26 @@ Were you there? Add the talks you recorded — see
 **[CONTRIBUTING.md](CONTRIBUTING.md)**. The coverage table below shows exactly
 which sessions are still missing.
 
+## A note on platforms
+
+**This repo was built and run on macOS, on Apple Silicon, and that is the only
+place the tooling has actually been exercised.** Every transcript in the
+archive was produced there.
+
+The scripts are written to work on Linux and Windows too — a CTranslate2
+backend instead of MLX, a modification-time fallback where Spotlight is not
+available — but those paths have been written, not tested.
+
+**So if something breaks on your machine, it is a bug here and not a mistake
+on your part — please fix it and open a PR.** Portability fixes are as
+valuable a contribution as a transcript, and rather more reusable: every one
+of them makes the archive open to someone who could not add to it before. Say
+in the PR what platform you were on, so the note above can shrink over time.
+
+If you would rather not debug someone else's shell script, the hosted API path
+in the next section sidesteps most of what is likely to go wrong. On Windows,
+WSL is the path of least resistance.
+
 ## Transcribing without a capable machine
 
 Transcribing locally is the default, and `transcribe.sh` will do it on most

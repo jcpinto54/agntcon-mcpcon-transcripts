@@ -47,7 +47,9 @@ writes the file in the right format.
 
    Runs Whisper large-v3 on your machine — MLX on Apple Silicon, CTranslate2
    on anything else, CPU or GPU. The first run downloads ~3GB of model
-   weights; after that it is cached. Needs `uv` and `ffmpeg`.
+   weights; after that it is cached. Needs `uv` and `ffmpeg`. Everything here
+   has only been tested on macOS — see
+   [A note on platforms](README.md#a-note-on-platforms).
 
    No machine that can manage it? Use the hosted fallback instead:
 

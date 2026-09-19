@@ -67,7 +67,9 @@ confidently mislabelled transcript is worse than an unlabelled one.
 **Transcribe locally where you can.** `transcribe.sh` runs Whisper on the
 contributor's own machine — MLX on Apple Silicon, CTranslate2 elsewhere — and
 that remains the default, because the recording belongs to the speaker rather
-than to us.
+than to us. Only the Apple Silicon path has actually been exercised; say so
+rather than promising the others work, and see the platform note in
+`README.md`.
 
 Not every contributor has the hardware, and an archive nobody can contribute
 to is not much of an archive, so `transcribe_api.sh` sends the audio to a
