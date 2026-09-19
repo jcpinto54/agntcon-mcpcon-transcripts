@@ -46,23 +46,31 @@ WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
 
 # Whisper resamples to 16kHz mono internally, so sending anything richer wastes
-# upload budget without improving the transcript. This routinely takes a 60MB
-# phone recording under the cap without touching what the model actually sees.
-echo "Downmixing to 16kHz mono FLAC..."
+# upload budget without improving the transcript.
+#
+# Opus rather than FLAC. FLAC is lossless, which sounds like the careful choice
+# until you do the arithmetic: 16kHz mono is ~31MB an hour before compression
+# and FLAC barely dents speech, so a 16-minute talk came out at 34MB and blew
+# the cap. Opus at 24kbps is ~11MB an hour, good enough that Whisper cannot
+# tell, and leaves room for a 95-minute workshop in one request.
+echo "Downmixing to 16kHz mono Opus..."
 ffmpeg -nostdin -loglevel error -i "$AUDIO" \
-       -ar 16000 -ac 1 -map 0:a -c:a flac "$WORK/audio.flac"
+       -ar 16000 -ac 1 -map 0:a -c:a libopus -b:a "${WHISPER_API_BITRATE:-24k}" \
+       "$WORK/audio.ogg"
 
-size_mb=$(( $(stat -f%z "$WORK/audio.flac" 2>/dev/null || \
-              stat -c%s "$WORK/audio.flac" 2>/dev/null || echo 0) / 1000000 ))
+size_mb=$(( $(stat -f%z "$WORK/audio.ogg" 2>/dev/null || \
+              stat -c%s "$WORK/audio.ogg" 2>/dev/null || echo 0) / 1000000 ))
 if [ "$size_mb" -gt "$MAX_MB" ]; then
   cat >&2 <<MSG
-Compressed audio is ${size_mb}MB, over the ${MAX_MB}MB limit.
+Compressed audio is ${size_mb}MB, over the ${MAX_MB}MB limit. At 24kbps that
+is over 2 hours of audio, so this is probably a whole session block rather
+than one talk.
 
-Split it and transcribe each part, then concatenate the .txt files in order:
-  ffmpeg -i "$AUDIO" -f segment -segment_time 1200 -c copy part-%02d.\${AUDIO##*.}
+Split it into chunks and transcribe each, then concatenate the .txt files in
+order (they read continuously; note the join if a word is lost at a seam):
+  ffmpeg -i "$AUDIO" -f segment -segment_time 2400 -c copy part-%02d.m4a
 
-A talk split this way reads continuously as long as you keep the parts in
-order; note the join in the transcript if a word is lost at the seam.
+Or lower the bitrate: WHISPER_API_BITRATE=16k
 MSG
   exit 1
 fi
@@ -71,7 +79,7 @@ echo "Transcribing via $API_MODEL..."
 HTTP=$(curl -sS -w '%{http_code}' -o "$WORK/response.json" \
   --request POST "$API_URL" \
   --header "Authorization: Bearer $API_KEY" \
-  --form "file=@$WORK/audio.flac" \
+  --form "file=@$WORK/audio.ogg" \
   --form "model=$API_MODEL" \
   --form "language=en" \
   --form "temperature=0" \
