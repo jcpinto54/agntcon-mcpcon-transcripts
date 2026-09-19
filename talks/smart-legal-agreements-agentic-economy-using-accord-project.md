@@ -387,15 +387,13 @@ Instead of a REST API, they've got an agent-to-agent interface. They will still
 go and do whatever specialized task that they will do that your agent would not
 be able to do or not be able to do as well or as fast or as cheap. So you'll
 have an economy, sure. I guess that it's these cases that it's a network. Right?
-That's what that was. in the traditional which is a helping issue of the of the
-of the of the of the of the of the of the of the of the of the It's like a black
-box.
+That's what that was. in the traditional which is a helping issue of the It's
+like a black box. I didn't show it in the demo there, but you can see all your
+target positions.
 
-I didn't show it in the demo there, but you can see all your target positions.
 What's the logic? That's just over HTTP. To see the agreement. To see the
 agreement should be outside the agreement. That's the whole point. Otherwise the
 case may be proved. Yeah, so in my demos there I used the blockchain wallet. The
 whole design, that takes care of the cryptographic. I didn't put it on there,
-but yeah, the demo is a hash of the agreement to the user's wallet.
-
-So everything is just like signing a new blockchain.
+but yeah, the demo is a hash of the agreement to the user's wallet. So
+everything is just like signing a new blockchain.

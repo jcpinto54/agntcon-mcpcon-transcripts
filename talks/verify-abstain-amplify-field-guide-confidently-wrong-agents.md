@@ -314,12 +314,12 @@ year a lot of projects from different domains that made me take too many
 decisions a day, the only actual solution is to have a little bit of self-care
 and to outload it. To rest, go to the gym and reset your Jasmine papyrus.
 
-Okay, that's it. Thank you. Thank you for the presentation. You mentioned . You
-mentioned . Yes. But you are relying on important classification of questions
-like this. Who is it? Is it another model with human? What is the ? Oracle in
-the case of verification is a deterministic piece of something, ontology in the
-case of the genomic project here, or a test suite in terms of your code base
-that you can quickly verify against, quickly if you want to work it here.
+Okay, that's it. Thank you. Thank you for the presentation. You mentioned . Yes.
+But you are relying on important classification of questions like this. Who is
+it? Is it another model with human? What is the ? Oracle in the case of
+verification is a deterministic piece of something, ontology in the case of the
+genomic project here, or a test suite in terms of your code base that you can
+quickly verify against, quickly if you want to work it here.
 
 Is it doable? Well, depending on the domain, yeah. For example, in the case of
 this genomic project, the best oracle would be a web lab. Basically someone goes
@@ -352,12 +352,12 @@ find this connection, maybe only to falsify it. However, there is a lot of
 functions that are lacking. So the idea is to actually discover those functions,
 and the dark protein.
 
-Yeah? Research. Yes. Yes. Yes. Yes. Maybe. Sorry. There's a noise. All right. So
-my question to you is whether you have packaged some of this knowledge into a
-skill. Because I've actually run into this issue recently that is you're
-working, you're trying to translate the requirements of teams that are experts
-on a domain you are not. And it's really hard for you as a software engineer to
-understand what is important, right? It's this judgment thing.
+Yeah? Research. Yes. Maybe. Sorry. There's a noise. All right. So my question to
+you is whether you have packaged some of this knowledge into a skill. Because
+I've actually run into this issue recently that is you're working, you're trying
+to translate the requirements of teams that are experts on a domain you are not.
+And it's really hard for you as a software engineer to understand what is
+important, right? It's this judgment thing.
 
 So when I see that these workflow, these flow diagrams, the decision paths, it
 is actually maybe something useful for the agent to help you guide yourself
@@ -588,12 +588,12 @@ as attempt to or way to apply the relational algebra to give structure to the
 knowledge.
 
 It's some knowledge, I think. It's a way of modeling what's real, basically.
-What's true. What's true. What's true. It's not just what's real, but it's
-what's true. Like, your opinions are real. Ah, yes. And then there is a cost of
-building, because now people are doing LLM, VKIS, RACs, et cetera. But there is
-a context of it, with all of it. And ontology, you define, and agent doesn't
-touch it. No, the agents don't touch it. And in fact, there is a specialized
-area within logic programming to create retractable ontology.
+What's true. It's not just what's real, but it's what's true. Like, your
+opinions are real. Ah, yes. And then there is a cost of building, because now
+people are doing LLM, VKIS, RACs, et cetera. But there is a context of it, with
+all of it. And ontology, you define, and agent doesn't touch it. No, the agents
+don't touch it. And in fact, there is a specialized area within logic
+programming to create retractable ontology.
 
 Yeah, so that relies. So that relies totally on human experts creating,
 translating that, no? Because you cannot, if you let an LLM do it, like it's
@@ -630,22 +630,21 @@ down, when we all know that these things are not true.
 
 And have they published about that? How they use it? No, I don't think so.
 They've just published that they do this. Which makes a lot, a lot of sense. .
-Yeah. Yeah. But if I may ask, I would build an ontology and have an LM use it
-for something, for example, for biology. LLMs can't use it. You need an
+Yeah. But if I may ask, I would build an ontology and have an LM use it for
+something, for example, for biology. LLMs can't use it. You need an
 intermediary. Yeah, yes, I understand. Yeah. As a big party told, every
 knowledge inside a LLM is a vague recollection. And all this even hard knowledge
 you have to put into context this or other way.
 
-Yeah. Yeah. you are populating the context, you don't want to populate too much
-of the context, so actually querying the ontology is quite efficient. Yeah. But
-I would do that if I really have a complex problem, like you have a complex
-physical problem or biology problem and you really want to check specific
-answers, that's when I would build something else. But usually you don't want to
-have a complex problem, because you, for example, with the ontology build
-problem that I wanted to last for an hour, not for a week, the agent did one
-task, send it to HPC build, and it tried to verify it, build it, and check the
-checksum on it, etc., and everything failed, and it's the idea of decomposition,
-input everything.
+Yeah. you are populating the context, you don't want to populate too much of the
+context, so actually querying the ontology is quite efficient. Yeah. But I would
+do that if I really have a complex problem, like you have a complex physical
+problem or biology problem and you really want to check specific answers, that's
+when I would build something else. But usually you don't want to have a complex
+problem, because you, for example, with the ontology build problem that I wanted
+to last for an hour, not for a week, the agent did one task, send it to HPC
+build, and it tried to verify it, build it, and check the checksum on it, etc.,
+and everything failed, and it's the idea of decomposition, input everything.
 
 So here also, decomposing the rezoning via separate agents is the solution,
 yeah? So you have the smaller prompts, you can even do triage between different

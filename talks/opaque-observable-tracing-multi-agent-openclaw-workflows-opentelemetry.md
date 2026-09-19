@@ -280,12 +280,12 @@ think of shipping information in events and integrating that into platforms with
 early signals to detect and maybe fix those issues. So we have to close the
 session on this one, but I invite you to... I'll be around for questions.
 
-And you can also contact Pavan for more in-depth solutions. Thank you. Thank
-you. it's like the biggest trench did you see the shadow build that was pushed
-yesterday show the video yesterday somebody it's a joke push the shadow It
-wasn't a Ferrari that the mayor would go with. You need to see this. He said it
-to me. Except some would never know. Well, you can open a PR, you'll know. This
-is it. I don't know. Sorry, I didn't know what you were going to say.
+And you can also contact Pavan for more in-depth solutions. Thank you. it's like
+the biggest trench did you see the shadow build that was pushed yesterday show
+the video yesterday somebody it's a joke push the shadow It wasn't a Ferrari
+that the mayor would go with. You need to see this. He said it to me. Except
+some would never know. Well, you can open a PR, you'll know. This is it. I don't
+know. Sorry, I didn't know what you were going to say.
 
 I think it's a doll. The one about the M.C.B. Spikes. Because the guy is so
-cool. Yeah. Cool. Come on. Come on. I'm gonna open it up to show you.
+cool. Yeah. Cool. Come on. I'm gonna open it up to show you.

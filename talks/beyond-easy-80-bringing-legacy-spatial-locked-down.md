@@ -262,13 +262,13 @@ place.
 
 But do you have any solution, any MCP server to help create the flows in the
 first place? Great. Sorry, the? The flows that process the data. So this program
-that you were showing, that you configured the blocks and the? . Yes. I see. I
-see. I see. I see. No, not currently. we do have AI-assisted workflow design in
-the platform, so you can shop with an AI assistant to help develop those
-workflows. Of course, all the resources, but not quite yet in terms of actually
-generating those workflows.
+that you were showing, that you configured the blocks and the? . Yes. I see. No,
+not currently. we do have AI-assisted workflow design in the platform, so you
+can shop with an AI assistant to help develop those workflows. Of course, all
+the resources, but not quite yet in terms of actually generating those
+workflows.
 
 That's definitely something we have in mind for the future, but it's not here
 yet. It will be soon, and that will definitely provide a great starting point
 for new users as well as trying new workflows and new things. So it's a great
-idea, and we're hoping soon. Thank you. Thank you. Any other questions?
+idea, and we're hoping soon. Thank you. Any other questions?

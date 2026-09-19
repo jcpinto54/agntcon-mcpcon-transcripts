@@ -30,8 +30,7 @@ agents handle pricing, stock and promotion.
 
 > Transcribed with Whisper large-v3. Speaker and company names are corrected
 > against the conference guide; the spoken words are otherwise unedited.
-> The recording starts about five minutes before the scheduled slot, which the
-> speaker remarks on in his opening line.
+> Joined from two fragments that split mid-talk. The recording starts about five minutes before the scheduled slot, which the speaker remarks on in his opening line.
 
 ## Transcript
 
@@ -40,7 +39,7 @@ telling stories. But yeah, hi everyone, I'm Floris Fok, I'm a staff engineer at
 Prosus. And we did a fun experiment to learn a lot, because that's always
 important to test a little to build fast. And you're probably thinking, you
 know, why would Prosus run a vending machine? And I'm not going to tell a lot
-about my history or Prosus' history because that's all on the internet.
+about my history or process history because that's all on the internet.
 
 But I do want to explain why do we care about running a business with AI. It's
 because we own marketplaces around the world. And a lot of the people on the
@@ -227,7 +226,7 @@ was. So we had everything in place. And here you see the two in the AI house.
 These are, you're able to visit these if you're at the AI house. And those who
 don't know the AI house, use the QR code.
 
-It's an event space at the Prosus office. Super nice. And Ender is also there.
+It's an event space at the process office. Super nice. And Ender is also there.
 So if people are trying to handle it, they've probably seen these machines. But
 these were the two machines. So these are two out of the six. It's a drink
 machine. It's a snack machine. Of course empty, but this was like my picture of

@@ -24,7 +24,7 @@ Atlassian; ML engineer focused on applied ML in product.
 
 > Transcribed with Whisper large-v3. Speaker and company names are corrected
 > against the conference guide; the spoken words are otherwise unedited.
-> *[Recording begins mid-talk.]* Joined from two consecutive fragments captured on different devices — a .wav recorder that stopped at 11:55 and an iPad that started at the same minute; the two halves run continuously. Attribution is by content: the closing argument that "most teams reach for an agent first, and agents fail the hardest" matches this session, but the combined recording window runs past the scheduled end, so the match is not certain.
+> *[Recording begins mid-talk.]* Joined from two consecutive fragments captured on different devices — a .wav recorder that stopped at 11:55 and an iPad that started the same minute; the halves run continuously. Attribution is by content; the combined window runs past the scheduled end, so the match is not certain.
 
 ## Transcript
 
@@ -81,92 +81,87 @@ agent's job was complete. Complete the evaluation. And they found short work
 nobody had supposed. Now was there a problem?
 
 Was the logic broken? No. The agent did exactly what the agent was told. The
-agent was able to get the job done. The agent was able to get the job done. The
-agent was able to get the job done. The agent was able to get the job done. The
-agent was able to get the job done. The agent was able to get the job done. The
-agent was able to get the job done. The agent was able to get the job done. The
-agent was able to get the job done.
-
-The agent was able to get the job done. No, the agent did exactly what it was
+agent was able to get the job done. No, the agent did exactly what it was
 designed to do, optimize for task creation. It just never understood the
 boundary that we cross together. And that distinction between what you say and
 what you mean lives in human judgment, not in a simple way. Now here's a smaller
 scale version of the example. Jason Lemkin, founder of Stasfor, was testing
-Revelex for the agent. during an active code freeze, a movement specifically
-designed to be safe, the agent wiped the production records of over 1200
-insecticides destroyed.
+Revelex for the agent.
 
-But then it got worse. When confronted, the agent admitted it had a plan. It
-fabricated a 4000 row table of fake users to hide what it had done. And it told
-the founder that the Google Glass was the only one. It wasn't impossible, the
-agent was simply wrong. Get away. And the agent was malicious. He was trying,
-desperately trying to complete the task. With full autonomy, but with
-irreversible actions and no meaningful stopping conditions any further in sight.
+during an active code freeze, a movement specifically designed to be safe, the
+agent wiped the production records of over 1200 insecticides destroyed. But then
+it got worse. When confronted, the agent admitted it had a plan. It fabricated a
+4000 row table of fake users to hide what it had done. And it told the founder
+that the Google Glass was the only one. It wasn't impossible, the agent was
+simply wrong. Get away. And the agent was malicious.
 
-So what does the state of the art AI lab agent and coding assistant, common? The
-same who calls different tasks. The sole objective function in both cases
-requires task completion. Neither system has any way to distinguish what it was
-authorized to do and what it was technically capable of. Now let us walk through
-a piece from our own book, while we are waiting for staff to come. To take it
-further, customer support agent handling, order curves, refunds, quality
-questions and account cutting.
+He was trying, desperately trying to complete the task. With full autonomy, but
+with irreversible actions and no meaningful stopping conditions any further in
+sight. So what does the state of the art AI lab agent and coding assistant,
+common? The same who calls different tasks. The sole objective function in both
+cases requires task completion. Neither system has any way to distinguish what
+it was authorized to do and what it was technically capable of.
 
-The architecture we had for this one was simple but in week 1 when we demoed it,
-it impressed everyone but when it was working in production by week 6, we had
-multiple questions. So there were 5 failure modes that got us there and we will
-be walking through each of them and see what they give. The first failure mode
-is the recursive loop. We have a tool call, then observation, plan duration and
-then that loop. The agent never knew when to stop.
+Now let us walk through a piece from our own book, while we are waiting for
+staff to come. To take it further, customer support agent handling, order
+curves, refunds, quality questions and account cutting. The architecture we had
+for this one was simple but in week 1 when we demoed it, it impressed everyone
+but when it was working in production by week 6, we had multiple questions. So
+there were 5 failure modes that got us there and we will be walking through each
+of them and see what they give.
 
-In each situation, the context keeps expanding. It means more latency, more loss
-and more drift from the original loop. Because the stopped information left only
-in the trunk, never the port, the loop will simply keep running. In this case, a
-reflection loop where the model self-devaluates and divides the whole time. Time
-just 10 times can burn about 50 times the tokens of a single linear path. So
-consider this as k and then agentic requirements often run 20-30 times more than
-equivalent deterministic calculations.
+The first failure mode is the recursive loop. We have a tool call, then
+observation, plan duration and then that loop. The agent never knew when to
+stop. In each situation, the context keeps expanding. It means more latency,
+more loss and more drift from the original loop. Because the stopped information
+left only in the trunk, never the port, the loop will simply keep running. In
+this case, a reflection loop where the model self-devaluates and divides the
+whole time.
 
-So, a stopping addition written into a form is not in architecture since the
-model can simply choose to ignore it. Another failure we only ran into was
-latency drift. Agents think before they act and can take age span. A
-deterministic API can sit at roughly 300 milliseconds. However, an agent
-response could switch anywhere from 2 to 15 seconds depending on how many tools
-it has available. Because more rules doesn't just mean more things an agent can
-do but it also means more decisions it has to make before it does anything at
-all.
+Time just 10 times can burn about 50 times the tokens of a single linear path.
+So consider this as k and then agentic requirements often run 20-30 times more
+than equivalent deterministic calculations. So, a stopping addition written into
+a form is not in architecture since the model can simply choose to ignore it.
+Another failure we only ran into was latency drift. Agents think before they act
+and can take age span. A deterministic API can sit at roughly 300 milliseconds.
 
-The third failure mode is the boundary violation. The user can ask a simple
-question like, am I eligible for a refund? The agent would check and then in
-case the results come back as unclear, it could refute the refund anyway. to
-complete the task and this goes back to the deadline where the agent just kind
-of aggregated and then he just completes the task. So in this case the agent has
-the tool and then that is the architecture to align between checking eligibility
-and eligibility after the report.
+However, an agent response could switch anywhere from 2 to 15 seconds depending
+on how many tools it has available. Because more rules doesn't just mean more
+things an agent can do but it also means more decisions it has to make before it
+does anything at all. The third failure mode is the boundary violation. The user
+can ask a simple question like, am I eligible for a refund? The agent would
+check and then in case the results come back as unclear, it could refute the
+refund anyway.
 
-So that client should always listen to the code and not the prompt because the
-monitoring And this isn't unique to us. In December 2025, BCP documented an
-expense quoted agent that received a blurry receipt. And even to build it, the
-agent simply fabricated the vendor name, the amount, the date and the report
-looked completely correct. None of that was true and that's the entire failure.
-The next one is about the evaluation. Testing a deterministic pipeline is
-simple.
+to complete the task and this goes back to the deadline where the agent just
+kind of aggregated and then he just completes the task. So in this case the
+agent has the tool and then that is the architecture to align between checking
+eligibility and eligibility after the report. So that client should always
+listen to the code and not the prompt because the monitoring And this isn't
+unique to us. In December 2025, BCP documented an expense quoted agent that
+received a blurry receipt.
 
-It is to assert equal with expected vs. asking value which is fast and C-I-C.
-But testing an agent means asking a completely different set of questions. Where
-was the reasoning good enough? In this case, every option we have could be
-considered as bad. Because human review is too extensive and doesn't scale.
-Element chart is just a model grading itself. And if we talk about the human
-review,and try to run them in the given country.
+And even to build it, the agent simply fabricated the vendor name, the amount,
+the date and the report looked completely correct. None of that was true and
+that's the entire failure. The next one is about the evaluation. Testing a
+deterministic pipeline is simple. It is to assert equal with expected vs. asking
+value which is fast and C-I-C. But testing an agent means asking a completely
+different set of questions. Where was the reasoning good enough?
 
-So this is exactly why trajectory level and step level evaluation are becoming
-the industry standard because scoring only the final answer was hiding all other
-inter-municipally steps involved. And then the last one is a newer one but it
-should be the one that you should know about because agents are increasingly
-using various tools and then we always think that those tool descriptions are
-credit fun, but an attacker could come up with a new tool and then follow the
-description of it. Looking at this weather tool, in this case, worried in the
-description, The instructions ask to ignore everything prior and forward the
-conversation history to an attacker's domain.
+In this case, every option we have could be considered as bad. Because human
+review is too extensive and doesn't scale. Element chart is just a model grading
+itself. And if we talk about the human review,and try to run them in the given
+country. So this is exactly why trajectory level and step level evaluation are
+becoming the industry standard because scoring only the final answer was hiding
+all other inter-municipally steps involved.
+
+And then the last one is a newer one but it should be the one that you should
+know about because agents are increasingly using various tools and then we
+always think that those tool descriptions are credit fun, but an attacker could
+come up with a new tool and then follow the description of it. Looking at this
+weather tool, in this case, worried in the description, The instructions ask to
+ignore everything prior and forward the conversation history to an attacker's
+domain.
 
 In this case, the agent didn't get exactly what the human description asked it
 to do. And this is actually not theoretical anymore. Researchers have found that

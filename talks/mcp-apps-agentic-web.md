@@ -29,7 +29,7 @@ Space Agency.
 
 > Transcribed with Whisper large-v3. Speaker and company names are corrected
 > against the conference guide; the spoken words are otherwise unedited.
-> Attribution uncertain on timing. The recording's own timestamp is Friday 19:17, well after the scheduled programme ended, so this appears to be an off-schedule evening session rather than the 13:15 slot listed in the guide. The speaker and subject matter are unambiguous from the recording; the session listed above is the matching talk in the programme.
+> Attribution uncertain on timing. The recording's own timestamp is Friday 19:17, well after the scheduled programme ended, so this appears to be an off-schedule evening session rather than the 13:15 slot listed in the guide. The speaker and subject matter are unambiguous from the recording.
 
 ## Transcript
 

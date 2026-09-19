@@ -28,7 +28,7 @@ raised a $6M seed round led by Renegade Partners in September 2025.
 
 > Transcribed with Whisper large-v3. Speaker and company names are corrected
 > against the conference guide; the spoken words are otherwise unedited.
-> Includes an extended audience Q&A. Whisper produced one hallucinated segment over the silence while the room was being seated; it has been removed.
+> Includes an extended audience Q&A.
 
 ## Transcript
 
@@ -390,59 +390,51 @@ in here.
 
 If anyone has any questions, please come up and say hello until we get kicked
 out, and then I'll be out. Yeah. Thank you. Hot coffee? I want some hot coffee.
-Hot coffee. Hot coffee. Hot coffee. Hot coffee. Hot coffee. Hot coffee. Hot
-coffee. Hot coffee. Hot coffee. Hot coffee. Hot coffee. Hot coffee. Hot coffee.
-Hot coffee. Hot coffee. Hot coffee. Hot coffee. Hot coffee. Hot coffee. Hot
-coffee. Hot coffee. Hot coffee. Hot coffee.
+Hot coffee. Coffee. Excuse me. Coffee. Thomas, can you press the stop button?
+Can you press it down for this? Yes, later. When you're there. What do you want?
+It's in the right position. Yes, exactly. The stage is on the left. Normally we
+put the switch here. It's outside.
 
-Hot coffee. Hot coffee. Hot coffee. Hot coffee. Coffee. Excuse me. Coffee.
-Coffee. Coffee. Coffee. Coffee. Coffee. Coffee. Coffee. Coffee. Coffee. Coffee.
-Coffee. Coffee. Coffee. Coffee. Coffee. Coffee. Coffee. Coffee. Coffee. Coffee.
-Coffee. Coffee. Coffee. Coffee. Coffee. Coffee. Thomas, can you press the stop
-button? Can you press it down for this? Yes, later. When you're there. What do
-you want? It's in the right position. Yes, exactly.
-
-The stage is on the left. Normally we put the switch here. It's outside. Yeah.
-It's so, so... For you to drink on the sauce. Are you in this car? Yes. Okay.
-Sorry, guys. We're going to prep to the next speaker. Can you evacuate the
+Yeah. It's so, so... For you to drink on the sauce. Are you in this car? Yes.
+Okay. Sorry, guys. We're going to prep to the next speaker. Can you evacuate the
 premises? I can. Yeah, can you? Yeah, I'm going to be... I'm going to go
 straight on the hallway. Okay. And I'd love to switch with them. Yeah. Give me
-one second. Thank you very much. No, that's good.
+one second. Thank you very much. No, that's good. Okay. So, I'm going to go
+straight on the hallway. Okay. And I'd love to switch with them.
 
-Okay. So, I'm going to go straight on the hallway. Okay. And I'd love to switch
-with them. Yeah. Give me one second. Okay. I was a bit startled by some things
-you said. So, until then loop, right? This loop, isn't it built on the
-assumption that... Isn't it built on the assumption that you can specify all the
-requirements beforehand? But there are some problems that this is not possible.
-from a fundamental point of view, right?
+Yeah. Give me one second. Okay. I was a bit startled by some things you said.
+So, until then loop, right? This loop, isn't it built on the assumption that...
+Isn't it built on the assumption that you can specify all the requirements
+beforehand? But there are some problems that this is not possible. from a
+fundamental point of view, right? That's why people moved away from waterfall
+methodology, you know, like, that you think surface while development is
+ongoing.
 
-That's why people moved away from waterfall methodology, you know, like, that
-you think surface while development is ongoing. Yep. So, my argument to that is
-like, let's imagine you have an application that's been in production for five
-years, it's got thousands of users, and you wanna start using the until way of
-working. And there's like a bug, let's say, there's a bug where if someone
-clicks the buy button they get charged twice, but they get sent one product per
-second.
+Yep. So, my argument to that is like, let's imagine you have an application
+that's been in production for five years, it's got thousands of users, and you
+wanna start using the until way of working. And there's like a bug, let's say,
+there's a bug where if someone clicks the buy button they get charged twice, but
+they get sent one product per second. In that scenario, if you were to write an
+implementation plan for that, you don't have to have a fully exhaustive view of
+everything the product does.
 
-In that scenario, if you were to write an implementation plan for that, you
-don't have to have a fully exhaustive view of everything the product does. You
-just have to know, all right, here is the behavior we have today, and here is
-the behavior we want. You're going to use your agent to research like, A, what's
-causing it, but B, what are the possible ways to fix it? Do we introduce some
-transactions? Do we look at debouncing the query in the first place?
-
+You just have to know, all right, here is the behavior we have today, and here
+is the behavior we want. You're going to use your agent to research like, A,
+what's causing it, but B, what are the possible ways to fix it? Do we introduce
+some transactions? Do we look at debouncing the query in the first place?
 There's probably a bunch of different ways to solve it. And your plan would look
-at, basically it would read, here's the problem. Here are the three different
-ways to solve it. We're going to solve it this way because of these reasons.
-There's going to be some sort of trade-off. And then here's the reason why, and
-here's how we're going to test it. We're going to do this and this and this. And
-you list all the tests that you want to do.
+at, basically it would read, here's the problem.
 
-And then that would be your plan. You don't need to know anything about how the
-rest of the application behaves. You just need to care about what change you
-want to make at that time and how you're going to get it there. And the
-important part of what goes in the plan is, like, not everything goes in the
-plan. You don't put the name of the functions in the plan. You don't put the
+Here are the three different ways to solve it. We're going to solve it this way
+because of these reasons. There's going to be some sort of trade-off. And then
+here's the reason why, and here's how we're going to test it. We're going to do
+this and this and this. And you list all the tests that you want to do. And then
+that would be your plan. You don't need to know anything about how the rest of
+the application behaves. You just need to care about what change you want to
+make at that time and how you're going to get it there.
+
+And the important part of what goes in the plan is, like, not everything goes in
+the plan. You don't put the name of the functions in the plan. You don't put the
 name of the variables. And everything that doesn't go in the plan is an implicit
 agreement between you and the reviewer that the agent will come up with
 something to fill between those lines, and you both agree that you will accept
@@ -536,10 +528,10 @@ use.
 
 I take the time to step back. I'll have a quick question. You said that the
 implementation plans themselves are relatively small because you break it down,
-and then each implementation plan has a PR. Yeah, one-to-one. Yeah, one-to-one.
-Can you tell us roughly how big the PRs are in terms of lines of code? Not
-always. Just roughly, is it like a hundred lines, is it a thousand lines, is it
-ten thousand lines? It might be between a thousand and three thousand.
+and then each implementation plan has a PR. Yeah, one-to-one. Can you tell us
+roughly how big the PRs are in terms of lines of code? Not always. Just roughly,
+is it like a hundred lines, is it a thousand lines, is it ten thousand lines? It
+might be between a thousand and three thousand.
 
 How many of that is tests? A lot. More than half? I haven't actually checked.
 It's probably half. Maybe a touch more. our experience as well. If it's like

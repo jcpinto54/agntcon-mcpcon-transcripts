@@ -23,7 +23,7 @@ Senior Developer Advocate at Microsoft/GitHub for Python and AI. Co-chair of the
 
 > Transcribed with Whisper large-v3. Speaker and company names are corrected
 > against the conference guide; the spoken words are otherwise unedited.
-> *[Recording begins mid-talk — only the closing minutes of this session were captured.]* One of four consecutive Auditorium talks in a single recording.
+> *[Recording begins mid-talk — only the closing minutes were captured.]* One of four consecutive Auditorium talks in a single recording.
 
 ## Transcript
 

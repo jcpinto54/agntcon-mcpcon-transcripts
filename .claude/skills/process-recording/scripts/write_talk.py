@@ -33,10 +33,25 @@ def drop_looped_segments(lines):
     United States" repeated 32 times. Counting unique *lines* misses it,
     because the loop lives inside one line.
     """
+    # First collapse runs of the same segment repeated back to back. Whisper
+    # stutters this way over applause, room noise or a trailing hot mic --
+    # "Hot coffee." 28 times in a row, each its own short segment. Every
+    # earlier check missed it: the segments are too short to look like
+    # internal loops, and spread over a long talk the repeated n-grams stay
+    # under a length-scaled ceiling.
+    collapsed, prev = [], None
+    for l in lines:
+        key = re.sub(r"[^a-z0-9 ]", "", l.lower()).strip()
+        if key and key == prev:
+            continue
+        collapsed.append(l)
+        prev = key
+    lines = collapsed
+
     kept = []
     for l in lines:
         w = l.split()
-        if len(w) >= 12:
+        if len(w) >= 8:
             grams = [" ".join(w[i:i+4]).lower() for i in range(len(w) - 3)]
             # Judge by how FEW distinct n-grams the segment has, not by the
             # top count. A phrase looping 32 times still only tops out at 32,
