@@ -19,3 +19,6 @@ recordings/
 
 # Local editor state (Obsidian vault config)
 .obsidian/
+
+# Git worktrees created by parallel agent sessions
+.claude/worktrees/
