@@ -1,13 +1,13 @@
 ---
 name: process-recording
-description: Turn a raw conference recording into a finished transcript in this repo — identify which talk it is from its timestamp and content, transcribe it locally with Whisper large-v3, research the speaker, and write talks/<slug>.md. Use when someone adds an audio file to recordings/ and wants it turned into a transcript.
+description: Turn a raw conference recording into a finished transcript in this repo — identify which talk it is from its timestamp and content, transcribe it locally with Whisper large-v3, research the speaker, and write talks/<slug>/transcript.md. Use when someone adds an audio file to recordings/ and wants it turned into a transcript.
 ---
 
 # Processing a recording
 
-Takes one audio file and produces one `talks/<slug>.md`. The hard part is not
-the transcription — it is knowing *which* of the 93 sessions you are listening
-to. Work through the stages in order.
+Takes one audio file and produces one `talks/<slug>/transcript.md`. The hard
+part is not the transcription — it is knowing *which* of the 93 sessions you
+are listening to. Work through the stages in order.
 
 ## Before you start
 
@@ -134,8 +134,10 @@ beyond the guide, use what the guide has and move on.
 
 ## Stage 5 — Write the transcript
 
-Write `talks/<slug>.md`, where the slug derives from the talk title:
-lowercase, hyphenated, no filler words. Flat directory — no per-talk folders.
+Write `talks/<slug>/transcript.md`, where the slug derives from the talk
+title: lowercase, hyphenated, no filler words. One directory per talk —
+`write_talk.py` creates it. A `summary.md` may join it later; that is the
+`summarize-talk` skill's job, not this one's.
 
 ```markdown
 ---
@@ -168,7 +170,9 @@ confidence: confirmed
 
 Rules for the transcript body:
 
-- **No summary.** This repo stores what was said, not an interpretation of it.
+- **No summary in this file.** `transcript.md` stores what was said, not an
+  interpretation of it. Summaries are a separate file written by a separate
+  skill; do not pre-empt one here.
 - Keep it raw, but break it into paragraphs at natural pauses — a 25-minute
   wall of unbroken text is unreadable and unsearchable.
 - Do not silently correct the speaker. Do fix Whisper's obvious mishearings of
@@ -182,4 +186,10 @@ Rules for the transcript body:
 ## Stage 6 — Update the index
 
 Add the talk to the coverage table in `README.md` so the gap list stays
-accurate. Then commit — transcript only; the audio stays local.
+accurate:
+
+```bash
+python3 .claude/skills/process-recording/scripts/build_index.py
+```
+
+Then commit — transcript only; the audio stays local.

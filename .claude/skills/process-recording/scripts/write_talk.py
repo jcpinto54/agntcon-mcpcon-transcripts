@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Turn a raw Whisper transcript into a finished talks/<slug>.md.
+"""Turn a raw Whisper transcript into a finished talks/<slug>/transcript.md.
 
 Pulls title, speakers, room, time and track from guide/sessions.json so
 attribution never depends on what the transcription heard.
@@ -174,9 +174,13 @@ confidence: {a.confidence}
 
 {body}
 """
-    path = os.path.join(ROOT, "talks", slug + ".md")
+    # One directory per talk: the transcript, and any summary written later,
+    # live side by side under the slug.
+    talk_dir = os.path.join(ROOT, "talks", slug)
+    os.makedirs(talk_dir, exist_ok=True)
+    path = os.path.join(talk_dir, "transcript.md")
     open(path, "w", encoding="utf-8").write(doc)
-    print(f"wrote talks/{slug}.md  ({len(body.split())} words, "
+    print(f"wrote talks/{slug}/transcript.md  ({len(body.split())} words, "
           f"{len(paragraphs(lines))} paragraphs)")
 
 

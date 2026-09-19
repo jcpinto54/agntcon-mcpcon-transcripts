@@ -23,11 +23,16 @@ guide/
   agntcon-mcpcon-guide.html   The original conference guide
   sessions.json               Machine-readable schedule: 93 sessions, speakers, bios, abstracts
 talks/
-  <slug>.md        One transcript per talk. Flat. Named from the talk title.
+  <slug>/          One directory per talk, named from the talk title
+    transcript.md    What the speaker said. Raw.
+    summary.md       ~200 words, derived. Optional — many talks have none yet.
 recordings/        Raw audio. Gitignored — local only, never committed.
 .claude/skills/process-recording/
   SKILL.md         The full recording → transcript pipeline
-  scripts/         identify.py, transcribe.sh, build_index.py
+  scripts/         identify.py, transcribe.sh, write_talk.py, build_index.py
+.claude/skills/summarize-talk/
+  SKILL.md         How to write the summary that sits beside a transcript
+  scripts/         write_summary.py
 ```
 
 ## Rules
@@ -42,9 +47,16 @@ names, rooms, times and tracks. Never invent or paraphrase any of them. If a
 transcript disagrees with the guide about a name, the guide wins for
 attribution and the transcript stays as spoken.
 
-**No summaries.** Transcripts are raw text plus a speaker header. Do not add
-takeaways, key points, or TL;DRs, however tempting. Someone searching this
-archive wants the speaker's words, not an interpretation of them.
+**Nothing but the transcript in `transcript.md`.** It is raw text plus a
+speaker header. Do not add takeaways, key points or TL;DRs to it, however
+tempting — someone searching this archive wants the speaker's words, not an
+interpretation of them.
+
+**Summaries live in their own file.** `talks/<slug>/summary.md`, written with
+the `summarize-talk` skill and labelled as derived. Separating them is what
+makes them safe: a reader always knows which of the two they are reading, and
+the transcript stays quotable. Where a summary and a transcript disagree, the
+transcript is right, and the summary gets fixed.
 
 **Do not guess an attribution.** Five rooms ran in parallel, so a timestamp
 alone rarely identifies a talk. If the transcript content does not settle which
@@ -69,10 +81,25 @@ After writing a transcript, regenerate the index:
 python3 .claude/skills/process-recording/scripts/build_index.py
 ```
 
+## Adding a summary
+
+Use the `summarize-talk` skill. It writes `talks/<slug>/summary.md` beside an
+existing transcript — a short paragraph on what the talk was about plus three
+to six key points, drawn only from what the speaker actually said and never
+from the abstract in `sessions.json`:
+
+```
+.claude/skills/summarize-talk/SKILL.md
+```
+
+The coverage table counts transcripts and summaries separately, so rebuild the
+index after writing one.
+
 ## Conventions
 
-- Filenames: `talks/<slug>.md`, slug derived from the talk title — lowercase,
-  hyphenated, filler words dropped.
+- Paths: `talks/<slug>/transcript.md`, slug derived from the talk title —
+  lowercase, hyphenated, filler words dropped. A summary, where one exists,
+  sits beside it as `summary.md`.
 - Every transcript carries YAML frontmatter including `session_id`, which links
   it back to `guide/sessions.json` and drives the coverage index.
 - Mark gaps in a recording honestly: `*[Recording begins mid-talk]*`.

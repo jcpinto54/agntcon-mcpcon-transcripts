@@ -6,11 +6,14 @@ anything unticked is fair game.
 
 ## What a good contribution looks like
 
-One file: `talks/<slug>.md`, containing the talk title, the speaker and a short
-background on them, and the raw transcript. That is it.
+One directory: `talks/<slug>/`, with `transcript.md` inside it — the talk
+title, the speaker and a short background on them, and the raw transcript.
+That is it. A `summary.md` beside it is welcome but optional.
 
-- **Raw transcript, no summary.** Do not add takeaways or key points. People
-  come here for what was actually said.
+- **Keep the transcript raw.** Do not add takeaways or key points *to
+  `transcript.md`*. People come here for what was actually said. If you want to
+  summarise a talk, put it in `summary.md` next door, where a reader can tell
+  the two apart.
 - **Never commit the audio.** It is gitignored for a reason — the speakers own
   their talks. Keep your recordings in `recordings/`, which stays local.
 - **Get names and titles from [`guide/sessions.json`](guide/sessions.json)**,
@@ -45,15 +48,32 @@ writes the file in the right format.
    Runs Whisper large-v3 on your machine. The first run downloads ~3GB of model
    weights; after that it is cached. Needs `uv` and `ffmpeg`.
 
-3. **Write `talks/<slug>.md`** following the format of any existing transcript.
-   Copy the frontmatter fields, including `session_id` from `sessions.json` —
-   the index is built from it.
+3. **Write `talks/<slug>/transcript.md`** following the format of any existing
+   transcript. Copy the frontmatter fields, including `session_id` from
+   `sessions.json` — the index is built from it.
 
 4. **Rebuild the index and open a PR.**
 
    ```bash
    python3 .claude/skills/process-recording/scripts/build_index.py
    ```
+
+## Summaries
+
+Optional, and a good way to contribute without a recording of your own: pick a
+talk that has a transcript but no `summary.md` and write one. Roughly 200
+words — a paragraph on what the talk was about, then three to six key points,
+all of it drawn from the transcript rather than from the abstract in the guide.
+
+```bash
+python3 .claude/skills/summarize-talk/scripts/write_summary.py \
+  --slug <slug> --body your-draft.md
+```
+
+The script builds the frontmatter from `sessions.json`, checks the length and
+shape, and flags names that appear in your summary but nowhere in the
+transcript. Agents should read
+[`.claude/skills/summarize-talk/SKILL.md`](.claude/skills/summarize-talk/SKILL.md).
 
 ## A note on accuracy
 
