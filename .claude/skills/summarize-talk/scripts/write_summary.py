@@ -26,6 +26,14 @@ TAKEAWAYS = "## Takeaways"
 OPEN = "## What the talk leaves open"   # optional, always last
 
 MIN_WORDS, MAX_WORDS = 550, 950
+# ...but scaled down for a short transcript. One recording here is 451 words
+# of speech, and no honest summary of it reaches 550 -- demanding one buys
+# padding or invention, the two things this format exists to prevent. A
+# summary is capped at roughly 40% of what was said, and the floor drops with
+# it. Below SHORT_TRANSCRIPT a single topic section is enough.
+SUMMARY_CEILING = 0.40
+SUMMARY_FLOOR = 0.30
+SHORT_TRANSCRIPT = 1200
 MIN_TAKEAWAYS, MAX_TAKEAWAYS = 3, 5
 MIN_TOPICS, MAX_TOPICS = 2, 4
 MIN_QUOTES, MAX_QUOTES = 2, 4
@@ -117,7 +125,14 @@ def check_quotes(body, transcript):
     return problems
 
 
-def check_shape(body):
+def limits(transcript_words):
+    """Word range and topic minimum allowed for a transcript this long."""
+    lo = min(MIN_WORDS, int(SUMMARY_FLOOR * transcript_words))
+    hi = min(MAX_WORDS, max(int(SUMMARY_CEILING * transcript_words), lo + 150))
+    return lo, hi, (MIN_TOPICS if transcript_words >= SHORT_TRANSCRIPT else 1)
+
+
+def check_shape(body, transcript_words):
     """Reject a body that is not the agreed format.
 
     Order is the claim, the argument behind it, the stages of thought, then
@@ -161,10 +176,12 @@ def check_shape(body):
         problems.append(f'"{ONELINE}" is {n} words (want at most '
                         f"{MAX_ONELINE_WORDS}) -- it is the elevator sentence")
 
+    lo, hi, min_topics = limits(transcript_words)
+
     topics = [(h, t) for h, t in secs if h not in fixed]
-    if not MIN_TOPICS <= len(topics) <= MAX_TOPICS:
+    if not min_topics <= len(topics) <= MAX_TOPICS:
         problems.append(f"{len(topics)} topic section(s) "
-                        f"(want {MIN_TOPICS}-{MAX_TOPICS})")
+                        f"(want {min_topics}-{MAX_TOPICS})")
     for h, text in topics:
         n = len(text.split())
         if n < MIN_TOPIC_WORDS:
@@ -180,8 +197,9 @@ def check_shape(body):
                         f"(want {MIN_TAKEAWAYS}-{MAX_TAKEAWAYS})")
 
     words = len(re.sub(r"^#{1,6} .*$", "", body, flags=re.M).split())
-    if not MIN_WORDS <= words <= MAX_WORDS:
-        problems.append(f"{words} words (want {MIN_WORDS}-{MAX_WORDS})")
+    if not lo <= words <= hi:
+        problems.append(f"{words} words (want {lo}-{hi} for a "
+                        f"{transcript_words}-word transcript)")
 
     return problems, words
 
@@ -225,9 +243,13 @@ def unknown_proper_nouns(body, transcript):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--slug", required=True)
-    ap.add_argument("--body", required=True,
+    ap.add_argument("--body", default="",
                     help="file holding the summary body, or - for stdin")
+    ap.add_argument("--limits", action="store_true",
+                    help="print the word range this transcript allows, and exit")
     a = ap.parse_args()
+    if not a.body and not a.limits:
+        ap.error("--body is required unless --limits is given")
 
     talk_dir = os.path.join(ROOT, "talks", a.slug)
     tpath = os.path.join(talk_dir, "transcript.md")
@@ -236,10 +258,22 @@ def main():
                  "are written beside a transcript, never on their own")
     fm, transcript = frontmatter(tpath)
 
+    # Measure the spoken part only: the speaker bio and the header would
+    # otherwise inflate the budget for a very short recording.
+    spoken = transcript.split("## Transcript", 1)[-1]
+    transcript_words = len(spoken.split())
+
+    if a.limits:
+        lo, hi, min_topics = limits(transcript_words)
+        print(f"talks/{a.slug}: {transcript_words} words of transcript -> "
+              f"summary must be {lo}-{hi} words, with {min_topics}-"
+              f"{MAX_TOPICS} topic sections")
+        return
+
     body = (sys.stdin.read() if a.body == "-"
             else open(a.body, encoding="utf-8").read()).strip()
 
-    problems, words = check_shape(body)
+    problems, words = check_shape(body, transcript_words)
     problems += check_quotes(body, transcript)
     if problems:
         sys.exit("summary body is not in the archive format:\n  - " +

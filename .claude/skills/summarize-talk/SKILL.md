@@ -7,7 +7,21 @@ description: Write the summary that sits beside a transcript in this repo — ta
 
 Takes one `talks/<slug>/transcript.md` and produces one
 `talks/<slug>/summary.md` beside it, in a fixed structure, at roughly 600 to
-850 words.
+850 words — or less, for a short recording.
+
+**Check the budget before you write.** A summary is capped at about 40% of
+what the speaker actually said, so a partial recording gets a shorter summary
+rather than a padded one. Ask the script:
+
+```bash
+python3 .claude/skills/summarize-talk/scripts/write_summary.py \
+  --slug <slug> --limits
+```
+
+It prints the word range and the number of topic sections that transcript can
+support. One recording in this archive is 449 words of speech; the honest
+summary of it is 200-odd words with a single topic section, and demanding the
+full structure there would buy padding or invention.
 
 The length exists to carry specifics — the argument, the numbers, the worked
 example, the speaker's own sentences. It is not there to be filled. A padded
