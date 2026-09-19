@@ -1,6 +1,7 @@
 # AGENTS.md
 
-Working notes for AI agents contributing to this repo. Humans, see
+Working notes for AI agents working on this repo — both adding to the archive
+and answering questions out of it. Humans, see
 [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## What this repo is
@@ -73,6 +74,41 @@ promising the rest works.
 hardware. It is the fallback: suggest local first, point people at the API
 section of `README.md` for the retention setting, and never reach for it just
 because it is faster.
+
+## Answering questions from the archive
+
+Most agents that open this repo are not adding a transcript — they are being
+asked what someone said at the conference. That is a different job from
+contributing, and it has its own ways of going wrong.
+
+**Say what is not here.** The archive holds a fraction of the conference — 19
+of the 93 sessions at the time of writing; the coverage table in
+[README.md](README.md) has the current count. Attendees transcribed the rooms
+they happened to sit in, so a topic missing from `talks/` was very likely
+discussed in a room nobody recorded. Never answer "nobody talked about X" when
+what you mean is "no transcript here covers X" — say the second thing.
+
+**An abstract is not a transcript.** `guide/sessions.json` carries a `desc` for
+all 93 sessions, including the 74 with no recording. It is what a speaker said
+they would say, months earlier. Never quote, paraphrase or attribute it as
+something said on stage, and never use it to fill a gap in a recording. If the
+only thing the archive has on a session is its abstract, say so in those words.
+
+**Read the frontmatter before you attribute.** `confidence: uncertain` or
+`unidentified` means the archive is not sure which session the recording is —
+pass that uncertainty on rather than quietly resolving it. Inline markers like
+`*[Recording begins mid-talk]*` mean a fragment: what is missing is missing,
+and the speaker may well have said the opposite earlier. For speaker names and
+titles, `guide/sessions.json` wins over the transcript body, which is raw
+speech-to-text and mangles names.
+
+**Summaries to find, transcripts to quote.** The whole archive is a few hundred
+kilobytes — reading is cheap, guessing is not. Skim `talks/*/summary.md` to
+find which talks bear on a question, then open the `transcript.md` for the
+speaker's actual words. Quote verbatim and cite the talk slug and speaker
+(`talks/no-central-brain/transcript.md` — Fausto Albers); the transcripts
+exist to be quotable. Where a summary and a transcript disagree, the
+transcript is right.
 
 ## Adding a transcript
 
