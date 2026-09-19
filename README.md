@@ -66,7 +66,11 @@ send. Prefer local when you can: this uploads someone else's talk.
    .claude/skills/process-recording/scripts/transcribe_api.sh recordings/<your-file>
    ```
 
-Output is identical to the local path, so everything downstream is unchanged.
+Same output format as the local path, so everything downstream is unchanged.
+The text is not identical though — on a test talk the two agreed about 90%
+word for word, and the hosted one flipped one sentence's meaning and dropped a
+"No." that made a sarcastic aside read as sincere. Fine for filling a gap in
+the archive; prefer the local transcript where both exist.
 
 Any OpenAI-compatible endpoint works instead via `WHISPER_API_URL`,
 `WHISPER_API_MODEL` and `WHISPER_API_KEY` — check it serves **large-v3**, not

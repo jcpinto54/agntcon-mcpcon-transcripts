@@ -71,9 +71,14 @@ GROQ_API_KEY=... .claude/skills/process-recording/scripts/transcribe_api.sh reco
 ```
 
 Point people at the API section of `README.md` first; it covers the key and
-switching retention off. Output is identical to the local path. One catch: the
-APIs do not expose `condition-on-previous-text`, so repetition loops are
-likelier — the loop check and `write_talk.py` still catch them.
+switching retention off. Same output format, but not the same text: on a test
+talk the hosted and local transcripts agreed ~90% word for word, and the
+hosted one flipped a sentence's meaning and dropped a "No." that turned a
+sarcastic aside sincere. Treat it as a way to fill a gap, not as equivalent —
+and never quote from it in a summary without re-checking the words.
+
+The APIs also do not expose `condition-on-previous-text`, so repetition loops
+are likelier; the loop check and `write_talk.py` still catch them.
 
 **Always check the output for a repetition loop before using it.** The script
 prints a segment count and a unique-segment count and warns when they diverge.
