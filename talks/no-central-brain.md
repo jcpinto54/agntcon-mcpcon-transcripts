@@ -1,41 +1,34 @@
 ---
-title: "Unidentified talk — Friday 15:08 (harness and loop engineering)"
-speakers: []
+title: "No Central Brain"
+speakers: [Fausto Albers]
 day: fri
 date: 2026-09-18
-start: "15:08"
-room: unknown
-track: unknown
+start: "15:00"
+room: G102 + G103
+track: Reliable Agents
 kind: talk
-session_id:
+session_id: f5511d725b5025f549b7fe6e88af1dff
 recording: RAI Amsterdam 13.m4a
 contributor: jcpinto54
-confidence: unidentified
+confidence: confirmed
 ---
 
-# Unidentified talk — Friday 15:08
+# No Central Brain
 
-**Speaker unknown**
+**Fausto Albers** — WonderWhy
 
-This recording has not been matched to a session. Its timestamp places it in
-the Friday 15:00–15:25 block, but none of the five talks scheduled then is a
-clear fit, and the speaker never introduces themselves on the recording. The
-content is about harness and loop engineering: designing the system around a
-coding agent (instructions, sub-agents, memory policy, skills), wrapping it in
-an automated act-and-check loop, keeping evaluation *outside* that loop so the
-agent cannot reward-hack it, and watching cost per accepted change as the
-signal for diminishing returns. The worked example is an application that
-converts 2D engineering drawings into 3D CAD models.
+Fausto Albers is the founder of [WonderWhy](https://wonderwhy.ai/), which runs
+in-company training in agentic AI, and Lead GenAI R&D at the Industrial Digital
+Twins Lab at Amsterdam University of Applied Sciences. He organises the AI
+Builders Amsterdam meetups, and much of his work is on context and memory for
+coding agents — what belongs in the context window, what should be loaded on
+demand, and what should live somewhere else entirely.
 
-**If you were at this session and recognise it, please open a PR correcting the
-attribution.** It is filed unidentified rather than guessed, because a wrong
-attribution is worse than an open question.
+*Friday 18 September 2026, 15:00, G102 + G103 — Reliable Agents track*
 
-*Friday 18 September 2026, approximately 15:08 — room unknown*
-
-> Transcribed with Whisper large-v3. No name corrections could be applied,
-> since the speaker is unknown.
-> *[Recording begins mid-talk.]*
+> Transcribed with Whisper large-v3. Speaker and company names are corrected
+> against the conference guide; the spoken words are otherwise unedited.
+> *[Recording begins mid-talk.]* Identified by an attendee who was in the room, and corroborated by the session abstract: the talk's argument that harnesses should hold competing variants which an external evaluation selects between, and that more capable models simply get better at reward hacking, matches the abstract's two central claims.
 
 ## Transcript
 

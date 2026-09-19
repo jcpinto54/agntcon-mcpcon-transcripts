@@ -38,10 +38,6 @@ which sessions are still missing.
 
 ## Known gaps in this batch
 
-- **One recording is unidentified.** [Friday 15:08](talks/unidentified-friday-1508-loop-engineering.md)
-  is a real talk on harness and loop engineering, but no scheduled session is a
-  clear fit and the speaker never gives their name. If you recognise it, a PR
-  correcting the attribution is very welcome.
 - **Two attributions are marked `confidence: uncertain`** in their frontmatter,
   with the reason stated in the file. Both are identified by content rather
   than by a clean timestamp match.
@@ -111,7 +107,7 @@ which sessions are still missing.
 |   | 17:30 | G102 + G103 | MAS-Lab: An Open Framework for Spec-Driven, Interoperable Multi-Agent Systems | Jordan Augé |
 |   | 17:30 | G104 + G105 | The Unix Philosophy for AI Agents: Filesystems as the Context Primitive | Cannis Chan, Daniel Temesgen |
 
-### Friday 18 September  (7/41 transcribed)
+### Friday 18 September  (8/41 transcribed)
 
 | | Time | Room | Talk | Speakers |
 |---|---|---|---|---|
@@ -148,7 +144,7 @@ which sessions are still missing.
 | [x](talks/vibes-data-evaluating-agents-real-work.md) | 14:25 | G104 + G105 | [From Vibes To Data: Evaluating Agents on Your Real Work](talks/vibes-data-evaluating-agents-real-work.md) | Ville Hellman |
 |   | 15:00 | Auditorium | Gating High-Risk Agentic Actions at the Relying Party With Exogenous (Out-of-Band) Inputs | Andrew Bud |
 |   | 15:00 | Emerald Room | Attribution by Design: Skills, MCP, and Where Provenance Gets Built In | Ola Hungerford |
-|   | 15:00 | G102 + G103 | No Central Brain | Fausto Albers |
+| [x](talks/no-central-brain.md) | 15:00 | G102 + G103 | [No Central Brain](talks/no-central-brain.md) | Fausto Albers |
 |   | 15:00 | G104 + G105 | Giving Your Agentic Coding AI a Security Brain | Liran Tal |
 |   | 15:00 | G106 + G107 | Evaluating Agents at Scale: From 50 Examples to a Production Flywheel | Bauke Brenninkmeijer |
 |   | 15:35 | Emerald Room | Most MCP Servers are Empty | David Golverdingen |

@@ -106,6 +106,16 @@ The MC's introduction usually names the speaker and the title outright. Failing
 that, match the substance of the talk against each candidate's `desc` abstract
 in `sessions.json`.
 
+**Read the whole abstract, not a truncated one.** One talk here was filed as
+unidentified because the candidate list had been printed with abstracts cut to
+260 characters, and the sentence that matched the recording word for word sat
+just past the cutoff. The distinguishing detail is often in the last line,
+where a speaker says what they will actually argue.
+
+If a human who attended the session tells you what a recording is, that is
+strong evidence — but still check it against the abstract and record what
+corroborated it, so the file carries the reasoning rather than just the claim.
+
 Commit to a session id. If the transcript genuinely does not settle it, say so
 in the frontmatter (`confidence: uncertain`) rather than guessing — a wrongly
 attributed transcript is worse than an unattributed one. If nothing fits at
