@@ -40,7 +40,7 @@ which sessions are still missing.
 
 <!-- COVERAGE:START -->
 
-### Thursday 17 September  (0/52 transcribed)
+### Thursday 17 September  (8/52 transcribed)
 
 | | Time | Room | Talk | Speakers |
 |---|---|---|---|---|
@@ -64,7 +64,7 @@ which sessions are still missing.
 |   | 11:25 | G104 + G105 | Agents, Infrastructure, and the Future of AI-native Applications | Kevin Cochrane |
 |   | 12:00 | Auditorium | Delegated Authorization for AI Agents: How to Build an Agent with Fine-Grained Permissions | Sohan Maheshwar |
 |   | 12:00 | Emerald Room | MCP Conformance Testing V1.0, Testing the 2026-07-28 Spec in SDK's and Online | Paul Carleton, Felix Weinberger |
-|   | 12:00 | G102 + G103 | From Opaque To Observable: Tracing Multi-Agent OpenClaw Workflows With OpenTelemetry | Jordan Augé |
+| [x](talks/opaque-observable-tracing-multi-agent-openclaw-workflows-opentelemetry.md) | 12:00 | G102 + G103 | [From Opaque To Observable: Tracing Multi-Agent OpenClaw Workflows With OpenTelemetry](talks/opaque-observable-tracing-multi-agent-openclaw-workflows-opentelemetry.md) | Jordan Augé |
 |   | 12:00 | G104 + G105 | Building a Sovereign AI Governance Stack with Open Source | Roman Swoszowski |
 |   | 12:00 | G106 + G107 | The Buzz-Word Is Collaboration | Morgan Martin, Tyler Longwell, Wes Billman, Bradley Axen |
 |   | 12:35 | Auditorium | We Built AI Agents To Fix Security Findings in Production — Here's What Developers Actually Merged | Amine Boudraa, Ruchita Kshirsagar, Nihit Gupta, Gianfranco Romani |
@@ -76,28 +76,28 @@ which sessions are still missing.
 |   | 13:10 | G102 + G103 | Exploring WebMCP: What Happens When AI Agents Start Using Websites? | Sylwia Laskowska |
 |   | 13:10 | G104 + G105 | Your Agents Need a Router: One Integration for Every Model and Tool | Ignasi Barrera |
 |   | 14:45 | Auditorium | Welcome Back | Angie Jones |
-|   | 14:52 | Auditorium | A New Way To Build Software: How GitHub Is Evolving For a Human, Agent Future | Marlene Mhangami |
-|   | 15:04 | Auditorium | Inside AI Agents — Offloading Human Tasks | Maarten Grootendorst |
-|   | 15:16 | Auditorium | Why Organizations Need an AI Control Plane for Security and Governance | Sheng Liang |
-|   | 15:28 | Auditorium | The Browser Isn't Dead Yet | Rachel-Lee Nabors |
+| [x](talks/new-way-build-software-github-evolving-human-agent.md) | 14:52 | Auditorium | [A New Way To Build Software: How GitHub Is Evolving For a Human, Agent Future](talks/new-way-build-software-github-evolving-human-agent.md) | Marlene Mhangami |
+| [x](talks/inside-ai-agents-offloading-human-tasks.md) | 15:04 | Auditorium | [Inside AI Agents — Offloading Human Tasks](talks/inside-ai-agents-offloading-human-tasks.md) | Maarten Grootendorst |
+| [x](talks/organizations-need-ai-control-plane-security-governance.md) | 15:16 | Auditorium | [Why Organizations Need an AI Control Plane for Security and Governance](talks/organizations-need-ai-control-plane-security-governance.md) | Sheng Liang |
+| [x](talks/browser-isn-t-dead-yet.md) | 15:28 | Auditorium | [The Browser Isn't Dead Yet](talks/browser-isn-t-dead-yet.md) | Rachel-Lee Nabors |
 |   | 15:45 | Auditorium | Six Months of Proof: Independently-Verifiable Records for Agent Actions Under the EU AI Act | Steven Mih |
 |   | 15:45 | Emerald Room | MCP Borrowed LSP's Design. It Skipped LSP's Lesson | Gorkem Ercan |
 |   | 15:45 | G102 + G103 | Sandboxing My AI Agent, One Layer at a Time | Juan A. Osorio |
-|   | 15:45 | G104 + G105 | Smart Legal Agreements for the Agentic Economy Using Accord Project | Niall Roche |
+| [x](talks/smart-legal-agreements-agentic-economy-using-accord-project.md) | 15:45 | G104 + G105 | [Smart Legal Agreements for the Agentic Economy Using Accord Project](talks/smart-legal-agreements-agentic-economy-using-accord-project.md) | Niall Roche |
 |   | 15:45 | G106 + G107 | Scaling Agents: From AI Experimentation to an Engineering Operating Model | Marat Kenzhebulatov |
 |   | 16:20 | Auditorium | 90 Days To Agentic Engineering | Thomas Schöne |
-|   | 16:20 | Emerald Room | What a Year of Breaking MCP Tells Builders: Protocol Gaps and What Ships Next | Amine Raji |
+| [x](talks/year-breaking-mcp-tells-builders-protocol-gaps-ships.md) | 16:20 | Emerald Room | [What a Year of Breaking MCP Tells Builders: Protocol Gaps and What Ships Next](talks/year-breaking-mcp-tells-builders-protocol-gaps-ships.md) | Amine Raji |
 |   | 16:20 | G102 + G103 | What Networking Got Right That Agentic AI Risks Getting Wrong: The Case for an Agent Control Plane | Parisa Foroughi |
 |   | 16:20 | G104 + G105 | Agentic AI for Enterprise Mainframes: From Dead Code Elimination To Business Knowledge | Thamarai Selvi Ravi Kumar |
 |   | 16:20 | G106 + G107 | Governing AI Agent Actions: MCP and Beyond | Shannon Williams, Chris Urwin |
 |   | 16:55 | Emerald Room | Distributed Mess: A Production Guide To Multi-Agent Failures | Huong Vu |
 |   | 16:55 | G102 + G103 | Skills Need SemVer Too | Pedro Rodrigues |
 |   | 16:55 | G104 + G105 | We Built an Agent, We Shipped a Compiler. Here's Why | Joel Verezhak |
-|   | 17:30 | Emerald Room | Verify, Abstain, or Amplify: A Field Guide To Confidently-Wrong Agents | Michal Orzechowski |
+| [x](talks/verify-abstain-amplify-field-guide-confidently-wrong-agents.md) | 17:30 | Emerald Room | [Verify, Abstain, or Amplify: A Field Guide To Confidently-Wrong Agents](talks/verify-abstain-amplify-field-guide-confidently-wrong-agents.md) | Michal Orzechowski |
 |   | 17:30 | G102 + G103 | MAS-Lab: An Open Framework for Spec-Driven, Interoperable Multi-Agent Systems | Jordan Augé |
 |   | 17:30 | G104 + G105 | The Unix Philosophy for AI Agents: Filesystems as the Context Primitive | Cannis Chan, Daniel Temesgen |
 
-### Friday 18 September  (1/41 transcribed)
+### Friday 18 September  (5/41 transcribed)
 
 | | Time | Room | Talk | Speakers |
 |---|---|---|---|---|
@@ -108,7 +108,7 @@ which sessions are still missing.
 |   | 09:41 | Auditorium | State of the Software Factory | Dexter Horthy |
 |   | 10:20 | Auditorium | How we Reclaimed Significant Engineering Capacity at Salesforce with AI Agents | Axel Uhlig |
 |   | 10:20 | Emerald Room | Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal | Takashi Norimatsu |
-|   | 10:20 | G102 + G103 | Pull Requests Are Dead, Long Live Peer Review | Dylan Ratcliffe |
+| [x](talks/pull-requests-dead-long-live-peer-review.md) | 10:20 | G102 + G103 | [Pull Requests Are Dead, Long Live Peer Review](talks/pull-requests-dead-long-live-peer-review.md) | Dylan Ratcliffe |
 |   | 10:20 | G104 + G105 | Self-Healing Agents Need Observability | Marcelo Trylesinski |
 |   | 10:20 | G106 + G107 | Keep Infrastructure Out of Your AI Agents: The Agent Gateway Pattern | Lin Sun |
 |   | 10:55 | Auditorium | From "Works on My Prompt" To Production SLOs: Building Agent Observability | Manik Khandelwal |
@@ -118,11 +118,11 @@ which sessions are still missing.
 |   | 11:30 | Auditorium | Governance You Can Run: Checkable Properties for Production Agents | Seshu Tolety |
 |   | 11:30 | Emerald Room | Economies of Scale for MCP and Agents: Why You Need an Identity Broker | Magnus Jungsbluth, Jan Brennenstuhl |
 |   | 11:30 | G102 + G103 | I Was the Bottleneck, Not the Agent | Vincent Ysmal |
-|   | 11:30 | G104 + G105 | Agents Can Pay. Can They Prove It? | Diego Zuluaga |
+| [x](talks/agents-can-pay-can-they-prove.md) | 11:30 | G104 + G105 | [Agents Can Pay. Can They Prove It?](talks/agents-can-pay-can-they-prove.md) | Diego Zuluaga |
 |   | 13:15 | Auditorium | When Agents Run Healthcare: Building Reliable Agentic Systems in Highly Regulated Environments | Janosch Woschitz |
-|   | 13:15 | Emerald Room | MCP Apps and The Agentic Web | Liad Yosef |
+| [x](talks/mcp-apps-agentic-web.md) | 13:15 | Emerald Room | [MCP Apps and The Agentic Web](talks/mcp-apps-agentic-web.md) | Liad Yosef |
 |   | 13:15 | G102 + G103 | Governed Agent Autonomy: Building a Control Plane for Agentic Systems | Nnenna Ndukwe |
-|   | 13:15 | G104 + G105 | Testing Agents and Their Tools: Offline Evaluation, Synthetic Tasks, and A/B Experiments | Ksenia Bobrova |
+| [x](talks/testing-agents-their-tools-offline-evaluation-synthetic-tasks.md) | 13:15 | G104 + G105 | [Testing Agents and Their Tools: Offline Evaluation, Synthetic Tasks, and A/B Experiments](talks/testing-agents-their-tools-offline-evaluation-synthetic-tasks.md) | Ksenia Bobrova |
 |   | 13:15 | G106 + G107 | Harness Engineering: Building the System Around Your AI Coding Agent | Ji Darwish |
 |   | 13:50 | Auditorium | Stateless Agents, Stateful Worlds: Designing for Interruption | Arul Kumaran |
 |   | 13:50 | Emerald Room | From API Catalogs To Agent Catalogs: Solving MCP Server Discovery With Open Resource Discovery | Vyshnavi Gadamsetti, Sebastian Wennemers |
