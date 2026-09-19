@@ -29,7 +29,8 @@ talks/
 recordings/        Raw audio. Gitignored — local only, never committed.
 .claude/skills/process-recording/
   SKILL.md         The full recording → transcript pipeline
-  scripts/         identify.py, transcribe.sh, write_talk.py, build_index.py
+  scripts/         identify.py, transcribe.sh, transcribe_api.sh,
+                   check_loop.sh, write_talk.py, build_index.py
 .claude/skills/summarize-talk/
   SKILL.md         How to write the summary that sits beside a transcript
   scripts/         write_summary.py
@@ -63,7 +64,17 @@ alone rarely identifies a talk. If the transcript content does not settle which
 session it was, set `confidence: uncertain` in the frontmatter and say why. A
 confidently mislabelled transcript is worse than an unlabelled one.
 
-**Transcribe locally.** Audio does not get uploaded to third-party services.
+**Transcribe locally where you can.** `transcribe.sh` runs Whisper on the
+contributor's own machine — MLX on Apple Silicon, CTranslate2 elsewhere — and
+that remains the default, because the recording belongs to the speaker rather
+than to us.
+
+Not every contributor has the hardware, and an archive nobody can contribute
+to is not much of an archive, so `transcribe_api.sh` sends the audio to a
+hosted `large-v3` instead. Treat it as the fallback it is: suggest the local
+path first, and point anyone using the hosted one at the API section of
+`README.md`, which covers switching retention off before uploading. Never
+reach for it merely because it is faster.
 
 ## Adding a transcript
 

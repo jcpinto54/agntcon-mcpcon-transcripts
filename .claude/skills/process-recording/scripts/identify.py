@@ -7,7 +7,7 @@ transcript) picks the winner.
 
 Usage:  python3 identify.py <audio-file> [<audio-file> ...]
 """
-import json, subprocess, sys, datetime, re, os
+import json, shutil, subprocess, sys, datetime, re, os
 
 # The conference ran in Amsterdam (CEST = UTC+2 in September).
 TZ = datetime.timezone(datetime.timedelta(hours=2))
@@ -29,8 +29,9 @@ def session_window(s):
 def recording_window(path):
     """Return (start, duration_seconds, source).
 
-    Prefer the creation_time inside the container. Apple Voice Memos writes the
-    true recording start there, and it survives export -- the filesystem dates
+    Prefer the creation_time inside the container. Most phone recorder apps
+    and field recorders write the true recording start there (Apple Voice
+    Memos is one), and it survives copying and export -- the filesystem dates
     do not. A batch export rewrites every file's mtime to the export moment,
     which will silently collapse a whole day of talks onto one timestamp.
     """
@@ -45,15 +46,27 @@ def recording_window(path):
         start = (datetime.datetime.strptime(created[:19], "%Y-%m-%dT%H:%M:%S")
                  .replace(tzinfo=datetime.timezone.utc).astimezone(TZ))
         return start, duration, "container"
-    # .wav and friends carry no container timestamp; fall back to the filesystem
-    # and treat the result with suspicion.
-    raw = subprocess.run(["mdls", "-raw", "-name", "kMDItemContentCreationDate", path],
-                         capture_output=True, text=True).stdout
-    m = re.search(r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})", raw)
-    if not m:
+    # .wav and friends carry no container timestamp; fall back to the
+    # filesystem and treat the result with suspicion.
+    #
+    # mdls reads Spotlight's creation date and only exists on macOS. Where it
+    # is missing, or returns nothing, use the modification time -- worse, but
+    # the alternative is refusing to place the recording at all. Either way the
+    # caller warns and the slot stays unconfirmed until the text agrees.
+    if shutil.which("mdls"):
+        raw = subprocess.run(
+            ["mdls", "-raw", "-name", "kMDItemContentCreationDate", path],
+            capture_output=True, text=True).stdout
+        m = re.search(r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})", raw)
+        if m:
+            start = (datetime.datetime.strptime(m.group(1), "%Y-%m-%d %H:%M:%S")
+                     .replace(tzinfo=datetime.timezone.utc).astimezone(TZ))
+            return start, duration, "filesystem"
+
+    mtime = os.path.getmtime(path)
+    if not mtime:
         raise SystemExit(f"no usable timestamp for {path}")
-    start = (datetime.datetime.strptime(m.group(1), "%Y-%m-%d %H:%M:%S")
-             .replace(tzinfo=datetime.timezone.utc).astimezone(TZ))
+    start = datetime.datetime.fromtimestamp(mtime, datetime.timezone.utc).astimezone(TZ)
     return start, duration, "filesystem"
 
 

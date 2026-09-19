@@ -42,6 +42,61 @@ Were you there? Add the talks you recorded — see
 **[CONTRIBUTING.md](CONTRIBUTING.md)**. The coverage table below shows exactly
 which sessions are still missing.
 
+## Transcribing without a capable machine
+
+Transcribing locally is the default, and `transcribe.sh` will do it on most
+machines — MLX on Apple Silicon, CTranslate2 on anything else, CPU or CUDA.
+But it wants a 3GB model and real compute, and on a modest laptop a 30-minute
+talk takes about as long as the talk did.
+
+If that rules you out, there is a hosted fallback. It is genuinely a second
+choice: it means uploading a recording of someone else's talk to a company
+neither you nor they chose. Prefer local where you can.
+
+**Use Groq.** It serves the same `whisper-large-v3` this archive requires —
+not a turbo or distilled variant, which mangle exactly the accented names and
+protocol jargon the transcripts exist to preserve. At the time of writing it
+costs about **$0.11 per hour of audio**, so roughly 5 cents for a 25-minute
+talk, and there is a free tier. It does not train on what you send.
+
+1. **Turn retention off first.** Sign in at
+   [console.groq.com](https://console.groq.com/), open **Settings → Data
+   Controls**, and enable **Zero Data Retention**. By default audio is kept up
+   to 30 days for abuse monitoring; with ZDR on, nothing is retained once the
+   request completes. Do this before you upload anything.
+2. **Create a key.** In the same console, **API Keys → Create API Key**. Copy
+   it — it is shown once.
+3. **Keep it out of the repository.** Export it in your shell, or put it in a
+   file that is already ignored. It must never be committed:
+
+   ```bash
+   export GROQ_API_KEY="gsk_..."
+   ```
+
+4. **Transcribe.**
+
+   ```bash
+   .claude/skills/process-recording/scripts/transcribe_api.sh recordings/<your-file>
+   ```
+
+   The script downmixes to 16kHz mono before uploading — all Whisper listens
+   to anyway — so a long talk stays under the size cap, and it writes exactly
+   the same `.txt` the local path does. Everything after this step is
+   identical.
+
+Other providers work if you prefer one: point `WHISPER_API_URL` and
+`WHISPER_API_MODEL` at any OpenAI-compatible transcription endpoint and set
+`WHISPER_API_KEY`. Check two things before you do — that it serves
+**large-v3** rather than a smaller variant, and what it retains. OpenAI's
+Whisper endpoint works and is about 3x the price, but its zero-retention
+option needs an arrangement with their sales team rather than a toggle you
+can reach yourself.
+
+One caveat: the hosted APIs do not expose `condition-on-previous-text`, the
+flag that stops Whisper locking into a repetition loop. The loop check still
+runs, and the transcript writer still refuses a looped result — so it fails
+loudly rather than silently — but expect to hit it more often than locally.
+
 ## Known gaps in this batch
 
 - **Two attributions are marked `confidence: uncertain`** in their frontmatter,
