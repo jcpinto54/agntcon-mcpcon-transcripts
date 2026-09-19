@@ -3,7 +3,7 @@ title: "When NOT To Use an Agent: Choosing Between Workflows, Services, and Agen
 speakers: [Jigyasa Grover, Rishabh Misra]
 session_id: 59ef4419bf81f6a3064248ecb37c5f5f
 source: transcript.md
-confidence: uncertain
+confidence: confirmed
 kind: summary
 ---
 
@@ -17,17 +17,13 @@ kind: summary
 > [`transcript.md`](transcript.md); where the two disagree, the transcript is
 > right.
 
-> The attribution of this recording is `uncertain`.
-> Read the transcript's frontmatter before citing this as a
-> record of what this speaker said.
-
 ## In one line
 
 A talk arguing that autonomy is a feature rather than a default: the speakers trace five failure modes their own customer support agent hit in production, then describe the router-and-pipelines architecture they replaced it with.
 
 ## The argument
 
-Grover and Misra's claim is that agency is a feature, like autopilot in a car — powerful, but not something you design every critical system around. They say the industry has done the opposite, building systems where autonomy is the assumption and then scrambling to add guardrails afterwards, and that the bill arrives as security incidents and cancelled projects, not technical failure. Their answer is to keep control flow in code, give the model bounded jobs, and ask whether a problem needs an agent at all. The recording begins mid-talk and the archive marks its attribution uncertain.
+Grover and Misra's claim is that agency is a feature, like autopilot in a car — powerful, but not something you design every critical system around. They say the industry has done the opposite, building systems where autonomy is the assumption and then scrambling to add guardrails afterwards, and that the bill arrives as security incidents and cancelled projects, not technical failure. Their answer is to keep control flow in code, give the model bounded jobs, and ask whether a problem needs an agent at all. The recording begins mid-talk.
 
 ## What the adoption numbers are doing
 

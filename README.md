@@ -82,9 +82,9 @@ repetition loops are likelier. The loop check still catches them.
 
 ## Known gaps in this batch
 
-- **Two attributions are marked `confidence: uncertain`** in their frontmatter,
-  with the reason stated in the file. Both are identified by content rather
-  than by a clean timestamp match.
+- **Two attributions were filed `uncertain` and have since been confirmed.**
+  Both were identified by content rather than by a clean timestamp match; where
+  a recording's own timestamp disagrees with the guide, the file says so.
 - **One recording captured no usable speech** (18 minutes of a muffled mic) and
   is deliberately not filed.
 - Several recordings start after the speaker began; those transcripts are

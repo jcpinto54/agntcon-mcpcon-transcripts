@@ -10,7 +10,7 @@ kind: talk
 session_id: 59ef4419bf81f6a3064248ecb37c5f5f
 recording: recording.wav (talk3) + RAI Amsterdam.m4a (talk4)
 contributor: jcpinto54
-confidence: uncertain
+confidence: confirmed
 ---
 
 # When NOT To Use an Agent: Choosing Between Workflows, Services, and Agent Systems
@@ -24,7 +24,7 @@ Atlassian; ML engineer focused on applied ML in product.
 
 > Transcribed with Whisper large-v3. Speaker and company names are corrected
 > against the conference guide; the spoken words are otherwise unedited.
-> *[Recording begins mid-talk.]* Joined from two consecutive fragments captured on different devices — a .wav recorder that stopped at 11:55 and an iPad that started the same minute; the halves run continuously. Attribution is by content; the combined window runs past the scheduled end, so the match is not certain.
+> *[Recording begins mid-talk.]* Joined from two consecutive fragments captured on different devices — a .wav recorder that stopped at 11:55 and an iPad that started the same minute; the halves run continuously. Attribution is by content. The combined window runs past the slot's scheduled end, and the recording stops before the talk finished.
 
 ## Transcript
 

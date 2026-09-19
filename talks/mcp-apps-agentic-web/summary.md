@@ -3,7 +3,7 @@ title: "MCP Apps and The Agentic Web"
 speakers: [Liad Yosef]
 session_id: 0ce2cfec5a226a96deab5d3bf77d33e4
 source: transcript.md
-confidence: uncertain
+confidence: confirmed
 kind: summary
 ---
 
@@ -17,17 +17,13 @@ kind: summary
 > [`transcript.md`](transcript.md); where the two disagree, the transcript is
 > right.
 
-> The attribution of this recording is `uncertain`.
-> Read the transcript's frontmatter before citing this as a
-> record of what this speaker said.
-
 ## In one line
 
 Liad Yosef argues that MCP apps are the last building block of an agentic web in which assistants displace the browser as the main entry point and a product's interface shrinks to the last mile a human must see.
 
 ## The argument
 
-Yosef's claim is that the hard problem was never automation but interaction: once a service can send its own interactive UI into a chat, the assistant composes whole journeys out of branded fragments and the user never leaves it. That, he says, unlocks the nearly headless web and leaves every product with a new surface above its website — agent experience. The archive records this recording's attribution as uncertain: its timestamp falls well outside the scheduled slot, though speaker and subject are unambiguous.
+Yosef's claim is that the hard problem was never automation but interaction: once a service can send its own interactive UI into a chat, the assistant composes whole journeys out of branded fragments and the user never leaves it. That, he says, unlocks the nearly headless web and leaves every product with a new surface above its website — agent experience.
 
 ## MCP apps and the last mile of interaction
 

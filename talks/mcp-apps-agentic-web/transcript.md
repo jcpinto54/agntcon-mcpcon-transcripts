@@ -10,7 +10,7 @@ kind: talk
 session_id: 0ce2cfec5a226a96deab5d3bf77d33e4
 recording: RAI Amsterdam 11.m4a
 contributor: jcpinto54
-confidence: uncertain
+confidence: confirmed
 ---
 
 # MCP Apps and The Agentic Web
@@ -29,7 +29,12 @@ Space Agency.
 
 > Transcribed with Whisper large-v3. Speaker and company names are corrected
 > against the conference guide; the spoken words are otherwise unedited.
-> Attribution uncertain on timing. The recording's own timestamp is Friday 19:17, well after the scheduled programme ended, so this appears to be an off-schedule evening session rather than the 13:15 slot listed in the guide. The speaker and subject matter are unambiguous from the recording.
+> The recording's own timestamp reads Friday 19:17, after the programme had
+> ended, and is not reliable: this is the only file in the batch whose internal
+> timestamp matches when it was copied off the device, and its place in the
+> recorder's numbering falls between the 13:15 and 14:25 captures. Speaker and
+> subject are unambiguous from the recording; the time and room above are the
+> guide's.
 
 ## Transcript
 
