@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 """Regenerate the coverage table in README.md.
 
-Lists all 93 sessions from the conference and marks which ones have a
-transcript and which have a summary, so both kinds of gap are visible and
-someone can fill them.
+Lists all 93 sessions from the conference and marks what the archive holds for
+each one, so every kind of gap is visible and someone can fill it:
+
+  transcript.md   what the speaker said, from a recording
+  summary.md      a derived summary, written from the transcript
+  materials.md    links the speaker shared — slides, video, references
+
+The three are independent. A session can have materials and no recording,
+which is the usual shape when a speaker turns up and shares their slides for a
+talk nobody in the audience recorded.
 
 Usage:  python3 build_index.py
 """
@@ -29,38 +36,54 @@ def frontmatter(path):
     return out
 
 
+def index_by_session(filename):
+    """Map session_id -> slug for every talks/*/<filename> that declares one."""
+    found = {}
+    for path in sorted(glob.glob(os.path.join(ROOT, "talks", "*", filename))):
+        fm = frontmatter(path)
+        if fm.get("session_id"):
+            found[fm["session_id"]] = os.path.basename(os.path.dirname(path))
+    return found
+
+
 def main():
     sessions = json.load(open(os.path.join(ROOT, "guide", "sessions.json")))["sessions"]
 
-    # Map session_id -> talk slug, for whatever has been written so far. Each
-    # talk is a directory: transcript.md, and summary.md once someone writes it.
-    have = {}
-    for path in sorted(glob.glob(os.path.join(ROOT, "talks", "*", "transcript.md"))):
-        fm = frontmatter(path)
-        if fm.get("session_id"):
-            have[fm["session_id"]] = os.path.basename(os.path.dirname(path))
-    summarised = {sid for sid, slug in have.items()
+    transcripts = index_by_session("transcript.md")
+    materials = index_by_session("materials.md")
+    summarised = {sid for sid, slug in transcripts.items()
                   if os.path.exists(os.path.join(ROOT, "talks", slug, "summary.md"))}
 
     lines = []
     for day in ("thu", "fri"):
         day_sessions = sorted((s for s in sessions if s["day"] == day),
                               key=lambda s: (s["start"], s["room"]))
-        done = sum(1 for s in day_sessions if s["id"] in have)
+        done = sum(1 for s in day_sessions if s["id"] in transcripts)
         summed = sum(1 for s in day_sessions if s["id"] in summarised)
-        lines.append(f"\n### {DAY_LABEL[day]}  ({done}/{len(day_sessions)} "
-                     f"transcribed, {summed} summarised)\n")
-        lines.append("| | Time | Room | Talk | Speakers | Summary |")
-        lines.append("|---|---|---|---|---|---|")
+        mats = sum(1 for s in day_sessions if s["id"] in materials)
+        heading = (f"\n### {DAY_LABEL[day]}  ({done}/{len(day_sessions)} "
+                   f"transcribed, {summed} summarised")
+        heading += f", {mats} with materials)\n" if mats else ")\n"
+        lines.append(heading)
+        lines.append("| | Time | Room | Talk | Speakers | Summary | Materials |")
+        lines.append("|---|---|---|---|---|---|---|")
         for s in day_sessions:
-            slug = have.get(s["id"])
+            slug = transcripts.get(s["id"])
+            mat_slug = materials.get(s["id"])
             mark = f"[x](talks/{slug}/transcript.md)" if slug else " "
             title = s["title"].replace("|", "\\|")
             names = ", ".join(sp["n"] for sp in s["speakers"]).replace("|", "\\|")
-            link = f"[{title}](talks/{slug}/transcript.md)" if slug else title
+            # Link the title at the best thing the archive holds for it.
+            if slug:
+                link = f"[{title}](talks/{slug}/transcript.md)"
+            elif mat_slug:
+                link = f"[{title}](talks/{mat_slug}/materials.md)"
+            else:
+                link = title
             summary = f"[x](talks/{slug}/summary.md)" if s["id"] in summarised else " "
+            mats = f"[x](talks/{mat_slug}/materials.md)" if mat_slug else " "
             lines.append(f"| {mark} | {s['start']} | {s['room']} | {link} "
-                         f"| {names} | {summary} |")
+                         f"| {names} | {summary} | {mats} |")
 
     table = "\n".join(lines)
     readme_path = os.path.join(ROOT, "README.md")
@@ -70,8 +93,11 @@ def main():
     new = re.sub(f"{re.escape(START)}.*?{re.escape(END)}",
                  f"{START}\n{table}\n\n{END}", readme, flags=re.S)
     open(readme_path, "w", encoding="utf-8").write(new)
-    print(f"Indexed {len(have)}/{len(sessions)} sessions into README.md "
-          f"({len(summarised)} with summaries)")
+
+    covered = set(transcripts) | set(materials)
+    print(f"Indexed {len(transcripts)}/{len(sessions)} transcripts into README.md "
+          f"({len(summarised)} with summaries, {len(materials)} with materials; "
+          f"{len(covered)}/{len(sessions)} sessions have something)")
 
 
 if __name__ == "__main__":

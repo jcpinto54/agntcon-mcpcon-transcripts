@@ -89,6 +89,60 @@ shape, and flags names that appear in your summary but nowhere in the
 transcript. Agents should read
 [`.claude/skills/summarize-talk/SKILL.md`](.claude/skills/summarize-talk/SKILL.md).
 
+## Materials — slides, references, links
+
+`talks/<slug>/materials.md` holds what the speaker shared: slides, the
+references behind the talk, their own recording, anything they wrote up
+afterwards. It is independent of the other two files, so **a talk directory
+containing only `materials.md` is a complete contribution** — which is the
+normal shape for the 74 sessions nobody recorded.
+
+This is the easiest way to add a session that has no transcript, and often the
+most useful: a deck and a reading list outlive a transcript.
+
+```markdown
+---
+title: "Exact title from sessions.json"
+speakers: [Name As In The Guide]
+session_id: <id from sessions.json>
+kind: materials
+source: speaker        # or: contributor
+contributor: <your github handle>
+---
+
+# <Title> — materials
+
+**<Speaker>**
+
+*<Day date>, <time>, <room> — <track> track*
+
+> Links shared by the speaker. Not a transcript and not a summary — pointers
+> to material that lives elsewhere.
+
+## Slides
+- [Deck](https://...)
+
+## References
+- [Paper/repo/spec](https://...)
+
+## Recording
+- [Video](https://...)
+
+## Written up by the speaker
+- [Post](https://...)
+```
+
+Drop any heading you have nothing for. Then rebuild the index:
+
+```bash
+python3 .claude/skills/process-recording/scripts/build_index.py
+```
+
+Two rules. **Record only what the speaker actually sent** — do not go hunting
+for a deck they did not mention and file it as theirs. And use
+`source: speaker` only when it came from them; anything an attendee found is
+`source: contributor`.
+
 ## What you are agreeing to by contributing
 
 Nothing onerous, but it should be said out loud:

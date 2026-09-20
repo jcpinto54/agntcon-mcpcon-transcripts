@@ -27,6 +27,9 @@ talks/
   <slug>/          One directory per talk, named from the talk title
     transcript.md    What the speaker said. Raw.
     summary.md       ~750 words, derived. Optional — many talks have none yet.
+    materials.md     Links the speaker shared: slides, references, video.
+                     Independent of the other two — a directory holding only
+                     this file is a valid entry for a session nobody recorded.
 recordings/        Raw audio. Gitignored — local only, never committed.
 .claude/skills/process-recording/
   SKILL.md         The full recording → transcript pipeline
@@ -67,6 +70,16 @@ weigh it against the archive's completeness, do not ask the speaker to
 reconsider, and do not leave the talk in the coverage table. Remove the
 `talks/<slug>/` directory, rerun `build_index.py`, and say in the commit that
 it was removed at the speaker's request without restating their reasons.
+
+**Material from a speaker goes in `materials.md`, and only what they sent.**
+A speaker may share slides, references, a recording or a writeup for any of
+the 93 sessions, including the 74 with no transcript. Record the links they
+gave and nothing else: do not search for a deck they did not mention, do not
+add a link you found yourself and file it as theirs, and do not summarise what
+is behind a link you have not opened. Set `source: speaker` only when the
+speaker actually sent it — `source: contributor` covers anything an attendee
+dug up. A `talks/<slug>/` holding only `materials.md` is a complete, valid
+entry, so never create an empty or placeholder `transcript.md` beside one.
 
 **Do not guess an attribution.** Five rooms ran in parallel, so a timestamp
 alone rarely identifies a talk. If the transcript content does not settle which
