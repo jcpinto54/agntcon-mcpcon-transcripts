@@ -1,0 +1,91 @@
+# Rights and licence
+
+This repository holds two different kinds of material under two different
+terms. Read both before reusing anything from it.
+
+GitHub will not show a licence badge for this repo, and that is deliberate.
+Most of what is here is other people's words, and a single SPDX identifier
+across the whole thing would be a claim this archive has no right to make.
+
+---
+
+## 1. The transcripts — not ours to license
+
+**The speakers own their talks.**
+
+Each `talks/*/transcript.md` is a transcription of a talk given in public at
+AGNTCon + MCPCon Europe 2026. Copyright in a talk belongs to the speaker who
+gave it. Running a recording through speech recognition does not transfer that
+copyright to whoever ran it. This archive therefore does not — and cannot —
+grant you a licence to the speakers' words.
+
+What it can do is state its own position:
+
+- These transcripts are published as a community record of a conference held
+  in public, in the same spirit as conference notes, liveblogs and press
+  reporting of a public talk.
+- The archive adds **no restrictions of its own** on top of whatever rights a
+  speaker holds. It claims no copyright in the transcription itself, and
+  asserts no database right over the collection.
+- **Attribute the speaker, not this repository.** If you quote a transcript,
+  cite the speaker and the talk. This repo is where you found the words. It is
+  not their author.
+- No audio is published here, ever, and no exception to that will be accepted.
+
+**If you are a speaker, read [SPEAKERS.md](SPEAKERS.md).** Corrections and
+removals are handled there. A removal request is honoured without argument.
+
+## 2. The summaries — CC0 1.0
+
+Each `talks/*/summary.md` is a derived work, written by a contributor to this
+archive from the transcript beside it. Contributors release their summaries
+into the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/),
+so that the derived layer never becomes an obstacle to anyone.
+
+The verbatim quotes inside a summary are still the speaker's words, and
+section 1 governs them.
+
+## 3. The conference programme — the organisers'
+
+`guide/sessions.json` and `guide/agntcon-mcpcon-guide.html` carry the schedule,
+abstracts and speaker bios as published by the organisers of AGNTCon + MCPCon
+Europe 2026. That material is theirs, and it is reproduced here for one reason:
+so that attributions in this archive can be checked against a source rather
+than trusted. Credit for it belongs to the organisers.
+
+## 4. The tooling — MIT
+
+Everything under `.claude/skills/` — the `process-recording` and
+`summarize-talk` skills and their scripts — is original work, and is offered
+under the MIT licence.
+
+```
+MIT License
+
+Copyright (c) 2026 João Castro Pinto and the contributors to this archive
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+---
+
+*This file describes the position an archive of public talks takes towards the
+people whose talks it holds. It is not legal advice, and it is not a contract.
+If you are a speaker and something here does not sit right with you,
+[SPEAKERS.md](SPEAKERS.md) is the short version, and the answer is yes.*

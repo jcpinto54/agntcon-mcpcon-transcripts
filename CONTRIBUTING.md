@@ -89,6 +89,21 @@ shape, and flags names that appear in your summary but nowhere in the
 transcript. Agents should read
 [`.claude/skills/summarize-talk/SKILL.md`](.claude/skills/summarize-talk/SKILL.md).
 
+## What you are agreeing to by contributing
+
+Nothing onerous, but it should be said out loud:
+
+- **The transcript is not yours and not ours.** You are contributing a
+  transcription of someone else's talk. The speaker keeps every right they had
+  before you opened the PR — see [LICENSE](LICENSE) and [SPEAKERS.md](SPEAKERS.md).
+- **Your summary is released as CC0.** A `summary.md` is your own writing, and
+  contributing it puts it in the public domain, so the derived layer never
+  becomes an obstacle to anyone. Quotes inside it remain the speaker's words.
+- **The tooling is MIT.** Fixes to the skills and scripts go in under that.
+- **A speaker's request outranks your contribution.** If the speaker of a talk
+  you transcribed asks for a correction or a removal, it happens, and you do
+  not get a veto.
+
 ## A note on accuracy
 
 Speech recognition mangles names and jargon, especially with the international

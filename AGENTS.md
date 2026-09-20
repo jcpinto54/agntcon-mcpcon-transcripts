@@ -60,6 +60,14 @@ makes them safe: a reader always knows which of the two they are reading, and
 the transcript stays quotable. Where a summary and a transcript disagree, the
 transcript is right, and the summary gets fixed.
 
+**A speaker's request wins.** [SPEAKERS.md](SPEAKERS.md) promises every
+speaker a correction or a removal on request, without a reason and without
+being argued with. If you are acting on such a request, act on it — do not
+weigh it against the archive's completeness, do not ask the speaker to
+reconsider, and do not leave the talk in the coverage table. Remove the
+`talks/<slug>/` directory, rerun `build_index.py`, and say in the commit that
+it was removed at the speaker's request without restating their reasons.
+
 **Do not guess an attribution.** Five rooms ran in parallel, so a timestamp
 alone rarely identifies a talk. If the transcript content does not settle which
 session it was, set `confidence: uncertain` in the frontmatter and say why. A

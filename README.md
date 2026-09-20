@@ -28,7 +28,8 @@ attend.
 
 **Transcripts only — no audio.** Recordings stay on the machines of the people
 who made them. The speakers own their talks; this archive publishes their words
-as text, nothing more.
+as text, nothing more. Speakers: [SPEAKERS.md](SPEAKERS.md) is addressed to
+you, and a removal request is honoured without argument.
 
 **The transcript is never summarised in place.** `transcript.md` is what the
 speaker said, not someone else's interpretation of it. Summaries are real, but
@@ -41,6 +42,20 @@ the transcript is right.
 Were you there? Add the talks you recorded — see
 **[CONTRIBUTING.md](CONTRIBUTING.md)**. The coverage table below shows exactly
 which sessions are still missing.
+
+## For speakers
+
+Gave one of these talks? **[SPEAKERS.md](SPEAKERS.md)** explains how your
+transcript got here and what you can ask for — a correction, a link to your
+slides, or removal. Removal needs no reason and is not argued with.
+
+## Rights and licence
+
+The speakers own their talks, so this archive does not claim to license their
+words to anyone — it only states that it adds no restrictions of its own, and
+asks that you attribute the speaker rather than this repo. Summaries are CC0,
+the tooling is MIT, and the conference programme belongs to the organisers.
+The full position is in **[LICENSE](LICENSE)**.
 
 ## A note on platforms
 
