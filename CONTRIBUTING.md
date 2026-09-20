@@ -95,10 +95,8 @@ transcript. Agents should read
 references behind the talk, their own recording, anything they wrote up
 afterwards. It is independent of the other two files, so **a talk directory
 containing only `materials.md` is a complete contribution** — which is the
-normal shape for the 74 sessions nobody recorded.
-
-This is the easiest way to add a session that has no transcript, and often the
-most useful: a deck and a reading list outlive a transcript.
+normal shape for the 74 sessions nobody recorded, and the easiest way to add
+one.
 
 ```markdown
 ---

@@ -17,9 +17,9 @@ attend.
 - **[`talks/`](talks/)** — one directory per session, named by slug. Inside,
   `transcript.md` carries the talk title, the speaker with background on who
   they are, and the raw transcript. Where someone has written one, `summary.md`
-  sits beside it, and `materials.md` holds whatever the speaker shared —
-  slides, references, video. The three are independent: a session nobody
-  recorded can still have a deck and a reading list.
+  sits beside it, and `materials.md` holds what the speaker shared — slides,
+  references, video. The three are independent: a session with no recording
+  can still have materials.
 - **[`guide/sessions.json`](guide/sessions.json)** — the full schedule as
   machine-readable data: all 93 sessions with rooms, times, abstracts, speakers
   and bios.
@@ -47,16 +47,10 @@ which sessions are still missing.
 
 ## For speakers
 
-Gave one of these talks? **[SPEAKERS.md](SPEAKERS.md)** is addressed to you —
-including if nobody recorded your session, which is true of 74 of the 93.
-
-**Slides, references, your own recording, the post you wrote afterwards:** all
-of it is welcome, all of it is credited, and slides alone make a real entry
-for a talk that has no transcript. A deck and a reading list outlive a
-transcript anyway.
-
-And if you would rather your talk were not here at all, it comes out. No
-reason needed, and you will not be argued with.
+**[SPEAKERS.md](SPEAKERS.md)** is addressed to you, including if nobody
+recorded your session — true of 74 of the 93. It covers adding slides,
+references or a recording of your own, and how to get something corrected or
+taken down.
 
 ## Rights and licence
 
