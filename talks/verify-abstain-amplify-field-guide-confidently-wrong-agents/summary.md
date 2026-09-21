@@ -3,7 +3,6 @@ title: "Verify, Abstain, or Amplify: A Field Guide To Confidently-Wrong Agents"
 speakers: [Michal Orzechowski]
 session_id: 43b5f61a55a17e1550497bb821025b04
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

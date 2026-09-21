@@ -3,7 +3,6 @@ title: "Pull Requests Are Dead, Long Live Peer Review"
 speakers: [Dylan Ratcliffe]
 session_id: 3cc6e8d9193ef68045614f9ebd1d5233
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

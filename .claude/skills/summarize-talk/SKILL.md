@@ -52,15 +52,19 @@ the most reliable signal of what they thought mattered, and it is what tells
 you which topics deserve a section. And **sentences worth quoting**, with
 enough of the surrounding words that you can find them again.
 
-Check the frontmatter before you start:
+Check the frontmatter and the headings before you start:
 
-- `confidence: uncertain` or `unidentified` — the summary inherits that. Do
-  not write a confident paragraph about what a speaker argued when the archive
-  is not certain whose talk it is. The script copies the field across; say it
-  in the prose too.
 - A transcript marked `*[Recording begins mid-talk]*` or `*[Recording ends
   here]*` is a fragment. Summarise what was captured, and say in one line that
   the recording is partial. Do not fill the gap from the abstract.
+- **Everything below a `## Q&A` heading is a room, not a speaker.** Whisper
+  labels nobody, so a sentence down there may be an audience member's, and
+  attributing it to the speaker puts words in a named person's mouth. Read it
+  — it is often where a speaker concedes a limit worth recording — but never
+  quote from it in "In their words", and never let it feed the argument or a
+  topic section. `write_summary.py` enforces the quote half of this and will
+  reject the file, naming the quote. Q&A material belongs in "What the talk
+  leaves open", attributed out loud: *in the Q&A he added that…*
 
 ## Stage 2 — Read the abstract, then set it aside
 

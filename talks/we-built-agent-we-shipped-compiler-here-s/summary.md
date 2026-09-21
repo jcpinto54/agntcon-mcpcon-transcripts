@@ -3,7 +3,6 @@ title: "We Built an Agent, We Shipped a Compiler. Here's Why"
 speakers: [Joel Verezhak]
 session_id: a163cdaa47c9dbb24c6a3615aea9a1a7
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

@@ -10,7 +10,6 @@ kind: talk
 session_id: 5b86373ff4058776789792f7056efdfe
 recording: RAI Amsterdam 4.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # What a Year of Breaking MCP Tells Builders: Protocol Gaps and What Ships Next

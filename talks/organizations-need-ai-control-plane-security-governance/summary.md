@@ -3,7 +3,6 @@ title: "Why Organizations Need an AI Control Plane for Security and Governance"
 speakers: [Sheng Liang]
 session_id: 153562e35e20f47bf2acb1a157ec089a
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

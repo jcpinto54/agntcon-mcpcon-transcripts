@@ -3,7 +3,6 @@ title: "Beyond the Easy 80%: Bringing Legacy, Spatial, and Locked-Down Data to M
 speakers: [Sanae Mendoza]
 session_id: b64de80d15aa7d2c3aa1d7a3b7bec8d5
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

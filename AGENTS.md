@@ -25,11 +25,15 @@ guide/
   sessions.json               Machine-readable schedule: 93 sessions, speakers, bios, abstracts
 talks/
   <slug>/          One directory per talk, named from the talk title
-    transcript.md    What the speaker said. Raw.
+    transcript.md    What the speaker said. Raw. Audience questions, where the
+                     recording caught them, sit below a `## Q&A` heading.
     summary.md       ~750 words, derived. Optional — many talks have none yet.
-    materials.md     Links the speaker shared: slides, references, video.
+    materials.md     What the speaker shared: slides, references, links to
+                     their own video.
                      Independent of the other two — a directory holding only
                      this file is a valid entry for a session nobody recorded.
+    materials/       Files the speaker sent, where they sent files rather than
+                     links, listed from materials.md. Never audio or video.
 recordings/        Raw audio. Gitignored — local only, never committed.
 .claude/skills/process-recording/
   SKILL.md         The full recording → transcript pipeline
@@ -55,7 +59,9 @@ attribution and the transcript stays as spoken.
 **Nothing but the transcript in `transcript.md`.** It is raw text plus a
 speaker header. Do not add takeaways, key points or TL;DRs to it, however
 tempting — someone searching this archive wants the speaker's words, not an
-interpretation of them.
+interpretation of them. The `## Q&A` heading is the one structural mark that
+belongs: it is not an interpretation of the talk, it is the line past which
+the words stop being the speaker's.
 
 **Summaries live in their own file.** `talks/<slug>/summary.md`, written with
 the `summarize-talk` skill and labelled as derived. Separating them is what
@@ -72,19 +78,31 @@ reconsider, and do not leave the talk in the coverage table. Remove the
 it was removed at the speaker's request without restating their reasons.
 
 **Material from a speaker goes in `materials.md`, and only what they sent.**
-A speaker may share slides, references, a recording or a writeup for any of
-the 93 sessions, including the 74 with no transcript. Record the links they
-gave and nothing else: do not search for a deck they did not mention, do not
-add a link you found yourself and file it as theirs, and do not summarise what
-is behind a link you have not opened. Set `source: speaker` only when the
-speaker actually sent it — `source: contributor` covers anything an attendee
-dug up. A `talks/<slug>/` holding only `materials.md` is a complete, valid
-entry, so never create an empty or placeholder `transcript.md` beside one.
+A speaker may share slides, references, a link to their own recording or a
+writeup for any of the 93 sessions, including the 74 with no transcript.
+Record what they gave
+and nothing else: do not search for a deck they did not mention, do not add a
+link you found yourself and file it as theirs, and do not summarise what is
+behind a link you have not opened. Set `source: speaker` only when the speaker
+actually sent it — `source: contributor` covers anything an attendee dug up. A
+`talks/<slug>/` holding only `materials.md` is a complete, valid entry, so
+never create an empty or placeholder `transcript.md` beside one.
 
-**Do not guess an attribution.** Five rooms ran in parallel, so a timestamp
-alone rarely identifies a talk. If the transcript content does not settle which
-session it was, set `confidence: uncertain` in the frontmatter and say why. A
-confidently mislabelled transcript is worse than an unlabelled one.
+**A file a speaker sent is material too.** Speakers send PDFs, not only URLs,
+and a link to a deck that moves or expires preserves nothing. Commit what they
+sent to `talks/<slug>/materials/` and link it from `materials.md` the same way
+you would link a URL. Documents only — slides, papers, notes, diagrams — and
+only with the speaker's go-ahead, recorded in the `source:` field. Audio and
+video are still never committed, whoever offers them and however they are
+stored; link those or ask for a transcript. Anything past a few megabytes is a
+link, not a commit.
+
+**Do not guess an attribution, and do not hedge one.** Five rooms ran in
+parallel, so a timestamp alone rarely identifies a talk. If the content does
+not settle which session it was, do not add the transcript — open an issue
+describing the recording so someone who was in the room can identify it. A
+transcript that hedges its own attribution is worse than one that waits:
+everything downstream quotes it anyway, and nobody reads the caveat.
 
 **Transcribe locally where you can.** The recording belongs to the speaker,
 not to us. `transcribe.sh` uses MLX on Apple Silicon and CTranslate2 elsewhere,
@@ -102,12 +120,12 @@ Most agents that open this repo are not adding a transcript — they are being
 asked what someone said at the conference. That is a different job from
 contributing, and it has its own ways of going wrong.
 
-**Say what is not here.** The archive holds a fraction of the conference — 19
-of the 93 sessions at the time of writing; the coverage table in
-[README.md](README.md) has the current count. Attendees transcribed the rooms
-they happened to sit in, so a topic missing from `talks/` was very likely
-discussed in a room nobody recorded. Never answer "nobody talked about X" when
-what you mean is "no transcript here covers X" — say the second thing.
+**Say what is not here.** Most of the conference is missing — the coverage
+table in [README.md](README.md) has the count, and attendees only transcribed
+the rooms they happened to sit in. So never answer "nobody talked about X"
+when what you mean is "no transcript here covers X". Say the second thing, and
+when the answer turns on something being absent, say how much of the
+conference the archive actually holds.
 
 **An abstract is not a transcript.** `guide/sessions.json` carries a `desc` for
 all 93 sessions, including the 74 with no recording. It is what a speaker said
@@ -115,13 +133,20 @@ they would say, months earlier. Never quote, paraphrase or attribute it as
 something said on stage, and never use it to fill a gap in a recording. If the
 only thing the archive has on a session is its abstract, say so in those words.
 
-**Read the frontmatter before you attribute.** `confidence: uncertain` or
-`unidentified` means the archive is not sure which session the recording is —
-pass that uncertainty on rather than quietly resolving it. Inline markers like
-`*[Recording begins mid-talk]*` mean a fragment: what is missing is missing,
-and the speaker may well have said the opposite earlier. For speaker names and
-titles, `guide/sessions.json` wins over the transcript body, which is raw
+**Read the headers before you attribute.** Inline markers like `*[Recording
+begins mid-talk]*` mean a fragment: what is missing is missing, and the
+speaker may well have said the opposite earlier. For speaker names and titles,
+`guide/sessions.json` wins over the transcript body, which is raw
 speech-to-text and mangles names.
+
+**Below `## Q&A`, you do not know who is talking.** A transcript that reaches
+that heading has stopped being one speaker and become a room, and Whisper
+labels nobody — the question, the answer and the person two rows back all
+arrive as the same undifferentiated text. Never quote from below it as the
+speaker. Attribute it as what it is: *an audience member asked…*, *in the Q&A
+the speaker said…*. This is the easiest way to make the archive say something
+false about a named person, and the likeliest, because the Q&A is where the
+interesting concessions are.
 
 **Summaries to find, transcripts to quote.** The whole archive is a few hundred
 kilobytes — reading is cheap, guessing is not. Skim `talks/*/summary.md` to
@@ -170,3 +195,5 @@ index after writing one.
 - Every transcript carries YAML frontmatter including `session_id`, which links
   it back to `guide/sessions.json` and drives the coverage index.
 - Mark gaps in a recording honestly: `*[Recording begins mid-talk]*`.
+- Where the recording runs past the talk, `## Q&A` marks the point it stops
+  being the speaker. `write_summary.py` refuses quotes taken from below it.

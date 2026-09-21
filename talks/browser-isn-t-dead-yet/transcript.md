@@ -10,7 +10,6 @@ kind: keynote
 session_id: 62fd1975975b275115e7552ba6d5c26f
 recording: RAI Amsterdam 2.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # The Browser Isn't Dead Yet

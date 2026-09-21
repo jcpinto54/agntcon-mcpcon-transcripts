@@ -10,7 +10,6 @@ kind: keynote
 session_id: 153562e35e20f47bf2acb1a157ec089a
 recording: RAI Amsterdam 2.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # Why Organizations Need an AI Control Plane for Security and Governance

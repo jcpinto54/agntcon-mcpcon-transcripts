@@ -10,7 +10,6 @@ kind: talk
 session_id: 66dee63adbe497d36fcfe33e5f9c2847
 recording: RAI Amsterdam 3.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # Smart Legal Agreements for the Agentic Economy Using Accord Project
@@ -30,6 +29,8 @@ land ownership recorded on a blockchain.
 
 > Transcribed with Whisper large-v3. Speaker and company names are corrected
 > against the conference guide; the spoken words are otherwise unedited.
+> The talk ends at the `## Q&A` heading; everything below it is audience
+> questions and the speaker's answers.
 > *[Recording begins mid-talk.]*
 
 ## Transcript
@@ -326,6 +327,8 @@ to keep it short. There's a coffee break coming up and I'm told not to take
 questions here. But happy to move outside. I don't think there's a talk directly
 after this though. It probably will be in about 10 minutes. So maybe we can take
 your questions. I'm told not to do the viewer.
+
+## Q&A
 
 I think we have 10 minutes, so we should be OK. OK. So you mentioned that
 microtransactions will be very useful in the age of agentic. Yeah. And I don't

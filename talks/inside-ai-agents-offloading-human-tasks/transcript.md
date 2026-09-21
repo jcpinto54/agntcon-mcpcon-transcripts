@@ -10,7 +10,6 @@ kind: keynote
 session_id: 9863191944bad057ff0377ffbf2051ca
 recording: RAI Amsterdam 2.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # Inside AI Agents — Offloading Human Tasks

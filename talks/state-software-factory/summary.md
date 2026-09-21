@@ -3,7 +3,6 @@ title: "State of the Software Factory"
 speakers: [Dexter Horthy]
 session_id: e6f2202aa16c70c2798e835e9a1c7b66
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

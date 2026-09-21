@@ -10,7 +10,6 @@ kind: keynote
 session_id: 4c6e214e5b3874b7b3c16e12295d160f
 recording: RAI Amsterdam 2.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # A New Way To Build Software: How GitHub Is Evolving For a Human, Agent Future

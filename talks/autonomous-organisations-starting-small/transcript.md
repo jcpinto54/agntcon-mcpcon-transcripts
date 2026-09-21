@@ -10,7 +10,6 @@ kind: talk
 session_id: 476e50508e46770ac755d6c59b3c7153
 recording: RAI Amsterdam 14.m4a + RAI Amsterdam 15.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # Autonomous Organisations: Starting Small
@@ -30,6 +29,8 @@ agents handle pricing, stock and promotion.
 
 > Transcribed with Whisper large-v3. Speaker and company names are corrected
 > against the conference guide; the spoken words are otherwise unedited.
+> The talk ends at the `## Q&A` heading; everything below it is audience
+> questions and the speaker's answers.
 > Joined from two fragments that split mid-talk. The recording starts about five minutes before the scheduled slot, which the speaker remarks on in his opening line.
 
 ## Transcript
@@ -381,17 +382,21 @@ model maybe you can make an amazing artist and you know drop me a dm and i will
 implement it but uh i i love to see you try because we are ready to fail at
 running a restaurant.
 
-I want to thank you everyone. I think the shoe, do you come up with stuff like
-you're gonna sell cocaine or cyanide? No, no, no, yeah, maybe because we first
-said like do snacks, you know, we already had it in the inventory guard wheels,
-but the whole thing of like not giving it guard wheels because we want to see
-what what it would do wrong uh because if you give it guardrails you never know
-if it ever needed to hit those right so there was like a whole point of like
-let's just keep prompts really empty uh because then we really see what's what's
-lacking and like the foremost thing is like laziness and it being a code model
-and not a business model that was like the foremost two things that came out of
-behavior that you needed to steer all the time but definitely do the guard if
-you do this in public.
+I want to thank you everyone.
+
+## Q&A
+
+I think the shoe, do you come up with stuff like you're gonna sell cocaine or
+cyanide? No, no, no, yeah, maybe because we first said like do snacks, you
+know, we already had it in the inventory guard wheels, but the whole thing of
+like not giving it guard wheels because we want to see what what it would do
+wrong uh because if you give it guardrails you never know if it ever needed to
+hit those right so there was like a whole point of like let's just keep
+prompts really empty uh because then we really see what's what's lacking and
+like the foremost thing is like laziness and it being a code model and not a
+business model that was like the foremost two things that came out of behavior
+that you needed to steer all the time but definitely do the guard if you do
+this in public.
 
 Any other questions? I just had an interesting idea. Since you said that it's
 connected to USF, I didn't think I'd change it. I think you're welcome to come

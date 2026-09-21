@@ -10,7 +10,6 @@ kind: talk
 session_id: a163cdaa47c9dbb24c6a3615aea9a1a7
 recording: RAI Amsterdam 5.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # We Built an Agent, We Shipped a Compiler. Here's Why

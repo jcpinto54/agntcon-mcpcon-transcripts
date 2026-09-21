@@ -3,7 +3,6 @@ title: "No Central Brain"
 speakers: [Fausto Albers]
 session_id: f5511d725b5025f549b7fe6e88af1dff
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

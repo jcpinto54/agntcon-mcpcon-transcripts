@@ -3,7 +3,6 @@ title: "The Browser Isn't Dead Yet"
 speakers: [Rachel-Lee Nabors]
 session_id: 62fd1975975b275115e7552ba6d5c26f
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

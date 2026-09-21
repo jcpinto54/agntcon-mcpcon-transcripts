@@ -3,7 +3,6 @@ title: "What a Year of Breaking MCP Tells Builders: Protocol Gaps and What Ships
 speakers: [Amine Raji]
 session_id: 5b86373ff4058776789792f7056efdfe
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

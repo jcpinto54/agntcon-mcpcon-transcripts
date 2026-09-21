@@ -10,7 +10,6 @@ kind: talk
 session_id: 4511e26b5b7d543477af76bfcc8f685d
 recording: RAI Amsterdam 10.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # Testing Agents and Their Tools: Offline Evaluation, Synthetic Tasks, and A/B Experiments

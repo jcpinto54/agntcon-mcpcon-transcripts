@@ -10,7 +10,6 @@ kind: talk
 session_id: 83f37169e46203cae13266651a163234
 recording: Baccas.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # From Opaque To Observable: Tracing Multi-Agent OpenClaw Workflows With OpenTelemetry
@@ -27,6 +26,8 @@ Télécom ParisTech.
 
 > Transcribed with Whisper large-v3. Speaker and company names are corrected
 > against the conference guide; the spoken words are otherwise unedited.
+> The talk ends at the `## Q&A` heading; everything below it is audience
+> questions and the speaker's answers.
 > *[Recording begins mid-talk.]*
 
 ## Transcript
@@ -218,12 +219,16 @@ different frameworks and get understanding of how they behave, because this is
 where we'll have different models, different harness working together that will
 cause a lot of friction in the interactions.
 
-Thank you. So if you have questions. Yes. Thank you. I would see plugging
-existing solution on that. Definitely, yes. So the question is about when you
-have a series of distributed agents from different users, whether this work
-extends. That could be a goal. So what we focused on is when you have one
-specific task which involves several agents. we started with OpenCore because
-when we did that, that was the one solution that emerged.
+Thank you. So if you have questions.
+
+## Q&A
+
+Yes. Thank you. I would see plugging existing solution on that. Definitely,
+yes. So the question is about when you have a series of distributed agents
+from different users, whether this work extends. That could be a goal. So what
+we focused on is when you have one specific task which involves several
+agents. we started with OpenCore because when we did that, that was the one
+solution that emerged.
 
 Definitely, I think the biggest challenge is when it's multiple agents
 collaborating because we have been observing a ton of failures that are really

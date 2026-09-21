@@ -3,7 +3,6 @@ title: "MCP Apps and The Agentic Web"
 speakers: [Liad Yosef]
 session_id: 0ce2cfec5a226a96deab5d3bf77d33e4
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

@@ -7,7 +7,7 @@ attribution never depends on what the transcription heard.
 Usage:
   python3 write_talk.py --session <session_id> --transcript <file.txt> \
       --recording "<original audio filename>" [--contributor <handle>] \
-      [--bio bio.txt] [--confidence confirmed|uncertain] [--slug <slug>] \
+      [--bio bio.txt] [--slug <slug>] \
       [--fix "Heard=Correct" --fix "Alsoheard=Correct"] [--note "..."]
 """
 import argparse, collections, json, os, re, sys, textwrap
@@ -103,7 +103,6 @@ def main():
     ap.add_argument("--recording", required=True)
     ap.add_argument("--contributor", default="")
     ap.add_argument("--bio", default="")
-    ap.add_argument("--confidence", default="confirmed")
     ap.add_argument("--slug", default="")
     ap.add_argument("--note", default="")
     ap.add_argument("--lines", default="",
@@ -156,7 +155,6 @@ kind: {s['kind']}
 session_id: {s['id']}
 recording: {a.recording}
 contributor: {a.contributor}
-confidence: {a.confidence}
 ---
 
 # {s['title']}

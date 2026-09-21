@@ -10,7 +10,6 @@ kind: talk
 session_id: d64f761d0ed3fdcf9533ec5c55aa6aab
 recording: RAI Amsterdam 9.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # Agents Can Pay. Can They Prove It?

@@ -3,7 +3,6 @@ title: "From Opaque To Observable: Tracing Multi-Agent OpenClaw Workflows With O
 speakers: [Jordan Augé]
 session_id: 83f37169e46203cae13266651a163234
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 
@@ -47,7 +46,6 @@ The worked example is an SRE triage application: a lead agent spawns three speci
 
 > the same issue could be linked to different reasons maybe it's uh an hallucination on the tool called that failed maybe it's because the tool wasn't available at the time
 
-> we have been observing a ton of failures that are really silent to typical observability. You can get them with LLM as a Judge metrics, but then you don't know what's the root cause.
 
 ## Takeaways
 
@@ -58,4 +56,4 @@ The worked example is an SRE triage application: a lead agent spawns three speci
 
 ## What the talk leaves open
 
-Augé says the hardest failures are silent ones — an agent approving without evidence, or believing another agent used a tool it never called — which LLM as a Judge can spot but not locate the cause of, at a cost that pushes them onto local or small models. Asked where alerting is going, he says the metrics they compute carry signals of these issues but are not sufficient, and names correlating behaviours, not only divergence from a baseline, and semantic analysis using embeddings as work still to do. He also notes that telemetry ships on span completion, so reacting in real time would need the event-based shipping they are still discussing; applying this beyond OpenClaw is only planned.
+In the Q&A, Augé said the hardest failures are silent ones — an agent approving without evidence, or believing another agent used a tool it never called — which LLM as a Judge can spot but not locate the cause of, at a cost that pushes them onto local or small models. Asked where alerting is going, he says the metrics they compute carry signals of these issues but are not sufficient, and names correlating behaviours, not only divergence from a baseline, and semantic analysis using embeddings as work still to do. He also notes that telemetry ships on span completion, so reacting in real time would need the event-based shipping they are still discussing; applying this beyond OpenClaw is only planned.

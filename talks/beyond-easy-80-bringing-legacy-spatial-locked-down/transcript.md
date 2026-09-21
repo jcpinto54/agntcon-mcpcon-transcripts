@@ -10,7 +10,6 @@ kind: sponsored
 session_id: b64de80d15aa7d2c3aa1d7a3b7bec8d5
 recording: recording.wav (talk2)
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # Beyond the Easy 80%: Bringing Legacy, Spatial, and Locked-Down Data to MCP
@@ -28,6 +27,8 @@ argument about the data MCP servers still cannot reach.
 
 > Transcribed with Whisper large-v3. Speaker and company names are corrected
 > against the conference guide; the spoken words are otherwise unedited.
+> The talk ends at the `## Q&A` heading; everything below it is audience
+> questions and the speaker's answers.
 > *[Recording begins mid-talk.]*
 
 ## Transcript
@@ -252,13 +253,16 @@ we can accommodate that with the deployment. So that brings us back to any data,
 any AI, work with the data that you have, where it needs to stay, choose the AI
 you fit, we're all about flexibility.
 
-So please do come to our booth, bring us your data challenges, we'll be happy to
-chat through them and see if we can come up with a solution. Thank you very
+So please do come to our booth, bring us your data challenges, we'll be happy
+to chat through them and see if we can come up with a solution. Thank you very
 much. Thanks for coming. As the final talk, I'll leave you and answer any
-questions for the talk. Yeah, I'm glad you're here. Hello. Thanks a lot for the
-talk. Very interesting. I'm curious whether you have, so the MCP servers that
-you talked about, they are very useful for people with the flow already in
-place.
+questions for the talk.
+
+## Q&A
+
+Yeah, I'm glad you're here. Hello. Thanks a lot for the talk. Very
+interesting. I'm curious whether you have, so the MCP servers that you talked
+about, they are very useful for people with the flow already in place.
 
 But do you have any solution, any MCP server to help create the flows in the
 first place? Great. Sorry, the? The flows that process the data. So this program

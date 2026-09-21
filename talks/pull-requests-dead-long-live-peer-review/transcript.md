@@ -10,7 +10,6 @@ kind: talk
 session_id: 3cc6e8d9193ef68045614f9ebd1d5233
 recording: RAI Amsterdam 8.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # Pull Requests Are Dead, Long Live Peer Review
@@ -28,7 +27,8 @@ raised a $6M seed round led by Renegade Partners in September 2025.
 
 > Transcribed with Whisper large-v3. Speaker and company names are corrected
 > against the conference guide; the spoken words are otherwise unedited.
-> Includes an extended audience Q&A.
+> The talk ends at the `## Q&A` heading; everything below it is audience
+> questions and the speaker's answers.
 
 ## Transcript
 
@@ -388,12 +388,14 @@ wrote if you want to hear more from from us on this topic there's an email sign
 up down the bottom but thank you everyone for coming I'm going to stick around
 in here.
 
+## Q&A
+
 If anyone has any questions, please come up and say hello until we get kicked
-out, and then I'll be out. Yeah. Thank you. Hot coffee? I want some hot coffee.
-Hot coffee. Coffee. Excuse me. Coffee. Thomas, can you press the stop button?
-Can you press it down for this? Yes, later. When you're there. What do you want?
-It's in the right position. Yes, exactly. The stage is on the left. Normally we
-put the switch here. It's outside.
+out, and then I'll be out. Yeah. Thank you. Hot coffee? I want some hot
+coffee. Hot coffee. Coffee. Excuse me. Coffee. Thomas, can you press the stop
+button? Can you press it down for this? Yes, later. When you're there. What do
+you want? It's in the right position. Yes, exactly. The stage is on the left.
+Normally we put the switch here. It's outside.
 
 Yeah. It's so, so... For you to drink on the sauce. Are you in this car? Yes.
 Okay. Sorry, guys. We're going to prep to the next speaker. Can you evacuate the

@@ -3,7 +3,6 @@ title: "A New Way To Build Software: How GitHub Is Evolving For a Human, Agent F
 speakers: [Marlene Mhangami]
 session_id: 4c6e214e5b3874b7b3c16e12295d160f
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

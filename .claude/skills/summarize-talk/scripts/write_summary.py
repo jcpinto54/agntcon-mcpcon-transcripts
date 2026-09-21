@@ -105,23 +105,36 @@ def normalise(s):
 
 
 def check_quotes(body, transcript):
-    """Every quoted line must appear word for word in the transcript.
+    """Every quoted line must appear word for word in the talk.
 
     This is the one check the archive is uniquely able to make: the source is
     sitting in the next file. A summary that misquotes a speaker is worse than
     one that does not quote at all, and a quote smoothed into tidier grammar
     is a misquote.
+
+    The haystack stops at the `## Q&A` heading. Below it the transcript is a
+    room full of people, and Whisper labels none of them, so a sentence found
+    there is as likely to be an audience member's as the speaker's. Quoting it
+    under the speaker's name is the one misattribution this script can catch.
     """
     problems = []
     quotes = blockquotes(dict(sections(body)).get(QUOTES, ""))
     if not MIN_QUOTES <= len(quotes) <= MAX_QUOTES:
         problems.append(f"{len(quotes)} quote(s) in \"{QUOTES}\" "
                         f"(want {MIN_QUOTES}-{MAX_QUOTES})")
-    hay = normalise(transcript)
+    talk, _, qa = transcript.partition("\n## Q&A")
+    hay, hay_qa = normalise(talk), normalise(qa)
     for q in quotes:
-        if normalise(q) not in hay:
-            short = q if len(q) <= 60 else q[:57] + "..."
-            problems.append(f'not in the transcript word for word: "{short}"')
+        if normalise(q) in hay:
+            continue
+        short = q if len(q) <= 60 else q[:57] + "..."
+        if hay_qa and normalise(q) in hay_qa:
+            problems.append(
+                f'from the Q&A, not the talk: "{short}" -- nobody knows who '
+                "said it, so it cannot be quoted as the speaker. Refer to it "
+                f'in "{OPEN}" instead, saying it came from the Q&A.')
+        else:
+            problems.append(f'not in the talk word for word: "{short}"')
     return problems
 
 
@@ -294,13 +307,6 @@ def main():
         names = fm.get("speakers", "").strip("[]")
         where = "*Session not identified — see the transcript.*"
 
-    confidence = fm.get("confidence", "confirmed")
-    caveat = ""
-    if confidence != "confirmed":
-        caveat = (f"\n> The attribution of this recording is `{confidence}`.\n"
-                  "> Read the transcript's frontmatter before citing this as a\n"
-                  "> record of what this speaker said.\n")
-
     # An unidentified recording has no speaker to name; say so rather than
     # rendering an empty bold run.
     byline = f"**{names}**" if names else "_Speaker not identified._"
@@ -311,7 +317,6 @@ title: {json.dumps(title, ensure_ascii=False)}
 speakers: [{names}]
 session_id:{" " + sid if sid else ""}
 source: transcript.md
-confidence: {confidence}
 kind: summary
 ---
 
@@ -324,7 +329,7 @@ kind: summary
 > A summary, not a transcript. The speaker's own words are in
 > [`transcript.md`](transcript.md); where the two disagree, the transcript is
 > right.
-{caveat}
+
 {body}
 """
     out = os.path.join(talk_dir, "summary.md")

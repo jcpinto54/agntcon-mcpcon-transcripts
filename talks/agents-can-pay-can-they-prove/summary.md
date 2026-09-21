@@ -3,7 +3,6 @@ title: "Agents Can Pay. Can They Prove It?"
 speakers: [Diego Zuluaga]
 session_id: d64f761d0ed3fdcf9533ec5c55aa6aab
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

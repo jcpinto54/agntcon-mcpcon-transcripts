@@ -3,7 +3,6 @@ title: "Inside AI Agents — Offloading Human Tasks"
 speakers: [Maarten Grootendorst]
 session_id: 9863191944bad057ff0377ffbf2051ca
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

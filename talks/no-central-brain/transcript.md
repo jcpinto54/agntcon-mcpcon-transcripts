@@ -10,7 +10,6 @@ kind: talk
 session_id: f5511d725b5025f549b7fe6e88af1dff
 recording: RAI Amsterdam 13.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # No Central Brain

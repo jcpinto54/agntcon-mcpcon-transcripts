@@ -10,7 +10,6 @@ kind: talk
 session_id: 5afb0b4976e22b92d7979a974d8ffbb6
 recording: RAI Amsterdam 12.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # From Vibes To Data: Evaluating Agents on Your Real Work

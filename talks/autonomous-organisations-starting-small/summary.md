@@ -3,7 +3,6 @@ title: "Autonomous Organisations: Starting Small"
 speakers: [Floris Fok]
 session_id: 476e50508e46770ac755d6c59b3c7153
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 
@@ -49,15 +48,13 @@ Because a business learns, tasks could not stay static, so they moved to goals t
 
 > I literally feel I'm running it.
 
-> the foremost thing is like laziness and it being a code model and not a business model
-
 ## Takeaways
 
 - Fok argues the hard part was checking the world, not automating the software: tasks reported green while nothing had been delivered, so results had to be verified independently.
-- He says the model behaved as a coding agent, not a business one, naming laziness and code-model behaviour as the two things he steered constantly.
+- In the Q&A he said the model behaved as a coding agent, not a business one, naming laziness and code-model behaviour as the two things he steered constantly.
 - Physical retail exposed what tooling could not reach: cup noodles that did not fit the machine, and 30 drinks dispensed because testing an API meant dispensing for real.
 - Moving from tasks to goals let the agent create and edit its own tasks, turning one promotion a week into market research and competitor searches.
-- He kept prompts empty and left guardrails out deliberately, arguing they hide whether they were ever needed — while telling the audience to add them in public.
+- Asked in the Q&A about dangerous stock, he said he kept prompts empty and left guardrails out deliberately, arguing they hide whether they were ever needed — while telling the room to add them in public.
 
 ## What the talk leaves open
 

@@ -137,14 +137,14 @@ If a human who attended the session tells you what a recording is, that is
 strong evidence — but still check it against the abstract and record what
 corroborated it, so the file carries the reasoning rather than just the claim.
 
-Commit to a session id. If the transcript genuinely does not settle it, say so
-in the frontmatter (`confidence: uncertain`) rather than guessing — a wrongly
-attributed transcript is worse than an unattributed one. If nothing fits at
-all, file it with `confidence: unidentified`, an empty `session_id` and a
-description of the content, and ask in the file for someone who was there to
-correct it. The conference also has a public schedule at
-<https://agntconmcpconeu26.sched.com/> which is a useful second source when
-the guide alone leaves it ambiguous.
+Commit to a session id, or do not add the transcript. If the recording does
+not settle which session it is, the answer is not to file it with a caveat —
+it is to stop and open an issue describing the recording, so someone who was
+in the room can identify it. A wrongly attributed transcript is worse than an
+unattributed one, and a transcript hedged in its own frontmatter is worse than
+both: everything downstream quotes it anyway. The conference also has a public
+schedule at <https://agntconmcpconeu26.sched.com/> which is a useful second
+source when the guide alone leaves it ambiguous.
 
 Watch for speakers who appear twice: at least one gave two separate talks, so
 a name alone does not identify a session.
@@ -183,7 +183,6 @@ kind: keynote
 session_id: <id from sessions.json>
 recording: RAI Amsterdam 7.m4a
 contributor: <github handle>
-confidence: confirmed
 ---
 
 # State of the Software Factory
@@ -197,6 +196,10 @@ confidence: confirmed
 ## Transcript
 
 <The raw transcript.>
+
+## Q&A
+
+<Audience questions and the speaker's answers, if the recording caught any.>
 ```
 
 Rules for the transcript body:
@@ -204,6 +207,16 @@ Rules for the transcript body:
 - **No summary in this file.** `transcript.md` stores what was said, not an
   interpretation of it. Summaries are a separate file written by a separate
   skill; do not pre-empt one here.
+- **Cut the Q&A off under its own heading.** Most recordings run past the end
+  of the talk into audience questions, and Whisper labels nobody — so once the
+  questions start, a sentence in this file is as likely to be an attendee's as
+  the speaker's. Find where the prepared talk ends (usually a "thank you", a
+  handover to the moderator, or the first question) and put `## Q&A` there.
+  Everything below it is on the record as *someone in the room said this*, not
+  as the speaker. Where a turn is unmistakable, mark it `**Q:**` / `**A:**`;
+  where it is not, leave the run of text alone — the heading is the part that
+  matters, and a wrong `**A:**` is worse than none. Drop the heading entirely
+  if the recording stops before any questions.
 - Keep it raw, but break it into paragraphs at natural pauses — a 25-minute
   wall of unbroken text is unreadable and unsearchable.
 - Do not silently correct the speaker. Do fix Whisper's obvious mishearings of

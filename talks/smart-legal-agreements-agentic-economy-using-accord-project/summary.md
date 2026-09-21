@@ -3,7 +3,6 @@ title: "Smart Legal Agreements for the Agentic Economy Using Accord Project"
 speakers: [Niall Roche]
 session_id: 66dee63adbe497d36fcfe33e5f9c2847
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 
@@ -48,8 +47,6 @@ The same contract is reachable, Roche says, through a web interface, REST APIs, 
 > So really, LCP is just the discovery mechanism. Think of it like the storefront, Accord is the engine.
 
 > Well this is like treating your contract like an API. The data comes from the contract.
-
-> It doesn't make sense for your agent to do everything, and it might not have the skills to do it.
 
 ## Takeaways
 

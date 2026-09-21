@@ -10,7 +10,6 @@ kind: talk
 session_id: 59ef4419bf81f6a3064248ecb37c5f5f
 recording: recording.wav (talk3) + RAI Amsterdam.m4a (talk4)
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # When NOT To Use an Agent: Choosing Between Workflows, Services, and Agent Systems

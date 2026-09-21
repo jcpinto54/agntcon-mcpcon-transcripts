@@ -10,7 +10,6 @@ kind: talk
 session_id: 43b5f61a55a17e1550497bb821025b04
 recording: RAI Amsterdam 6.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # Verify, Abstain, or Amplify: A Field Guide To Confidently-Wrong Agents
@@ -30,7 +29,8 @@ before moving toward agentic AI architecture, a path he describes in this talk.
 
 > Transcribed with Whisper large-v3. Speaker and company names are corrected
 > against the conference guide; the spoken words are otherwise unedited.
-> Includes an extended audience Q&A.
+> The talk ends at the `## Q&A` heading; everything below it is audience
+> questions and the speaker's answers.
 
 ## Transcript
 
@@ -314,12 +314,16 @@ year a lot of projects from different domains that made me take too many
 decisions a day, the only actual solution is to have a little bit of self-care
 and to outload it. To rest, go to the gym and reset your Jasmine papyrus.
 
-Okay, that's it. Thank you. Thank you for the presentation. You mentioned . Yes.
-But you are relying on important classification of questions like this. Who is
-it? Is it another model with human? What is the ? Oracle in the case of
-verification is a deterministic piece of something, ontology in the case of the
-genomic project here, or a test suite in terms of your code base that you can
-quickly verify against, quickly if you want to work it here.
+Okay, that's it. Thank you.
+
+## Q&A
+
+Thank you for the presentation. You mentioned . Yes. But you are relying on
+important classification of questions like this. Who is it? Is it another
+model with human? What is the ? Oracle in the case of verification is a
+deterministic piece of something, ontology in the case of the genomic project
+here, or a test suite in terms of your code base that you can quickly verify
+against, quickly if you want to work it here.
 
 Is it doable? Well, depending on the domain, yeah. For example, in the case of
 this genomic project, the best oracle would be a web lab. Basically someone goes

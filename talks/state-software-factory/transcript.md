@@ -10,7 +10,6 @@ kind: keynote
 session_id: e6f2202aa16c70c2798e835e9a1c7b66
 recording: RAI Amsterdam 7.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # State of the Software Factory

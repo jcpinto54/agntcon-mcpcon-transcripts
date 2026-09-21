@@ -10,7 +10,6 @@ kind: talk
 session_id: 0ce2cfec5a226a96deab5d3bf77d33e4
 recording: RAI Amsterdam 11.m4a
 contributor: jcpinto54
-confidence: confirmed
 ---
 
 # MCP Apps and The Agentic Web

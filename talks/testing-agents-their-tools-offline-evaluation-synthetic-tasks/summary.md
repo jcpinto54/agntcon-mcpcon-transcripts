@@ -3,7 +3,6 @@ title: "Testing Agents and Their Tools: Offline Evaluation, Synthetic Tasks, and
 speakers: [Ksenia Bobrova]
 session_id: 4511e26b5b7d543477af76bfcc8f685d
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 

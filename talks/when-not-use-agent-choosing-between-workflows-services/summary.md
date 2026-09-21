@@ -3,7 +3,6 @@ title: "When NOT To Use an Agent: Choosing Between Workflows, Services, and Agen
 speakers: [Jigyasa Grover, Rishabh Misra]
 session_id: 59ef4419bf81f6a3064248ecb37c5f5f
 source: transcript.md
-confidence: confirmed
 kind: summary
 ---
 
