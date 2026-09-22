@@ -1,6 +1,6 @@
 /**
- * The plain HTTP face of the archive: the same three operations as the MCP
- * tools, as GET endpoints returning JSON, plus a landing page. For people
+ * The plain HTTP face of the archive: the same operations as the MCP tools,
+ * as GET endpoints returning JSON, plus a landing page. For people
  * with curl, for agents without an MCP client, and for checking the server
  * is alive.
  */
@@ -117,7 +117,9 @@ A community archive of what was said at AGNTCon + MCPCon Europe 2026 (RAI Amster
 Coverage: ${c.transcripts} of ${c.sessions} sessions have a transcript, ${c.summaries} are summarised, ${c.decks} have a slide deck (${c.slides} slides). Most of the conference was never recorded.
 
 MCP endpoint (Streamable HTTP, stateless, no auth): ${origin}/mcp
-Tools: search_archive, read_talk, list_sessions
+Tools: search_archive, read_talk, read_summary, list_sessions
+
+Transcript-first: search matches summaries and slide descriptions too, but where a talk has a transcript the passage returned is from the transcript, with found_via naming what matched. Quote the speech, not the derived text.
 
 HTTP API:
 - ${origin}/api/search?q=stateless+mcp
@@ -172,7 +174,8 @@ function landingPage(origin: string, archive: Archive): string {
 claude mcp add --transport http agntcon-archive ${esc(mcpUrl)}
 
 # Any other client: add a remote / custom MCP server with that URL.</code></pre>
-<p>Tools: <code>search_archive</code>, <code>read_talk</code>, <code>list_sessions</code>.</p>
+<p>Tools: <code>search_archive</code>, <code>read_talk</code>, <code>read_summary</code>, <code>list_sessions</code>.</p>
+<p>Transcript-first: search matches summaries and slide descriptions too — they are good at finding a talk — but where a talk has a transcript, the passage handed back is from the transcript, labelled with what it was <code>found_via</code>. A summary or slide passage in the results means that talk was never transcribed, or its transcript does not mention it.</p>
 
 <h2>Or just HTTP</h2>
 <pre><code>curl "${esc(origin)}/api/search?q=stateless+mcp"

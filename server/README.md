@@ -17,13 +17,35 @@ Everything also runs locally with `npm run dev`.
 
 ## What it does
 
-Three tools, the same over MCP and HTTP:
+Four tools, the same over MCP and HTTP:
 
 | Tool | HTTP | What it returns |
 |---|---|---|
-| `search_archive(query, limit?, kinds?, day?, track?, talk?, per_talk?)` | `GET /api/search?q=` | Ranked passages, each with talk, speaker, kind of source, a `file:line` citation and a caveat about what kind of text it is. At most a few per talk. Every answer opens with the archive's coverage. |
-| `read_talk(talk, part?, offset?, max_chars?)` | `GET /api/talks/{talk}/{part}` | A whole document in windows: `transcript`, `summary`, `slides`, `materials`, or `session` (the guide entry: speakers with bios, time, room, abstract, and what the archive holds). |
+| `search_archive(query, limit?, kinds?, day?, track?, talk?, per_talk?)` | `GET /api/search?q=` | Ranked passages, each with talk, speaker, kind of source, a `file:line` citation and a caveat about what kind of text it is. Transcript-first: see below. At most a few per talk. Every answer opens with the archive's coverage. |
+| `read_talk(talk, part?, offset?, max_chars?)` | `GET /api/talks/{talk}/{part}` | A whole document in windows. Defaults to `transcript`; also `slides`, `materials`, `session` (the guide entry: speakers with bios, time, room, abstract, and what the archive holds) and `summary`. |
+| `read_summary(talk, offset?, max_chars?)` | `GET /api/talks/{talk}/summary` | The summary beside a transcript, on purpose rather than by accident — derived text, for orienting yourself or comparing talks quickly. |
 | `list_sessions(day?, track?, speaker?, title?, has?)` | `GET /api/sessions` | All 93 sessions with what exists for each — the coverage table as data. |
+
+### Transcript-first
+
+The archive exists for what people actually said, so that is what the tools
+hand back. The catch is that search does not agree by default: summaries and
+slide descriptions are short and keyword-dense, so BM25 ranks them above the
+speech they were written from — a search for *reward hacking* used to return
+*No Central Brain*'s summary first and its transcript second.
+
+So the last pass of `search` promotes. Every kind is still matched, because
+derived text is very good at finding a talk; but when a talk has a transcript
+that also matched, the passage returned is the transcript's, and `found_via`
+names the summary or slide that actually hit. Once a talk's matching
+transcript passages run out, its remaining derived hits are dropped rather
+than used as padding.
+
+Two cases still return derived text, both honest: a talk with no transcript
+in the archive (41 of the 60 covered sessions), and a talk whose transcript
+matched nothing — there is no raw passage to quote, and hiding the match
+would be worse than labelling it. Either way the `kind` field says so, and
+`kinds: ["summary"]` still returns summaries for a caller who wants them.
 
 Plus `GET /api/coverage`, `GET /llms.txt`, and a landing page at `/` with
 connection instructions.
@@ -83,7 +105,10 @@ request only walks postings, which keeps a search well inside the free plan's
   even when the transcript never says it), a verbatim-phrase bonus, and a
   weight per kind of source in the archive's trust order: transcript 1.0,
   summary 0.9, slides 0.75, abstract 0.6, materials 0.5. Very short chunks
-  (title cards) are scaled down. Results are capped per talk.
+  (title cards) are scaled down. Results are capped per talk, and then
+  promoted to the transcript, as above — the weights alone never opened a
+  wide enough gap, and widening them would have buried the 41 talks that
+  have only a deck.
 - **Keywords, not embeddings, on purpose.** The vocabulary is precise
   (SEP-2575, ID-JAG, elicitation, harness, speaker names), which is where
   keyword search is strongest; embeddings would add a key and a bill and
@@ -97,6 +122,7 @@ Check relevance without starting anything:
 node scripts/query.ts "stateless mcp transports"
 node scripts/query.ts --kinds transcript --limit 5 "reward hacking"
 node scripts/query.ts --read no-central-brain --part summary
+node scripts/query.ts --kinds summary "reward hacking"   # opt out of promotion
 node scripts/query.ts --sessions --has transcript --day fri
 ```
 

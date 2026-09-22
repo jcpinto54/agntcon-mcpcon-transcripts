@@ -162,12 +162,15 @@ transcript is right.
 
 **Without the repo, use the server.** An agent that cannot open these files
 can reach the same text through the MCP server in `server/` — `search_archive`
-for passages with a `file:line` citation, `read_talk` for a whole transcript,
-summary or deck, `list_sessions` for the coverage — and every answer carries
-the same rules: the coverage up front, the kind of text each passage is, and
-the Q&A caveat. The endpoint is
+for passages with a `file:line` citation, `read_talk` for a whole transcript
+or deck, `read_summary` for the summary beside it, `list_sessions` for the
+coverage — and every answer carries the same rules: the coverage up front,
+the kind of text each passage is, and the Q&A caveat. It keeps the rule
+above for you: summaries and slides are matched because they are good at
+finding a talk, but a passage comes back from the transcript wherever the
+archive has one, with `found_via` naming what matched. The endpoint is
 `https://agntcon-mcpcon-archive.joaocastropintoz.workers.dev/mcp`, and the
-same three operations are plain GET endpoints under `/api/`;
+same operations are plain GET endpoints under `/api/`;
 `server/README.md` has how to connect.
 
 ## Keeping the search index current

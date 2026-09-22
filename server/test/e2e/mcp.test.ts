@@ -74,7 +74,7 @@ async function checkTools(client: Client, label: string): Promise<void> {
   const tools = await client.listTools();
   assert.deepEqual(
     tools.tools.map((t) => t.name).sort(),
-    ['list_sessions', 'read_talk', 'search_archive'],
+    ['list_sessions', 'read_summary', 'read_talk', 'search_archive'],
     `${label}: tool names`
   );
 
@@ -92,6 +92,19 @@ async function checkTools(client: Client, label: string): Promise<void> {
   const page = await client.callTool({ name: 'read_talk', arguments: { talk: 'no-central-brain', part: 'transcript', max_chars: 1500 } });
   assert.match(textOf(page), /^# No Central Brain — Fausto Albers/, `${label}: transcript page`);
   assert.equal(typeof (page.structuredContent as { next_offset: unknown }).next_offset, 'number', `${label}: pagination`);
+
+  // The raw speech is the default; the summary is a tool you have to ask for.
+  const raw = await client.callTool({ name: 'search_archive', arguments: { query: 'reward hacking', limit: 3 } });
+  const found = (raw.structuredContent as { results: Array<{ kind: string; talk: string; found_via?: { kind: string } }> }).results;
+  assert.equal(found[0].kind, 'transcript', `${label}: search quotes the transcript`);
+  assert.equal(found[0].found_via?.kind, 'summary', `${label}: and says the summary found it`);
+
+  const digest = await client.callTool({ name: 'read_summary', arguments: { talk: 'no-central-brain', max_chars: 800 } });
+  assert.match(textOf(digest), /^# No Central Brain — Fausto Albers/, `${label}: summary page`);
+  assert.equal((digest.structuredContent as { part: string }).part, 'summary', `${label}: summary part`);
+
+  const noSummary = await client.callTool({ name: 'read_summary', arguments: { talk: 'stateless-future-mcp-transports' } });
+  assert.equal(noSummary.isError, true, `${label}: a talk with no summary is a tool error`);
 
   const missing = await client.callTool({ name: 'read_talk', arguments: { talk: 'no-such-talk' } });
   assert.equal(missing.isError, true, `${label}: unknown talk is a tool error`);
@@ -210,6 +223,8 @@ test('the plain HTTP API mirrors the tools', async () => {
   assert.equal(bad.status, 404);
   const badKind = await fetch(`${baseUrl}/api/search?q=x&kinds=video`);
   assert.equal(badKind.status, 400);
+
+  assert.match(await (await fetch(`${baseUrl}/llms.txt`)).text(), /read_summary/);
 
   const home = await fetch(`${baseUrl}/`);
   assert.equal(home.status, 200);

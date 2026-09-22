@@ -43,23 +43,61 @@ test('stateless MCP finds the transports deck first and the security talk near i
   assert.ok(slugs.includes('year-breaking-mcp-tells-builders-protocol-gaps-ships'), slugs.join(', '));
 });
 
-test('a precise protocol term finds the slide that defines it', () => {
+test('a precise protocol term finds the slide that defines it, in a talk nobody transcribed', () => {
   const [top] = archive.search('SEP-2567 explicit state handles');
   assert.equal(top.session.slug, 'stateless-future-mcp-transports');
   assert.equal(top.doc.kind, 'slides');
   assert.match(top.chunk.loc, /^Slide 9/);
+  // Nothing to promote it to, so the slide stands as the passage.
+  assert.ok(!top.session.has.includes('transcript'));
+  assert.equal(top.via, undefined);
 });
 
-test('a phrase from a transcript finds that talk, with the transcript passage among the top results', () => {
-  // The summary quotes the same sentence and, being denser, can outscore the
-  // transcript; both are returned and labelled, so the transcript only has
-  // to be within the per-talk cap.
+test('a phrase from a transcript comes back from the transcript, not the summary that quotes it', () => {
+  // The summary quotes the same sentence and, being denser, outscores the
+  // transcript. The summary finds the talk; the passage returned is the
+  // speech it was written from.
   const hits = archive.search('more capable models get better at reward hacking');
   assert.equal(hits[0].session.slug, 'no-central-brain');
-  const transcript = hits.slice(0, 3).find((h) => h.doc.kind === 'transcript');
-  assert.ok(transcript, 'transcript passage in the top 3');
-  assert.equal(transcript!.session.slug, 'no-central-brain');
-  assert.match(transcript!.chunk.text, /reward hacking/);
+  assert.equal(hits[0].doc.kind, 'transcript');
+  assert.match(hits[0].chunk.text, /reward hacking/);
+});
+
+test('every passage from a talk that has a transcript is a transcript passage', () => {
+  // The one exception is a talk whose transcript matched nothing at all: the
+  // derived text is then the only evidence there is, so it stands, labelled.
+  for (const q of ['reward hacking', 'agent memory', 'evals', 'pull request review', 'observability tracing', 'legacy migration', 'confidently wrong']) {
+    for (const h of archive.search(q, { limit: 12 })) {
+      if (h.doc.kind === 'transcript') continue;
+      if (!h.session.has.includes('transcript')) continue;
+      const own = archive.search(q, { talk: h.session.slug!, kinds: ['transcript'], limit: 1 });
+      assert.equal(own.length, 0, `${q}: ${h.session.slug} returned a ${h.doc.kind} although its transcript matches`);
+    }
+  }
+});
+
+test('a promoted passage says what found it, and nothing is returned twice', () => {
+  const hits = archive.search('reward hacking', { limit: 12 });
+  const promoted = hits.find((h) => h.via);
+  assert.ok(promoted, 'some hit was promoted from derived text');
+  assert.equal(promoted!.doc.kind, 'transcript');
+  assert.notEqual(promoted!.via!.kind, 'transcript');
+  assert.ok(promoted!.via!.path.endsWith('.md'), promoted!.via!.path);
+  const ids = hits.map((h) => h.chunk.id);
+  assert.equal(new Set(ids).size, ids.length, 'no chunk appears twice');
+  for (const h of archive.search('agent', { limit: 30 })) if (h.via) assert.equal(h.doc.kind, 'transcript');
+});
+
+test('asking for one kind still returns that kind', () => {
+  const summaries = archive.search('reward hacking', { kinds: ['summary'] });
+  assert.ok(summaries.length > 0);
+  for (const h of summaries) {
+    assert.equal(h.doc.kind, 'summary');
+    assert.equal(h.via, undefined);
+  }
+  const slides = archive.search('agent memory', { kinds: ['slides'] });
+  assert.ok(slides.length > 0);
+  for (const h of slides) assert.equal(h.doc.kind, 'slides');
 });
 
 test('a speaker name finds their talk even where the body never says it', () => {

@@ -5,8 +5,10 @@
  * Ranking is BM25 over chunk text, plus a smaller BM25 over each document's
  * title, speakers and track, then a weight per kind of source so a
  * transcript outranks a summary outranks a slide description outranks an
- * abstract — the archive's own trust order. Results are capped per talk so
- * one long deck cannot fill the page.
+ * abstract — the archive's own trust order. Weights alone are not enough, so
+ * the final pass promotes a derived hit to its talk's transcript passage: the
+ * summaries and slides find a talk, the transcript is what gets quoted.
+ * Results are capped per talk so one long deck cannot fill the page.
  */
 
 import type { ArchiveIndex, Chunk, Doc, Kind, Session } from './types.ts';
@@ -57,6 +59,11 @@ export interface Hit {
   doc: Doc;
   session: Session;
   score: number;
+  /**
+   * Set when a derived passage matched and the talk's transcript was returned
+   * in its place: what matched, so the citation stays honest.
+   */
+  via?: { kind: Kind; loc: string; path: string; line: number };
 }
 
 export interface SessionFilter {
@@ -226,13 +233,52 @@ export class Archive {
       scored.splice(0, head.length, ...head);
     }
 
+    // Transcript-first. Summaries, slide descriptions and abstracts are short
+    // and keyword-dense, so they routinely outscore the speech they were
+    // derived from. They still earn their place in the index — they find the
+    // talk — but what comes back is the speaker's own words: a derived hit for
+    // a talk whose transcript also matched is replaced by that transcript
+    // passage, and once a talk's matching transcript passages run out its
+    // remaining derived hits are dropped rather than padded in.
+    //
+    // Two cases keep a derived passage, both honest: a talk with no transcript
+    // in the archive, and a talk whose transcript matched nothing — there is no
+    // raw passage to quote, and hiding the match would be worse than labelling
+    // it. `kinds` is applied before this, so a caller who asks only for
+    // summaries still gets summaries.
+    const transcripts = new Map<string, Hit[]>();
+    for (const h of scored) {
+      if (h.doc.kind !== 'transcript') continue;
+      const list = transcripts.get(h.session.id);
+      if (list) list.push(h);
+      else transcripts.set(h.session.id, [h]);
+    }
+
     const out: Hit[] = [];
     const perSession = new Map<string, number>();
+    const taken = new Set<number>();
+    const cursor = new Map<string, number>();
     for (const h of scored) {
+      if (taken.has(h.chunk.id)) continue;
       const n = perSession.get(h.session.id) ?? 0;
       if (n >= perTalk) continue;
+      let hit = h;
+      if (h.doc.kind !== 'transcript') {
+        const list = transcripts.get(h.session.id);
+        if (list) {
+          let i = cursor.get(h.session.id) ?? 0;
+          while (i < list.length && taken.has(list[i].chunk.id)) i++;
+          cursor.set(h.session.id, i);
+          if (i >= list.length) continue;
+          // `scored` is sorted and anything better was already taken or capped,
+          // so the transcript passage scores no higher than the hit it replaces
+          // — keeping the finder's score leaves the ranking order untouched.
+          hit = { ...list[i], score: h.score, via: { kind: h.doc.kind, loc: h.chunk.loc, path: h.doc.path, line: h.chunk.line } };
+        }
+      }
+      taken.add(hit.chunk.id);
       perSession.set(h.session.id, n + 1);
-      out.push(h);
+      out.push(hit);
       if (out.length >= limit) break;
     }
     return out;

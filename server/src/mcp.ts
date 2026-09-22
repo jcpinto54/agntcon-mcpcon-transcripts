@@ -1,5 +1,5 @@
 /**
- * The MCP face of the archive: one McpServer with three read-only tools.
+ * The MCP face of the archive: one McpServer with four read-only tools.
  *
  * `buildServer` is a factory on purpose. Under the 2026-07-28 revision every
  * request is self-contained — there is no initialize handshake and no session
@@ -20,12 +20,12 @@ export const SERVER_VERSION = '0.1.0';
 
 export const INSTRUCTIONS = `Search over the community transcript archive of AGNTCon + MCPCon Europe 2026 (RAI Amsterdam, 17–18 September 2026).
 
-Tools: search_archive finds passages across transcripts, summaries, slide descriptions and abstracts; read_talk returns a whole transcript, summary, deck description, materials list or a session's guide entry, paginated; list_sessions is the full schedule with what the archive holds for each session.
+What the archive holds is the raw speech, and that is what these tools hand back. search_archive matches over transcripts, summaries, slide descriptions and abstracts — but where a talk has a transcript, the passage returned is from the transcript, even when the wording that matched was a summary's or a slide's; the result says what it was found via. read_talk returns the transcript by default. read_summary is there when you want the derived summary on purpose. list_sessions is the full schedule with what the archive holds for each session.
 
 Rules the archive asks its readers to keep:
 1. Say what is not here. Only a fraction of the 93 sessions was recorded. A topic that turns up nothing means no transcript here covers it, not that nobody said it.
 2. An abstract is not a transcript. Never present the guide's abstract as something said on stage.
-3. Summaries and slide descriptions are derived. Use them to find; quote the transcript, and cite the talk and the speaker.
+3. Summaries and slide descriptions are derived. Use them to find; quote the transcript, and cite the talk and the speaker. A search result whose kind is summary, slides or abstract means that talk has no transcript here, or its transcript does not mention this — say so rather than quoting derived text as speech.
 4. Below a transcript's "## Q&A" heading the speaker and the audience are not distinguished. Attribute as "an audience member asked" or "in the Q&A", never as the speaker.
 5. For speaker names and titles the conference guide wins over the transcript body, which is raw speech-to-text.`;
 
@@ -62,7 +62,7 @@ export function buildServer(archive: Archive): McpServer {
     {
       title: 'Search the archive',
       description:
-        'Full-text search over everything the archive holds: transcripts (what speakers said), summaries, slide-by-slide deck descriptions, and the abstracts of all 93 sessions. Returns ranked passages with the talk, speaker, source kind and a file:line citation, at most a few per talk. Keyword matching: precise terms — speaker names, protocol names like SEP-2575 or A2A, product names, technical vocabulary — work best. Every response starts with the archive coverage so you can say what is not here.',
+        'Full-text search over everything the archive holds: transcripts (what speakers said), summaries, slide-by-slide deck descriptions, and the abstracts of all 93 sessions. Transcript-first: matching a talk\'s summary or a slide returns that talk\'s transcript passage instead, with found_via naming what matched, so what you quote is the speaker\'s own words. A passage whose kind is summary, slides or abstract means that talk was never transcribed, or its transcript does not mention this. Returns ranked passages with the talk, speaker, source kind and a file:line citation, at most a few per talk. Keyword matching: precise terms — speaker names, protocol names like SEP-2575 or A2A, product names, technical vocabulary — work best. Every response starts with the archive coverage so you can say what is not here.',
       inputSchema: z.object({
         query: z.string().min(1).describe('Keywords or a short phrase.'),
         limit: z.number().int().min(1).max(30).optional().describe('Maximum passages to return. Default 8.'),
@@ -82,7 +82,7 @@ export function buildServer(archive: Archive): McpServer {
     {
       title: 'Read a talk',
       description:
-        'Read one session\'s text in full, paginated: part="transcript" (the speaker\'s words), "summary" (derived), "slides" (the deck described slide by slide), "materials" (what the speaker shared), or "session" (the guide entry: speakers with bios, time and room, the abstract, and which of the others exist). Pass the talk key from search_archive or list_sessions. Long documents come back in windows; the response says the offset to continue from.',
+        'Read one session\'s raw text in full, paginated. Defaults to part="transcript" — the speaker\'s own words, the thing to quote. Other parts: "slides" (the deck described slide by slide), "materials" (what the speaker shared), "session" (the guide entry: speakers with bios, time and room, the abstract, and which of the others exist), and "summary" (derived — read_summary is the direct route). Pass the talk key from search_archive or list_sessions. Long documents come back in windows; the response says the offset to continue from.',
       inputSchema: z.object({
         talk: z.string().min(1).describe('Talk key: the slug (e.g. "no-central-brain") or the session id.'),
         part: z.enum(['transcript', 'summary', 'slides', 'materials', 'session']).optional().describe('Default "transcript".'),
@@ -92,6 +92,22 @@ export function buildServer(archive: Archive): McpServer {
       annotations: readOnly,
     },
     async (args) => run(() => readTalk(archive, args))
+  );
+
+  server.registerTool(
+    'read_summary',
+    {
+      title: 'Read a talk summary',
+      description:
+        'Read the summary written beside one talk\'s transcript: the claim in a line, the argument, the stages the talk moves through, quotes and takeaways. Derived text, not speech — use it to orient yourself in a talk or to compare several quickly, then read_talk for the transcript and quote from there. Errors when a talk has no summary; list_sessions with has="summary" shows which do.',
+      inputSchema: z.object({
+        talk: z.string().min(1).describe('Talk key: the slug (e.g. "no-central-brain") or the session id.'),
+        offset: z.number().int().min(0).optional().describe('Character offset to start from. Default 0.'),
+        max_chars: z.number().int().min(500).max(60000).optional().describe('Window size in characters. Default 12000.'),
+      }),
+      annotations: readOnly,
+    },
+    async (args) => run(() => readTalk(archive, { ...args, part: 'summary' }))
   );
 
   server.registerTool(

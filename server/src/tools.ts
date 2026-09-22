@@ -3,6 +3,9 @@
  * functions returning both a text rendering for a model to read and a JSON
  * object for code. `mcp.ts` wraps them as MCP tools and `api.ts` as HTTP
  * endpoints, so the two surfaces can never drift apart.
+ *
+ * Both reading operations default to the transcript: the raw speech is what
+ * the archive is for, and everything else here is derived from it.
  */
 
 import type { Archive } from './search.ts';
@@ -98,6 +101,9 @@ export function searchArchive(archive: Archive, args: SearchArgs): ToolResult {
     qa: Boolean(h.chunk.qa),
     score: Math.round(h.score * 1000) / 1000,
     text: h.chunk.text,
+    // Present only when the query matched derived text and the talk's own
+    // transcript was returned instead.
+    ...(h.via ? { found_via: { kind: h.via.kind, location: h.via.loc, path: h.via.path, line: h.via.line } } : {}),
   }));
 
   const lines: string[] = [coverageNote(c), ''];
@@ -110,16 +116,20 @@ export function searchArchive(archive: Archive, args: SearchArgs): ToolResult {
     lines.push(`${hits.length} passage${hits.length === 1 ? '' : 's'} for "${query}":`, '');
     for (const r of results) {
       const note = r.qa ? QA_NOTE : KIND_NOTE[r.kind];
+      const via = r.found_via ? ` · found via the ${r.found_via.kind} (${r.found_via.location})` : '';
       lines.push(
         `### ${r.rank}. ${r.title} — ${r.speakers.join(', ')}`,
-        `${r.kind} · ${r.location} · \`${r.path}:${r.line}\` · talk: ${r.talk}`,
+        `${r.kind} · ${r.location} · \`${r.path}:${r.line}\` · talk: ${r.talk}${via}`,
         `(${note})`,
         '',
         r.text,
         ''
       );
     }
-    lines.push('To read more of a talk, call read_talk with its talk key and part (transcript, summary, slides, materials or session).');
+    lines.push(
+      'Passages come from the transcript wherever the archive has one; a summary, slide or abstract passage means that talk was never transcribed, or its transcript does not mention this.',
+      'To read more of a talk, call read_talk with its talk key — part="transcript" by default, also slides, materials or session — or read_summary for the derived summary.'
+    );
   }
   return { text: lines.join('\n'), data: { query, coverage: c, results } };
 }
