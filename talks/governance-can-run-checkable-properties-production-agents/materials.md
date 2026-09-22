@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Governance You Can Run: Checkable Properties for Production Agents](https://hosted-files.sched.co/agntconmcpconeu26/32/Governance%20You%20Can%20Run%20-%20Seshu%20Tolety.pdf) — 18 slides. Lays out three enterprise AI lifecycles and four governance capabilities (strategy, engineering, operations, trust), then maps a maturity path from manual reviews to agentic, continuous governance.
-  Local copy, when present: `materials/governance-you-can-run-seshu-tolety.pdf`
+- [Governance You Can Run: Checkable Properties for Production Agents](materials/governance-you-can-run-seshu-tolety.pdf) — 18 slides. Lays out three enterprise AI lifecycles and four governance capabilities (strategy, engineering, operations, trust), then maps a maturity path from manual reviews to agentic, continuous governance. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/32/Governance%20You%20Can%20Run%20-%20Seshu%20Tolety.pdf))
 - Extracted text: [`materials/governance-you-can-run-seshu-tolety.txt`](materials/governance-you-can-run-seshu-tolety.txt)

@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Stateless: The Future of MCP Transports](https://hosted-files.sched.co/agntconmcpconeu26/fc/_MCPcon%20Europe%20%2726_%20Stateless_%20the%20Future%20of%20MCP%20Transports%20%281%29.pdf) — 21 slides. Walks through 2026-07-28 MCP spec highlights (SEP-2575 stateless handshake, SEP-2567 sessionless state handles) and the roadmap for HTTP standardization, tool versioning, and pluggable transports.
-  Local copy, when present: `materials/mcpcon-europe-26-stateless-the-future-of-mcp-transports-1.pdf`
+- [Stateless: The Future of MCP Transports](materials/mcpcon-europe-26-stateless-the-future-of-mcp-transports-1.pdf) — 21 slides. Walks through 2026-07-28 MCP spec highlights (SEP-2575 stateless handshake, SEP-2567 sessionless state handles) and the roadmap for HTTP standardization, tool versioning, and pluggable transports. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/fc/_MCPcon%20Europe%20%2726_%20Stateless_%20the%20Future%20of%20MCP%20Transports%20%281%29.pdf))
 - Extracted text: [`materials/mcpcon-europe-26-stateless-the-future-of-mcp-transports-1.txt`](materials/mcpcon-europe-26-stateless-the-future-of-mcp-transports-1.txt)

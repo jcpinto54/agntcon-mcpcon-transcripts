@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [The Browser Isn't Dead Yet](https://hosted-files.sched.co/agntconmcpconeu26/ca/The%20Browser%20Isn%27t%20Dead%20Yet.pdf) — 34 slides. Argues the browser is being reshaped by agents rather than dying, surveying agent browser extensions, agentic browsers, WebMCP, MCP Apps, and A2UI, with adoption advice for teams.
-  Local copy, when present: `materials/the-browser-isn-t-dead-yet.pdf`
+- [The Browser Isn't Dead Yet](materials/the-browser-isn-t-dead-yet.pdf) — 34 slides. Argues the browser is being reshaped by agents rather than dying, surveying agent browser extensions, agentic browsers, WebMCP, MCP Apps, and A2UI, with adoption advice for teams. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/ca/The%20Browser%20Isn%27t%20Dead%20Yet.pdf))
 - Extracted text: [`materials/the-browser-isn-t-dead-yet.txt`](materials/the-browser-isn-t-dead-yet.txt)

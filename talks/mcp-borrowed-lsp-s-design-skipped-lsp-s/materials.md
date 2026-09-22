@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [MCP Borrowed LSP's Design](https://hosted-files.sched.co/agntconmcpconeu26/6d/mcp-packaging.pdf) — 11 slides. Argues MCP repeated LSP's fragmented packaging and trust problem with higher stakes, then proposes OCI-based packaging with signing and attestation to close the trust gap.
-  Local copy, when present: `materials/mcp-packaging.pdf`
+- [MCP Borrowed LSP's Design](materials/mcp-packaging.pdf) — 11 slides. Argues MCP repeated LSP's fragmented packaging and trust problem with higher stakes, then proposes OCI-based packaging with signing and attestation to close the trust gap. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/6d/mcp-packaging.pdf))
 - Extracted text: [`materials/mcp-packaging.txt`](materials/mcp-packaging.txt)

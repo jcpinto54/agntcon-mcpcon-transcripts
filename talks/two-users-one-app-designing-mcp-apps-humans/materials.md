@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Two Users, One App (slides)](https://hosted-files.sched.co/agntconmcpconeu26/f3/mcpcon-fbauer.pdf) — 11 slides. Covers UX patterns for MCP Apps shared between human users and agents: shared state commands, revision checks before writes, and separate draft state until a user accepts changes.
-  Local copy, when present: `materials/mcpcon-fbauer.pdf`
+- [Two Users, One App (slides)](materials/mcpcon-fbauer.pdf) — 11 slides. Covers UX patterns for MCP Apps shared between human users and agents: shared state commands, revision checks before writes, and separate draft state until a user accepts changes. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/f3/mcpcon-fbauer.pdf))
 - Extracted text: [`materials/mcpcon-fbauer.txt`](materials/mcpcon-fbauer.txt)

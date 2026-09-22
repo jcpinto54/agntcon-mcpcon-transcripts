@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [No Central Brain](https://hosted-files.sched.co/agntconmcpconeu26/05/no-central-brain.pdf) — 20 slides. Argues execution scales but human attention doesn't, then proposes editable inner harnesses, archived alternative methods, and functional-state signals (curiosity, concern, urgency) in place of one central decision-maker.
-  Local copy, when present: `materials/no-central-brain.pdf`
+- [No Central Brain](materials/no-central-brain.pdf) — 20 slides. Argues execution scales but human attention doesn't, then proposes editable inner harnesses, archived alternative methods, and functional-state signals (curiosity, concern, urgency) in place of one central decision-maker. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/05/no-central-brain.pdf))
 - Extracted text: [`materials/no-central-brain.txt`](materials/no-central-brain.txt)

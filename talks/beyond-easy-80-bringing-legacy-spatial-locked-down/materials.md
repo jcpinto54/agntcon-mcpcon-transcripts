@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Beyond the Easy 80%](https://hosted-files.sched.co/agntconmcpconeu26/ff/Beyond%20the%20Easy%2080%25.pdf) — 27 slides. Argues MCP solved tool discovery but not governed execution, and shows how Safe Software's FME exposes governed workflows over legacy, spatial, and locked-down data as MCP tools instead of raw system access.
-  Local copy, when present: `materials/beyond-the-easy-80.pdf`
+- [Beyond the Easy 80%](materials/beyond-the-easy-80.pdf) — 27 slides. Argues MCP solved tool discovery but not governed execution, and shows how Safe Software's FME exposes governed workflows over legacy, spatial, and locked-down data as MCP tools instead of raw system access. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/ff/Beyond%20the%20Easy%2080%25.pdf))
 - Extracted text: [`materials/beyond-the-easy-80.txt`](materials/beyond-the-easy-80.txt)

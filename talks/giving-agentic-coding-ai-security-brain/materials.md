@@ -20,5 +20,4 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Giving Your Agentic Coding AI a Security Brain](https://hosted-files.sched.co/agntconmcpconeu26/02/2026%20-%20Giving%20Your%20Agentic%20Coding%20AI%20a%20Security%20Brain%20-%20Liran%20Tal%20-%20Snyk.pdf) — Image-only PDF; text not extractable without OCR.
-  Local copy, when present: `materials/2026-giving-your-agentic-coding-ai-a-security-brain-liran-tal-snyk.pdf`
+- [Giving Your Agentic Coding AI a Security Brain](materials/2026-giving-your-agentic-coding-ai-a-security-brain-liran-tal-snyk.pdf) — Image-only PDF; text not extractable without OCR. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/02/2026%20-%20Giving%20Your%20Agentic%20Coding%20AI%20a%20Security%20Brain%20-%20Liran%20Tal%20-%20Snyk.pdf))

@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal](https://hosted-files.sched.co/agntconmcpconeu26/96/Norimatsu_MCPConEU2026_Amsterdam.pdf) — 62 slides. Details fraudulent access-token use, information leaks and user-swapping risks in cross-domain multi-hop MCP/OAuth API calls, plus a solution proposal.
-  Local copy, when present: `materials/norimatsu-mcpconeu2026-amsterdam.pdf`
+- [Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal](materials/norimatsu-mcpconeu2026-amsterdam.pdf) — 62 slides. Details fraudulent access-token use, information leaks and user-swapping risks in cross-domain multi-hop MCP/OAuth API calls, plus a solution proposal. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/96/Norimatsu_MCPConEU2026_Amsterdam.pdf))
 - Extracted text: [`materials/norimatsu-mcpconeu2026-amsterdam.txt`](materials/norimatsu-mcpconeu2026-amsterdam.txt)

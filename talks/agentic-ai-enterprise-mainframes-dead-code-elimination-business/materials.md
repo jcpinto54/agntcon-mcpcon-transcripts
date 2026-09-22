@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Agentic AI for Enterprise Mainframes](https://hosted-files.sched.co/agntconmcpconeu26/0c/Thamarai_AgntConMcpCon_Deck.pdf) — 14 slides. Walks through three MCP-connected agents (dead code removal, code change, and COBOL-to-DB2 lineage tracing) a mainframe engineer built to clean up and document a legacy system.
-  Local copy, when present: `materials/thamarai-agntconmcpcon-deck.pdf`
+- [Agentic AI for Enterprise Mainframes](materials/thamarai-agntconmcpcon-deck.pdf) — 14 slides. Walks through three MCP-connected agents (dead code removal, code change, and COBOL-to-DB2 lineage tracing) a mainframe engineer built to clean up and document a legacy system. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/0c/Thamarai_AgntConMcpCon_Deck.pdf))
 - Extracted text: [`materials/thamarai-agntconmcpcon-deck.txt`](materials/thamarai-agntconmcpcon-deck.txt)

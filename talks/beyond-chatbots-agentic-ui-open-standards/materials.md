@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Beyond Chatbots: Agentic UI with Open Standards](https://hosted-files.sched.co/agntconmcpconeu26/cf/steyer_agentic.pdf) — 39 slides. Covers three open standards for agentic UI beyond chat — AG-UI for agent communication, A2UI for dynamic/generative UI, and MCP Apps for visualizing tools — with Angular-based demos.
-  Local copy, when present: `materials/steyer-agentic.pdf`
+- [Beyond Chatbots: Agentic UI with Open Standards](materials/steyer-agentic.pdf) — 39 slides. Covers three open standards for agentic UI beyond chat — AG-UI for agent communication, A2UI for dynamic/generative UI, and MCP Apps for visualizing tools — with Angular-based demos. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/cf/steyer_agentic.pdf))
 - Extracted text: [`materials/steyer-agentic.txt`](materials/steyer-agentic.txt)

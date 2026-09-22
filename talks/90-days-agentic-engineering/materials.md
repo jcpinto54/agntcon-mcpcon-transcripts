@@ -19,5 +19,4 @@ contributor: jcpinto54
 
 ## Slides
 
-- [90 Days To Agentic Engineering (slides)](https://hosted-files.sched.co/agntconmcpconeu26/05/90-days-to-agentic-engineering.pdf) — Image-only PDF; text not extractable without OCR.
-  Local copy, when present: `materials/90-days-to-agentic-engineering.pdf`
+- [90 Days To Agentic Engineering (slides)](materials/90-days-to-agentic-engineering.pdf) — Image-only PDF; text not extractable without OCR. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/05/90-days-to-agentic-engineering.pdf))

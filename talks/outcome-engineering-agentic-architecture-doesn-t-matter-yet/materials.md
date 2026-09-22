@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Outcome Engineering](https://hosted-files.sched.co/agntconmcpconeu26/9b/outcome_engineering_agntcon.pptx.pdf) — 11 slides. Argues most agentic AI projects fail for lack of a business case rather than bad architecture, and proposes working backward from the desired business result to the tech stack.
-  Local copy, when present: `materials/outcome-engineering-agntcon-pptx.pdf`
+- [Outcome Engineering](materials/outcome-engineering-agntcon-pptx.pdf) — 11 slides. Argues most agentic AI projects fail for lack of a business case rather than bad architecture, and proposes working backward from the desired business result to the tech stack. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/9b/outcome_engineering_agntcon.pptx.pdf))
 - Extracted text: [`materials/outcome-engineering-agntcon-pptx.txt`](materials/outcome-engineering-agntcon-pptx.txt)

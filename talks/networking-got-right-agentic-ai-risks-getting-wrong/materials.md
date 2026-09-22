@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [What Networking Got Right That Agentic AI Risks Getting Wrong](https://hosted-files.sched.co/agntconmcpconeu26/8d/AGNTCON2026-v0.3-Parisa%20Foroughi.pdf) — 21 slides. Proposes an "Agent Control Domain" boundary primitive, modeled on internet autonomous systems, to govern authority, delegation and data crossing between independently built agent domains.
-  Local copy, when present: `materials/agntcon2026-v0-3-parisa-foroughi.pdf`
+- [What Networking Got Right That Agentic AI Risks Getting Wrong](materials/agntcon2026-v0-3-parisa-foroughi.pdf) — 21 slides. Proposes an "Agent Control Domain" boundary primitive, modeled on internet autonomous systems, to govern authority, delegation and data crossing between independently built agent domains. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/8d/AGNTCON2026-v0.3-Parisa%20Foroughi.pdf))
 - Extracted text: [`materials/agntcon2026-v0-3-parisa-foroughi.txt`](materials/agntcon2026-v0-3-parisa-foroughi.txt)

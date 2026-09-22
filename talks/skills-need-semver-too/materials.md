@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Skills Need SemVer Too](https://hosted-files.sched.co/agntconmcpconeu26/a0/slides.pdf) — 17 slides. Proposes optional SemVer-based historical resolution for Agent Skills discovery (PR #254), so pinned versions stay possible alongside a latest-by-default model.
-  Local copy, when present: `materials/slides.pdf`
+- [Skills Need SemVer Too](materials/slides.pdf) — 17 slides. Proposes optional SemVer-based historical resolution for Agent Skills discovery (PR #254), so pinned versions stay possible alongside a latest-by-default model. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/a0/slides.pdf))
 - Extracted text: [`materials/slides.txt`](materials/slides.txt)

@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Builder's Playbook: 223 Pull Requests in 11 Days](https://hosted-files.sched.co/agntconmcpconeu26/88/Building%20with%20AI%20Agents%20-%20Julien%20Dubois.pdf) — 42 slides. Measures building the open-source Boot UI Spring Boot console with a fleet of AI coding agents against an honest by-hand estimate.
-  Local copy, when present: `materials/building-with-ai-agents-julien-dubois.pdf`
+- [Builder's Playbook: 223 Pull Requests in 11 Days](materials/building-with-ai-agents-julien-dubois.pdf) — 42 slides. Measures building the open-source Boot UI Spring Boot console with a fleet of AI coding agents against an honest by-hand estimate. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/88/Building%20with%20AI%20Agents%20-%20Julien%20Dubois.pdf))
 - Extracted text: [`materials/building-with-ai-agents-julien-dubois.txt`](materials/building-with-ai-agents-julien-dubois.txt)

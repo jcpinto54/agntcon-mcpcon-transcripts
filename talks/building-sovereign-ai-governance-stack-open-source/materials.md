@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Building a Sovereign AI Governance Stack with Open Source](https://hosted-files.sched.co/agntconmcpconeu26/5d/Aiboostr-AgntCon2026-Sovereign-AI-Governance.pdf) — 23 slides. Lays out a five-layer open-source AI governance architecture (gateway, registry, access, observability, guardrails) with named tools for each layer.
-  Local copy, when present: `materials/aiboostr-agntcon2026-sovereign-ai-governance.pdf`
+- [Building a Sovereign AI Governance Stack with Open Source](materials/aiboostr-agntcon2026-sovereign-ai-governance.pdf) — 23 slides. Lays out a five-layer open-source AI governance architecture (gateway, registry, access, observability, guardrails) with named tools for each layer. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/5d/Aiboostr-AgntCon2026-Sovereign-AI-Governance.pdf))
 - Extracted text: [`materials/aiboostr-agntcon2026-sovereign-ai-governance.txt`](materials/aiboostr-agntcon2026-sovereign-ai-governance.txt)

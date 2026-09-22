@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Delegated Authorization for AI Agents (slides)](https://hosted-files.sched.co/agntconmcpconeu26/e8/AGNTCon%20EU%20-%20Delegated%20AuthZ%20for%20Agents.pdf) — 36 slides. Explains relationship-based access control (Zanzibar/SpiceDB) for AI agents, covering delegated authorization, time-bound grants, and hierarchical permission checks, demonstrated on a Goose DevOps agent.
-  Local copy, when present: `materials/agntcon-eu-delegated-authz-for-agents.pdf`
+- [Delegated Authorization for AI Agents (slides)](materials/agntcon-eu-delegated-authz-for-agents.pdf) — 36 slides. Explains relationship-based access control (Zanzibar/SpiceDB) for AI agents, covering delegated authorization, time-bound grants, and hierarchical permission checks, demonstrated on a Goose DevOps agent. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/e8/AGNTCon%20EU%20-%20Delegated%20AuthZ%20for%20Agents.pdf))
 - Extracted text: [`materials/agntcon-eu-delegated-authz-for-agents.txt`](materials/agntcon-eu-delegated-authz-for-agents.txt)

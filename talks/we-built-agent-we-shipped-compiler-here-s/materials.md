@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [We Built an Agent, We Shipped a Compiler (slides)](https://hosted-files.sched.co/agntconmcpconeu26/6b/AGNTCon-2026-Joel-Verezhak-Human-Story-v3.pdf) — 12 slides. Traces how a Grafana observability architect's single AI skill for drafting customer success plans grew into a structured, critiqued, multi-provider engine, and the tradeoffs learned along the way.
-  Local copy, when present: `materials/agntcon-2026-joel-verezhak-human-story-v3.pdf`
+- [We Built an Agent, We Shipped a Compiler (slides)](materials/agntcon-2026-joel-verezhak-human-story-v3.pdf) — 12 slides. Traces how a Grafana observability architect's single AI skill for drafting customer success plans grew into a structured, critiqued, multi-provider engine, and the tradeoffs learned along the way. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/6b/AGNTCon-2026-Joel-Verezhak-Human-Story-v3.pdf))
 - Extracted text: [`materials/agntcon-2026-joel-verezhak-human-story-v3.txt`](materials/agntcon-2026-joel-verezhak-human-story-v3.txt)

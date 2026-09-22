@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [MAS-Lab](https://hosted-files.sched.co/agntconmcpconeu26/84/20260917-MAS-Lab-Agntcon-2026-AMS.pdf) — 29 slides. Presents MAS-Lab, an open declarative framework (specs, runtime, labs) for composing, testing, and benchmarking multi-agent systems, plus a taxonomy of silent "cognitive failures" in MAS.
-  Local copy, when present: `materials/20260917-mas-lab-agntcon-2026-ams.pdf`
+- [MAS-Lab](materials/20260917-mas-lab-agntcon-2026-ams.pdf) — 29 slides. Presents MAS-Lab, an open declarative framework (specs, runtime, labs) for composing, testing, and benchmarking multi-agent systems, plus a taxonomy of silent "cognitive failures" in MAS. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/84/20260917-MAS-Lab-Agntcon-2026-AMS.pdf))
 - Extracted text: [`materials/20260917-mas-lab-agntcon-2026-ams.txt`](materials/20260917-mas-lab-agntcon-2026-ams.txt)

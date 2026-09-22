@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Distributed Mess: A Production Guide To Multi-Agent Failures](https://hosted-files.sched.co/agntconmcpconeu26/8a/Huong%20Copy%20of%20Cascading%20Failures%20in%20Multi-Agent%20Systems-AgentCon%20%282%29.pdf) — 16 slides. Surveys multi-agent failure modes (context pollution, silent handoffs) and shows how MLflow tracing, an AI gateway and evaluation layers catch coordination and semantic failures.
-  Local copy, when present: `materials/huong-copy-of-cascading-failures-in-multi-agent-systems-agentcon-2.pdf`
+- [Distributed Mess: A Production Guide To Multi-Agent Failures](materials/huong-copy-of-cascading-failures-in-multi-agent-systems-agentcon-2.pdf) — 16 slides. Surveys multi-agent failure modes (context pollution, silent handoffs) and shows how MLflow tracing, an AI gateway and evaluation layers catch coordination and semantic failures. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/8a/Huong%20Copy%20of%20Cascading%20Failures%20in%20Multi-Agent%20Systems-AgentCon%20%282%29.pdf))
 - Extracted text: [`materials/huong-copy-of-cascading-failures-in-multi-agent-systems-agentcon-2.txt`](materials/huong-copy-of-cascading-failures-in-multi-agent-systems-agentcon-2.txt)

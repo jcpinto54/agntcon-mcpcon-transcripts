@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [From Advisory to Autonomous](https://hosted-files.sched.co/agntconmcpconeu26/52/Milos_Mandic_From_Advisory_to_Autonomous.pdf) — 14 slides. Lays out a four-stage trust model (advisory, semi-autonomous, enhanced, full autonomy) for agent adoption, with gates and a sales-order case study.
-  Local copy, when present: `materials/milos-mandic-from-advisory-to-autonomous.pdf`
+- [From Advisory to Autonomous](materials/milos-mandic-from-advisory-to-autonomous.pdf) — 14 slides. Lays out a four-stage trust model (advisory, semi-autonomous, enhanced, full autonomy) for agent adoption, with gates and a sales-order case study. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/52/Milos_Mandic_From_Advisory_to_Autonomous.pdf))
 - Extracted text: [`materials/milos-mandic-from-advisory-to-autonomous.txt`](materials/milos-mandic-from-advisory-to-autonomous.txt)

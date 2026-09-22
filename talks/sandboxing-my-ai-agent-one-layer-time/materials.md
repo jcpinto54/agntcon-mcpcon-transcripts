@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Sandboxing My AI Agent, One Layer at a Time](https://hosted-files.sched.co/agntconmcpconeu26/d8/Presentation%20-%20Sandboxing%20My%20AI%20Agent_20260918_132809_0000.pdf) — 18 slides. Traces the path from manually approving every agent action to sandboxing agents in microVMs and building an open, composable agent harness (Mecatl).
-  Local copy, when present: `materials/presentation-sandboxing-my-ai-agent-20260918-132809-0000.pdf`
+- [Sandboxing My AI Agent, One Layer at a Time](materials/presentation-sandboxing-my-ai-agent-20260918-132809-0000.pdf) — 18 slides. Traces the path from manually approving every agent action to sandboxing agents in microVMs and building an open, composable agent harness (Mecatl). ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/d8/Presentation%20-%20Sandboxing%20My%20AI%20Agent_20260918_132809_0000.pdf))
 - Extracted text: [`materials/presentation-sandboxing-my-ai-agent-20260918-132809-0000.txt`](materials/presentation-sandboxing-my-ai-agent-20260918-132809-0000.txt)

@@ -26,10 +26,5 @@ recordings/
 # Python bytecode from the skill scripts
 __pycache__/
 
-# Slide decks pulled from the organisers' Sched pages: 161 MB across 51
-# sessions, against a repo that is otherwise ~1 MB. The extracted text IS
-# committed, and every materials.md links the organisers' hosted copy, so
-# nothing breaks without them. Provisional — delete these two lines to commit
-# the decks themselves.
-talks/*/materials/*.pdf
-talks/*/materials/*.pptx
+# Slide decks are committed, but through Git LFS (see .gitattributes) so a
+# plain clone stays small. Run `git lfs pull` to fetch the files themselves.

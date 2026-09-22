@@ -19,6 +19,5 @@ contributor: jcpinto54
 
 ## Slides
 
-- [Economies of Scale for MCP and Agents](https://hosted-files.sched.co/agntconmcpconeu26/3b/agentic-identity-broker.pdf) — 27 slides. Argues that repeated OAuth/identity integration work across MCP tools should move into a shared platform, and introduces Zalando's open-source Agentic Identity Broker for delegated access and consent.
-  Local copy, when present: `materials/agentic-identity-broker.pdf`
+- [Economies of Scale for MCP and Agents](materials/agentic-identity-broker.pdf) — 27 slides. Argues that repeated OAuth/identity integration work across MCP tools should move into a shared platform, and introduces Zalando's open-source Agentic Identity Broker for delegated access and consent. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/3b/agentic-identity-broker.pdf))
 - Extracted text: [`materials/agentic-identity-broker.txt`](materials/agentic-identity-broker.txt)

@@ -32,8 +32,9 @@ talks/
                      their own video.
                      Independent of the other two — a directory holding only
                      this file is a valid entry for a session nobody recorded.
-    materials/       Files the speaker sent, where they sent files rather than
-                     links, listed from materials.md. Never audio or video.
+    materials/       The slide deck itself, plus its extracted text. Decks are
+                     stored with Git LFS; the .txt beside each one is ordinary
+                     text and is what you should read. Never audio or video.
 recordings/        Raw audio. Gitignored — local only, never committed.
 .claude/skills/process-recording/
   SKILL.md         The full recording → transcript pipeline
