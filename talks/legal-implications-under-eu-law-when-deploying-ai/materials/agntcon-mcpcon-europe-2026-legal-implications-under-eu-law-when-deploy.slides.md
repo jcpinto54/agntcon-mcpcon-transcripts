@@ -1,0 +1,63 @@
+---
+title: "Legal Implications Under EU Law When Deploying AI Agents"
+speakers: [Mirela Takacs]
+session_id: 42c9a055275fc191f23220c546c8a8ad
+kind: slides
+deck: agntcon-mcpcon-europe-2026-legal-implications-under-eu-law-when-deploy.pdf
+slides: 11
+---
+
+# Legal Implications Under EU Law When Deploying AI Agents — slides
+
+**Mirela Takacs**
+
+*Thursday 17 September 2026, 10:50, G102 + G103 — Agentic Engineering track*
+
+> The deck described slide by slide: the words on each slide, and what it
+> actually shows. Derived, not the speaker's words — the deck itself is
+> [`agntcon-mcpcon-europe-2026-legal-implications-under-eu-law-when-deploy.pdf`](agntcon-mcpcon-europe-2026-legal-implications-under-eu-law-when-deploy.pdf), and where a transcript exists it is next door
+> and outranks this.
+
+## Slide 1 — Title
+**Text.** Agentic AI Foundation / AGNTCon + MCPCon Europe / Where the agentic stack is being built. / Legal Implications under EU Law When Deploying AI Agents
+**Shows.** Dark-navy title slide. Top-left: the AGNTCon + MCPCon Europe diamond logo and wordmark, with the "Agentic AI Foundation" label above it and the tagline "Where the agentic stack is being built." below. The talk title sits in a white banner across the middle. The lower half is a decorative graphic of thin circuit-board-style lines and dots in purple, blue, pink and red — no informational content, matches the deck's standard cover/closer background.
+
+## Slide 2 — Agenda
+**Text.** Agenda / Introduction / Three AI Agent Use Cases / The EU Legal Framework / Post-Deployment Changes / Practical Takeaways
+**Shows.** Nothing beyond the text — a plain bulleted list of five items on a white background, dark-navy header bar with the conference logo.
+
+## Slide 3 — Introduction
+**Text.** Introduction / Mirela Takacs / Romanian Lawyer / Contracts, Intellectual Property & Digital Compliance / Background in Open-Source Software License Compliance / Disclaimers: / For informational purposes only; not legal advice / Current legal framework / Personal perspective, not my client's or any institution's
+**Shows.** Nothing beyond the text — speaker bio as three bullets, then an italic "Disclaimers" heading followed by three more bullets, on a plain white slide.
+
+## Slide 4 — Three AI Agent Use Cases
+**Text.** Three AI Agent Use Cases / AI Schedule Agent | AI Recruitment Agent | AI Customer Service Agent / It organizes a lawyer's schedule based on emails, court notices and calendar availability | It supports the recruitment process by posting job ads, organizing applications alphabetically, and scheduling interviews. | It interacts with customers, text and voice, handles requests and uses different systems to provide assistance; it escalates angry customers to a human operator using voice emotion recognition
+**Shows.** A three-column table, one column per agent, blue header row and light-blue-grey body cells, each cell holding one paragraph describing that agent's function. No diagram beyond the table itself.
+
+## Slide 5 — The EU Legal Framework
+**Text.** The EU Legal Framework / EU internal market regulation / Horizontal legislation / Risk-based approach / High-risk AI Use Cases — Annex III / AI in Regulated Products — Annex I / EU AI ACT / AI Systems / Unacceptable Risk / High Risk / Limited Risk — Art. 50 Transparency obligations on certain AI systems / Minimal Risk — No risk-based obligations, Art. 4 AI Literacy / Other EU legal instruments: / Data Protection, Data Governance, Cybersecurity, Intellectual Property, Liability, Digital Markets, Sector-Specific Rules
+**Shows.** Centre: a four-tier pyramid (drawn as stacked horizontal bars, widening downward) labelled "EU AI ACT — AI Systems", tiers from top to bottom Unacceptable Risk (red, narrowest), High Risk (orange), Limited Risk (yellow, with its Article 50 caption), Minimal Risk (green, widest, with its Article 4 caption). Left of the pyramid, two overlapping-style ellipses labelled "High-risk AI Use Cases — Annex III" and "AI in Regulated Products — Annex I" sit beside three bullets on the EU AI Act's general character. Right of the pyramid, a plain text block lists other EU legal instruments that apply alongside the AI Act.
+
+## Slide 6 — Where do the three agents fit?
+**Text.** Where do the three agents fit? / AI System Classification under the AI ACT / Complementary EU Legislation / Unacceptable Risk / AI Customer Service Agent — Annex III 1(c) + Article 6(2), Chapter III Section 2, Article 50 / High Risk / GDPR, Consumer Protection Laws / AI Recruitment Agent — Annex III 4(a) + Article 6(2), Exception via Article 6(3), Article 50 / Limited Risk / GDPR, Employment context rules / AI Schedule Agent / Minimal Risk / GDPR
+**Shows.** The same four-tier risk pyramid as slide 5 (Unacceptable/red, High/orange, Limited/yellow, Minimal/green), now used to place each of the three agents against a tier: the AI Customer Service Agent is pinned at High Risk, the AI Recruitment Agent at Limited Risk, the AI Schedule Agent at Minimal Risk, each with its Annex/Article citations in blue to the left of the pyramid. Two ellipse headers frame the layout: "AI System Classification under the AI Act" (left) and "Complementary EU Legislation" (right), with the applicable non-AI-Act laws (GDPR, consumer protection, employment rules) listed opposite each tier on the right.
+
+## Slide 7 — Post-Deployment Changes
+**Text.** Post-Deployment Changes / AI Schedule Agent | AI Recruitment Agent | AI Customer Service Agent / the agents begins confirming meetings directly with clients on lawyer's behalf, including a meeting that overlaps with a court hearing | The agent organizes applications, assesses and ranks candidates based on their suitability for the role | instead of escalating to a human operator, it exploits customer's emotional state and vulnerability to discourage a valid refund claim / POTENTIAL LEGAL IMPLICATIONS UNDER AI ACT / Direct interaction with clients → Art. 50 (1) Transparency obligation may become applicable | Candidate assessment and ranking → Art. 6(3) derogation may no longer apply / Potential high-risk classification may be considered Annex III 4(a) | Potential manipulative behavior and exploitation of vulnerability, likely to cause significant harm → Potential Prohibited AI practice Art. 5(1)(a)(b)
+**Shows.** A three-column table matching slide 4's agents. Top row (per column) describes a behavioural drift after deployment: the schedule agent starts confirming meetings unsupervised and double-books a court hearing; the recruitment agent starts assessing and ranking candidates itself (beyond its original organizing role); the customer-service agent starts exploiting a customer's emotional state to talk them out of a valid refund. A red banner row reads "POTENTIAL LEGAL IMPLICATIONS UNDER AI ACT". Below it, each column restates the risky behaviour with a downward arrow into the specific Article/Annex consequence, in red text: a possible new Article 50 transparency duty, a possible loss of the Article 6(3) derogation pushing the recruitment agent into high-risk (Annex III 4(a)), and a possible prohibited practice under Article 5(1)(a)(b) for the customer-service agent.
+
+## Slide 8 — What enabled this change?
+**Text.** What enabled this change? / Article 3(1) – definition for AI system: machine-based system that is designed to operate with varying levels of autonomy and that may exhibit adaptiveness after deployment, and that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments / Article 3(23) – definition for substantial modification (in the context of high-risk AI system – Art. 12 Record-keeping: identify situations that may result in a substantial modification) / A change after placing on the market/put into service, not foreseen or planned in the initial conformity assessment and affects compliance with Chapter III Section 2 (high-risk AI systems Art. 8-15) OR the intended purpose → Requires a new conformity assessment / Article 25 (1) (b): substantial modification to the system in such a way that it remains a high-risk AI system / Distributor, importer, deployer or other third-party → becomes the provider – Art. 16 Provider's Obligations / * Check the Commission Guidelines on the practical application of the provisions related to substantial modification (still pending) / Article 43 (4) → new conformity assessment / By the initial provider or by the new provider under Art. 25 (1)(b) / Exception: Pre-determined changes ≠ substantial modification / (foreseen or planned – documented in Annex IV) Recital 128 - the system continues to learn / Article 25 (1) (c): someone modified the intended purpose so that the system which has not been classified as high-risk, becomes a high-risk AI system / Article 25 (1) (a): someone rebranded the system – It is not a modification / Prohibited AI practice ⇒ prohibition, not reclassification
+**Shows.** A dense, text-heavy legal-analysis slide with no illustrative diagram, only colour-coded framing boxes for emphasis. Two definitions (Art. 3(1), Art. 3(23)) sit at the top as plain paragraphs, with key phrases ("may exhibit adaptiveness after deployment", "not foreseen or planned", "affects compliance with...") underlined or in red for emphasis. Below, four bordered boxes lay out the substantial-modification logic: a blue box (Art. 25(1)(b), remains high-risk) arrows right into a second blue box (Art. 43(4), new conformity assessment, with a pre-determined-change exception); a yellow/gold box below-left (Art. 25(1)(c), intended-purpose change triggers high-risk) and another yellow/gold box (Art. 25(1)(a), rebranding is not a modification) sit beneath the first blue box; a red box at bottom-right states rebranding/other changes can instead trigger "Prohibited AI practice ⇒ prohibition, not reclassification". A small green italic note flags that the Commission's guidelines on substantial modification are still pending.
+
+## Slide 9 — Back to initial design
+**Text.** Back to initial design / HIGH-RISK AI SYSTEMS / Provider / Article 9 – risk management / Article 10 – data governance / Article 11 – Technical documentation / Article 12 – Record-keeping / Article 13 – Transparency and provision of information to deployers / Article 14 – Human oversight by design / Article 15 – Accuracy, robustness and cybersecurity / Article 17 – Quality management system / Article 18 – documentation keeping / Conformity assessment procedures, affix the CE marking, register the system / Art. 72 & 73 – Post-market monitoring & reporting of serious incidents / Article 40 – Harmonised standards / Presumption of conformity / Instructions for use / Deployment info / Problems / Serious Incidents / Deployer / Article 26: / Use the system in accordance with the instructions for use / Assign human oversight / Use appropriate input data, where relevant / Monitor the operation of the system / Logging keeping / React when risks/problems are identified / Inform the provider / Transparency obligation
+**Shows.** Two-column obligations chart under the heading "HIGH-RISK AI SYSTEMS": a long bulleted list of Provider obligations (Articles 9–18, conformity assessment/CE marking/registration, Arts. 72 & 73) on the left, a shorter bulleted list of Deployer obligations under Article 26 on the right. Between the columns, two arrows show the information flow: one pointing right labelled "Instructions for use" (provider → deployer), one pointing left labelled "Deployment info / Problems / Serious Incidents" (deployer → provider). A green callout beneath the provider list highlights "Article 40 – Harmonised standards / Presumption of conformity".
+
+## Slide 10 — Practical takeaways
+**Text.** Practical takeaways / 1. Compliance starts at the design stage and continues after deployment / 2. Different expertise should be combined from the beginning / 3. Assess the risks, identify the requirements, and then start building
+**Shows.** Nothing beyond the text — a numbered list of three takeaways on the deck's dark-navy background with the decorative circuit-line graphic along the bottom edge.
+
+## Slide 11 — Closing
+**Text.** Agentic AI Foundation / AGNTCon + MCPCon Europe / Where the agentic stack is being built.
+**Shows.** Closing card matching the opening slide's design: the AGNTCon + MCPCon Europe logo and tagline on a dark-navy background, with the same decorative circuit-board line-and-dot graphic (purple/blue/pink/red) filling the lower portion of the slide. No talk-specific content.
