@@ -165,7 +165,10 @@ can reach the same text through the MCP server in `server/` — `search_archive`
 for passages with a `file:line` citation, `read_talk` for a whole transcript,
 summary or deck, `list_sessions` for the coverage — and every answer carries
 the same rules: the coverage up front, the kind of text each passage is, and
-the Q&A caveat. `server/README.md` has the endpoint and how to connect.
+the Q&A caveat. The endpoint is
+`https://agntcon-mcpcon-archive.joaocastropintoz.workers.dev/mcp`, and the
+same three operations are plain GET endpoints under `/api/`;
+`server/README.md` has how to connect.
 
 ## Keeping the search index current
 

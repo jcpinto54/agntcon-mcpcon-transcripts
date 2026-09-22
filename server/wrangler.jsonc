@@ -2,6 +2,9 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "agntcon-mcpcon-archive",
   "main": "src/worker.ts",
+  // The account the archive deploys to (not a secret). Deploying your own
+  // copy: change this, or set CLOUDFLARE_ACCOUNT_ID when running deploy.
+  "account_id": "07ed7cd234e6d9bd3b35793e40c9be58",
   "compatibility_date": "2026-09-22",
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,

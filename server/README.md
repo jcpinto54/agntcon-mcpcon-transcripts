@@ -6,13 +6,14 @@ for free on Cloudflare Workers. It exists so that someone in claude.ai, Claude
 Code, ChatGPT or their own agent can ask what was said at AGNTCon + MCPCon
 Europe 2026 without cloning the repo.
 
+It is live at **https://agntcon-mcpcon-archive.joaocastropintoz.workers.dev**:
+
 ```
-curl "https://<your-worker>.workers.dev/api/search?q=stateless+mcp"
-claude mcp add --transport http agntcon-archive https://<your-worker>.workers.dev/mcp
+curl "https://agntcon-mcpcon-archive.joaocastropintoz.workers.dev/api/search?q=stateless+mcp"
+claude mcp add --transport http agntcon-archive https://agntcon-mcpcon-archive.joaocastropintoz.workers.dev/mcp
 ```
 
-Nothing is deployed yet — see [Deploying](#deploying-free) — but everything
-runs locally with `npm run dev`.
+Everything also runs locally with `npm run dev`.
 
 ## What it does
 
@@ -147,12 +148,12 @@ npx wrangler login            # once
 npm run deploy                # builds the index, then wrangler deploy
 ```
 
-If the account has more than one Cloudflare account, pick with
-`CLOUDFLARE_ACCOUNT_ID=…` or `account_id` in `wrangler.jsonc`. The result is
-`https://agntcon-mcpcon-archive.<account>.workers.dev`; a custom domain is a
-`routes` entry away. Redeploy whenever content changes — that is the whole
-release process, and a GitHub Action running `npm run deploy` on pushes to
-`main` would make it automatic.
+`wrangler.jsonc` pins the Cloudflare account the archive deploys to; to
+deploy your own copy, change `account_id` (or set `CLOUDFLARE_ACCOUNT_ID`).
+The result is `https://agntcon-mcpcon-archive.<subdomain>.workers.dev`; a
+custom domain is a `routes` entry away. Redeploy whenever content changes —
+that is the whole release process, and a GitHub Action running
+`npm run deploy` on pushes to `main` would make it automatic.
 
 ## Layout
 
