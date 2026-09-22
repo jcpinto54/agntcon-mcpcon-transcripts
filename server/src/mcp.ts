@@ -107,7 +107,7 @@ export function buildServer(archive: Archive): McpServer {
       }),
       annotations: readOnly,
     },
-    async (args) => run(() => readTalk(archive, { ...args, part: 'summary' }))
+    async (args) => run(() => readTalk(archive, { ...args, part: 'summary', as: 'read_summary' }))
   );
 
   server.registerTool(

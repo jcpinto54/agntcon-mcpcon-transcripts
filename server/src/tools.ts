@@ -143,9 +143,18 @@ export interface ReadArgs {
   part?: Part;
   offset?: number;
   max_chars?: number;
+  /** The tool the caller used, so the "continues:" hint names it. Default read_talk. */
+  as?: 'read_talk' | 'read_summary';
 }
 
 export const READ_DEFAULT_CHARS = 12000;
+
+/** The call that reads the next window, named after the tool the caller used. */
+function resume(as: ReadArgs['as'], key: string, part: Part, offset: number): string {
+  return as === 'read_summary'
+    ? `read_summary(talk="${key}", offset=${offset})`
+    : `read_talk(talk="${key}", part="${part}", offset=${offset})`;
+}
 
 function sessionSheet(archive: Archive, s: Session): string {
   const lines = [`# ${s.title}`, ''];
@@ -203,7 +212,7 @@ export function readTalk(archive: Archive, args: ReadArgs): ToolResult {
   const header = [
     `# ${session.title} — ${speakerNames(session)}`,
     `${part} · \`${paths}\` · characters ${offset}–${end} of ${full.length}` +
-      (next !== null ? ` · continues: read_talk(talk="${key}", part="${part}", offset=${next})` : ' · end of document'),
+      (next !== null ? ` · continues: ${resume(args.as, key, part, next)}` : ' · end of document'),
     `(${KIND_NOTE[part]}${part === 'transcript' ? '; below a "## Q&A" heading, ' + QA_NOTE : ''})`,
     '',
   ];

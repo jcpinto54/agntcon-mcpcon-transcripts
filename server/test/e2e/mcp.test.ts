@@ -102,6 +102,7 @@ async function checkTools(client: Client, label: string): Promise<void> {
   const digest = await client.callTool({ name: 'read_summary', arguments: { talk: 'no-central-brain', max_chars: 800 } });
   assert.match(textOf(digest), /^# No Central Brain — Fausto Albers/, `${label}: summary page`);
   assert.equal((digest.structuredContent as { part: string }).part, 'summary', `${label}: summary part`);
+  assert.match(textOf(digest), /continues: read_summary\(talk="no-central-brain", offset=\d+\)/, `${label}: paging points back at read_summary`);
 
   const noSummary = await client.callTool({ name: 'read_summary', arguments: { talk: 'stateless-future-mcp-transports' } });
   assert.equal(noSummary.isError, true, `${label}: a talk with no summary is a tool error`);
