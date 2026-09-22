@@ -43,6 +43,9 @@ recordings/        Raw audio. Gitignored — local only, never committed.
 .claude/skills/summarize-talk/
   SKILL.md         How to write the summary that sits beside a transcript
   scripts/         write_summary.py
+server/            The archive as a service: a stateless MCP server and a
+                   plain HTTP API over a prebuilt search index, for agents
+                   that do not have the repo. See server/README.md.
 ```
 
 ## Rules
@@ -156,6 +159,28 @@ speaker's actual words. Quote verbatim and cite the talk slug and speaker
 (`talks/no-central-brain/transcript.md` — Fausto Albers); the transcripts
 exist to be quotable. Where a summary and a transcript disagree, the
 transcript is right.
+
+**Without the repo, use the server.** An agent that cannot open these files
+can reach the same text through the MCP server in `server/` — `search_archive`
+for passages with a `file:line` citation, `read_talk` for a whole transcript,
+summary or deck, `list_sessions` for the coverage — and every answer carries
+the same rules: the coverage up front, the kind of text each passage is, and
+the Q&A caveat. `server/README.md` has the endpoint and how to connect.
+
+## Keeping the search index current
+
+The server's index is generated from `talks/` and `guide/sessions.json` and
+is not committed. After adding or changing a transcript, summary, deck
+description or materials file, rebuild it:
+
+```bash
+cd server && npm run build
+```
+
+`npm run dev`, `npm test` and `npm run deploy` do this themselves, so the
+hosted search picks up new content on the next deploy. The relevance tests in
+`server/test/search.test.ts` name a few talks that exist today; a talk removed
+at a speaker's request needs its line there removed too.
 
 ## Adding a transcript
 

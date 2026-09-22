@@ -27,6 +27,10 @@ attend.
   the pipeline that turns a recording into a transcript, as a reusable skill.
 - **[`.claude/skills/summarize-talk/`](.claude/skills/summarize-talk/)** — the
   companion skill for writing the summary beside a transcript.
+- **[`server/`](server/)** — the archive as a service: a stateless MCP server
+  and a plain HTTP API over a search index built from everything above, so an
+  agent without the repo can ask what was said. Runs for free on Cloudflare
+  Workers; [`server/README.md`](server/README.md) has the details.
 
 **Transcripts only — no audio.** Recordings stay on the machines of the people
 who made them. The speakers own their talks; this archive publishes their words

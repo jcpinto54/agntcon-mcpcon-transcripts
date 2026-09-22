@@ -1,0 +1,18 @@
+{
+  // Type-checks the build script and the tests, which run under Node rather
+  // than in the Worker. Node 22 strips the types itself at run time, so there
+  // is no compile step — this config exists only for `tsc --noEmit`.
+  "compilerOptions": {
+    "target": "es2022",
+    "lib": ["es2022", "dom"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "types": ["node"]
+  },
+  "include": ["scripts/**/*.ts", "test/**/*.ts", "src/**/*.ts"],
+  "exclude": ["src/worker.ts"]
+}
