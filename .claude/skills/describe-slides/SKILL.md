@@ -59,6 +59,14 @@ exists. Link it from `materials.md`.
 It replaces the flat `<deck>.txt` extraction, which loses the visuals; delete
 that once the description is written.
 
+**Except for PowerPoint.** A `.pptx` has to be converted to PDF before it can
+be rendered, and the conversion sometimes stacks text boxes on top of each
+other, leaving slides that are genuinely illegible in the image while the
+words sit perfectly readable in the original file's XML. For those decks keep
+both: the description for what the slide showed, the extraction for what it
+said. `materials.md` should say why both are there, so nobody tidies one away
+later.
+
 ## Notes
 
 - Slide images live in `.transcribe-cache/slides/`, which is gitignored. They

@@ -26,6 +26,9 @@ ZOOM = 2.0          # ~1540px wide for a 16:9 deck: legible without being huge
 
 SOFFICE = [
     "/Applications/LibreOffice.app/Contents/MacOS/soffice",
+    # A user-local install needs no admin rights, which matters when Homebrew
+    # refuses over an unwritable directory and sudo is not available.
+    str(pathlib.Path.home() / "Applications/LibreOffice.app/Contents/MacOS/soffice"),
     shutil.which("soffice") or "", shutil.which("libreoffice") or "",
 ]
 

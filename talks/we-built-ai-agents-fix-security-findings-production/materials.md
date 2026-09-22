@@ -20,4 +20,8 @@ contributor: jcpinto54
 ## Slides
 
 - [We Built AI Agents To Fix Security Findings in Production](materials/remediation-agents-agentcon.pptx) — 20 slides. Introduces two specialist agents (SAST taint-analysis and SCA dependency-upgrade) plus a remediation system that opens, revises and self-heals pull requests until developers merge them. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/fe/remediation_agents_agentcon.pptx))
-- Extracted text: [`materials/remediation-agents-agentcon.txt`](materials/remediation-agents-agentcon.txt)
+- Slide-by-slide description: [`materials/remediation-agents-agentcon.slides.md`](materials/remediation-agents-agentcon.slides.md)
+- Text straight from the PowerPoint file: [`materials/remediation-agents-agentcon.txt`](materials/remediation-agents-agentcon.txt) — kept alongside
+  the description because this deck had to be converted to PDF to be
+  rendered, and the conversion stacked some text boxes on top of each
+  other. Where a slide reads as illegible above, the words are here.

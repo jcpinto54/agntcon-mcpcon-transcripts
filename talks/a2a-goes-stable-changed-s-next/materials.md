@@ -20,4 +20,8 @@ contributor: jcpinto54
 ## Slides
 
 - [A2A Goes Stable](materials/a2a-goes-stable-agntcon-ams.pptx) — 20 slides. Explains what A2A Protocol v1.0 changes (signed Agent Cards, web-aligned architecture, multi-tenancy, modern security) and covers the v0.3-to-v1.0 migration path and roadmap. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/ea/a2a-goes-stable-agntcon-ams.pptx))
-- Extracted text: [`materials/a2a-goes-stable-agntcon-ams.txt`](materials/a2a-goes-stable-agntcon-ams.txt)
+- Slide-by-slide description: [`materials/a2a-goes-stable-agntcon-ams.slides.md`](materials/a2a-goes-stable-agntcon-ams.slides.md)
+- Text straight from the PowerPoint file: [`materials/a2a-goes-stable-agntcon-ams.txt`](materials/a2a-goes-stable-agntcon-ams.txt) — kept alongside
+  the description because this deck had to be converted to PDF to be
+  rendered, and the conversion stacked some text boxes on top of each
+  other. Where a slide reads as illegible above, the words are here.
