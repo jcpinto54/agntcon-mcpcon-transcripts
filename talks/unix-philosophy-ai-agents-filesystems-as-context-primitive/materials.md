@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [The Unix Philosophy for AI Agents](materials/the-unix-philosophy-for-ai-agents-filesystems-as-the-context-primitive.pdf) — 18 slides. Proposes a shared filesystem-style contract (list, read, write, search, discover) as a Unix-inspired abstraction over MCP Resources, replacing per-source tool surfaces for AI agents. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/eb/The%20Unix%20Philosophy%20for%20AI%20Agents%20-%20Filesystems%20as%20the%20Context%20Primitive%20-%202026-09-16.pdf))
-- Extracted text: [`materials/the-unix-philosophy-for-ai-agents-filesystems-as-the-context-primitive.txt`](materials/the-unix-philosophy-for-ai-agents-filesystems-as-the-context-primitive.txt)
+- Slide-by-slide description: [`materials/the-unix-philosophy-for-ai-agents-filesystems-as-the-context-primitive.slides.md`](materials/the-unix-philosophy-for-ai-agents-filesystems-as-the-context-primitive.slides.md)

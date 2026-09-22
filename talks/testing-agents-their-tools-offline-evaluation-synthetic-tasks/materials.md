@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [Testing Agents and Their Tools](materials/agentcon2026-final-1.pdf) — 23 slides. Walks through GitHub's three layers of agent evaluation: MCP server tool-selection offline evals, agent offline evals on synthetic tasks, and online A/B experiments. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/dd/AgentCon2026-final%20%281%29.pdf))
-- Extracted text: [`materials/agentcon2026-final-1.txt`](materials/agentcon2026-final-1.txt)
+- Slide-by-slide description: [`materials/agentcon2026-final-1.slides.md`](materials/agentcon2026-final-1.slides.md)

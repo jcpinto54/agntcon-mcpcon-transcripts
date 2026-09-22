@@ -20,3 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [CHAP, an Open Protocol for Auditable Human-Agent Collaboration](materials/chap-deck-agntcon-mcpcon-europe-arsalan.pdf) — Image-only PDF; text not extractable without OCR. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/28/CHAP%20Deck%20%28AGNTCon%20%2B%20MCPCon%20Europe%2C%20Arsalan%29.pdf))
+- Slide-by-slide description: [`materials/chap-deck-agntcon-mcpcon-europe-arsalan.slides.md`](materials/chap-deck-agntcon-mcpcon-europe-arsalan.slides.md)

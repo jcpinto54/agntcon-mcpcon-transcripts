@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [When Agents Run Healthcare](materials/agntcon-when-agents-run-healthcare.pdf) — 22 slides. Walks through BARMER's architecture for deterministic-first, human-overseen agentic workflows in German healthcare claims processing, from document splitting through auditable business and technical protocols. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/4d/AGNTCon_When_Agents_Run_Healthcare.pdf))
-- Extracted text: [`materials/agntcon-when-agents-run-healthcare.txt`](materials/agntcon-when-agents-run-healthcare.txt)
+- Slide-by-slide description: [`materials/agntcon-when-agents-run-healthcare.slides.md`](materials/agntcon-when-agents-run-healthcare.slides.md)

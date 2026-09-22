@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [The Buzz-Word Is Collaboration](materials/the-buzz-word-is-collaboration-agntcon-europe-2026.pdf) — 2 slides. A two-slide invite to a hands-on workshop room for people and agents collaborating together, pointing attendees to a join link. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/23/The%20Buzz-Word%20Is%20Collaboration%20%E2%80%94%20AGNTCon%20Europe%202026.pdf))
-- Extracted text: [`materials/the-buzz-word-is-collaboration-agntcon-europe-2026.txt`](materials/the-buzz-word-is-collaboration-agntcon-europe-2026.txt)
+- Slide-by-slide description: [`materials/the-buzz-word-is-collaboration-agntcon-europe-2026.slides.md`](materials/the-buzz-word-is-collaboration-agntcon-europe-2026.slides.md)

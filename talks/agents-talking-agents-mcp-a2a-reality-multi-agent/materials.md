@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [Agents Talking To Agents](materials/agents-talking-to-agents-mcp-a2a-and-the-reality-of-multi-agent-orches.pdf) — 17 slides. Covers three production patterns for multi-agent A2A/MCP orchestration—typed task handoffs, task-scoped authority, and recoverable checkpoints—addressing failures in context, ownership, authority, retry, and causality. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/2b/Agents%20Talking%20To%20Agents%20%20MCP%2C%20A2A%2C%20and%20the%20Reality%20of%20Multi-Agent%20Orchestration%20in%20Production.pdf))
-- Extracted text: [`materials/agents-talking-to-agents-mcp-a2a-and-the-reality-of-multi-agent-orches.txt`](materials/agents-talking-to-agents-mcp-a2a-and-the-reality-of-multi-agent-orches.txt)
+- Slide-by-slide description: [`materials/agents-talking-to-agents-mcp-a2a-and-the-reality-of-multi-agent-orches.slides.md`](materials/agents-talking-to-agents-mcp-a2a-and-the-reality-of-multi-agent-orches.slides.md)

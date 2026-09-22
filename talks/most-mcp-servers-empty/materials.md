@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [Most MCP Servers Are Empty](materials/most-mcp-servers-are-empty-golverdingen-mcpcon-europe-2026.pdf) — 19 slides. From seven months of production MCP servers at a 350-person company, argues tool descriptions and responses must carry domain meaning, and gives a five-step loop for encoding it. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/21/most-mcp-servers-are-empty-golverdingen-mcpcon-europe-2026.pdf))
-- Extracted text: [`materials/most-mcp-servers-are-empty-golverdingen-mcpcon-europe-2026.txt`](materials/most-mcp-servers-are-empty-golverdingen-mcpcon-europe-2026.txt)
+- Slide-by-slide description: [`materials/most-mcp-servers-are-empty-golverdingen-mcpcon-europe-2026.slides.md`](materials/most-mcp-servers-are-empty-golverdingen-mcpcon-europe-2026.slides.md)

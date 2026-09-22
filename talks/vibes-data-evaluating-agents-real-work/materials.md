@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [From Vibes to Data](materials/aaif-adeep-v2.pdf) — 17 slides. Presents Datadog's ADEEP evaluation platform for benchmarking coding agents on real repository tasks, sharing experiment results on context strategy, model choice, and token cost. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/14/AAIF%20-%20ADEEP%20v2.pdf))
-- Extracted text: [`materials/aaif-adeep-v2.txt`](materials/aaif-adeep-v2.txt)
+- Slide-by-slide description: [`materials/aaif-adeep-v2.slides.md`](materials/aaif-adeep-v2.slides.md)

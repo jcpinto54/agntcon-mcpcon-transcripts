@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [Exploring WebMCP](materials/exploringwebmcp.pdf) — 15 slides. Introduces the experimental WebMCP browser API, its declarative and imperative tool patterns, and safety practices for agent-mediated sites. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/09/ExploringWebMCP.pdf))
-- Extracted text: [`materials/exploringwebmcp.txt`](materials/exploringwebmcp.txt)
+- Slide-by-slide description: [`materials/exploringwebmcp.slides.md`](materials/exploringwebmcp.slides.md)

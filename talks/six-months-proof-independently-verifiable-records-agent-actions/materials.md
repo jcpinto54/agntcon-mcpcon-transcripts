@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [Six Months of Proof](materials/six-months-of-proof-agntcon-amsterdam-working-copy-1.pdf) — 20 slides. Argues that a mutable agent log isn't evidence, and walks through signed, witness-countersigned "capsule" records that a second party can verify offline. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/bd/Six%20Months%20of%20Proof%20%E2%80%94%20AGNTCon%20Amsterdam%20%28working%20copy%29%20%281%29.pdf))
-- Extracted text: [`materials/six-months-of-proof-agntcon-amsterdam-working-copy-1.txt`](materials/six-months-of-proof-agntcon-amsterdam-working-copy-1.txt)
+- Slide-by-slide description: [`materials/six-months-of-proof-agntcon-amsterdam-working-copy-1.slides.md`](materials/six-months-of-proof-agntcon-amsterdam-working-copy-1.slides.md)

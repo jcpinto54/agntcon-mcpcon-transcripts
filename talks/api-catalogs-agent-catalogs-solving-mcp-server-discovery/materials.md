@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [From API Catalogs to Agent Catalogs](materials/from-api-catalogs-to-agent-catalogs.pdf) — 18 slides. Uses a spaceship-rescue narrative to introduce the MCP Server Card and Open Resource Discovery (ORD) as a way for agents to discover, inspect and execute MCP server capabilities. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/98/From%20API%20Catalogs%20To%20Agent%20Catalogs.pdf))
-- Extracted text: [`materials/from-api-catalogs-to-agent-catalogs.txt`](materials/from-api-catalogs-to-agent-catalogs.txt)
+- Slide-by-slide description: [`materials/from-api-catalogs-to-agent-catalogs.slides.md`](materials/from-api-catalogs-to-agent-catalogs.slides.md)

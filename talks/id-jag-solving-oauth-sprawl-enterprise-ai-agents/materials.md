@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [ID-JAG: Connecting Agents to Work Apps (slides)](materials/agntcon-europe-2026-id-jag-solving-oauth-sprawl-for-enterprise-ai-agen.pdf) — 14 slides. Introduces ID-JAG, an IETF OAuth draft letting an IdP approve an agent acting for a user, so apps can grant downstream access without repeated consent screens. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/fc/AGNTCon_Europe_2026_ID-JAG_Solving_OAuth_Sprawl_for_Enterprise_AI_Agents_orlando_parecki_carleton.V2.pdf))
-- Extracted text: [`materials/agntcon-europe-2026-id-jag-solving-oauth-sprawl-for-enterprise-ai-agen.txt`](materials/agntcon-europe-2026-id-jag-solving-oauth-sprawl-for-enterprise-ai-agen.txt)
+- Slide-by-slide description: [`materials/agntcon-europe-2026-id-jag-solving-oauth-sprawl-for-enterprise-ai-agen.slides.md`](materials/agntcon-europe-2026-id-jag-solving-oauth-sprawl-for-enterprise-ai-agen.slides.md)

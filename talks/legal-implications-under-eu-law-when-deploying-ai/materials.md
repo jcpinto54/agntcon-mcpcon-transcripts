@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [Legal Implications Under EU Law When Deploying AI Agents](materials/agntcon-mcpcon-europe-2026-legal-implications-under-eu-law-when-deploy.pdf) — 11 slides. Classifies three AI agent use cases (scheduling, recruitment, customer service) under the EU AI Act's risk tiers, then shows how post-deployment changes can trigger reclassification or prohibited practices. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/77/AGNTCon-MCPCon-Europe-2026_Legal%20Implications%20under%20EU%20Law%20When%20Deploying%20AI%20Agents.pdf))
-- Extracted text: [`materials/agntcon-mcpcon-europe-2026-legal-implications-under-eu-law-when-deploy.txt`](materials/agntcon-mcpcon-europe-2026-legal-implications-under-eu-law-when-deploy.txt)
+- Slide-by-slide description: [`materials/agntcon-mcpcon-europe-2026-legal-implications-under-eu-law-when-deploy.slides.md`](materials/agntcon-mcpcon-europe-2026-legal-implications-under-eu-law-when-deploy.slides.md)

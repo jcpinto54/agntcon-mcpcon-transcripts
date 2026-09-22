@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [Which Controls Still Matter When the Model Stops Refusing? (slides)](materials/redteaming-v2.pdf) — 21 slides. An empirical red-team study of agent containment on Kubernetes, using an abliterated model to remove refusal as a variable while testing sandboxing, network, privilege, and memory-persistence boundaries. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/35/redteaming-v2.pdf))
-- Extracted text: [`materials/redteaming-v2.txt`](materials/redteaming-v2.txt)
+- Slide-by-slide description: [`materials/redteaming-v2.slides.md`](materials/redteaming-v2.slides.md)

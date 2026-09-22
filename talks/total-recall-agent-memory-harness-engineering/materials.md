@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [Total Recall: Agent Memory and Harness Engineering (Oracle brand)](materials/total-recall-agent-memory-and-harness-engineering-oracle-brand.pdf) — 52 slides. Workshop deck on the agent stack, the anatomy of an agent, and the memory substrate (retrieval, semantic, context and continual learning layers). ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/71/Total_Recall___Agent_Memory_and_Harness_Engineering__Oracle_brand_.pdf))
-- Extracted text: [`materials/total-recall-agent-memory-and-harness-engineering-oracle-brand.txt`](materials/total-recall-agent-memory-and-harness-engineering-oracle-brand.txt)
+- Slide-by-slide description: [`materials/total-recall-agent-memory-and-harness-engineering-oracle-brand.slides.md`](materials/total-recall-agent-memory-and-harness-engineering-oracle-brand.slides.md)

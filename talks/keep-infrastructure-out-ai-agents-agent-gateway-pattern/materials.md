@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [Keep Infrastructure Out of Your AI Agents](materials/linsun-agntcon-mcpconeu-workshop.pdf) — 2 slides. Title slide plus a prerequisites list (Python 3.11+, jq, Docker, Ollama with Qwen 3 8B, Jaeger) for this hands-on workshop. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/56/linsun%20AGNTCon%20MCPConEU%20workshop.pdf))
-- Extracted text: [`materials/linsun-agntcon-mcpconeu-workshop.txt`](materials/linsun-agntcon-mcpconeu-workshop.txt)
+- Slide-by-slide description: [`materials/linsun-agntcon-mcpconeu-workshop.slides.md`](materials/linsun-agntcon-mcpconeu-workshop.slides.md)

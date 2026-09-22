@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [Verify, Abstain, or Amplify](materials/verify-abstain-amplify-orzechowski-17-09-26.pdf) — 27 slides. Lays out a framework for handling agent outputs that can't be auto-verified: build oracles to verify, route unanswerable questions to abstain, get a human's yes to amplify. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/7e/verify-abstain-amplify-orzechowski-17-09-26.pdf))
-- Extracted text: [`materials/verify-abstain-amplify-orzechowski-17-09-26.txt`](materials/verify-abstain-amplify-orzechowski-17-09-26.txt)
+- Slide-by-slide description: [`materials/verify-abstain-amplify-orzechowski-17-09-26.slides.md`](materials/verify-abstain-amplify-orzechowski-17-09-26.slides.md)

@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [What a Year of Breaking MCP Tells Builders](materials/amine-raji-mcpcon-2026-clicks-dark-final.pdf) — 49 slides. Walks through real MCP CVEs (Grafana, GitLab, Amazon Q, Cursor, Claude Code, Windsurf) where trust checks were unverified strings, then argues the fix must be structural, not model-side. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/5e/Amine-Raji-MCPcon-2026-clicks-dark-Final.pdf))
-- Extracted text: [`materials/amine-raji-mcpcon-2026-clicks-dark-final.txt`](materials/amine-raji-mcpcon-2026-clicks-dark-final.txt)
+- Slide-by-slide description: [`materials/amine-raji-mcpcon-2026-clicks-dark-final.slides.md`](materials/amine-raji-mcpcon-2026-clicks-dark-final.slides.md)

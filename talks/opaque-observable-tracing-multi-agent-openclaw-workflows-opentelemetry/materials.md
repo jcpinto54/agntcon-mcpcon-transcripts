@@ -30,4 +30,4 @@ contributor: jcpinto54
 ## Slides
 
 - [From Opaque to Observable: Insight Module for Agentic Systems](materials/agntcon-sept17-session.pdf) — 22 slides. Argues OpenClaw's built-in OpenTelemetry export covers local runtime diagnostics but not cross-agent or lifecycle analysis, and presents an Insight Module that fills the gap. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/b7/AGNTCon_Sept17_Session.pdf))
-- Extracted text: [`materials/agntcon-sept17-session.txt`](materials/agntcon-sept17-session.txt)
+- Slide-by-slide description: [`materials/agntcon-sept17-session.slides.md`](materials/agntcon-sept17-session.slides.md)

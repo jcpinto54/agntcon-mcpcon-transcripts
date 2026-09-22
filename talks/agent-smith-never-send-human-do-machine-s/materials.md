@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [Agent-Smith (slides)](materials/agentsmith-agntcon-2026.pdf) — 27 slides. Presents Agent-Smith, an open-source autonomous pentest agent that lets an LLM invent attacks via chained skills, with guardrails like evidence-binding, a watchdog, a world-model graph, and local-model portability. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/84/AgentSmith_AGNTCON_2026.pdf))
-- Extracted text: [`materials/agentsmith-agntcon-2026.txt`](materials/agentsmith-agntcon-2026.txt)
+- Slide-by-slide description: [`materials/agentsmith-agntcon-2026.slides.md`](materials/agentsmith-agntcon-2026.slides.md)

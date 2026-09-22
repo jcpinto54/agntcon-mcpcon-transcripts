@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [An Orchestra of Agents (slides)](materials/an-orchestra-of-agents-agntcon-25-min.pdf) — 54 slides. A 16-agent Discord community assistant built on Google ADK: routing patterns, parallel fan-out, function tools vs MCP, and a production incident traced to a premature stream break. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/3d/An%20Orchestra%20of%20Agents%20%28AGNTCon%2025-min%29.pdf))
-- Extracted text: [`materials/an-orchestra-of-agents-agntcon-25-min.txt`](materials/an-orchestra-of-agents-agntcon-25-min.txt)
+- Slide-by-slide description: [`materials/an-orchestra-of-agents-agntcon-25-min.slides.md`](materials/an-orchestra-of-agents-agntcon-25-min.slides.md)

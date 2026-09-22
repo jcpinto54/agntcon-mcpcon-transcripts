@@ -20,4 +20,4 @@ contributor: jcpinto54
 ## Slides
 
 - [Agents Can Pay. Can They Prove It?](materials/multipaz-credentagent-mcpcon-agntcon-europe-2026.pdf) — 32 slides. Introduces CredentAgent, built on the Multipaz open-source credential SDK, letting AI agents request device-bound, wallet-issued proofs (age, membership, payment) before completing a purchase. ([organisers' copy](https://hosted-files.sched.co/agntconmcpconeu26/d4/multipaz-credentagent-mcpcon-agntcon-europe-2026.pdf))
-- Extracted text: [`materials/multipaz-credentagent-mcpcon-agntcon-europe-2026.txt`](materials/multipaz-credentagent-mcpcon-agntcon-europe-2026.txt)
+- Slide-by-slide description: [`materials/multipaz-credentagent-mcpcon-agntcon-europe-2026.slides.md`](materials/multipaz-credentagent-mcpcon-agntcon-europe-2026.slides.md)
