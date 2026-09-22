@@ -30,9 +30,21 @@ python3 .claude/skills/describe-slides/scripts/batch_slides.py --agents 8
 
    > Describe the decks in `.transcribe-cache/slides/batches/batch3.json`.
 
-   The agent definition pins the model, so do not override it: this is a
-   high-volume vision job and the cost difference across a thousand slides is
-   the whole reason it is pinned.
+   **Name the model on every call**, like this:
+
+   ```
+   Agent(subagent_type: "slide-describer", model: "sonnet",
+         prompt: "Describe the decks in .transcribe-cache/slides/batches/batch3.json")
+   ```
+
+   The definition declares `model: sonnet`, and the documented resolution
+   order is per-call model, then the definition's, then
+   `CLAUDE_CODE_SUBAGENT_MODEL`, then the main conversation's. But the second
+   step is currently broken -- frontmatter `model:` is ignored and a subagent
+   silently inherits the parent's model (anthropics/claude-code#44385). On a
+   thousand-slide vision job that is the difference between Sonnet and
+   whatever the orchestrator happens to be running, so never leave it to the
+   definition to enforce.
 
 4. **Verify and resume.** Re-run `batch_slides.py`; it lists only decks with no
    `.slides.md` yet, so a clean run prints `nothing left to describe`. Anything
