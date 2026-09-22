@@ -1,0 +1,331 @@
+--- slide 1 ---
+AGNTCON + MCPCON EUROPE 2026  ·  AMSTERDAM  ·  17 SEPTEMBER
+v1.0
+A2A Goes Stable
+What changed, why, and what's next
+Sam Betts
+Engineering Technical Lead  ·  Cisco Systems
+Kuba Herczyński
+Staff Software Engineer  ·  Google
+Both A2A Protocol maintainers   ·   #AGNTCon  #MCPCon
+Agent
+Agent
+A2A
+
+--- slide 2 ---
+WHO'S TALKING
+Two core maintainers
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+2
+Sam Betts
+Engineering Technical Lead  ·  Cisco Systems
+Contributor to the A2A specification and SDKs. Works on AGNTCY. Fourteen years building cloud-native platforms, security and AI systems.
+Kuba Herczyński
+Staff Software Engineer  ·  Google
+Contributor to the A2A specification and its adoption. Authored the v0.3 to v1.0 backward-compatibility design.
+A2A is a hosted project of the Agentic AI Foundation — the foundation running this conference.
+150+ partner organisations.  TSC: AWS · Cisco · Google · IBM Research · Microsoft · Salesforce · SAP · ServiceNow
+
+--- slide 3 ---
+PRIMER
+A2A in 60 seconds
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+Agent A
+reasoning + orchestration
+via MCP
+Tools
+Data
+Context
+Agent B
+reasoning + orchestration
+via MCP
+Tools
+Data
+Context
+A2A
+1 · discover the Agent Card
+2 · delegate a Task
+3 · stream · poll · webhook
+MCP is inside an agent.   A2A is between agents.
+Most production systems run both.
+3
+
+--- slide 4 ---
+THE OBVIOUS QUESTION
+Why not MCP to agent?
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+Agent A
+reasoning + orchestration
+via MCP
+Tools
+Data
+Context
+Agent B
+reasoning + orchestration
+via MCP
+Tools
+Data
+Context
+MCP
+The agent becomes a
+tool
+,
+if you treat it like a tool.
+Agents adapt, plan and solve problems. Tools reply.
+4
+
+--- slide 5 ---
+THE CASE FOR v1.0
+Why v1.0 — and why now
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+01
+Governance
+A Linux Foundation project with an eight-company steering committee. Not one vendor's spec.
+02
+Reach
+Six official SDKs shipped: Python, Go, Java, JavaScript, .NET and Rust.
+03
+Design intent
+A hardening release, not a reinvention. Core ideas intact, rough edges removed.
+v0.3 was something to experiment with.   v1.0 is something to commit to.
+5
+
+--- slide 6 ---
+DEFINITIONS
+What “stable” actually means
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+01
+One normative source of truth
+a2a.proto is now the universal definition of the protocol, not a gRPC-specific file.
+02
+Explicit compatibility rules
+A defined versioning strategy, with the protocol version declared per interface.
+03
+Bindings that must agree
+JSON-RPC, HTTP+JSON and gRPC are formally specified with equivalence guarantees.
+Stable ≠ finished.  Stable means you can plan around it.
+6
+
+--- slide 7 ---
+ACT II
+What v1.0 delivers
+Signed Agent Cards  ·  Web-aligned architecture  ·  Multi-tenancy  ·  Modern security
+
+--- slide 8 ---
+ENTERPRISE CAPABILITIES
+Four things v1.0 puts on the table
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+Signed Agent Cards
+Cryptographic verification of identity and metadata — trust established before interaction.
+Multi-tenancy
+A single endpoint can securely host many agents.
+Heterogeneous environments
+Multi-protocol bindings and version negotiation. No lock-in to one stack.
+Improved security posture
+Modern auth flows in, legacy patterns out.
+Highlighted: the two we will look at in detail.
+8
+
+--- slide 9 ---
+DEEP DIVE 01
+Signed Agent Cards
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+In v0.3, an Agent Card was effectively trust-on-first-use.
+STEP 1
+Fetch the card
+Client retrieves the Agent Card from .well-known or from a registry.
+STEP 2
+Verify the signature
+A JWS signature (RFC 7515) over the RFC 8785 canonical form of the card.
+STEP 3
+Then interact
+Credentials and tasks flow only after identity is proven.
+Closes at the discovery layer
+lookalike cards in registries · stale cards with swapped auth · compromised discovery paths
+Verify before you send credentials, before you send a task — before you send anything.
+9
+
+--- slide 10 ---
+DEEP DIVE 02
+Web-aligned architecture
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+WIRE
+JSON + HTTP · JSON-RPC · gRPC
+DELIVERY
+polling · streaming · webhooks
+STYLE
+stateless · layered · HTTP semantics
+“An A2A interaction can begin with a single HTTP request.”
+— A2A v1.0 announcement
+Your existing load balancers, API gateways, WAFs and tracing already work. You do not need an agent mesh.
+10
+
+--- slide 11 ---
+ENTERPRISE, BRIEFLY
+Multi-tenancy and modern security
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+Multi-tenancy
+Route by URL sub-path, auth credentials, or an opaque tenant field in the Agent Card.
+one A2A endpoint
+agent-a
+agent-b
+agent-c
+Improved security posture
+✓
+Device Code flow (RFC 8628)
+✓
+pkce_required on Auth Code (RFC 7636)
+✕
+Implicit and Password flows removed
+Aligned with the OAuth 2.0 Security BCP.
+Enterprise-ready ≠ enterprise-heavy.  Same protocol, better defaults.
+11
+
+--- slide 12 ---
+ACT III
+Migration & extensibility
+Breaking changes  ·  backward compatibility by design  ·  extensions and bindings
+
+--- slide 13 ---
+THE HONEST SLIDE
+Yes — v0.3 → v1.0 breaks the wire
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+IMPACT
+WHAT CHANGED
+WHY
+CRITICAL
+TextPart / FilePart / DataPart → one unified Part
+Member presence replaces the kind discriminator
+HIGH
+Enum values → SCREAMING_SNAKE_CASE
+ProtoJSON compliance: completed → TASK_STATE_COMPLETED
+HIGH
+Stream events lose kind and final
+Wrapper members statusUpdate / artifactUpdate instead
+HIGH
+Agent Card collapses into supportedInterfaces[]
+One interface list; protocolVersion moves inside each
+HIGH
+Errors now use google.rpc.Status
+Replaces RFC 9457; ErrorInfo carries reason and domain
+Ordered by the impact rating in the spec's own migration guide.  →
+13
+
+--- slide 14 ---
+DESIGN DECISION 01
+Compatibility, baked into the Agent Card
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+The Agent Card is public — it lives in .well-known files, registries and emails between teams. You cannot ship two versions of it.
+PROTOBUF DEFINITION
+v1.0 fields only
+Clean. No legacy debt carried into the type definitions.
+JSON WIRE FORMAT
+v1.0 + v0.3 fields
+Legacy field names preserved. SDKs translate on marshal and unmarshal.
+A v0.3 client can still parse a v1.0 server's card — and the reverse.
+Clean core.  Compatibility at the edges.
+14
+
+--- slide 15 ---
+DESIGN DECISION 02
+Per-interface versioning
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+v0.3:  the protocol version was a property of the whole Agent Card. One agent, one version.
+v1.0:  protocol_versions moved into each interface.
+One agent
+agent.example.com
+https://agent.example.com/v03
+JSON-RPC
+v0.3
+https://agent.example.com/v1
+JSON-RPC
+v1.0
+grpc://agent.example.com:443
+gRPC
+v1.0
+Version negotiation becomes part of transport negotiation.
+Separate routes for your LB
+Separate metrics in tracing
+Opt into back-compat per transport
+15
+
+--- slide 16 ---
+THE PAYOFF
+All four combinations work
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+v0.3 SERVER
+v1.0 SERVER
+✓
+Native
+✓
+Legacy interface + card back-compat
+✓
+Card back-compat
+✓
+Native
+v0.3 client
+v1.0 client
+Progressive migration. No flag day. No frozen ecosystem.
+16
+MEASURED, NOT ASSERTED — SCAN FOR THE LIVE DASHBOARD
+Every night the ITK tests 8 SDK/version pairs — v1.0 and v0.3, all three bindings.
+The v0.3 cells above use each SDK's compatibility layer: opt-in in JS, not yet in Rust.
+
+--- slide 17 ---
+ROOM TO GROW
+A stable core, not a frozen ecosystem
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+Custom protocol bindings
+Replace the default transport while preserving A2A semantics.
+Extensions
+Add capabilities on top of the core. Advertised on the Agent Card, so clients can negotiate.
+A2A core
+Stable. Governed. Protected by semver.
+Both extension points have governance, so the ecosystem does not fragment.
+17
+
+--- slide 18 ---
+ROADMAP
+What the community is building now
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+NEXT PROTOCOL VERSION
+v1.1 — bidirectional streaming, later this year
+Backward compatible within v1.x — the semver promise, in practice.
+01
+SDK parity
+All six SDKs support v1.0. Four have cut stable releases; .NET and Rust are pre-stable.
+02
+Validation tooling
+Inspector, the TCK, the ITK — and a new official A2A CLI.
+03
+Community-led development
+Standard processes for contributing to the spec, SDKs and tooling.
+Full roadmap:  a2a-protocol.org/latest/roadmap
+18
+
+--- slide 19 ---
+TWO THINGS TO DO
+Try it. Then help shape it.
+A2A Protocol v1.0  ·  AGNTCon + MCPCon Europe 2026
+01
+Try v1.0 today
+a2a-protocol.org
+02
+Join the working group
+github.com/a2aproject
+Concrete asks right now: bidirectional streaming for v1.1, .NET and Rust SDK parity, custom protocol bindings.
+19
+If you're building an agent — not just a long-running tool — expose it over A2A.
+NEW  ·  official A2A CLI
+Pick your SDK, or start with the CLI. On v0.3? Migration is progressive, not a rewrite.
+
+--- slide 20 ---
+Thank you
+Questions?
+Sam Betts  ·  Cisco Systems
+·
+github.com/tehsmash
+Kuba Herczyński  ·  Google  ·  github.com/herczyn
+a2a-protocol.org   ·   github.com/a2aproject
+A2A Protocol is a Linux Foundation project.  TSC: AWS · Cisco · Google · IBM Research · Microsoft · Salesforce · SAP · ServiceNow
+a2a-protocol.org

@@ -1,0 +1,1545 @@
+--- slide 1 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+AGNTCon + MCPCon Europe 2026
+@RAI Amsterdam Convention Centre, Amsterdam, Netherlands
+Takashi Norimatsu
+Open Source Program Office (OSPO)
+Hitachi, Ltd.
+Potential Issues for Cross-domain Multi-hop 
+API Calls and Their Solution Proposal
+Date
+September 18, 2026
+
+--- slide 2 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal2
+AGNTCon + MCPCon Europe 2026
+Self Introduction
+Takashi Norimatsu Ph.D. (tnorimat in GitHub) 
+-  Keycloak* maintainer (since Oct 2021),
+  -  Technical lead of Keycloak community “OAuth SIG”,
+  -  Certified Information Systems Security Professional (CISSP) 
+  -  Chief OSS Specialist, Hitachi, Ltd., Japan 
+*: Identity and Access Management (IAM) open-source software, CNCF incubating project 
+(https://github.com/keycloak/keycloak)
+
+--- slide 3 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal3
+AGNTCon + MCPCon Europe 2026
+Self Introduction
+Contributing security features to Keycloak since 2017:
+  -  W3C Web Authentication API support (Passkeys)
+  -  IETF standards:
+      RFC 7636 PKCE, RFC 8705 OAuth MTLS, RFC 9126 PAR, RFC 8032/8037 EdDSA,
+      RFC 9207 OAuth2 Authz Server Issuer Identification, RFC 9449 DPoP, 
+      RFC 8414 OAuth 2.0 Authorization Server Metadata
+      Internet Draft: The OAuth 2.1 Authorization Framework
+      Internet Draft: OAuth Client ID Metadata Document (CIMD)
+  -  OpenID Foundation standards: 
+      FAPI 1.0 Baseline, FAPI 1.0 Advanced, 
+      FAPI 2.0 Security Profile, FAPI 2.0 Message Signing,
+      Client Initiated Backchannel Authentication, FAPI-CIBA
+  -  Agentic AI Foundation (AAIF) Model Context Protocol (MCP) standards:
+      MCP 2025-06-18, 2025-11-25, 2026-07-28
+
+--- slide 4 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal4
+AGNTCon + MCPCon Europe 2026
+Self Introduction
+Contributing conformance tests for Authorization Server since 2026:
+  -  MCP: conformance
+      MCP 2025-11-28, EMA/ID-JAG (in progress)
+
+--- slide 5 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal5
+1. Methods of Cross-domain API Calls
+2. Fraudulent Access Token Use
+3. Information Leaks
+4. User Swapping
+Contents
+
+--- slide 6 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal6
+1. Methods of Cross-domain API Calls
+2. Fraudulent Access Token Use
+3. Information Leaks
+4. User Swapping
+Contents
+
+--- slide 7 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Security Requirements
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal7
+AGNTCon + MCPCon Europe 2026
+Cross-Domain API Calls: Scope
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+User
+Trust Domain B
+AS-B
+No fraudulent token use across domains.
+No information leaks across domains.
+Trust Domain A
+It does not access any 
+external server furthermore.
+
+--- slide 8 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal8
+AGNTCon + MCPCon Europe 2026
+Forwarding
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+User
+Trust Domain A Trust Domain B
+AS-B
+MCP Authorization
+Potential for 
+fraudulent use
+Information leak from 
+Domain A to B
+: Access Token for MCP Server in Domain A
+
+--- slide 9 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal9
+AGNTCon + MCPCon Europe 2026
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+User
+Trust Domain B
+AS-B
+MCP Authorization
+Potential for 
+fraudulent use
+Information leak from 
+Domain A to B
+“If the MCP server makes requests to upstream APIs, it may act as an OAuth client to 
+them. The access token used at the upstream API is a separate token, issued by the 
+upstream authorization server. The MCP server MUST NOT pass through the token it 
+received from the MCP client.”
+MCP Specification states*:
+*: https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/security-considerations#access-token-privilege-restriction
+: Access Token for MCP Server in Domain A
+Forwarding
+Trust Domain A
+
+--- slide 10 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal10
+AGNTCon + MCPCon Europe 2026
+Token Exchange (External to Internal)
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+User
+Trust Domain B
+AS-B
+Potential for 
+fraudulent use
+Information leak from 
+Domain A to B
+: Access Token for MCP Server in Domain A
+: Access Token for API Server in Domain B
+MCP Authorization
+Token Exchange 
+(External to Internal)
+Trust Domain A
+
+--- slide 11 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal11
+AGNTCon + MCPCon Europe 2026
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+User
+Trust Domain B
+AS-B
+Need to get an appropriate 
+token from AS in Domain B
+: Access Token for MCP Server in Domain A
+: Access Token for API Server in Domain B
+MCP Authorization
+Token Exchange 
+(Internal to External)
+Trust Domain A
+Token Exchange (Internal to External)
+
+--- slide 12 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal12
+AGNTCon + MCPCon Europe 2026
+OAuth Identity and Authorization Chaining Across Domains*
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+User
+Trust Domain B
+AS-B
+No Need to get an appropriate 
+token from AS in Domain B
+No Potential for fraudulent use of a 
+token issued by AS in Domain A
+No Information leaks from 
+Domain A to B
+: Access Token for MCP Server in Domain A
+: Access Token for API Server in Domain B
+: JWT-formatted Assertion from Domain A to B without sensitive info
+Trust Domain A
+MCP Authorization
+Token Exchange 
+(Internal to External)
+JWT Authorization Grant*: Internet Draft: OAuth Identity and 
+Authorization Chaining Across Domains 
+(https://www.ietf.org/archive/id/draft-
+ietf-oauth-identity-chaining-17.html)
+
+--- slide 13 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal13
+AGNTCon + MCPCon Europe 2026
+MCP Elicitation in URL Mode
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+User/Agent
+Trust Domain B
+AS-B
+Elicitation
+External Authorization
+No Need to get an appropriate 
+token from AS in Domain B
+No Potential for fraudulent use of a 
+token issued by AS in Domain A
+No Information leaks from 
+Domain A to B
+: Access Token for MCP Server in Domain A : Access Token for API Server in Domain B
+Trust Domain A
+MCP Authorization
+
+--- slide 14 ---
+©Hitachi, Ltd. 2026. All rights reserved Introducing Elicitation Concept of MCP for Secure Cross-domain Multi-hop API Calls in OAuth World14
+OAuth Security Workshop 2026
+Comparison
+Characteristics MCP Elicitation 
+in URL Mode
+OAuth Identity and Authorization 
+Chaining Across Domains
+User Interaction A user interacts on AS in Domain B Yes No
+User Consent A user gives consent on AS in 
+Domain B
+Explicitly,
+Directly
+Implicitly,
+Indirectly (out-of-band)
+Identity 
+Chaining*
+AS in Domain A knows which user 
+ID corresponds to which one in 
+Domain B or vice versa
+No Yes
+Authorization 
+Chaining*
+AS in Domain B can take over 
+authorization information from AS 
+in Domain A
+Limited Yes
+*: Claims Transcription (https://www.ietf.org/archive/id/draft-ietf-oauth-identity-chaining-17.html#section-2.5)
+
+--- slide 15 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal15
+1. Methods of Cross-domain API Calls
+2. Fraudulent Access Token Use
+3. Information Leaks
+4. User Swapping
+Contents
+
+--- slide 16 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal16
+AGNTCon + MCPCon Europe 2026
+OAuth Identity and Authorization Chaining Across Domains
+: Access Token for MCP Server in Domain A
+: Bearer Access Token for API Server in Domain B
+: JWT-formatted Assertion from Domain A to B without sensitive info
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+User
+AS-B
+Trust Domain A
+MCP Authorization
+If an attacker can get the token, they can 
+access API server with the token. JWT Authorization Grant
+Token Exchange 
+(Internal to External)
+Trust Domain B
+
+--- slide 17 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal17
+AGNTCon + MCPCon Europe 2026
+MCP Elicitation in URL Mode
+: Access Token for MCP Server in Domain A
+: Bearer Access Token for API Server in Domain B
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+User/Agent
+Trust Domain B
+AS-B
+Elicitation
+External Authorization
+Trust Domain A
+MCP Authorization
+If an attacker can get the token, they can 
+access API server with the token.
+
+--- slide 18 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal18
+AGNTCon + MCPCon Europe 2026
+Risk Mitigation and/or Aversion
+Risk Mitigation:
+• Shortening token effective time
+• Narrowing token scope
+Risk Aversion:
+• Sender-constrained token
+
+--- slide 19 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal19
+AGNTCon + MCPCon Europe 2026
+Sender-Constrained Access Token - DPoP*
+Client
+AS
+User/Agent
+Authorization
+: Sender-constrained access token bound with the key
+: Temporal private signing key
+: DPoP Proof signed by a temporal private signing key
+Token
+request
+Token
+response
+API 
+ServerAccess -> Success
+Prove the client is a holder 
+of the key bound with the 
+access token.
+Prove the client is a 
+holder of the key.
+Bind the key with the 
+access token.
+Can discard the key after the token expires, 
+so it does not need to be persisted and managed.
+*: RFC 9449 OAuth 2.0 
+Demonstrating Proof of 
+Possession (DPoP) 
+(https://datatracker.ietf.org/d
+oc/html/rfc9449)
+
+--- slide 20 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal20
+AGNTCon + MCPCon Europe 2026
+Sender-Constrained Access Token - DPoP
+Client
+AS
+User/Agent
+Authorization
+: Sender-constrained access token bound with the key
+Token
+request API 
+Server
+Cannot prove the attacker is a holder 
+of the key bound with the access 
+token.
+Prove the client is a 
+holder of the key.
+Bind the key with the 
+access token.
+Attacker
+ Access -> Failure
+Steal
+: Temporal private signing key
+: DPoP Proof signed by a temporal private signing key
+
+--- slide 21 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal21
+AGNTCon + MCPCon Europe 2026
+OAuth Identity and Authorization Chaining Across Domains + DPoP
+: Access Token for MCP Server in Domain A
+: Sender-constrained Access Token for API Server in Domain B
+: JWT-formatted Assertion from Domain A to B without sensitive info
+: DPoP Proof signed by a temporal private signing key
+: Temporal private signing key
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS
+User
+Trust Domain B
+AS
+Trust Domain A
+MCP Authorization
+If an attacker can get the token, they can not 
+access API server with the token. JWT Authorization Grant
+Token Exchange 
+(Internal to External)
+
+--- slide 22 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal22
+AGNTCon + MCPCon Europe 2026
+MCP Elicitation in URL Mode + DPoP
+: Access Token for MCP Server in Domain A
+: Sender-constrained Access Token for API Server in Domain B
+ : DPoP Proof signed by a temporal private signing key
+: Temporal private signing key
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+User/Agent
+Trust Domain B
+AS-B
+Elicitation
+External Authorization
+Trust Domain A
+MCP Authorization
+If an attacker can get the token, they can 
+not access API server with the token.
+
+--- slide 23 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal23
+1. Methods of Cross-domain API Calls
+2. Fraudulent Access Token Use
+3. Information Leaks
+4. User Swapping
+Contents
+
+--- slide 24 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal24
+AGNTCon + MCPCon Europe 2026
+OAuth Identity and Authorization Chaining Across Domains
+: Access Token for MCP Server in Domain A
+: Access Token for API Server in Domain B
+: JWT-formatted Assertion from Domain A to B without sensitive info
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS
+User
+Trust Domain B
+AS
+Trust Domain A
+MCP Authorization
+Information leak from Domain B to A 
+if it includes sensitive information*.
+*: Ex. if the API server an initiate financial transaction, its transaction number, information on the bank account, etc.
+JWT Authorization Grant
+Token Exchange 
+(Internal to External)
+
+--- slide 25 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal25
+AGNTCon + MCPCon Europe 2026
+MCP Elicitation in URL Mode
+: Access Token for MCP Server in Domain A
+: Access Token for API Server in Domain B
+*: Ex. if the API server an initiate financial transaction, its transaction number, information on the bank account, etc.
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+User/Agent
+Trust Domain B
+AS-B
+Elicitation
+External Authorization
+Trust Domain A
+MCP Authorization
+Information leak from Domain B to A 
+if it includes sensitive information*.
+
+--- slide 26 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal26
+AGNTCon + MCPCon Europe 2026
+Token Types That Can Prevent Information Leaks
+Handle/Reference type token:
+• The token does not include any information.
+• Its intended receiver can only extract them by token introspection*1.
+  
+Signed and Encrypted JWT-formatted Assertion/Self-contained type token:
+• The token includes all Information.
+• The token is signed and encrypted by its issuer*2.
+• The token can only be decrypted by its intended receiver*2. 
+*1: OAuth 2.0 Token Introspection (https://datatracker.ietf.org/doc/html/rfc7662)
+*2: By applying Key Encryption defined by RFC 7516 and 7518, a token itself is encrypted by a shared key named Content Encryption 
+Key (CEK) in symmetric algorithm and the CEK is encrypted by a public key named Key Encryption Key (KEK) and decrypted by its 
+private key in asymmetric algorithm.
+
+--- slide 27 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal27
+AGNTCon + MCPCon Europe 2026
+Token Types That Can Prevent Information Leaks
+Handle/Reference type token:
+• Pros: No information included.      No information leaked.
+• Cons: Need token introspection.                    Response time increased.
+• Cons: Cannot know who issue the token.      Cannot support multiple AS.  
+Signed and Encrypted JWT-formatted Assertion/Self-contained type token:
+• Pros: No need token introspection.                Response time not increased.
+• Pros: Can know who issue the token.            Can support multiple AS.
+• Cons: If decryption key is stolen                    Information leaked.
+• Cons: Need decryption.                                  Response time increased.
+
+--- slide 28 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal28
+AGNTCon + MCPCon Europe 2026
+Token Types That Can Prevent Information Leaks - Alternative
+*: As far as I know, there is no formal definition. I quoted it from Keycloak. 
+(https://www.keycloak.org/docs/latest/server_admin/index.html#_using_lightweight_access_token)
+Handle/Reference type token:
+• The token does not include any information.
+• Its intended receiver can only extract them by token introspection.
+Lightweight token*:
+• The token includes only Information on token itself.
+• Other information can be extracted by token introspection*.
+• The token is signed by its issuer.
+Signed and Encrypted JWT-formatted Assertion/Self-contained type token:
+• The token includes all Information.
+• The token is signed and encrypted by its issuer.
+• The token can only be decrypted by its intended receiver.
+
+--- slide 29 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal29
+AGNTCon + MCPCon Europe 2026
+Token Types That Can Prevent Information Leaks
+Handle/Reference type token:
+• Pros: No information included.      No information leaked.
+• Cons: Need token introspection.                    Response time increased.
+• Cons: Cannot know who issue the token.      Cannot support multiple AS.  
+Lightweight token:
+• Pros: Can know who issue the token.             Can support multiple AS.
+• Pros: Can verify token validity                        Avoid unnecessary introspection.
+• Cons: Need token introspection.                    Response time increased.
+Signed and Encrypted JWT-formatted Assertion/Self-contained type token:
+• Pros: No need token introspection.               Response time not increased.
+• Pros: Can know who issue the token.            Can support multiple AS.
+• Cons: If decryption key is stolen                    Information leaked.
+• Cons: Need decryption.                                 Response time increased.
+
+--- slide 30 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal30
+AGNTCon + MCPCon Europe 2026
+OAuth Identity and Authorization Chaining Across Domains
+: Access Token for MCP Server in Domain A
+: Lightweight access token for API Server in Domain B
+: JWT-formatted Assertion from Domain A to B without sensitive info
+: Identity and authorization sensitive info in Domain B
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+User
+Trust Domain B
+AS-B
+Trust Domain A
+MCP Authorization
+Token 
+Introspection
+Information does not leak from Domain B 
+to A if it includes sensitive information.
+Token Exchange 
+(Internal to External)
+JWT Authorization
+Grant
+
+--- slide 31 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal31
+AGNTCon + MCPCon Europe 2026
+MCP Elicitation in URL Mode
+: Access Token for MCP Server in Domain A
+ : Identity and authorization sensitive info in Domain B
+: Lightweight access token for API Server in Domain B
+MCP 
+Server
+MCP
+Client
+AS-A
+User/Agent
+Trust Domain B
+Elicitation
+External Authorization
+Trust Domain A
+MCP Authorization
+API 
+Server
+Token 
+Introspection
+Information does not leak from Domain B to 
+A if it includes sensitive information.
+AS-B
+
+--- slide 32 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal32
+1. Methods of Cross-domain API Calls
+2. Fraudulent Access Token Use
+3. Information Leaks
+4. User Swapping
+Contents
+
+--- slide 33 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal33
+AGNTCon + MCPCon Europe 2026
+MCP Elicitation in URL Mode: The Risk of User Swapping
+: Access Token for MCP Server in Domain A
+: Access Token for API Server in Domain B
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+Trust Domain B
+AS-B
+Elicitation
+External Authorization
+Trust Domain A
+MCP Authorization
+=
+=
+User/Agent for 
+MCP Authorization
+User/Agent for
+Accessing Elicitation URL 
+User/Agent for 
+External Authorization
+
+--- slide 34 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Trust
+ Domain A
+34
+AGNTCon + MCPCon Europe 2026
+Countermeasure*: Cookie Comparison
+MCP 
+Server
+MCP
+Client AS-A
+session {xyz…}
+Authorization Requestredirect
+User Consent Set-Cookie: session {xyz…}
+redirect Token Request
+Token Response
+Request: tools/list
+Introspect
+MCP Authorization
+Elicitation
+Authorization Response
+User Authentication 
+“sub”: “xyz…”
+“sub”: “xyz…”
+session {xyz…}
+rand() -> hij…
+elicitationId: hij…
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal
+by hand
+URLElicitationRequiredError {“elicitationId”: “hij…”, “url”: “https://...?elicitationId=hij...”}
+GET: https://...?elicitationId=hij…, Cookie: session {xyz…}
+alt
+: Access token for MCP Server
+*: I worked out these details based on https://modelcontextprotocol.io/specification/2026-07-28/client/elicitation#phishing
+“sub”: “xyz…”
+Compare
+Alice’s ID in 
+Domain A
+Alice
+
+--- slide 35 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Trust 
+ Domain B 
+Trust
+ Domain A
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal35
+AGNTCon + MCPCon Europe 2026
+Countermeasure*: Cookie Comparison
+MCP 
+Server
+MCP
+Client AS-A
+Elicitation
+AS-B
+redirect Authorization Request
+User Authentication, Consent
+Authorization Response
+redirect
+GET: https://...?elicitationId=hij…, Cookie: session {xyz…}
+elicitationId {hij…}
+“sub”: “abc…”
+Token Request
+Token Response
+elicitationId {hij…}
+session {xyz…}
+“sub”: “abc…”
+Alice’s ID in 
+Domain B
+Alice’s ID in 
+Domain A
+“sub”: “xyz…”
+Compare
+External Authorization
+: Access token for API Server
+*: I worked out these details based on https://modelcontextprotocol.io/specification/2026-07-28/client/elicitation#phishing
+Authorization Request, Set-Cookie: elicitationId {hij…} 
+Cookie: elicitationId {hij…}, session {xyz…} 
+Alice
+
+--- slide 36 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal36
+AGNTCon + MCPCon Europe 2026
+Countermeasure*: Cookie Comparison
+Challenges: 
+• A browser cannot handle multiple elicitation simultaneously.
+• The AS needs to implement such a cookie.
+• The cookie should be configured to be reached to MCP Server, which means that 
+whenever a new MCP Server is added, then the configuration might be updated.
+
+--- slide 37 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal37
+AGNTCon + MCPCon Europe 2026
+MCP Elicitation in URL Mode - The Risk of User Swapping
+Attacker’s Capability
+Risk: Low
+Risk: High
+Assumption: MCP Authorization follows security practices, so it is secure.
+Vulnerabilities The Risk of User Swapping
+• Phishing Aimed at User Swapping in Elicitation: Type 1
+✓ Attacker’s Capability: Make victim access MCP Server’s elicitation start page
+• Phishing Aimed at User Swapping in Elicitation: Type 2
+✓ Attacker’s Capability: Make victim sends an authorization request of the external 
+authorization
+• Phishing Aimed at User Swapping in Elicitation: Type 3
+✓ Attacker’s Capability: Make victim sends a modified authorization request of the 
+external authorization.
+✓ Vulnerabilities: The external authorization does not follow OAuth2 security practices.
+In external authorization,
+
+--- slide 38 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal38
+AGNTCon + MCPCon Europe 2026
+Phishing Aimed at User Swapping in Elicitation: Type 1
+: Access Token for MCP Server in Domain A
+: Access Token for API Server in Domain B
+MCP 
+Server
+MCP
+Client API 
+Server
+AS
+Trust Domain B
+AS
+Elicitation
+External Authorization
+Trust Domain A
+MCP Authorization
+=
+User/Agent
+“Mallory”
+User/Agent
+“Alice”
+User/Agent
+“Alice”
+Malloy access
+Alice’s resource
+complete external authorization
+=
+Make Alice access MCP 
+Server’s elicitation start page
+Threat Model: 
+  Attacker’s Capability:
+
+--- slide 39 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Trust
+ Domain A
+Trust
+ Domain B
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal39
+AGNTCon + MCPCon Europe 2026
+Phishing Aimed at User Swapping in Elicitation: Type 1
+MCP 
+Server
+MCP
+Client AS A
+Error Response elicitationId {hij…}
+Token Req/Res
+session {xyz…}
+API 
+ServerAS B
+“sub”: “a1b…”
+Mallory
+Compare ->
+Not matchphishing
+Mallory’s ID 
+in Domain A
+Alice’s ID in 
+Domain A
+abort
+Alice
+Authorization Req/Res, User Authentication, Consent
+session {a1b…}
+MCP
+Authorization
+Elicitation
+“sub”: “a1b…”
+“sub”: “a1b…”
+Request: tools/list, URLElicitationRequiredError 
+{“elicitationId”: “hij…”, “url”: “https://...?elicitationId=hij...”}
+GET: https://...?elicitationId=hij…, Cookie: session {xyz…}
+
+--- slide 40 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal40
+AGNTCon + MCPCon Europe 2026
+Phishing Aimed at User Swapping in Elicitation: Type 2
+: Access Token for MCP Server in Domain A
+: Access Token for API Server in Domain B
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS
+Trust Domain B
+AS
+Elicitation
+External Authorization
+Trust Domain A
+MCP Authorization
+=
+User/Agent
+“Mallory”
+User/Agent
+“Mallory”
+User/Agent
+“Alice”
+Complete external authorization
+=
+Make Alice send an 
+authorization request of 
+the external authorization
+Threat Model: 
+  Attacker’s Capability:
+Malloy access
+Alice’s resource
+
+--- slide 41 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Trust
+ Domain A
+Trust
+ Domain B
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal41
+AGNTCon + MCPCon Europe 2026
+Phishing Aimed at User Swapping in Elicitation: Type 2
+MCP 
+Server
+MCP
+Client AS A
+Token Req/Res
+session {a1b…}
+phishing
+API 
+ServerAS B
+“sub”: “a1b…”
+Mallory
+elicitationId {hij…}
+session {xyz…}
+“sub”: “a1b…”
+elicitationId {hij…}
+abort
+Mallory in 
+Domain A
+MCP
+Authorization
+Elicitation
+Compare
+-> Not match
+“sub”: “abc…”
+session {a1b…}
+“sub”: “a1b…”
+Cookie: elicitationId {hij…}, session {xyz…} 
+Authorization Req/Res, User Authentication, Consent
+GET: https://...?elicitationId=hij…, Cookie: session {a1b…}
+Authorization Req/Res, User Authentication, Consent
+Authorization Request, Set-Cookie: elicitationId {hij…} 
+Request: tools/list, URLElicitationRequiredError {“elicitationId”: “hij…”, “url”: “https://...?elicitationId=hij...”}
+Alice
+External
+Authorization
+Alice’s ID in 
+Domain B
+Alice’s ID in 
+Domain A
+
+--- slide 42 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal42
+AGNTCon + MCPCon Europe 2026
+Phishing Aimed at User Swapping in Elicitation: Type 3
+: Access Token for MCP Server in Domain A
+: Access Token for API Server in Domain B
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS
+Trust Domain B
+AS
+Elicitation
+External Authorization
+Trust Domain A
+MCP Authorization
+=
+The external authorization does not 
+follow the OAuth2 security practice.
+=
+Threat Model: 
+  Vulnerabilities:
+User/Agent
+“Mallory”
+User/Agent
+“Mallory”
+User/Agent
+“Alice”
+Make Alice send a modified 
+authorization request of the 
+external authorization
+Threat Model: 
+  Attacker’s Capability:
+
+--- slide 43 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Trust
+ Domain A
+Trust
+ Domain B
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal43
+AGNTCon + MCPCon Europe 2026
+Phishing Aimed at User Swapping in Elicitation: Type 3
+MCP 
+Server
+MCP
+Client AS A
+Token Req/Res
+session {a1b…}
+phishing
+API 
+ServerAS B
+“sub”: “a1b…”
+Mallory
+elicitationId {hij…}
+Session {a1b…}
+“sub”: “a1b…”
+elicitationId {hij…}
+Compare
+-> Match
+Token Req/Res
+Mallory in 
+Domain A
+Not verify 
+redirect_uri
+“sub”: “abc…”
+MCP
+Authorization
+Elicitation
+session {a1b…}
+“sub”: “a1b…”
+Authorization Req(redirect_uri = Mallory’s site)/Res,
+ User Authentication, Consent
+Alice
+redirect
+External
+Authorization
+Authorization Req/Res, User Authentication, Consent
+Cookie: elicitationId {hij…}, session {a1b…} 
+GET: https://...?elicitationId=hij…, Cookie: session {a1b…}
+Authorization Request, Set-Cookie: elicitationId {hij…} 
+Request: tools/list, URLElicitationRequiredError {“elicitationId”: “hij…”, “url”: “https://...?elicitationId=hij...”}
+Alice’s ID in 
+Domain BMallory in 
+Domain A
+
+--- slide 44 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Trust
+ Domain A
+Trust
+ Domain B
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal44
+AGNTCon + MCPCon Europe 2026
+Countermeasure: User ID Comparison
+MCP 
+Server
+MCP
+Client AS A
+Token Req/Res
+phishing
+API 
+ServerAS B
+“sub”: “a1b…”
+Mallory
+elicitationId {hij…}
+Token Req/Res
+Mallory in 
+Domain A
+Not verify 
+redirect_uri
+“sub”: “abc…”
+MCP
+Authorization
+Elicitation
+“sub”: “a1b…”
+Authorization Req(redirect_uri = Mallory’s site)/Res,
+ User Authentication, Consent
+Alice
+redirect
+External
+Authorization
+Authorization Req/Res, User Authentication, Consent
+Cookie: elicitationId {hij…} 
+GET: https://...?elicitationId=hij…
+Authorization Request, Set-Cookie: elicitationId {hij…} 
+Request: tools/list, URLElicitationRequiredError {“elicitationId”: “hij…”, “url”: “https://...?elicitationId=hij...”}
+Alice’s ID in 
+Domain B
+query
+false
+abort
+“sub”: “a1b…” in Domain A
+“sub”: “abc…” in Domain B
+Match -> Not same user
+
+--- slide 45 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal45
+AGNTCon + MCPCon Europe 2026
+Countermeasure: User ID Comparison
+MCP 
+Server
+AS-A
+Trust Domain B
+AS-B
+Trust Domain A
+Account   Linking
+“sub”: “abc…”
+Alice’s ID in Domain BAlice’s ID in Domain A
+“sub”: “xyz…”
+“sub”: “abc…”   in Domain B
+“sub”: “xyz…”   in Domain A
+: Access Token for MCP Server in Domain A
+: Access Token for API Server in Domain B
+=
+true/false
+Account Linking 
+Query
+“sub”:  “xyz…”
+“sub”:  “abc…”
+API 
+Server
+Fact: 
+• Same user, different ID in different domain.
+• MCP Server does not know that.
+• No standard way for AS to know that while there 
+are several ways can be considered.
+Ex. Account linking:
+  - User explicitly register to AS in Domain A their 
+ID registered in AS in Domain B.
+  - During identity federation/social login, ID 
+registered in AS in Domain B is registered to 
+AS in Domain A.
+Solution: AS implements the following query service:
+• MCP Server sends user IDs in both Domains.
+• AS returns if they are the same user’s ID or not.
+
+--- slide 46 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal46
+AGNTCon + MCPCon Europe 2026
+Countermeasure: User ID Comparison
+AS-A
+Trust Domain B
+AS-B
+Trust Domain A
+“sub”: “abc…”
+Alice’s ID in Domain A
+“sub”: “xyz…”
+Challenges: 
+• There is no standard for the account linking.
+• There is no standard for the query.
+• Privacy concerns: Possible user ID correlation 
+among domains, which allows many domains to 
+build a much more comprehensive picture of the 
+user's behavior.
+Remedies:
+• Privacy concerns: use Pairwise Pseudonymous 
+Identifier* (PPID) for “sub” claim.
+Practical Alternatives:
+• Apply Cookie Comparison without User ID and 
+only accept Domain assuring secure external 
+authorization. Trust Domain C
+AS-C
+“sub”: “9gw…”
+“sub”: “p3l…”
+Alice’s ID for Domain B
+Alice’s ID for Domain C
+Alice’s ID in Domain B
+Alice’s ID for Domain A
+Alice’s ID for Domain C
+“sub”: “phq…”
+“sub”: “01q…”
+“sub”: “123…”
+Alice’s ID in Domain C
+Alice’s ID for Domain A
+Alice’s ID for Domain B
+“sub”: “bk1…”
+“sub”: “658…”
+*: https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes
+
+--- slide 47 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal47
+AGNTCon + MCPCon Europe 2026
+Countermeasure: Cookie Comparison without User ID
+: Lightweight access token for MCP Server in Domain A with session id “sid” without “sub”
+: Lightweight access token for API Server in Domain B without “sub”
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+Trust Domain B
+AS-B
+Elicitation
+External Authorization
+Trust Domain A
+MCP Authorization
+User/Agent for 
+MCP Authorization
+User/Agent for
+Accessing Elicitation URL 
+User/Agent for 
+External Authorization
+: Session cookie issued by AS-A
+Token 
+Introspection
+Token 
+Introspection
+
+--- slide 48 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Trust
+ Domain A
+48
+AGNTCon + MCPCon Europe 2026
+Countermeasure: Cookie Comparison without User ID
+MCP 
+Server
+MCP
+Client AS A
+session {pq6…}
+Authorization Requestredirect
+User Consent Set-Cookie: session {pq6…}
+redirect Token Request
+Token Response
+Request: tools/list
+Introspect
+MCP Authorization
+Elicitation
+Authorization Response
+User Authentication 
+“sid”: “pq6…”
+“sid”: “pq6…”
+session {pq6…}
+rand() -> hij…
+elicitationId: hij…
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal
+by hand
+URLElicitationRequiredError {“elicitationId”: “hij…”, “url”: “https://...?elicitationId=hij...”}
+GET: https://...?elicitationId=hij…, Cookie: session {pq6…}
+: Lightweight access token
+  for MCP Server without “sub”
+  with session id “sid”“sid”: “pq6…”
+Compare
+rand() ->
+
+--- slide 49 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Trust
+ Domain A
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal49
+AGNTCon + MCPCon Europe 2026
+Countermeasure: Cookie Comparison without User ID
+MCP 
+Server
+MCP
+Client AS A
+Elicitation
+AS B
+redirect Authorization Request
+User Authentication, Consent
+Authorization Response
+redirect
+GET: https://...?elicitationId=hij…, Cookie: session {pq6…}
+elicitationId {hij…}
+Token Request
+Token Response
+elicitationId {hij…}
+session {pq6…}
+Trust 
+ Domain B 
+“sid”: “pq6…”
+Compare
+External Authorization
+Authorization Request, Set-Cookie: elicitationId {hij…} 
+Cookie: elicitationId {hij…}, session {pq6…} 
+: Lightweight access token
+  for API Server without “sub”
+Introspect
+assuring secure external authorization
+
+--- slide 50 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal50
+AGNTCon + MCPCon Europe 2026
+Secure External Authorization: Pushed Authorization Request*1
+Client AS
+GET: Authorization Request
+ (client_id, redirect_uri, scope, etc..)
+redirect
+Client AS
+fetch
+parameters
+GET: Authorization Request
+ (client_id, request_uri)
+redirect
+POST: Request
+ (client_id, redirect_uri, scope, etc..)
+register
+parameters Response  (request_uri)
+Parameters are conveyed 
+by query parameters
+Parameters are conveyed 
+by HTTP POST
+The contents of an authorization 
+request are pushed to AS.
+The authorization request only include 
+“client_id” and “request_uri”, which is a 
+key to fetch the contents registered 
+inside AS.
+[Effect]
+• An attacker cannot modify 
+parameters like “redirect_uri” the 
+request.
+• The attacker cannot impersonate a 
+client to register its authorization 
+request contents. 
+*1: RFC 9126 OAuth 2.0 Pushed Authorization Requests (https://www.rfc-editor.org/rfc/rfc9126.html)
+client
+authentication
+
+--- slide 51 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal51
+AGNTCon + MCPCon Europe 2026
+Challenges in Practice
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+User
+Trust
+Domain B
+AS-B
+Trust
+Domain A
+Assumption for Practitioners:
+• You want to apply security practices for secure MCP 
+authorization.
+• You want to federate only with Domain assuring 
+secure external authorization.
+In order to do so…
+• You can control all entities in Domain A.
+However…
+• You cannot control all entities in Domain B.
+But...
+• You can evaluate Domain B’s authorization security 
+(but how?).
+➔ Investigate their documentation and metadata*
+➔ Try an external authorization.
+    
+ but not interfere with Domain B’s service
+* IANA OAuth Parameters list up OAuth-related parameters. 
+(https://www.iana.org/assignments/oauth-
+parameters/oauth-parameters.xhtml)
+
+--- slide 52 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal52
+AGNTCon + MCPCon Europe 2026
+Implementation Example: Keycloak
+• Supported Specifications:
+https://www.keycloak.org/securing-apps/specifications
+• MCP Authorization:
+https://www.keycloak.org/securing-apps/mcp-authz-server
+• Token Exchange:
+https://www.keycloak.org/securing-apps/token-exchange
+• JWT Authorization Grant:
+https://www.keycloak.org/securing-apps/jwt-authorization-grant
+• OAuth Identity and Authorization Chaining Across Domains:
+https://www.keycloak.org/securing-apps/oauth-identity-authorization-chaining-across-domains
+• Identity Assertion JWT Authorization Grant (ID-JAG):
+https://www.keycloak.org/securing-apps/identity-assertion-jwt-authorization-grant
+• OAuth 2.0 Demonstrating Proof of Possession (DPoP):
+https://www.keycloak.org/securing-apps/dpop
+• Lightweight Access Token: 
+https://www.keycloak.org/docs/latest/server_admin/index.html#_using_lightweight_access_token
+MCP 
+Server
+MCP
+Client
+API 
+Server
+AS-A
+Keycloak
+Trust 
+Domain B
+AS-B
+Keycloak
+Trust
+Domain A
+
+--- slide 53 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal53
+AGNTCon + MCPCon Europe 2026
+Key Takeaways
+• For secure cross-domain multi-hop API calls, forwarding an access token and 
+token exchange only have some issues.
+• Instead, OAuth Identity and Authorization Across Domains or MCP Elicitation in 
+URL mode does not have such issues but has other potential issues.
+• To resolve the issues, some additional security measures can be applied: using
+session cookie, user ID comparison.
+• However, whether the measures can be applied depends on the security of 
+different domains. Therefore, the different domain’s security needs to be 
+investigated in advance.
+
+--- slide 54 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal54
+AGNTCon + MCPCon Europe 2026
+Trademarks
+• OpenID is a trademark or registered trademark of OpenID Foundation in the 
+United States and other countries.
+• Other brand names and product names used in this material are trademarks, 
+registered trademarks, or trade names of their respective holders.
+
+--- slide 55 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+55
+Thank you
+AGNTCon + MCPCon Europe 2026
+@RAI Amsterdam Convention Centre, Amsterdam, Netherlands
+Takashi Norimatsu
+Open Source Program Office (OSPO)
+Hitachi, Ltd.
+Potential Issues for Cross-domain Multi-hop API Calls and 
+Their Solution Proposal
+Date
+September 18, 2026
+
+--- slide 56 ---
+©Hitachi, Ltd. 2026. All rights reserved 
+Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal56
+Appendix: Metadata Directory
+
+--- slide 57 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal57
+AGNTCon + MCPCon Europe 2026
+Authorization Server Metadata (AS in Domain A)
+OAuth Identity and Authorization Chaining Across Domains
+Parameter Description Values Description
+grant_types_supported*1 JSON array containing a list of the 
+OAuth 2.0 grant type values that 
+this authorization server supports
+urn:ietf:params:oauth:grant
+-type:token-exchange*2
+Token exchange grant 
+type for OAuth 2.0
+identity_chaining_requested
+_token_types_supported*3
+JSON array containing a list of 
+Token Type Identifiers supported as 
+a requested_token_type in an 
+Identity and Authorization Chaining 
+Token Exchange request.
+urn:ietf:params:oauth:token
+-type:access_token*2
+Token type URI for an 
+OAuth 2.0 access token
+*1: RFC 8414 OAuth 2.0 Authorization Server Metadata (https://datatracker.ietf.org/doc/html/rfc8414#section-2)
+*2: RFC 8693 OAuth 2.0 Token Exchange (https://datatracker.ietf.org/doc/html/rfc8693#section-3)
+*3: Internet Draft: OAuth Identity and Authorization Chaining Across Domains (https://www.ietf.org/archive/id/draft-ietf-oauth-identity-
+chaining-17.html#section-3)
+
+--- slide 58 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal58
+AGNTCon + MCPCon Europe 2026
+Authorization Server Metadata (AS in Domain B)
+OAuth Identity and Authorization Chaining Across Domains
+Parameter Description Values Description
+grant_types_supported*1 JSON array containing a list of the 
+OAuth 2.0 grant type values that 
+this authorization server supports
+urn:ietf:params:oauth:grant-
+type:jwt-bearer*2
+JWT Bearer Token Grant 
+Type Profile for OAuth 2.0
+urn:ietf:params:oauth:grant-
+type:jwt-dpop*3
+DPoP-bound JWT 
+Authorization Grant
+*1: RFC 8414 OAuth 2.0 Authorization Server Metadata (https://datatracker.ietf.org/doc/html/rfc8414#section-2)
+*2: RFC 7523 JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants 
+(https://datatracker.ietf.org/doc/html/rfc7523#section-8.1)
+*3: Individual Internet Draft: OAuth 2.0 JWT Authorization Grant with DPoP Binding (https://www.ietf.org/archive/id/draft-parecki-oauth-jwt-
+dpop-grant-01.html#section-3.1)
+*4: RFC 9126 OAuth 2.0 Pushed Authorization Requests (https://www.rfc-editor.org/rfc/rfc9126.html#section-5)
+RFC 9126 OAuth 2.0 Pushed Authorization Requests (PAR): 
+Parameter Description
+pushed_authorization_request_endpoint*4 URL of the authorization server's pushed authorization request endpoint.
+
+--- slide 59 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal59
+AGNTCon + MCPCon Europe 2026
+Authorization Server Metadata (AS in Domain B)
+Proof Key for Code Exchange (PKCE):
+Parameter Description Values
+code_challenge_methods_supported*1 PKCE code challenge methods supported by this authorization server plain*2
+S256*2
+Parameter Description Values
+dpop_signing_alg_values_supported*3 JSON array containing a list of the JWS algorithms 
+supported for DPoP proof JWTs
+ES256, PS256, EdDSA, etc.
+OAuth 2.0 Demonstrating Proof of Possession (DPoP):
+*1: RFC 8414 OAuth 2.0 Authorization Server Metadata (https://datatracker.ietf.org/doc/html/rfc8414#section-2)
+*2: RFC 7636 Proof Key for Code Exchange by OAuth Public Clients (https://datatracker.ietf.org/doc/html/rfc7636#section-4.2)
+*3: RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP) (https://datatracker.ietf.org/doc/html/rfc9449#section-5.1)
+*4: RFC 9207 OAuth 2.0 Authorization Server Issuer Identification (https://datatracker.ietf.org/doc/html/rfc9207#section-3)
+RFC 9207 OAuth 2.0 Authorization Server Issuer Identification:
+Parameter Description Values
+authorization_response_iss_parameter_supported*4 Boolean value indicating whether the authorization server 
+provides the iss parameter in the authorization response.
+true/false
+
+--- slide 60 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal60
+AGNTCon + MCPCon Europe 2026
+Client Metadata (MCP Server in Domain A)
+*1: RFC 7591 OAuth 2.0 Dynamic Client Registration Protocol (https://datatracker.ietf.org/doc/html/rfc7591#section-2)
+*2: RFC 8693 OAuth 2.0 Token Exchange (https://datatracker.ietf.org/doc/html/rfc8693#section-3)
+*3: RFC 7523 JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants 
+(https://datatracker.ietf.org/doc/html/rfc7523#section-8.1)
+*4: RFC 9449 OAuth 2.0 Demonstrating Proof of Possession (DPoP) (https://datatracker.ietf.org/doc/html/rfc9449#section-5.2)
+OAuth Identity and Authorization Chaining Across Domains
+Parameter Description Values Description
+grant_types*1 JSON array containing a list of the OAuth 2.0 
+grant type values that this authorization server 
+supports
+urn:ietf:params:oauth:grant-
+type:token-exchange*2
+Token exchange grant 
+type for OAuth 2.0
+urn:ietf:params:oauth:grant-
+type:jwt-bearer*3
+JWT Bearer Token Grant 
+Type Profile for OAuth 2.0
+Parameter Description Values
+dpop_bound_access_tokens*4 Boolean value showing whether the client always uses DPoP for token requests true/false
+OAuth 2.0 Demonstrating Proof of Possession (DPoP):
+
+--- slide 61 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal61
+AGNTCon + MCPCon Europe 2026
+Client Metadata (MCP Server in Domain A)
+*1: RFC 9126 OAuth 2.0 Pushed Authorization Requests (https://www.rfc-editor.org/rfc/rfc9126.html#section-6)
+Parameter Description Values
+require_pushed_authorization_requests*1 Boolean parameter indicating whether the only means of initiating 
+an authorization request the client is allowed to use is PAR. If 
+omitted, the default value is false.
+true/false
+RFC 9126 OAuth 2.0 Pushed Authorization Requests (PAR):
+
+--- slide 62 ---
+©Hitachi, Ltd. 2026. All rights reserved Potential Issues for Cross-domain Multi-hop API Calls and Their Solution Proposal62
+AGNTCon + MCPCon Europe 2026
+Protected Resource Metadata (API Server in Domain B)
+Parameter Description Values
+dpop_signing_alg_values_supported*1 JSON array containing a list of the JWS alg values supported 
+by the resource server for validating DPoP proof JWTs
+ES256, PS256, 
+EdDSA, etc.
+dpop_bound_access_tokens_required*1 Boolean value specifying whether the protected resource 
+always requires the use of DPoP-bound access tokens
+true/false
+OAuth 2.0 Demonstrating Proof of Possession (DPoP):
+*1: RFC 9728 OAuth 2.0 Protected Resource Metadata (https://datatracker.ietf.org/doc/html/rfc9728#section-2)

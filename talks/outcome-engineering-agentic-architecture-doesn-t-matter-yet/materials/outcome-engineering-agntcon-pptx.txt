@@ -1,0 +1,186 @@
+--- slide 1 ---
+Outcome Engineering
+Why Your Agentic Architecture
+Doesn’t Matter(Yet)
+Prepared by
+Kierra Dotson
+2026
+AGNTCON
+Amsterdam
+
+--- slide 2 ---
+As technology keeps advancing,
+the bottleneck keeps moving.
+2022–23
+Generate
+Gen AI / ChatGPT
+Can it produce
+something useful?
+2023–24
+Ground
+RAG + enterprise context
+Can it know enough
+to be useful?
+2024–25
+Act
+Agents + tools
+Can it take action
+reliably?
+2025–26
+Coordinate
+Agentic systems
+Can it operate across
+a real workflow?
+2026+
+Deploy
+Forward Deployed Engineering
+Can we get it out of
+the demo and into the
+business?
+???
+Every step added capability. Every step also added more to integrate, test, secure, observe and own.
+
+--- slide 3 ---
+The Agent Graveyard
+Where “good” agents go when they never become
+important enough to keep.
+GREAT
+DEMO
+Looks impressive
+SHIPPED
+Never adopted
+PRODUCTION
+No meaningful shift TECHNICALLY
+SOUND
+Still optional AUTOMATED
+Wrong bottleneck
+40%+ of agentic AI projects are forecast to be canceled by the end of 2027.
+Built from capability • Detached from workflow • No meaningful business shift • No strategic anchor
+
+--- slide 4 ---
+Getting an AI system to production
+is only half the job.
+PRODUCTION
+Can we run this
+reliably?
+Technical Viability
+Integration • evals • security
+observability • cost • failure handling
+BUSINESS VALUE
+Does it change
+something that matters?
+Business Consequence 
+Capability • workflow • decision quality
+revenue • margin • risk • capacity
+Production proves viability. Value proves consequence.
+
+--- slide 5 ---
+The Build-Forward Default
+The tech stack becomes more apparent....but
+what about the business case? 
+A request comes in. We start solutioning.
+
+--- slide 6 ---
+Outcome Engineering
+Start with the business result. Engineer backward from there.
+Business
+result
+What must move?
+Capability
+What must we
+become better at?
+Workflow
+Where does it
+happen?
+Decision
+What should happen
+differently?
+Context
+What must the
+system know?
+Architecture
+What stack earns its
+place?
+By the time you choose a stack, you should already know what the stack is
+there to change for the business.
+
+--- slide 7 ---
+Where strategy becomes architecture
+Business says
+• increase revenue
+• reduce risk
+• improve margin
+• protect renewals
+Engineering still has to
+answer
+• which workflow?
+• where is the bottleneck?
+• which decision changes?
+• what context is required?
+• what autonomy is safe?
+• what does success look like?
+Only then do we architect
+• tools
+• permissions
+• integrations
+• human handoff
+• evals
+• monitoring
+When teams skip this strategy layer, the architecture gets clearer than the
+objective.
+The missing work is turning business priorities into systems worth building.
+
+--- slide 8 ---
+Where engineer value moves
+As the stack gets easier to access, value moves upstream.
+Reusable stack
+Models
+Frameworks
+Tools
+Protocols
+Infrastructure
+easier to access
+Differentiated judgment
+• problem framing
+• workflow understanding
+• decision design
+• domain context
+• adoption
+• measurable business
+impact
+harder to copy
+Durable advantage lives above the reusable stack.
+
+--- slide 9 ---
+If engineers don’t write
+the code anymore,
+who are they?
+Code is getting cheaper.
+Judgment is getting more
+valuable.
+Your value increasingly follows the quality of your
+judgment and the importance of the problems you
+solve.
+The job is not protecting the mechanism.
+It is protecting the outcome.
+
+--- slide 10 ---
+AGNTCon Amsterdam 2026 Outcome Engineering
+The Outcome Engineer’s Checklist
+Questions to ask before you start architecting the solution.
+☑  What outcome needs to move?
+☑  Where is the actual bottleneck?
+☑  What part of the workflow controls that
+☑  What has to get better for the business 
+☑  What proprietary context does the syste
+☑  Will this become harder to replace over
+If shutting the system off would not make something important worse, it probably has not earned its place ye
+
+--- slide 11 ---
+AGNTCon Amsterdam 2026 Outcome Engineering
+Don’t architect
+the agent.
+Architect
+the advantage.
+Build systems so embedded in how the business wins that turning them off becomes
+a risk.

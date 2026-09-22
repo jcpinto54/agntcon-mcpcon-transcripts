@@ -1,0 +1,154 @@
+--- slide 1 ---
+Where theagentic stackis being built. 
+We Built an Agent,
+We Shipped a Compiler.
+Here’s Why.
+Joel Verezhak  |  Observability Architect, Grafana Labs
+
+--- slide 2 ---
+Where theagentic stackisbeing built. 
+Hi, I’m Joel.
+Physics.
+IT.
+Observability.
+Dad of three.
+
+--- slide 3 ---
+Where theagentic stackisbeing built. 
+What we’re here to help with
+Grafana Labs
+Understand systems.
+Keep them reliable.
+Observability
+Architects
+Long-term
+technical partners
+Customer
+outcomes
+Progress that
+matters to them
+
+--- slide 4 ---
+Where theagentic stackisbeing built. 
+What does success look like?
+Why anything?
+What needs
+to improve?
+Why Grafana?
+How can
+we help?
+Why now?
+Why does it
+matter now?
+A shared plan
+
+--- slide 5 ---
+Where theagentic stackisbeing built. 
+I’ll just add another rule.
+Illustrative instruction document
+500lines of instructions
+1  BIG SKILL
+ 2  STRUCTURE
+ 3  ENGINE
+ 4  SMALL SKILL
+Same account. Ten attempts.
+Six got the customer’s
+stated target wrong.
+
+--- slide 6 ---
+Where theagentic stackisbeing built. 
+Let’s give it some structure.
+Python scripts. Agreed data. A judge.
+Read
+ Organise
+ Draft
+ Check
+It felt like gaining control.
+1  BIG SKILL
+ 2  STRUCTURE
+ 3  ENGINE
+ 4  SMALL SKILL
+
+--- slide 7 ---
+Where theagentic stackisbeing built. 
+1  BIG SKILL
+ 2  STRUCTURE
+ 3  ENGINE
+ 4  SMALL SKILL
+The wrong customer.
+A few test accounts → hundreds of accounts.
+Customer A
+Customer B
+Customer C
+Draft for customer A
+Internal draft. No customer received it.
+
+--- slide 8 ---
+Where theagentic stackisbeing built. 
+Now it has a critic.
+The success plan engine
+Draft Critique
+Revise
+Architect
+reviews
+1  BIG SKILL
+ 2  STRUCTURE
+ 3  ENGINE
+ 4  SMALL SKILL
+
+--- slide 9 ---
+Where theagentic stackisbeing built. 
+Then we had to run it.
+I’m an OA.
+I have customers to look after.
+1  BIG SKILL
+ 2  STRUCTURE
+ 3  ENGINE
+ 4  SMALL SKILL
+PROVIDERS
+New provider.
+New module.
+More to maintain.
+CLAUDE API
+Temperature: 0
+Incompatible with
+extended thinking.
+COLLABORATION
+Easy to run.
+Harder to
+contribute.
+
+--- slide 10 ---
+Where theagentic stackisbeing built. 
+Understand the customer first.
+BEFORE Plan template
+ Find things to fill it
+The first facts weren’t always the important ones.
+AFTER Be curious. Understand. Open template.
+Write the plan.
+Progressive disclosure: the template comes later.
+1  BIG SKILL
+ 2  STRUCTURE
+ 3  ENGINE
+ 4  SMALL SKILL
+
+--- slide 11 ---
+Where theagentic stackisbeing built. 
+Back to a skill.
+54lines
+One query.
+Human review.
+1  BIG SKILL
+ 2  STRUCTURE
+ 3  ENGINE
+ 4  SMALL SKILL
+Get the identity.
+Keep it.
+Account A Query A’s draft
+New provider? Switch harness.
+
+--- slide 12 ---
+#AGNTCon #MCPConWhere theagentic stackis being built. 
+Stay curious.
+Bring your team
+with you.

@@ -1,0 +1,609 @@
+--- slide 1 ---
+AGENTCON + MCPCON EUROPE 2026 · AMSTERDAM
+We built AI agents to fix security findings in production
+Here's what developers actually merged.
+Amine Boudraa · Gianfranco Romani
+Product Security · Thomson Reuters
+
+--- slide 2 ---
+PRESENTERS
+Today's presenters
+Amine Boudraa
+Senior Product Security Engineer
+Gianfranco Romani
+Senior ML Engineer · Cybersecurity
+02 / 20
+
+--- slide 3 ---
+THE REMEDIATION GAP
+The state of vulnerability remediation
+Cumulative security findings
+THE GAP ALREADY EXISTS
+2020
+2021
+2022
+2023
+2024
+2025
+2026
+Findings discovered
+Findings remediated
+Conceptual model, not measured data
+03 / 20
+AI-ASSISTED DEVELOPMENT
+AI-ENABLED DISCOVERY
+Open remediation backlog
+2025 — Vulnerability volume reaches record levels.
+NIST reports CVE submissions grew 263% from 2020 to 2025.
+2026 — HackerOne’s 2026 platform data
+reports vulnerability submissions up 76% year over year, while remediation improved only 19%.
+Reducing this gap is our focus today
+
+--- slide 4 ---
+WHERE ASSISTANTS WORK
+AI Assistants can help when the fix is cheap
+The more of the application a fix must understand, the less an assistant can prove it worked.
+SPECIALIZATION
+TAKES OVER
+HERE
+ONE LINE, ONE FILE
+A FUNCTION'S DATA FLOW
+MULTIPLE FILES, ONE MODULE
+THE WHOLE APPLICATION
+SCOPE THE AI MUST UNDERSTAND  →
+FIX
+RELIABILITY
+NEED FOR
+SPECIALIZATION
+04 / 20
+Conceptual model, not measured data
+
+--- slide 5 ---
+ENTERPRISE SCALE
+A valid fix does not scale by itself
+Specialization
+is the engine. Scaling needs a system around it.
+REPOSITORIES
+across many
+teams
+→
+THE REMEDIATION SYSTEM
+Create fixes that are
+optimized and valid
+Follow them through their
+lifecycle until they get
+merged
+→
+PULL REQUESTS
+one per fix
+THE REMEDIATION BACKLOG
+merged
+PR green, waiting on a human
+PR red, the agent repairs it
+no PR yet
+05 / 20
+
+--- slide 6 ---
+OUR APPROACH
+Two specialist agents, one remediation system
+SPECIALIZATION
+what it takes to get one fix right
+user_input →
+query()
+static application security testing
+SAST AGENT · FIRST-PARTY
+CODE
+The code your team wrote. A flagged
+path runs from untrusted input to a
+dangerous operation.
+Optimization MCP
+lib-core 2.8.0
+lib-net 4.1.2
+CVE
+lib-io 1.3.9
+software composition analysis
+SCA AGENT · THIRD-PARTY
+LIBRARIES
+A library version in your dependency
+tree carries a known vulnerability.
+Not a line you wrote.
+Modernization Skills
+OpenRewrite
+Minimal set MCP
+SCALE
+what it takes to run this everywhere
+REPOSITORIES
+across many
+teams
+→
+ONE REMEDIATION SYSTEM
+Runs both agents, tracks, and keeps every result
+moving.
+18
+jobs running
+126
+PRs open
+40
+repositories
+→
+PULL REQUESTS
+opened
+CI green
+reviewed
+merged
+→
+→
+→
+↶ the system follows each one: repairs,
+revises, re-verifies
+06 / 20
+
+--- slide 7 ---
+SAST · TAINT ANALYSIS
+The best place to fix is rarely the place it was flagged
+1 · TAINT ANALYSIS
+2 · POSSIBLE FIXES
+3 · THE MINIMAL SET
+4 · WHAT IT COSTS
+1 · TAINT ANALYSIS
+2 · POSSIBLE FIXES
+3 · THE MINIMAL SET
+4 · WHAT IT COSTS
+SOURCE
+Untrusted input enters the application: a request parameter, a form field, a header.
+FLOW
+The value passes through functions and variables, unchanged or transformed.
+SINK
+It reaches a dangerous operation: a query, a shell command, a render.
+The line the scanner reports.
+→
+→
+/search
+q = req.query.q
+/profile
+q = req.body.bio
+/export
+q = req.query.fmt
+res.send(html)
+response body
+res.render(view)
+template output
+fs.write(path)
+file on disk
+shared code
+trim(q)
+buildRow(q)
+clean(q)
+toCsv(q)
+writeRow(q)
+layout(q)
+possible location
+renderTemplate(q)
+minimal set · 2 locations cover all 3 paths
+minimal set
+MEASURED ON ONE APPLICATION
+36 XSS findings across 6 route files
+46
+→
+16
+LLM turns
+65%
+fewer tokens
+The comparison runs in our MCP, not in the model’s context.
+A finding is not a line. It is a path from untrusted input to a dangerous operation.
+Every node on a path can host a valid fix. The scanner only reports the last one.
+One change at the shared helper closes two of the three paths. The third needs its own.
+Choosing where to fix is analysis work. Done outside the model, it costs a fraction of the context.
+07 / 20
+
+--- slide 8 ---
+SCA · THIRD-PARTY DEPENDENCIES
+An SCA fix is a version change the application must
+survive
+1 · THE FINDING
+1 · THE FINDING
+2 · THE MINIMAL SET
+2 · THE MINIMAL SET
+3 · THE CHANGE
+3 · THE CHANGE
+4 · WHAT IT COSTS
+4 · WHAT IT COSTS
+lib-net 4.1.2
+→
+4.1.7
+the version the scanner flagged
+the version that fixes it
+THE APPLICATION’S DEPENDENCY TREE
+14
+CVEs across its dependencies
+CVE-2025-1904
+the finding
+· in lib-net 4.1.2
+CVE-2024-9121
+CVE-2025-0416
+CVE-2024-7733
+CVE-2025-2210
+CVE-2024-8802
++ 8 more
+FOUR WAYS TO GET THERE
+Conceptual model, not measured data
+Patch bump
+same API, lowest risk
+Minor bump
+new features, compatible by
+convention
+Pin / override
+force the transitive version; fast,
+adds debt
+Major upgrade
+fixes it properly, brings a migration
+SMALLER BLAST RADIUS
+LARGER BLAST RADIUS
+nothing may regress:
+the build still compiles · the tests still pass
+No code you own changes. You declare someone else’s version, and the tree re-resolves around it.
+OUR MCP RESOLVES THE MINIMAL SET
+14
+CVEs across its dependencies
+CVE-2025-1904
+the finding
+· in lib-net 4.1.2
+CVE-2024-9121
+CVE-2025-0416
+CVE-2024-7733
+CVE-2025-2210
+CVE-2024-8802
++ 8 more
+Conceptual model, not measured data
+→
+3
+version changes clear them all
+lib-net 4.1.2 → 4.1.7
+lib-core 2.8.0 → 2.9.1
+lib-io 1.3.9 → 1.4.0
+One bump can retire several CVEs; our MCP finds the smallest set that clears them all.
+THE CHANGE · WHO DOES WHICH PART
+412
+edits settled by the OpenRewrite recipe
+OPENREWRITE RECIPE · DECLARATIVE, RUNS OUTSIDE THE MODEL
+recipeList:
+-
+UpgradeDependencyVersion
+: spring-boot → 3.0.0
+-
+ChangeType
+: javax.* → jakarta.*
+-
+ChangeMethodName
+: Client.exec → Client.execute
+Same input, same result, every run.
+3
+problems left for the agent
+ONE OF THE THREE
+a stale import left behind by a rename
+Deterministic operations carry the bulk of the change, so the model only reasons about what is left.
+AVERAGE INPUT PER FIX · SPRING BOOT 2.6.7 → 3.0.0, SEVERAL REPOSITORIES
+Reading dependency files into context and reasoning through each upgrade is the
+expensive part.
+40k
+tokens without
+→
+560
+tokens with OpenRewrite
+The dependency files never enter the model’s context.
+The expensive part is reading dependency files into context. OpenRewrite removes it.
+08 / 20
+
+--- slide 9 ---
+THE REMEDIATION SYSTEM · WHERE IT RUNS
+One system underneath both agents
+OUR CLOUD ACCOUNT
+one identity, one bill, source only to the model and the scanner
+MANAGED AGENT RUNTIME
+SCALE
+one isolated micro-VM per job · ephemeral · destroyed after
+SPECIALIZATION
+what it takes to get one fix right
+SCALE
+what it takes to run this everywhere
+OUR CONTAINER
+Agent SDK
+the agent loop
+Security scanner
+SPECIALIZATION
+Snyk, SAST + SCA, over MCP
+git + gh
+worktrees, commits, branches
+Skills
+SPECIALIZATION
+build / test / upgrade playbooks
+Queue
+SCALE
+remediation requests in, many repositories at once
+State store
+SCALE
+where each job is: queued, running, PR open, merged
+Hosted model
+SCALE
+Bedrock, inference stays in our account
+GitHub App
+SCALE
+how the agent works on the pull request: opens it,
+replies to comments, listens for events
+Observability
+SCALE
+traces tagged with the pull request URL: what was done,
+what was skipped, and why
+09 / 20
+
+--- slide 10 ---
+THE REMEDIATION SYSTEM
+Two halves with the pull request in the middle
+BEFORE THE PR
+CREATE SOMETHING WORTH REVIEWING
+ON THE PR
+KEEP IT MERGE-READY
+TRIGGER
+Trigger with a repository
+MANAGED
+Agent
+runtime
+PULL REQUEST
+A living PR
+HUMAN
+Reviews
+then requests changes
+merges
+or closes
+OPERATIONS
+GitHub
+App
+opens, updates, replies
+reacts to comments, CI, base branch
+calls the runtime again
+The system keeps the pull request worth reviewing; the human decides whether to merge it.
+10 / 20
+
+--- slide 11 ---
+BEFORE THE PR · PLANNING
+Planning: understand the repository before any change
+1
+DISCOVER
+2
+READ THE CONVENTIONS
+3
+BASELINE
+4
+SCAN, THEN PLAN
+language, build system,
+and the projects inside
+the repository
+the repository’s own
+build and test
+conventions
+We treat these files as
+untrusted input.
+run build and tests
+before anything changes
+Ground truth for what was
+already broken, so we can tell
+our failures from the
+repository’s.
+SAST batches findings
+by file and bug class.
+SCA builds an upgrade
+plan, at the blast radius
+the repository owner
+chose.
+Nothing has changed in the code yet.
+11 / 20
+
+--- slide 12 ---
+BEFORE THE PR · ACTION
+The model writes the fix, the checks judge it
+1 · CHANGE
+Only what the plan defines,
+inside an isolated copy of
+the repository.
+2 · TWO CHECKS
+No regression.
+Build and tests fail only
+where the baseline already did.
+Fix proved.
+Findings counted per file
+and per bug class, before and after.
+FINDINGS
+3 → 0
+NEW ISSUES
+0 → 1
+blocks · no pull request
+3 · GATE
+Both checks pass, or there is
+no pull request.
+The system retries within a fixed budget. If the gate still fails, the change is reverted and nothing is
+published.
+12 / 20
+
+--- slide 13 ---
+BEFORE THE PR · MAKE IT FIT
+Correct is not the same as mergeable
+fix(security): parameterise SQL queries in UserDao
+AI Generated
+sast-remediation-agent
+remediation/sast-sql-injection → main
+SAST VULNERABILITY REMEDIATION
+Three SQL injection findings in two files. Post-fix scan
+confirms all three resolved.
+VULNERABILITY IMPACT
+TYPE
+FIXED
+REMAINING
+SQL Injection
+3
+0
+FILES CHANGED
+UserDao.java · parameterised SQL query
+SearchServlet.java · added output encoding
+REVIEW GUIDANCE
+Prepared statement binds every user input
+Encoding helper is the project’s own
+Linked to work item AB#1234 · tracks the remediation
+BRANCH AND COMMIT RULES
+PR STRUCTURE
+WORK ITEM
+Before we handled this, correct fixes were closed on format alone.
+13 / 20
+
+--- slide 14 ---
+ON THE PR · THE SECOND HALF
+The pull request is the midpoint, not the finish
+A pull request nobody maintains goes stale and is closed.
+The finding goes back to the backlog.
+REVISE
+A reviewer asks for a
+change. The agent revises
+on the same branch and
+re-verifies.
+SELF-HEAL
+CI turns red or the base
+branch moves. The agent
+repairs, updates and
+re-verifies.
+LEARN
+Review comments and
+outcomes are collected.
+They change how we build
+the agents.
+HUMAN CONTROL
+The agent keeps the pull
+request ready. Only the
+repository owner merges
+or closes it.
+14 / 20
+
+--- slide 15 ---
+ON THE PR · REVISE
+Ask for changes without restarting the process
+WHAT HAPPENS IN BETWEEN
+Recover the context
+The agent reads the thread and its
+own original plan, so it knows what it
+already changed and why.
+Change the same branch
+No second pull request. The review
+history and the conversation stay in
+one place.
+Re-run the same verification
+Build, tests and the scanner again. A
+comment does not get a shortcut
+past the gate.
+Push and reply
+The new commit and its evidence
+land on the same thread.
+Developers used to close the PR and open a new one. Almost nobody added the changes by hand.
+15 / 20
+
+--- slide 16 ---
+ON THE PR · SELF-HEAL
+Nobody has to ask for any of this
+EVENTS IT REACTS TO
+CI goes red
+Reads the failing job log, repairs the cause, re-verifies, pushes.
+The base branch moves
+Merges the new base into its own branch, re-verifies, pushes.
+CI goes green
+Green is not proof. If the repository’s checks only scan secrets
+or metadata, the agent builds the change itself, or says in its
+reply that it did not.
+WHAT IT CANNOT DO
+Keeping a branch current is exactly when an
+agent would reach for rebase or force-push.
+It cannot. A PreToolUse hook blocks the call before
+it runs. It is not an instruction a prompt can override.
+force-push
+amend
+Opening a pull request and walking away is what makes an agent untrustworthy.
+16 / 20
+The same hook blocks gh pr merge and gh pr close, so the
+agent cannot merge or close its own pull request. That is
+enforced in code, not left to good behaviour.
+cherry-pick
+
+--- slide 17 ---
+ON THE PR · ADAPT AND OBSERVE
+Nothing gets thrown away
+INSIDE ONE PULL REQUEST
+Every comment and event is new input
+review requests, replies, CI and base branch events
+Each revision starts from everything before it
+the full pull-request history, never from zero
+What it picks up here changes what it does next, in this
+same pull request.
+ACROSS EVERY PULL REQUEST
+Every run is traced
+Langfuse for the agent loop, Datadog for the platform, the
+GitHub App for what humans did on the pull request
+Every signal feeds the next run
+merges, closures, comments and recurring review
+patterns
+One collection layer, and it is the track record. Per run it
+shows what the agent did and skipped. Aggregated, it
+shows where every repository stands.
+Everything you have just seen is measured. So we can show you what developers actually merged.
+17 / 20
+
+--- slide 18 ---
+CONCLUSION
+Four things to take away
+1
+More code shipped plus better scanners equals a bigger backlog.
+2
+A coding assistant works when the fix is contained. It does not hold at enterprise scale.
+3
+Merged, not closed. The pull request only counts when it lands.
+WHAT DEVELOPERS MERGED
+100
+PRs merged in the last 2 weeks
+70%
+Merged
+18 / 20
+4
+Use deterministic operations wherever you can.
+
+--- slide 19 ---
+THE TEAM
+The people who built this
+Yassine Ilmi
+Director Product Security & Security Architecture
+Ruchita Kshirsagar
+Senior Product Security Engineer
+Nihit Gupta
+Senior Product Security Engineer
+Piyush Chhiroliya
+Senior Product Security Engineer
+Raul Sandoval
+Senior Product Security Engineer
+Nicolai Nielsen
+Product Security Architect
+Efstathios Chouliaris
+Manager in Software Development Engineering
+Adam Drews
+Staff Software Engineer I
+Leonardo Axel Ortiz
+Software Engineer I
+19 / 20
+
+--- slide 20 ---
+OPEN SOURCE
+Take the agents home
+RUN IT
+Try it on a real repository and tell us where it breaks.
+EXTEND IT
+Add a language or build tool through markdown playbooks.
+SHAPE IT
+Challenge the verification approach, refusal list and safe defaults.
+Remediation agents:
+20 / 20
+MCP Scanner:
+Codeflow
+solver:

@@ -1,0 +1,407 @@
+--- slide 1 ---
+I Was the Bottleneck, Not
+the Agent
+Vincent YSMAL · Senior Software Engineer, Datadog
+DATADOG
+
+--- slide 2 ---
+the agent’s done: code · test · PR my done: read · deploy · click · feedback
+Agent-1 says done. I pick it up and start reading.
+agent-1 code test PR
+ done me read deploy click feedback
+
+--- slide 3 ---
+the agent’s done: code · test · PR my done: read · deploy · click · feedback
+Agent-2 starts, overtakes me, and is done. I’m still on agent-1.
+agent-1 code test PR
+ done me read deploy click feedback
+agent-2 code test PR
+ done me read deploy click feedback
+
+--- slide 4 ---
+the agent’s done: code · test · PR my done: read · deploy · click · feedback
+Agents 3 and 4 land while I’m on agent-2.
+agent-1 code test PR
+ done me read deploy click feedback
+agent-2 code test PR
+ done me read deploy click feedback
+agent-3 code test PR
+ done me read deploy click feedback
+agent-4 code test PR
+ done me
+ waiting read depl
+
+--- slide 5 ---
+the agent’s done: code · test · PR my done: read · deploy · click · feedback
+All eight are done. I’ve finished two reviews. The rest is queue.
+agent-1 code test PR
+ done me read deploy click feedback
+agent-2 code test PR
+ done me read deploy click feedback
+agent-3 code test PR
+ done me read deploy click feedback
+agent-4 code test PR
+ done me
+ waiting read depl
+agent-5 code test PR
+ done me
+agent-6 code test PR
+ done me
+agent-7 code test PR
+ done me
+agent-8 code test PR
+ done me
+
+--- slide 6 ---
+Oh. I have created a problem.
+
+--- slide 7 ---
+Eight very fast coworkers.
+One extremely slow QA department.
+Me.
+
+--- slide 8 ---
+The honest math
+80%
+Parallelized across eight agents
+20%
+Still mine, eight times over
+
+--- slide 9 ---
+A reasonable “done”
+Implementation → Tests → Pull request → DONE
+Until you’re running eight of them.
+
+--- slide 10 ---
+And then, the part nobody wrote down
+ME → understand deploy exercise inspect decide
+Implementation → Tests → Pull request → DONE
+
+--- slide 11 ---
+Agents didn’t invent this
+Eng Done.
+QA Where can I test it?
+Eng Well, it works on my machine.
+PM Is that available for customers?
+Every job I’ve had. Four definitions of done, none of them written down.
+
+--- slide 12 ---
+The agent wasn’t failing its definition of
+done. I had failed to define the one I actually
+needed.
+
+--- slide 13 ---
+T H E  TA S K
+Add a feature flag to hide the
+export button.
+
+--- slide 14 ---
+What came back
+Code
+ Tests
+ Pull request
+
+--- slide 15 ---
+Done?
+Code Tests Pull request
+
+--- slide 16 ---
+Flag on, then refresh
+service:web-store
+Button hidden
+service:web-store Export
+Button is back
+Tests: still green
+REFRESH
+
+--- slide 17 ---
+Two definitions of done
+THE AGENT’S DONE
+Implementation
+Tests
+Pull request
+DONE
+MY ACTUALLY-DONE
+Understand
+Deploy
+Exercise the workflow
+Inspect the evidence
+Decide
+
+--- slide 18 ---
+Move it left
+Implementation Tests Deploy Exercise Inspect Pull request DONE
+The work didn’t disappear. It moved to the left of “done.”
+My review → The agent’s entry requirement
+
+--- slide 19 ---
+What I ask for
+WHAT I USED TO WRITE
+Add a feature flag to hide the
+export button.
+WHAT I WRITE NOW
+
+--- slide 20 ---
+What I ask for
+WHAT I WRITE NOW
+The button is hidden when the flag is on.
+WHAT I USED TO WRITE
+Add a feature flag to hide the export button.
+
+--- slide 21 ---
+What I ask for
+WHAT I WRITE NOW
+The button is hidden when the flag is on.
+It stays hidden after a refresh.
+WHAT I USED TO WRITE
+Add a feature flag to hide the export button.
+
+--- slide 22 ---
+What I ask for
+WHAT I WRITE NOW
+The button is hidden when the flag is on.
+It stays hidden after a refresh.
+When the flag is off, nothing else changes.
+WHAT I USED TO WRITE
+Add a feature flag to hide the export button.
+
+--- slide 23 ---
+“Done” is the claims you need proven,
+not the plan you’d have followed.
+
+--- slide 24 ---
+What I’d tell a new joiner
+WEEK ONE, FIRST PR
+“Did you test it?”
+“Here’s how you deploy it.”
+“The logs live here.”
+WHAT I GAVE THE AGENT
+A task.
+No definition of done.
+And the expectation that it already knew the
+rest.
+Nobody expects a new joiner to be omniscient. I expected it of the agent.
+
+--- slide 25 ---
+The closed loop
+Act
+Get the change into a
+testable environment.
+→
+Observe
+Exercise the real workflow in
+a browser.
+→ Compare
+Behavior against the claim.
+↵and back to Act
+
+--- slide 26 ---
+First, a deployment skill
+Current change → Isolated environment → live URL
+One capability, invoked whenever a task needs live validation.
+
+--- slide 27 ---
+Is the right thing actually running?
+Source state identified
+Build completed
+Artifacts synchronized
+Service restarted
+Health check passed
+A deployment command is
+an action.
+A verified deployment is a fact.
+
+--- slide 28 ---
+Observe
+→ Observe
+Flag on · load the page · refresh
+→
+The workflow a person would actually use, run by the agent,
+not by me.
+Act
+Compare
+
+--- slide 29 ---
+Also test the case I didn’t ask about
+EXPECTED CASE
+Flag on →  the button is gone
+CONTROL CASE
+Flag off →  the button is still there
+Without the control case, deleting the button passes every test.
+
+--- slide 30 ---
+The claim fails
+It stays hidden after a refresh
+Export
+Button reappears on reload
+Same bug as before.
+Found inside the loop, not in
+my browser.
+
+--- slide 31 ---
+Compare against independent evidence
+Compare →
+flag.export_hidden read=false
+source=default (no persisted value)
+trace 4f2c · page_load
+Logs and traces, not the agent’s own account of what it wrote.
+
+--- slide 32 ---
+One signal is never enough
+USER SURFACE
+Live URL
+Visible behavior
+Screenshot
+RUNNING SYSTEM
+Logs
+Traces
+Database state
+AGENT SESSION
+Recorded session
+Tool calls
+Tool results
+A tool call shows the model asked. A tool result shows it ran.
+
+--- slide 33 ---
+Fix, redeploy, rerun the same scenario
+Fix the cause → Redeploy → Rerun the failing scenario →
+ Proven
+The same scenario that broke, not a new, easier one.
+
+--- slide 34 ---
+Two ways out of the loop
+Proven
+Here is the evidence.
+Blocked
+Here is exactly what is stopping me.
+Quietly tested something easier
+
+--- slide 35 ---
+Prove the behavior, or tell me what’s
+stopping you. Those are the only two doors.
+
+--- slide 36 ---
+The PR as a diary
+Refactored the flag provider to read from the shared config loader. Added a useExportFlag hook and wired it through the toolbar
+container. Updated the export button component to accept a visibility prop. Renamed exportEnabled to exportVisible for
+consistency with the other flags. Also touched the config loader to memoize reads, since the provider was re-reading on every
+render. Added unit tests for the hook and snapshot tests for the toolbar. Updated three fixtures that referenced the old prop name.
+Removed a dead branch in the legacy toolbar that no longer compiles under the new prop type. Left the mobile toolbar alone for
+now — it uses a separate component tree and did not need changes. Rebased on main twice to pick up the config loader changes
+from #4412.
+Everything it did. Nothing about whether it works.
+
+--- slide 37 ---
+The PR as a decision packet
+CLAIM
+The export button is hidden when the flag is on,
+and stays hidden after a refresh.
+EVIDENCE
+Live link at commit a3f19c2
+Scoped logs: flag read on reload
+Recording of the workflow
+RISK
+Touches the shared config loader. Other flags
+read from it.
+UNKNOWN
+Couldn’t verify on mobile. No device in the
+test environment.
+
+--- slide 38 ---
+What I answer instead
+01 Do I believe the claim?
+02 Does the evidence support it?
+03 Do I accept the risk?
+04 Do I understand what’s unknown?
+
+--- slide 39 ---
+I made “done” more expensive
+for the agent.
+And cheaper for me.
+
+--- slide 40 ---
+But I still find myself babysitting.
+
+--- slide 41 ---
+Filed against my system, not the agent
+BUG I checked the same thing by hand, again
+Component My system, not the agent
+Steps to reproduce Hand a task to an agent. Wait. Ask the same follow-up question I asked
+last time.
+Expected The environment already knows to check this.
+Severity Recurring, once per agent, per task
+
+--- slide 42 ---
+Improve the environment, not the conversation
+Unclear expectation → Instruction
+Repeated workflow → Skill
+Fragile manual operation → Tool
+Recurring failure → Regression test
+The environment remembers, so I don’t have to.
+
+--- slide 43 ---
+Where an instruction lives
+AGENTS.mdread at the start of every session
+# Definition of done
+- Deployed to an isolated environment, commit verified live
+- Behavior exercised in a browser: expected case and control case
+- Evidence attached: live link, scoped logs, recording
+- Anything unproven listed explicitly
+# Skills: deploy · browser · evidence
+I describe the behaviors to validate. The repository provides the operating instructions.
+
+--- slide 44 ---
+Prompting each step isn’t autonomy
+IN THE CONVERSATION
+> please deploy this
+> now check it’s ready
+> now look at the logs
+> now run it again
+IN THE ENVIRONMENT
+Standing instructions
+Verification skill
+Deploy + health tool
+Regression tests
+The loop is the default. I don’t prompt it.
+A very expensive command line.
+
+--- slide 45 ---
+agent-1 code test PR
+ done me read deploy click feedback
+agent-2 code test PR
+ done me read deploy click feedback
+agent-3 code test PR
+ done me read deploy click feedback
+agent-4 code test PR
+ done me
+ waiting read depl
+agent-5 code test PR
+ done me
+agent-6 code test PR
+ done me
+agent-7 code test PR
+ done me
+agent-8 code test PR
+ done me
+
+--- slide 46 ---
+My role moved
+Decide what to build →
+The loop runs: deploy, exercise,
+inspect, prove → Judge the evidence
+
+--- slide 47 ---
+I stopped finishing the agent’s work, and
+started deciding whether I believed it.
+
+--- slide 48 ---
+Can I turn this babysitting into
+tooling?
+
+--- slide 49 ---
+F E E D B AC K
+Scan to rate this talk
+Goes to me and the event organizers.
+sfeedback.com/Jv5gnu
+I Was the Bottleneck, Not the Agent
+Vincent YSMAL, Datadog

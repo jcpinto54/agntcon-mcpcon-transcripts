@@ -1,0 +1,239 @@
+--- slide 1 ---
+A G N T C O N  +  M C P C O N  E U R O P E    ·    A M S T E R D A M    ·    1 8  S E P T E M B E R  2 0 2 6
+FROM ADVISORY
+TO AUTONOMOUS
+A staged model for agent adoption,
+and what happens when you skip a stage
+Milos Mandic  |  Forward Deployed Engineer  |  fdehub.org FDE Hub
+
+--- slide 2 ---
+THE SETUP
+A wholesaler. Sales order processing. A story from my time at
+Lleverage.
+Orders arrive by email, in every format a customer can invent. PDFs, spreadsheets, photos of
+handwritten notes. A team of four reads them, checks them, and keys them into the ERP. All
+day.
+Communicative customer. Access to the mailbox and the ERP in days, not weeks. Eval set of
+100+ real orders. Passed.
+Working agent in three weeks. Into production. Everyone happy.
+
+--- slide 3 ---
+W H A T  H A P P E N E D  N E X T
+Three weeks to build.
+Three months before anyone
+trusted it.
+The operators found the wrong orders. Everything got checked by hand after that.
+
+--- slide 4 ---
+WHY THE GAP EXISTS
+01
+Probabilistic
+software
+It does what it
+thinks you meant.
+People feel that.
+02
+Years of
+intuition
+They want to see it
+survive the edge
+cases ﬁrst.
+03
+Fear of
+replacement
+No upside for the
+person inside the
+loop.
+04
+The 100%
+illusion
+“We don’t make
+mistakes.” One AI
+error proves the
+point.
+
+--- slide 5 ---
+T H E  U N K N O W N  U N K N O W N S
+The agent doesn’t say “not sure”.
+It says “done” and proceeds.
+100%
+on an eval set of 100+ real
+orders
+~200
+orders a day in production. The
+evals cannot cover every case
+that walks in.
+0
+ways to know which ones fell
+outside the evals without a
+human reading the original
+Checks after the fact catch some of it: totals, dates, known customers. They cannot check completeness.
+Seven line items extracted. Were there eight? Only the original knows, and only a human is reading it.
+
+--- slide 6 ---
+THE COST OF A MISTAKE SETS THE BAR
+FINANCE
+A wrong invoice: thousands of euros
+Tolerance for error is effectively zero. Every edge case
+matters. Every ﬁeld gets veriﬁed. Full autonomy needs a
+mountain of evidence.
+WHOLESALE
+A wrong delivery address: tens of
+euros
+Bad, but recoverable. The threshold for acceptable risk is
+higher, so the stages can move faster.
+cost per error  ×  error rate  ×  volume  =  the evidence you need before
+each step
+Ask in week one. The answer sets the pace of everything after it.
+
+--- slide 7 ---
+THE FOUR STAGES
+STAGE 01
+Advisory
+The agent observes,
+analyses, suggests. Humans
+do all the work. A second
+opinion they can ignore.
+Sales orders: the agent
+reads the email and
+proposes the order. The
+operator keys it in
+themselves.
+Goal: exposure
+STAGE 02
+Semi-autonomous
+The agent drafts. A human
+approves before anything
+happens.
+Sales orders: the agent
+creates the order in draft.
+The operator reviews, edits,
+releases.
+Where most projects spend
+longest
+STAGE 03
+Enhanced
+autonomy
+The agent executes routine
+cases. Humans own
+exceptions and edge cases.
+Sales orders: clean orders
+booked automatically.
+Anything unusual queued
+for a human.
+The agent has earned the
+routine
+STAGE 04
+Full autonomy
+The agent runs end to end.
+Humans monitor and
+intervene rarely.
+Sales orders: every order
+booked. A dashboard
+watched. Rules owned by a
+named person.
+Earned, not given
+Every transition needs evidence and buy-in. From the operators, not just the sponsor.
+
+--- slide 8 ---
+I N  T H E  M O D E L ’ S  T E R M S
+We shipped at stage three.
+The operators had never seen
+stages one and two.
+0 1   Skipped stages one, two and four.
+0 2   Stepped back to stage two. Not to zero.
+0 3   Closed the loop: released orders compared with proposals, continuously.
+You get one chance, maybe two.
+
+--- slide 9 ---
+THE GATES
+S T A G E T H E  A G E N T  M A Y T H E  H U M A N  D O E S M O V E  O N  W H E N
+01
+Advisory
+Read the mailbox.
+Propose the order.
+No writes.
+Keys the order in.
+Compares it with the
+proposal.
+Operators agree with the proposal on more than 90% of
+a 100-order batch. The feedback loop is live and
+answered daily.
+02
+Semi-
+autonomous
+Create the order in
+draft.
+Reviews, edits, releases. Edit rate below 5% over four weeks. Zero leadership-
+visible failures. Eval set expanded with every
+production edge case found.
+03
+Enhanced
+Book clean orders.
+Queue the rest.
+Works the exception
+queue. Spot-checks the
+clean ones.
+Exception rate stable. Queue cleared within SLA. Spot-
+check accuracy holds above the cost-of-error threshold.
+Escalation path exercised, not just documented.
+04
+Full
+Book every order. Watches the dashboard.
+Owns the rules.
+Monitoring in place. A named operator owns changes to
+the agent’s rules. Drift caught by the system before an
+operator notices it.
+Thresholds scale with your cost of error. Finance moves slower than wholesale, on purpose.
+
+--- slide 10 ---
+EVERY DEPLOYMENT SINCE
+01
+Stages are the plan,
+not the recovery
+02
+Operators in
+from the ﬁrst call
+03
+Reaction
+to every action
+The build didn’t get faster. The road to trust got shorter.
+
+--- slide 11 ---
+W H E R E  T H E  P R O T O C O L  F I T S
+Autonomy is a permission set.
+Not a model setting.
+S T A G E   which tools are in the agent’s set. Reads only, then a draft write, then a booked
+write.
+G A T E    what sits on the write call. A human release, then deterministic checks with a
+human queue, then monitoring.
+P R O T O C O L  MCP, APIs, or a mix. The integration layer gives the agent doors. The trust
+ladder decides which ones it may walk through, and when.
+
+--- slide 12 ---
+LIVE IS NOT THE END
+The business keeps moving
+after the build.
+The agent keeps acting on the version that existed the
+day it shipped.
+Changes to what the agent believes go
+through the same gate as what it does.
+proposed rule
+evidence
+diff
+confirmation
+Rules change. Context changes. Someone has to own what the agent knows and decide
+what is still true.
+
+--- slide 13 ---
+The trust gap isn’t a bug.
+It makes you earn the right to
+remove the human from the loop.
+Instead of assuming it.
+
+--- slide 14 ---
+Three weeks to build.
+Three months to trust.
+Plan for both.
+The essays behind this talk: fdehub.org
+Milos Mandic  |  Forward Deployed Engineer  |  fdehub.org  |  linkedin.com/in/mandicm FDE Hub

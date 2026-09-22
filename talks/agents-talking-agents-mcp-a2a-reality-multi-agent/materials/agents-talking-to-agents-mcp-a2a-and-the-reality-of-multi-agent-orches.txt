@@ -1,0 +1,287 @@
+--- slide 1 ---
+Where the agentic stack is being built. 
+Agents Talking To Agents
+MCP, A2A, and the Reality of Multi-Agent 
+Orchestration in Production
+Willem BERROUBACHE
+
+--- slide 2 ---
+Where the agentic stack is being built. 
+Why I’m Talking About This
+Willem Berroubache Security Architect @ Orange
+AI & Agentic Security
+Building AI-driven security workflows and multi-agent systems for real 
+operational environments.
+AI Orchestration in Production
+Designing agent orchestration, tool use, decision flows and automation 
+around security use cases.
+Security at Network Scale
+Applying AI to 5G Core, fixed and home networks, Telco Cloud and Cloud-
+Native environments.
+
+--- slide 3 ---
+Where the agentic stack is being built. 
+The Obvious Architecture
+
+--- slide 4 ---
+Where the agentic stack is being built. 
+Multi-Agent Architecture: What We Assume
+Context Ownership Authority Retry Causality
+The next agent 
+has the full 
+picture.
+Delegating the 
+task transfers
+responsibility.
+Delegation
+limits what the 
+agent can do.
+Green protocol
+calls mean
+workflow 
+success.
+A retry
+repeats one 
+failed
+operation.
+
+--- slide 5 ---
+Where the agentic stack is being built. 
+Multi-Agent Architecture: What Actually Breaks
+Context Ownership Authority Retry Causality
+The critical
+constraint is
+missing, stale, or 
+distorted.
+Execution
+moves. 
+Validation and 
+closure have no 
+explicit owner.
+Permissions 
+may exceed
+the task scope.
+Each step
+succeeds
+locally. The 
+final outcome is
+wrong and 
+unexplained.
+The outcome
+is unknown. 
+The next
+attempt may
+duplicate or 
+diverge.
+
+--- slide 6 ---
+Where the agentic stack is being built. 
+Pattern 1: A2A Delegation, MCP Execution
+Boundary 1: Preserve context
+Boundary 2: Isolate evidence
+Boundary 3: Control mutations
+Boundary 4: Verify outcomes
+
+--- slide 7 ---
+Where the agentic stack is being built. 
+Boundary 1: Context Transfer
+A2A HANDOFF: TYPED TASK CONTRACT
+COORDINATOR
+Builds the task 
+contract
+TYPED TASK ENVELOPE
+Goal + acceptance criteria
+Constraints: scope, deadline, safety limits
+References: evidence URIs, prior artifacts
+Control: task ID, trace ID, idempotency 
+key
+Authority reference, never a shared 
+credential
+1
+SPECIALIST
+Validates before 
+reasoning
+INCOMPLETE
+Request input
+EXPIRED
+Reject the task
+KNOWN TASK ID
+Resume or return artifact
+Validate the contract before the receiving agent reasons or acts.
+
+--- slide 8 ---
+Where the agentic stack is being built. 
+Boundary 1: Context, Cache, and Durable State
+WHY BOUNDARY 1 NEEDS A LEDGER
+PROMPT 
+CONTEXT Instructions and evidence assembled for the current run ONE MODEL RUN
+KV CACHE Cached attention state for shared prefixes SERVING RUNTIME
+DURABLE STATE Task status, artifacts, policy decisions, and observed 
+outcomes WORKFLOW LIFETIME
+Caching saves compute. The ledger preserves ownership, recovery state, and audit evidence.
+The ledger carries the workflow across model runs.
+
+--- slide 9 ---
+Where the agentic stack is being built. 
+Operational Foundation: Reproducible Agent Runs
+VERSION THE INPUTS, RECORD THE EFFECTS
+MODEL + INFERENCE CONFIG
+SYSTEM PROMPT + TASK 
+TEMPLATE
+TASK INPUT + EVIDENCE IDS
+TOOL SCHEMAS + POLICY 
+VERSION
+RUN MANIFEST
+task_id  ·  trace_id
+input hashes + version set
+tool calls + artifact references
+approvals + observed outcome
+SAFE REPLAY
+1 Rebuild recorded inputs
+2 Compare decisions + 
+outcome
+3 Revalidate before 
+mutation
+Token sequences may vary even when the execution contract is preserved.
+Reliable replay preserves the conditions and revalidates every side effect.
+
+--- slide 10 ---
+Where the agentic stack is being built. 
+Pattern 2: Task-Scoped Authority
+BOUNDARIES 2 + 3: READ EVIDENCE, CONTROL SIDE EFFECTS
+SPECIALIST
+One task scope
+EVIDENCE 
+LANE
+RAG CLIENT
+retrieve
+RAG SERVICE
+rank + cite
+CURATED 
+SOURCES
+read only
+2
+EXECUTION 
+LANE
+MCP CLIENT
+named call
+POLICY GATE
+scope + approval
+MUTATING 
+SERVER
+task token + key
+REAL STATE
+reconcile
+3
+Task scope comes from the handoff. Policy enforces it at the MCP boundary.
+
+--- slide 11 ---
+Where the agentic stack is being built. 
+Boundaries 2 & 3: Concurrent Agents, One Resource
+TOOL CONFLICTS SURFACE UNDER REAL LOAD
+AGENT A
+reads version 42
+AGENT B
+reads version 42
+MCP MUTATION GATE
+resource version or ETag
+idempotency key
+lease or lock when needed
+policy + accepted task scope
+COMMIT v43
+one write accepted
+CONFLICT
+reread, retry, or escalate
+Reconciliation reads the resource after the write and records the observed state.
+Authority answers who may act. Concurrency control decides which write 
+commits.
+
+--- slide 12 ---
+Where the agentic stack is being built. 
+Boundary 4: Outcome Verification
+CAUSALITY: PROTOCOL STATUS + OBSERVED STATE
+MCP RESULT
+status + output
+AUDIT LINK
+task + trace IDs
+TELEMETRY
+independent state
+COMPARE
+intended vs 
+observed
+DECIDE
+close or compensate
+4
+FAILURE MODE
+A successful call can target the wrong resource or produce no operational effect.
+task_id     trace_id     artifact_id     resource_id     observed_state
+Close the task only after telemetry and orchestrator confirm the intended state.
+
+--- slide 13 ---
+Where the agentic stack is being built. 
+Pattern 3: Recoverable A2A Handoffs
+BOUNDARIES 1 + 4: RECOVERY AFTER A PARTIAL FAILURE
+DURABLE HANDOFF 
+ARTIFACT
+task ID + trace ID
+completed step + next action
+evidence + policy references
+observed side effects
+idempotency key + signature
+CHECKPOINT
+Store a typed artifact after 
+each completed step
+INTERRUPTION
+Agent or worker stops before 
+the task completes
+RECOVERY DECISION
+Resume a known task. 
+Compensate a partial effect. 
+Escalate ambiguous state.
+1 4
+Verified checkpoints let the next actor resume, compensate, or escalate.
+
+--- slide 14 ---
+#AGNTCon #MCPConWhere the agentic stack is being built. 
+Three Production Patterns, 
+Four Failure Boundaries
+APPLY THESE AT THE SYSTEM BOUNDARIES
+1
+SEPARATE ROLES
+Agent + capability boundaries
+A2A delegates work. MCP 
+exposes bounded capabilities.
+2
+SCOPED AUTHORITY
+Boundaries 2 + 3
+Separate retrieval from 
+mutation. Issue authority per 
+task.
+3
+RECOVERABLE 
+HANDOFFS
+Boundaries 1 + 4
+Checkpoint artifacts. Resume, 
+compensate, or escalate.
+
+--- slide 15 ---
+#AGNTCon #MCPConWhere the agentic stack is being built. 
+What We Would Change Today
+PRODUCTION RETROSPECTIVE
+01 ORCHESTRATED STATE A durable workflow engine owns transitions; LLMs reason inside 
+bounded specialist nodes.
+02 TASK-SCOPED EXECUTION Policy issues short-lived authority. 
+The MCP server verifies scope before mutation.
+03 GOVERNED FEEDBACK Verified outcomes drive evaluation; humans review ambiguity and 
+high-impact change.
+Approval everywhere creates reviewer fatigue and weaker oversight.
+Risk tiers direct human attention to critical edge cases.
+
+--- slide 16 ---
+Where the agentic stack is being built. 
+The end ! 
+Scan to connect on LinkedIn 
+I regularly share technical deep dives, real-world experiments, and lessons learned.
+
+--- slide 17 ---
+Where the agentic stack is being built.

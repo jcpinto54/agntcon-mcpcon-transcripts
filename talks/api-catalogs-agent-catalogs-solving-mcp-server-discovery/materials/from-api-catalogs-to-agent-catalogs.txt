@@ -1,0 +1,167 @@
+--- slide 1 ---
+1Public
+AGNTCon + MCPCon Europe 2026
+From API Catalogs
+to Agent Catalogs
+Solving MCP Server Discovery with Open Resource Discovery
+Vyshnavi Gadamsetti
+Software Architect, SAP SE
+Sebastian Wennemers
+Chief Architect, SAP SE
+17–18 September 2026
+Amsterdam, Netherlands
+
+--- slide 2 ---
+2
+Public
+MITRA, 
+help us assess the damage and get home.
+
+--- slide 3 ---
+3
+Stage 1 
+Public
+
+--- slide 4 ---
+4
+Stage 2 
+Public
+
+--- slide 5 ---
+5
+What Is Open Resource Discovery?
+Open Source Protocol For Applications & Services To Describe Their Resources & Capabilities For Discovery
+Public
+
+--- slide 6 ---
+6
+Stage 3
+Public
+
+--- slide 7 ---
+7
+MCP Server Card
+Describe a server before connecting
+Public
+Communications Relay
+Server Card Communications Relay
+Identity Name and description
+Connection MCP endpoint and transport
+Capabilities Supported server features
+Optional Tool Metadata
+▪ Check communications
+▪ Send a distress signal
+The Server Card Describes And MCP Connects
+
+--- slide 8 ---
+8
+Stage 4
+Public
+
+--- slide 9 ---
+9
+How The Pieces Fit
+From a user goal to a tool call
+Public
+Discover
+ORD
+Resource descriptions
+and references
+Find a relevant MCP server
+Inspect
+Server Card
+Identity, connection details
+and capability metadata
+Understand what it offers
+Execute
+MCP interaction
+Connect and authorize
+Invoke the selected tool
+Use its live capabilities
+MITRA: Find Communications, Inspect The Server, Send A Distress Signal
+
+--- slide 10 ---
+10
+From API Catalogs to Agent Catalogs
+Public
+2025
+A2A and MCP in ORD
+A2A and MCP supported in 
+ORD for Agent and AI 
+capability catalogs
+2015
+OpenAPI Initiative
+Portable descriptions
+for HTTP APIs, 
+Companies building API 
+catalogs
+2023
+ORD Open Sourced
+A protocol that enables 
+applications & services to 
+self describe their exposed 
+resources & capabilities  
+2024
+MCP introduced
+A shared protocol for
+AI tool calling
+Building on proven-practices and learnings from the past
+
+--- slide 11 ---
+11
+Discover The Server. Understand Its Tools. Execute.
+Public
+Discovery
+Before
+Execution
+
+--- slide 12 ---
+12
+Explore the materials
+Resources to continue the conversation
+Public
+Open Resource 
+Discovery
+MCP Server Card UI
+Playground
+Tool Metadata in  
+Server Card 
+Community proposal 
+Issue #30
+Demo & Materials
+
+--- slide 13 ---
+13
+Let’s stay in touch
+Public
+Vyshnavi Gadamsetti
+Software Architect, SAP SE
+Sebastian Wennemers
+Chief Architect, SAP SE
+
+--- slide 14 ---
+14Public
+Thank You !
+
+--- slide 15 ---
+15Public
+Appendix
+
+--- slide 16 ---
+16
+
+--- slide 17 ---
+17
+
+--- slide 18 ---
+18
+ORD is an open standard for publishing and discovering 
+metadata about application and service resources. 
+It enables applications and services to self-describe their exposed 
+capabilities, including APIs, Events, and Data Products, along with 
+their detailed metadata, in a standardised and machine-readable way.
+ORD is an open standard for publishing and discovering 
+metadata about application and service resources. 
+It enables applications and services to self-describe their exposed 
+capabilities, including APIs, Events, and Data Products, along with 
+their detailed metadata, in a standardised and machine-readable way.

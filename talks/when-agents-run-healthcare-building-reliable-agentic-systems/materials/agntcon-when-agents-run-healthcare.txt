@@ -1,0 +1,415 @@
+--- slide 1 ---
+Zuerst Hintergrundbild 
+über Klicken auf 
+Symbol hinzufügen
+und mit Rechtsklick 
+in den Hintergrund:
+Anschließend kann der 
+Titel bearbeitet werden!
+WhenAgents
+Run Healthcare
+AGNTCon + MCPCon Europe 2026
+Janosch Woschitz | Senior Cloud & AI Architect
+Building Reliable Agentic Systems in 
+Highly Regulated Environments
+
+--- slide 2 ---
+BARMER
+of enterprises will demote or 
+decommission autonomous AI agents by 
+2027 due to governance gaps discovered 
+only after production incidents occur.
+Gartner, 2026
+40%
+Gartner —"Avoid Governance Mismatch: Classify AI Agents by Autonomy Level". Gartner, Inc., May 2026
+
+--- slide 3 ---
+BARMER
+German Healthcare System
+3
+The system, in a nutshell
+Public statutory health insurance (GesetzlicheKrankenversicherung, GKV) covers the vast majority ofthe population. Alarge, 
+tightly regulated, and operationally complex system.
+74.2Mpeople insured under statutory 
+health insurance
+>90% of Germany’s population
+€353Bspent through the GKV system 
+every year
+93self-governed insurers -one legal 
+framework (SGB) sets the 
+boundaries: regulated, but 
+decentralized
+Bundesministerium für Gesundheit —"Finanzentwicklungder GKV im1.-4. Quartal 2025", March 2026
+
+--- slide 4 ---
+BARMER
+Who is BARMER
+4
+8.3Minsured people, one of the largest 
+GKV in Germany
+14,000+employees across Germany
+Nationwidebranch network serving members 
+in every region
+
+--- slide 5 ---
+BARMER
+From data platforms to agentic workflows
+5
+Janosch Woschitz· AI Architect · BARMER.KI
+DATA
+Data & Analytics
+Scalable data foundations,
+cloud, governance
+DECISIONS
+Analytics & ML at scale
+Predictive models and
+decision support
+INTERACTIONS
+Conversational AI
+& assistants
+BARMER Chat and
+internal assistants
+ACTIONS
+Agentic workflows
+How BARMER.KI evolved from AI foundations to agents
+
+--- slide 6 ---
+BARMER
+Why agentic, why now
+6
+Two forces are pulling apart and hiring can't close the gap
+4
+3
+14
+16
+31
+22
+11
+In Training
+< 25
+25 -34
+35 -44
+45 -54
+55 -59
+> 60
+6
+4
+18
+21
+25
+15
+12
+Workforce Age Distribution
+Employee age distribution, 2025 (%)
+BARMER Public Sector
+The workforce is shrinking, while experienced 
+employees are retiring.
+An aging population means more claims, more 
+complex care, more admin per member.
+“AgentenAutomatisierenArbeitsabläufe”
+↑
+Demand
+↓
+Supply
+BARMER’s response
+àAgents automate workflows
+
+--- slide 7 ---
+BARMER
+When agents enter core processes
+Probabilistic
+reasoning
+Agents operate with 
+uncertainty.
+Core processes 
+require defensible 
+outcomes.
+Autonomy &
+control
+More autonomy 
+increases the impact 
+of errors.
+Auditability &
+accountability
+Consequential 
+actions must remain 
+traceable and 
+attributable.
+Sensitive data
+& access
+Agents need context, 
+but access must 
+remain purpose-
+bound and least-
+privilege.
+Core-system
+integration
+Agents must work 
+across existing 
+environments
+without destabilizing 
+core systems.
+Autonomy introduces a different class of engineering challenges
+01 02 03 04 05
+The challenge isn't making agents intelligent enough. It's making their autonomy governable.
+
+--- slide 8 ---
+BARMER 8
+Regulation isn't a layer we add around the agent. It shapes how the system must be designed.
+GDPR
+Personal data
+Purpose limitation, lawful processing, and 
+data-subject rights
+Related: BDSG
+EU AI Act
+AI governance
+Risk classification, documentation, 
+oversight, and transparency
+SGB IV / V / X
+Health & social data
+Sector-specific rules on what data may be 
+used, by whom, and why
+BSI / C5 / …
+Infrastructure & security
+Security controls, assurance, cloud, and 
+operational requirements
+Related:NIS2 · KRITIS · CADA
+Agentic
+Workflow
+And then there is regulationOne agentic workflow. Multiple regulatory regimes. All at once.
+
+--- slide 9 ---
+BARMER
+Architecture
+9
+The How
+
+--- slide 10 ---
+BARMER
+Determinism first. AI where it earns its place.
+10
+Primarily deterministic, agentic where necessary, human in oversight
+Paper
+Email
+Fax
+Online
+Work Item
+Normalized 
+business case
+Deterministic
+Agent
+Agent Harness
+Observability & Runtime Guard
+End-to-end Trajectories ∙ Auditing ∙ Guardrails ∙ Validation
+Business Unit / Human
+Human review
+Can be reassigned to
+Exit Condition Met
+(e.g. Confidence Threshold)
+Failure
+-or-
+Success
+Processing completed
+No immediate action 
+needed
+Review needed
+Processing completed
+Manual review is 
+mandatory
+Workflow Orchestration
+Owns process state, business rules & agent invocations
+Deterministic
+…Agent
+Agent Harness
+
+--- slide 11 ---
+BARMER
+Observe end-to-end. Expose only what is needed.
+Durable evidence and controlled data access by design
+Work Item
+Agent
+Normalized 
+business case
+…
+Agent Harness
+Observability & Auditing
+Workflow 
+Orchestration
+11
+Runtime Guard
+Validation · Gating · Aggregate Monitoring
+ Workflow Protocol / 
+Technical Audit Log
+Technical Evidence
+execution trajectory · 
+states & transitions · versions · tool 
+& data interactions · rules & 
+validations · errors / failures
+Business Protocol
+Business Decision Record
+case context · evidence considered 
+· business rules & validations · 
+decisions & results · final outcome
+Traces Logs
+Business rules
+Metrics
+Steps & Versions
+Inputs / outputs Context, Tools, 
+Models, etc.
+Data 
+Interactions
+Data Bridge
+Data Integration Layer ∙ Controlled Integration Boundary
+Operational Core 
+Systems
+Operational 
+Databases
+Archive 
+System
+read / write
+
+--- slide 12 ---
+BARMER
+Model-based understanding. Controlled orchestration.
+12
+VLM-based document splitting and structured extraction
+Work Item
+Normalized 
+business case
+VLM
+Pre-Processing Document 
+Splitting
+Structured Extraction
+Post-Processing
+…
+VLM
+Workflow 
+Orchestration
+{ JSON }
+{ JSON }
+{ JSON }
+{ Schema }
+doc_type: DocType
+pages:list[int]
+{ Schema }
+rechnungsdatum: str
+betrag: float
+leistungserbringer: PII
+leistung: str
+antragssteller: PII
+rechnungsdatum: “17.09.2026”
+betrag: 87.53
+leistungserbringer: “AMS UMC”
+leistung: “Lab Diagnosis”
+antragssteller: “John Doe”
+
+--- slide 13 ---
+BARMER
+Walkthrough
+13
+One Case, End to End
+
+--- slide 14 ---
+BARMER
+Raw input
+14
+1 2 3 4 5 6 7 8
+9 10 11 12 13 14 15
+This is what arrives
+A single PDF containing different kinds of documents
+
+--- slide 15 ---
+BARMER
+Split + classification
+15
+[1 –4] 
+Claims Form
+[5 –6]
+Receipt
+9
+Receipt
+12
+Receipt
+13
+Receipt
+14
+Other / 
+Not relevant
+15
+Receipt
+Bringing Structure to the Case
+Documents are split and classified by type
+[7 –8]
+Receipt
+[10 –11]
+Receipt
+
+--- slide 16 ---
+BARMER
+Extraction
+16
+From Documents to Data
+Structured extraction turns relevant content into machine-readable data
+[1 –4] 
+Claims Form
+[5 –6] 
+Receipt
+
+--- slide 17 ---
+BARMER
+Business protocol
+17
+What Happened?
+The business protocol captures the case in business terms
+
+--- slide 18 ---
+BARMER
+Workflow protocol
+18
+How Did It Happen?
+The technical protocol captures the complete execution record
+80,000+ lines for a single case
+
+--- slide 19 ---
+BARMER
+Beyond the Workflow
+19
+Building for Production
+
+--- slide 20 ---
+BARMER
+What we didn’t cover
+20
+Release Engineering
+— Offline evals & software testing (unit / integration / smoke tests)
+— Automated quality gates & release processes
+Governance & Documentation
+— Documentation requirements & curation
+— Regulatory assessment of individual use cases & processes
+AI-assisted Engineering
+— AI-assisted development across the engineering lifecycle
+— Faster exploration, implementation & iteration
+From agentic to deterministic
+— Highly agentic approaches during development
+— Harden into deterministic production pathways wherever possible
+Production engineering extends beyond the runtime architecture
+
+--- slide 21 ---
+BARMER
+Key TakeawaysWhat we learned building agents for production
+01 Introduce autonomy selectively
+Explicit behaviour makes the system easier to control, test and explain
+Deterministic pathways keep the process controllable; use agentic reasoning where it adds value.
+02 Promote recurring needs into shared capabilities
+Reliability emerges from the system, not any single component
+Shared capabilities make access, integration and execution concerns consistent across workflows.
+03 Translate regulation into engineering
+Turn regulatory requirements into explicit, testable system properties
+Express requirements through controls, evidence, access boundaries and escalation paths that can be verified.
+21
+
+--- slide 22 ---
+Thank You
+https://www.linkedin.com/in/jwoschitz
+Janosch Woschitz
+Senior Cloud & AI Architect @ BARMER.KI

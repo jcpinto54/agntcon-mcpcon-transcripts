@@ -1,0 +1,471 @@
+--- slide 1 ---
+@codewith_ahsan
+An Orchestra of Agents
+What I learned running a multi-agent system for
+5,000+ developers
+Muhammad Ahsan Ayaz · GDE in AI & Angular
+AGNTCon + MCPCon Europe · Amsterdam · 2026
+
+--- slide 2 ---
+@codewith_ahsan
+Scan for Slides & Code 📱
+All links related to this session
+The postmortems I'll be quoting
+My socials
+
+--- slide 3 ---
+@codewith_ahsan
+[2026-05-23 19:55] user report:
+  Q: "any good repos for Google's Antigravity CLI?"
+  A: "dev.to temporarily unavailable."
+5,000 developers. 16 agents. One break statement.
+
+--- slide 4 ---
+@codewith_ahsan
+We'll come back to this.
+
+--- slide 5 ---
+@codewith_ahsan
+Who here runs an AI agent in production?
+🙋
+
+--- slide 6 ---
+@codewith_ahsan
+Who here runs more than one... talking to each
+other? 🙋
+
+--- slide 7 ---
+@codewith_ahsan
+And who found their worst agent bug from a user's
+message instead of their telemetry? 🙋
+
+--- slide 8 ---
+@codewith_ahsan
+prompt: Generate a super realistic image of a programmer using
+this drawing. Keep the weird pose as much as realistically
+possible.
+
+--- slide 9 ---
+@codewith_ahsan
+
+--- slide 10 ---
+@codewith_ahsan
++
+[Prompt]
++
+
+--- slide 11 ---
+@codewith_ahsan
+
+--- slide 12 ---
+@codewith_ahsan
+
+--- slide 13 ---
+@codewith_ahsan
+
+--- slide 14 ---
+@codewith_ahsan
+
+--- slide 15 ---
+@codewith_ahsan
+Whoami
+Muhammad Ahsan Ayaz
+GDE in AI & Angular
+Software Architect
+4x Author, 14M+ OSS installs
+Runs codewithahsan.dev (5,000+ devs)
+Also me: shipped a `break`
+statement to 5,000 people 😅
+
+--- slide 16 ---
+@codewith_ahsan
+The problem with being the community
+"How do I start with Angular? Any recent
+articles worth reading? Also... is anyone here
+open to mentoring me?"
+One Discord message. Three different specialists. One of me.
+What could go wrong?
+
+--- slide 17 ---
+@codewith_ahsan
+
+--- slide 18 ---
+@codewith_ahsan
+Orchestrators route. Leaves work.
+One big agent
+Every skill in one prompt
+Every failure everywhere
+Nothing measurable
+An orchestra
+Specialists with one job each
+A conductor that only routes
+Failures isolated per seat
+→
+
+--- slide 19 ---
+@codewith_ahsan
+One bot, sixteen agents (the abstract says twelve)
+The abstract says 12.
+My own docs say "12 total"... then list 13.
+I counted for this talk. It's 16.
+
+--- slide 20 ---
+@codewith_ahsan
+The tree
+13 LlmAgents + 3 workflow agents. All gemini-2.5-flash. All in one process.
+
+--- slide 21 ---
+@codewith_ahsan
+The root, in code
+sub_agents gives you LLM-driven routing for free. Each child's description is its routing advertisement.
+root_agent = LlmAgent(
+    name="community_assistant",
+    model=MODEL,  # gemini-2.5-flash
+    instruction=ROOT_INSTRUCTION,
+    before_model_callback=[pii_sanitizer, inject_current_date],
+    sub_agents=[  # <-- this list IS the routing table
+        onboarding_agent, mentorship_agent, projects_agent,
+        roadmap_agent, content_agent, external_knowledge_agent,
+    ],
+)
+
+--- slide 22 ---
+@codewith_ahsan
+⚠  The busy conductor pitfall
+The orchestrator routes. It does not answer.
+# BAD: root with tools and opinions of its own
+root_agent = LlmAgent(
+    tools=[search_blog_posts],  # <-- root hoards the turn
+    sub_agents=[content_agent],  # ...and content_agent starves
+)
+# GOOD: route-only root, all work lives in leaves
+root_agent = LlmAgent(
+    instruction=ROUTING_INSTRUCTION,
+    sub_agents=[content_agent, mentorship_agent],
+)
+
+--- slide 23 ---
+@codewith_ahsan
+Workflow agents: when you stop trusting
+the LLM
+output_key is scalar: one agent, one state key. Two facts = two silent extractors. State is the contract.
+onboarding_agent = SequentialAgent(
+    name="onboarding_agent",
+    sub_agents=[
+        skill_level_extractor,  # output_key="user_skill_level"
+        goals_extractor,        # output_key="user_goals"
+        welcome_agent,          # user-facing, runs LAST on purpose
+    ],
+)
+
+--- slide 24 ---
+@codewith_ahsan
+The fan-out
+GitHub, dev.to, Stack Overflow in parallel. Then one synthesizer voice.
+external_knowledge_fan_out = ParallelAgent(
+    name="ExternalFanOut",
+    sub_agents=[gh_researcher, devto_researcher, so_researcher],
+)
+external_knowledge_agent = SequentialAgent(
+    name="external_knowledge_agent",  # routable name on the WRAPPER
+    sub_agents=[external_knowledge_fan_out, synthesizer],
+)
+
+--- slide 25 ---
+@codewith_ahsan
+The parallel win 📊
+time
+gh_researcher 4,463 ms
+devto_researcher 4,570 ms
+so_researcher 5,251 ms
+Parallel total 5,251 ms
+Serial would be 14,284 ms
+
+--- slide 26 ---
+@codewith_ahsan
+The bottleneck didn't disappear. It moved.
+End-to-end turn: 17.6 s
+The synthesizer alone: 10.9 s
+
+--- slide 27 ---
+@codewith_ahsan
+Boring tools that never miss
+Plain Python functions. ADK derives the tool schema from signature + docstring.
+def search_github(query: str) -> dict:
+    """Search GitHub repositories for a topic."""  # docstring IS the schema
+    try:
+        resp = _client.get("/search/repositories", ...)  # 10s timeout
+        ...
+    except httpx.HTTPError:
+        return {"status": "error", "detail": "github unavailable"}
+        # <-- return, never raise
+
+--- slide 28 ---
+@codewith_ahsan
+So. How much MCP holds this together?
+
+--- slide 29 ---
+@codewith_ahsan
+Zero.
+
+--- slide 30 ---
+@codewith_ahsan
+Why function tools won here
+One process. I own both ends of every call
+Typed dict in, typed dict out... no serialization boundary
+No server lifecycle, no auth ceremony, no extra hop to monitor
+
+--- slide 31 ---
+@codewith_ahsan
+Where MCP earns its place
+Tools that cross an org boundary: someone else's system,
+someone else's auth
+Tools consumed by clients you don't control: Claude, IDEs, other
+people's agents
+Dev-time tooling, where the server ecosystem is genuinely a gift
+
+--- slide 32 ---
+@codewith_ahsan
+Callbacks: the immune system
+PII sanitizer
+Redacts before the model
+sees it.
+Tool cache
+600 s TTL on repeat searches.
+Lifecycle telemetry
+JSON to stdout. Zero infra.
+Date injection
+The model learns what
+"today" is.
+
+--- slide 33 ---
+@codewith_ahsan
+May 2026. The bot recommends...
+"Front-end Weekly News Week - 18"
+published 2020
+
+--- slide 34 ---
+@codewith_ahsan
+The fix is ten tokens
+Verified with a query about a tool announced 2 days earlier: all 5 repos dated inside those 2 days.
+def inject_current_date(callback_context, llm_request):
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    llm_request.append_instructions([
+        f"Today is {today} (UTC). When surfacing third-party "
+        f"content, prefer the most recent items unless the user "
+        f"asks for historical material."
+    ])  # <-- system_instruction, not a get_date TOOL (that costs a round trip)
+
+--- slide 35 ---
+@codewith_ahsan
+A websocket bot on serverless (yes, really)
+--min-instances=1 : scale-to-zero hangs up the Discord
+websocket
+--max-instances=1 : in-memory sessions... two instances =
+split-brain memory
+--no-cpu-throttling : Cloud Run throttles CPU between
+requests. A websocket bot's work happens between requests.
+PYTHONUNBUFFERED=1 : or the stdout telemetry pipeline just...
+buffers
+
+--- slide 36 ---
+@codewith_ahsan
+The epilogue 💸
+Same Dockerfile, same image. The flags that keep a websocket bot alive on Cloud Run are the flags that make
+it expensive there.
+Always-on + unthrottled CPU = instance-based billing
+1 vCPU rented 24/7 ≈  $47 / month. The free tier covers ~50 hours
+of it.
+Today the same container runs on an Always-Free e2-micro VM:
+~$3-4 / month
+
+--- slide 37 ---
+@codewith_ahsan
+So: sanitized, cached, instrumented,
+deployed.
+Nothing could go wrong. Right?
+
+--- slide 38 ---
+@codewith_ahsan
+The night the telemetry lied
+[2026-05-23 19:55] user report:
+  Q: "any good repos for Google's Antigravity CLI?"
+  A: "dev.to temporarily unavailable."
+
+--- slide 39 ---
+@codewith_ahsan
+The loop that looked correct
+Reads perfectly. Reviewed. Shipped. Wrong.
+async for event in runner.run_async(...):
+    events_seen.append(event)
+    if event.is_final_response() and event.content:
+        response_text = event.content.parts[0].text or ""
+        break  # <-- the entire incident
+
+--- slide 40 ---
+@codewith_ahsan
+The docstring I didn't read slowly enough
+ADK's own Event.is_final_response docs.
+"...when multiple agents participate in one
+invocation, there could be one event has
+is_final_response() as True for each
+participating agent."
+
+--- slide 41 ---
+@codewith_ahsan
+The fastest agent wins. The fastest agent
+was broken.
+dev.to 404s on the two-day-old tag →  error dict →  done in 1.2 s
+GitHub: 2.4 s. Stack Overflow: 2.6 s. The synthesizer: never
+heard from
+My "graceful degradation" is now the bot's answer
+
+--- slide 42 ---
+@codewith_ahsan
+And then the break pulled the pin
+break →  GeneratorExit →  asyncio.TaskGroup cancelled
+mid-flight
+Root + synthesizer exit callbacks: never fired
+The bug corrupted the telemetry built to catch it.
+
+--- slide 43 ---
+@codewith_ahsan
+How long? Since the fan-out shipped.
+The synthesizer's reply had never once reached a user.
+"Local adk web drains the entire event
+stream, so synthesizer output always
+rendered. The smoke test was a false
+positive."
+The dev tool was more forgiving than production.
+
+--- slide 44 ---
+@codewith_ahsan
+37 minutes. The fix: drain everything,
+keep the last word.
+Report 19:55 →  root cause 20:01 →  deployed 20:32. Leaves speak first, orchestrators speak last.
+async for event in runner.run_async(...):
+    events_seen.append(event)
+    if event.is_final_response() and event.content and event.content.parts:
+        text = event.content.parts[0].text or ""
+        if text:
+            response_text = text  # keep latest; synthesizer wins
+# no break. The stream ends when the stream ends.
+
+--- slide 45 ---
+@codewith_ahsan
+The clean trace
+Three leaves entering within 1 ms. Every enter pairs with an exit. This is what healthy looks like.
+agent.enter  gh_researcher                          20:33:43.220
+agent.enter  devto_researcher                       20:33:43.220
+agent.enter  so_researcher                          20:33:43.221
+agent.exit   devto_researcher              1365ms   20:33:44.586
+agent.exit   so_researcher                 5009ms   20:33:48.229
+agent.exit   gh_researcher                 7025ms   20:33:50.246
+agent.enter  external_knowledge_synthesizer         20:33:50.248
+agent.exit   external_knowledge_synthesizer 3637ms  20:33:53.883
+agent.exit   community_assistant           13072ms  20:33:53.884
+
+--- slide 46 ---
+@codewith_ahsan
+The confession, and the fix for the fixer
+Written while preparing this talk. It passes. It would have failed for weeks.
+That night, I never wrote the regression test.
+async def test_synthesizer_beats_fastest_leaf_in_fan_out_race():
+    events = [
+        _final("devto_researcher", "dev.to temporarily unavailable."),
+        _final("gh_researcher", "Found 5 GitHub repos."),
+        _final("so_researcher", "Found 4 Stack Overflow questions."),
+        _final("external_knowledge_synthesizer", synthesizer_answer),
+    ]
+    text = await drain_final_response(_stream(events, []), events_seen=[])
+    assert text == synthesizer_answer
+
+--- slide 47 ---
+@codewith_ahsan
+The one I haven't fixed
+Leaves don't get opinions about scope. That's the orchestrator's
+job... in both directions.
+Captured last night, rehearsing this talk. Fix is still a proposal doc. Find me after and tell me where it's wrong.
+
+--- slide 48 ---
+@codewith_ahsan
+What the user actually sees
+Same night, same query, through the fixed drain loop: the synthesizer's answer, refusals swallowed.
+
+--- slide 49 ---
+@codewith_ahsan
+Patterns cheat sheet
+Pattern When The gotcha
+LLM auto-transfer
+routing
+intent is genuinely
+open
+route-only root: no tools, no
+opinions
+SequentialAgent +
+output_key
+order must be
+guaranteed
+keys are scalar; state is the
+contract
+ParallelAgent fan-
+out
+independent I/O
+branches
+total = slowest branch + the
+merge
+Function tools you own both
+ends of the call
+return error dicts, never raise in a
+branch
+MCP
+tools cross an
+org/client
+boundary
+don't pay a server hop for your
+own code
+Callbacks cross-cutting
+concerns fail open: try/except, return None
+Cloud Run for a
+gateway bot
+request-driven
+work only
+always-on flags flip it to instance
+billing; a tiny VM wins
+
+--- slide 50 ---
+@codewith_ahsan
+Pattern When The gotcha
+Event-stream drain any production
+runner
+is_final_response() fires
+per agent
+
+--- slide 51 ---
+@codewith_ahsan
+Resources & Code 📱
+The repo · the postmortems · the soak logs · these slides
+
+--- slide 52 ---
+@codewith_ahsan
+The one thing to remember
+Determinism where you can.
+An LLM only where you must.
+And drain the whole stream.
+Orchestrators route. Leaves work. Production keeps the receipts.
+
+--- slide 53 ---
+@codewith_ahsan
+Thank you, Amsterdam 🇳🇱
+Muhammad Ahsan Ayaz
+🌐  codewithahsan.dev
+🐦  @codewith_ahsan
+💼  linkedin.com/in/ahsanayaz
+Code from today:
+github.com/AhsanAyaz/
+code-with-ahsan
+Q&A - ask me anything
+(especially about the unfixed bug)
+
+--- slide 54 ---
+@codewith_ahsan

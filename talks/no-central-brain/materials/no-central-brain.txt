@@ -1,0 +1,196 @@
+--- slide 1 ---
+?
+NO CENTRAL
+BRAIN
+Who decides what is true
+and where judgment lies
+in a world where execution is unlimited?
+FA U S T O  A L B E R S  /  A G N T C O N  +  M C P C O N  E U R O P E
+
+--- slide 2 ---
+Attention Is All You Need
+
+--- slide 3 ---
+MY WORKING DAY
+Execution scales. My attention doesn’t.
+Execution
+My attention
+2022 2023 2024 2025 2026 2027
+
+--- slide 4 ---
+NO CENTRAL BRAIN
+What this talk is about.
+01
+02
+03
+Harness & Loop Engineering
+Recursive Self-Improvement
+Memory & Learning Policies
+Who makes the decisions? What gets attention?
+
+--- slide 5 ---
+THE PATH INTO THIS QUESTION
+Fausto Albers
+Sociology Hospitality Industrial AI
+Applied AI Lab · Industrial Digital Twins · Prof. Jurjen Helmus
+Amsterdam University of Applied Sciences · AINed consortium
+
+--- slide 6 ---
+Where do you pay attention?
+
+--- slide 8 ---
+HOW MY WORK CHANGED
+From instructions to systems.
+Prompting
+What do I ask?
+Context
+What can it know?
+Harness
+How can it work?
+Loops
+What happens next?
+
+--- slide 9 ---
+INSIDE CLAUDE CODE OR CODEX
+The harness I can change.
+Foundation model
+Given · weights fixed
+Outer harness Claude Code · Codex
+Given runtime · sandbox · access
+Your inner harness Editable
+Instructions & rules Agents & coordination
+Context & memory Skills & functions
+Inference
+Task
+Work
+
+--- slide 10 ---
+LOOP ENGINEERING IN PRACTICE
+Feedback changes the next action.
+Goal + limits
+Act
+One harness run
+Verify
+Against the goal
+Next move
+Adapt the action
+Feedback + saved state
+Stop / escalate
+Done · blocked · budgetCost per accepted change
+
+--- slide 11 ---
+FROM PRACTICE TO THE NEXT QUESTION
+The builder is editable.
+Task
+Editable harness
+Code + instructions
+Application
+Evidence changes the builder
+
+--- slide 12 ---
+VARIATION BEFORE SELECTION
+Try different ways of working.
+Same model
+Weights fixed
+Current
+harness
+Experience
+Editing agent
+Proposes changes
+A Instructions
+B Order of work
+C Tools & checks
+Same work
+Same checks
+Outcomes + cost
+Compare with the original
+
+--- slide 13 ---
+AN ARCHIVE OF ALTERNATIVES
+Let useful methods branch.
+A
+B
+C
+Compare first.
+Choose for the task.
+A1
+B1
+B2
+B2a
+B2b Chosen
+for this task
+H0
+Harness
+Database Executable harnesses + results Alternatives retained
+
+--- slide 14 ---
+AN ILLUSTRATION FROM ENGINEERING PRACTICE
+A better way to build.
+THE BUILDER'S HARNESS THE PIPELINE IT BUILDS DRAWING DETAIL
+Harness A
+General building method
+builds Pipeline A
+Crops work. Meaning is missed.
+A mark can carry
+an instruction.
+Feedback → investigate → vary
+Harness B
+Adds domain guidance
+builds Pipeline B
+Catalogue · lookup · check
+Retain methods + evidence A later project
+Compare outputs and costs. Reuse or adapt the building method.
+
+--- slide 15 ---
+Blade Runner 2049 · The Memory Maker · 2017
+
+--- slide 16 ---
+HUMAN ATTENTION AND RECALL
+What comes to mind?
+Same drawing. Different priorities.
+Exploring a possibility
+What could this mean?
+Preparing for release
+What could go wrong?
+Experience · Goals · Current state
+What comes to mind changes what we notice next.
+
+--- slide 17 ---
+A PROPOSAL: FUNCTIONAL STATES ACROSS THE SYSTEM
+No central brain.
+TASK GOALS + BUDGET
+An unfamiliar detail Curiosity Retrieve + explore
+Possible insight · more effort
+A consequential uncertainty Concern Check + challenge
+Additional checks · more effort
+Time and tokens running low Urgency Narrow + prioritize
+Less exploration · missed options
+Signals interact. Local priorities can differ.
+
+--- slide 18 ---
+HOW WE CHOOSE WHAT TO INVESTIGATE AND TRY
+Learn how to improve.
+Experience Improvement
+policy
+Candidate
+harness
+Later
+outcomes
+Change harness
+Change what we investigate and try
+
+--- slide 19 ---
+TAKE THESE WITH YOU
+Five principles.
+01 Frozen model. Learning system.
+02 Evolve methods. Preserve alternatives.
+03 Select for future value. Count future costs.
+04 Let local consequences drive change.
+05 Learn what deserves attention.
+
+--- slide 20 ---
+LET’S CONNECT
+Fausto Albers
+wonderwhy.ai
+Connect on LinkedIn
+linkedin.com/in/stepintoliquid

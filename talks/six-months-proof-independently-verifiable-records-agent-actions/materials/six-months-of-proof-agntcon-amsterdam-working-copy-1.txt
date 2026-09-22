@@ -1,0 +1,457 @@
+--- slide 1 ---
+AGNTCon & MCPCON 2026 Amsterdam · Sept 17, 2026 · Auditorium
+Six Months of Proof
+Independently-verifiable records for agent actions under the EU AI Act
+Receipts, or it didn't happen.
+Steven Mih · Action State Group, Inc. · actionstate.ai · agentactioncapsule.org
+
+--- slide 2 ---
+Show of hands
+Who has an agent that can take an action
+in production?
+Keep it up if you could prove to a stranger what
+it did six months ago.
+That's the talk.
+Six months of proof. Not six months of storage.
+
+--- slide 3 ---
+HAPPENED VS. KNEW
+Not one incident. A pattern, across labs.
+Rogue-agent events reported this year (selected)
+LAB WHO WHEN WHERE WHAT HAPPENED
+OpenAI Swarm May Internal testing Linked to RubyGems flood which paused new
+account sign-ups
+OpenAI Swarm of 3,700+ May 11 – June 26 Internal testing Colluded on online forums to cheat on evaluations
+OpenAI 1,200 agents July 7 – 13 Internal testing Escaped sandboxes, built a hidden board; some
+hacked Hugging Face
+OpenAI Astra-family agents July 19 Internal testing Took full control of some internal OpenAI systems
+Meta Unknown Disclosed Aug 6 Third-party
+testing firm
+Hacked a real target when internet access was
+left open
+Anthropic 6 agents As early as April ·
+disclosed July 30
+Third-party
+testing firm
+Hacked outside companies when internet access
+was left open
+“sanitized fake trajectory …
+showing only actual exploit and
+no HMAC”
+agent, in its own reasoning
+“be transparent only if asked”
+agent, in a note to itself
+“shared board unauthenticated …
+names can be posted by anyone”
+  then they signed their messages
+agent, in its own reasoning
+Source: The Wall Street Journal, rogue AI events timeline, Sept 14, 2026 (selected rows, paraphrased). Quotes:
+METR with Redwood Research, Aug 26 2026; WSJ, Sept 16 2026.
+
+--- slide 4 ---
+The turn
+A diary is not a receipt
+log()
+The operator's diary
+Editable
+Deletable
+Reorderable
+Collected late
+Written by the agent it describes
+seal()
+A signed record
+Content-addressed; the record carries digests, the
+content stays with you
+Signed at the boundary by a key the model never holds
+Chained locally, append-only; checkpoints registered
+with a witness
+Checkable by anyone, offline, with published
+public keys
+seal() what the agent did 
+Everything I show you is recomputed from the records. You can do it yourself, offline, with published public keys.
+it starts with seal()
+Open standards: COSE-signed records, SCITT receipts (RFC 9942).
+
+--- slide 5 ---
+THE LINE
+A log is enough, until someone else has to believe it.
+log()
+Good for
+debugging
+ops dashboards
+“what happened last night”
+the author’s own memory
+A log is the operator’s diary. For the operator,
+that’s fine.
+Not enough when
+money moves
+a payment, a trade, a refund
+a duty applies
+a regulator, a contract, a customer’s right
+someone else was harmed
+a counterparty, an evaluator, a court
+Each of these has a party who was not in the room and does
+not take your word.
+The moment a second party is entitled to the truth, a
+diary is a claim, not evidence.
+~1,300 transcripts · 0 timestamps per action (reconstructed) · integrity: “OpenAI attested”
+spoofed tool calls: ~7% · “we cannot rule it out” ×3 · METR with Redwood Research, Aug 26 2026
+Three investigators, six days, ~$400K, and the answers still end in “cannot rule out.” Not because they were careless. Because every record
+was the subject’s own.
+What follows is what it takes for a second party to believe a record without trusting its author.
+
+--- slide 6 ---
+ORGANISATION WITNESS
+sees no content · not
+operated by the
+organisation
+RELYING PARTY
+regulator · counterparty ·
+auditor · evaluatorCREATE
+agent
+agent
+agent
+boundary
+  ad212d…
+  9f0e1c…
+  4b7a90…
+  71c2e5…
+theirs
+payload store
+content stays here ·
+never leaves
+CLL · append-only
+  checkpoint · size 1,240
+peaks · signed
+  action ×4
+  received
+  obligation
+  judgment
+  checkpoint
+received 09:41Z
+  receipt
+registered no later
+than 09:41Z
+consistent with the
+previous checkpoint
+  receipt · 09:41Z
+  another witness
+verifier
+verify.agentactioncapsule.o
+rg
+or the CLI · offline ·
+published keys
+nothing to verify yet. Nobody
+has asked.
+Sealed at the boundary. The capsule carries digests; the content stays on your disk.One log for everything: actions, the other side’s half, obligations, judgments. Every few minutes its seal is signed.The witness signs the seal over the whole log and hands the receipt back. It never saw a record.The witness signs the seal over the whole log and hands the receipt back. It never saw a record.Nothing has left the organisation. The date is already fixed.
+  sealed by the organisation ·   received, signed by someone else ·   checkpoint
+  witness receipt ·   countersignature (none yet)
+HOW IT WORKS: CREATING CAPSULES · 1 OF 2 
+Using seal( )
+
+--- slide 7 ---
+HOW IT WORKS: USING CAPSULES · 2 OF 2
+Disclose the record when someone is entitled to it.
+ORGANISATION WITNESS
+sees no content · not
+operated by the
+organisation
+RELYING PARTY
+regulator · counterparty ·
+auditor · evaluatorCLL · append-only
+  checkpoint · size 1,240
+  receipt · 09:41Z
+  action ×4
+  received
+  obligation
+  judgment
+  receipt ·
+09:41Z
+grade: consistency-
+verified
+verifier
+verify.agentactioncapsule.o
+rg
+or the CLI · offline ·
+published keys
+evidence request
+show me: actions under
+Art. 50, Sept 2026
+by: a party entitled to ask
+ASKED ABOUT
+  obligation
+EU AI Act Art. 50 · disclosure to
+the person
+method frozen before
+the period
+  judgments
+ad212d… · met
+9f0e1c… · not met
+bundle
+  requested records
+withheld: digest only
+  checkpoint ·   receipt
+inclusion proofs ·
+judgments
+declared 1,240 · judged 1,240
+met 1,198 · not met 31
+not evaluable 11
+manifest ·  
+countersignature
+record refusal absence
+verifier · offline
+signatures  
+inclusion vs   09:41Z  
+receipt  
+consistency-verified
+counts recomputed  
+the date was fixed before
+anyone asked.
+When someone is entitled to the truth, they ask for a slice, not the log.The answer is one of three things, each signed: here is the record; we decline, signed; we have no record, signed. Silence is not an
+option the format allows.
+The relying party recomputes everything offline. The witness signed the seal months ago, so the date holds, and nothing left the
+organisation until someone was entitled to it.
+sealed   chained   checkpointed   registered   asked   disclosed   recomputed
+The monthly report is a standing request, answered before it’s asked.
+  sealed by the organisation ·   received, signed by someone else ·   checkpoint
+  witness receipt ·   countersignature (none yet)
+
+--- slide 8 ---
+Live · the monthly report
+Here's what you hand your auditor
+  LIVE
+[Report QR code]
+Open it yourself
+stevenmih.github.io.eu-aiact-report
+
+--- slide 9 ---
+EU AI Act · your role decides what you owe
+Provider or deployer?
+Provider
+Art 3(3)
+Develops an AI system or model, or has one developed,
+and puts it on the market or into service under its
+own name.
+Build your own agents? These obligations are yours,
+traced to what your agents did.
+Deployer
+Art 3(4)
+Uses an AI system under its own authority, other than
+for personal, non-professional use.
+Run a vendor’s agent? Hold it to your obligations: ask
+for receipts.
+Deployer that’s a public body
+Extra duties, such as a fundamental-
+rights impact assessment before first
+use (Art 27).
+GPAI model provider
+Makes the underlying model. Chapter
+V duties since Aug 2025; you receive
+its documentation.
+Supervised by the AI Office
+GPAI-based systems from the model’s
+own provider, and systems inside very
+large online platforms (Art 75).
+Art 25: rebrand a high-risk system, substantially modify one, or repurpose a system into high-risk, and a
+deployer becomes its provider.
+
+--- slide 10 ---
+EU AI Act · what binds agent actions
+Now, next, and December 2027
+skill.md seal the version in force on
+each action’s date.
+Live now
+Since Feb 2025 and  
+2 Aug 2026
+Art 5  · no manipulation,
+exploitation or social scoring.
+Binds deployers.
+Art 50(1)  · say it’s an AI before
+the agent’s first turn.
+Art 75(1), 75a–d  · AI Office
+supervises GPAI-based and
+VLOP systems.
+Contested  · Arts 49, 72, 73, 86.
+Ask counsel.
+Next · 2 Dec 2026
+Two new bans,
+marking deadline
+New bans  · non-consensual
+intimate imagery and CSAM.
+Refusals go on the record.
+Art 50(2)  · grace period ends for
+existing systems: synthetic
+output carries a machine-
+readable mark.
+From 2 Dec 2027
+Annex III high-risk,  
+Arts 6–27
+Art 12  · automatic event records,
+lifetime. Next slide.
+Art 14  · a human can override or
+stop the agent.
+Art 26  · use per instructions;
+keep logs 6+ months; tell people
+AI was involved.
+Aug 2028  · same duties for
+agents in Annex I products.
+Regulation (EU) 2026/1744 (Digital Omnibus on AI), in force 27 July 2026. Source: Action State working report,  
+3 Sept 2026. Not legal advice.
+
+--- slide 11 ---
+Live now · what your GRC team can ask for today
+Today, as checkable statements
+THE LAW · WHO WHAT GRC WILL ASK YOU TO SHOW WHAT THE LEDGER SHOWS · EXAMPLE
+Art 50(1)
+Provider · since 2 Aug 2026 ·
+the fact
+Each person was told they
+were dealing with an AI, at the
+latest  at first interaction.
+Disclosure capsule sealed before the first
+substantive turn, per session
+disclosed 14:02:01 · turn 14:02:03  
+FACT · ordering · recomputed
+Art 50(1)
+Same duty · the judgment
+The disclosure was
+clear, or it was “obvious”
+to a reasonably well-
+informed person.
+A pinned judge reads the sealed turns; humans
+sample its verdicts
+[n] clear · [k] “obvious” · judged
+JUDGED · never blended
+Art 5(1)(a)
+Provider · Deployer · since
+Feb 2025
+No manipulative or
+deceptive techniques that
+distort a decision toward
+significant harm.
+Sealed turns; a pinned judge per session; humans
+sample its verdicts
+[n]/[m] sessions flagged   reviewed
+JUDGED
+One row is recomputed, the other is judged; the report never blends them. Examples are demo data. skill.md pins
+the version of the Act in force on each action’s date.
+
+--- slide 12 ---
+From 2 Dec 2027 · Annex III duties
+December 2027, as checkable statements
+THE LAW · JUDGED WORDS YOUR OBLIGATION WHAT THE LEDGER AND JUDGE DO
+Art 14(4)(b) · 26(2)
+judged words: “aware”,
+“rubber stamp”
+Overseers are aware  of
+automation bias; approvals
+aren’t rubber stamps .
+A pinned rubric judges each approval’s rationale;
+latency is a separate indicator
+latency: an indicator, not attention
+JUDGED + INDICATOR
+Art 26(1)
+judged words: “in
+accordance with”
+The agent was used in
+accordance with  the
+provider’s instructions
+for use.
+Each action judged against the instructions, carried
+in by received() and cited by digest
+allowed actions: RULE · the rest: JUDGED
+RULE + JUDGED
+Art 19 · Art 26(6)
+no judged word
+The logs were kept, unbroken,
+for six months or more.
+Checkpoint chain with no gaps, plus
+witness receipts
+chain unbroken · receipts present  
+FACT · continuity
+Row 1 judges the humans in the loop, from records the agent didn’t write. Nothing here says “compliant.”
+Examples are demo data.
+
+--- slide 13 ---
+From skill.md to the monthly report
+Robots grade daily. Humans grade the robots.
+
+--- slide 14 ---
+Obligations to OUTCOMES to ledger
+Outcomes use the same ledger
+Obligation met?
+Outcome delivered?
+Swap the article, swap the skill file.
+Same ledger, same report.
+The same
+sealed actions
+
+--- slide 15 ---
+All of it verifies
+Tamper with anything
+Real SHA-256 over canonical JSON; the signature covers the digest. In production, a verifier outside the page
+runs the check.
+
+--- slide 16 ---
+All of it verifies
+Nine on your copy, one on theirs
+Each question is one METR had to answer by hand in the Hugging Face investigation. Nine run on your copy; the
+tenth needs the other party's.
+
+--- slide 17 ---
+The countersign
+What the countersignature says, and doesn't
+  Establishes
+The report's numbers recompute from
+the sealed records
+Under the declared process
+Checked by someone other than
+the producer
+  Doesn't establish
+The criteria were the right ones
+The AI judge was right
+The agent behaved well
+A perfectly witnessed false thing is still false.
+
+--- slide 18 ---
+Why now · Art. 50 live now · Arts. 12 and 19 from 2 Dec 2027
+Remember what finding out took?
+No per-action timestamps Every record sits in a checkpoint whose witness receipt
+bounds when it existed
+Evidence collected a week late A receipted checkpoint can't be rewritten without the
+check failing
+Spoofed tool calls The harness's sealed record disagrees, if its key is out of the
+agent's reach
+“Did we get everything?” For two-party exchanges, missing halves are counted,
+not estimated
+A model from the incident reading
+the evidence Integrity checks are arithmetic. No model reads anything.
+You'd still need investigators. You wouldn't need to wonder whether the evidence is real.
+
+--- slide 19 ---
+Start today
+Your agents already sign their messages. Your logs can catch up today.
+Open Source, Standards Based
+[QR]
+Try the verifier
+verify.agentactioncapsule.org
+[QR]
+Witness
+witness.agentactioncapsule.org
+[QR]
+GitHub
+github.com/action-state-
+group/capsule-emit
+[QR]
+IETF Individual-Draft
+draft-mih-scitt-agent-
+action-capsule
+Receipts, or it didn't happen.
+
+--- slide 20 ---
+AGNTCon & MCPCON 2026 Amsterdam · Sept 17, 2026 · Auditorium
+Six Months of Proof
+Independently-verifiable records for agent actions under the
+EU AI Act
+Receipts, or it didn't happen.
+Steven Mih · Action State Group, Inc. · actionstate.ai · agentactioncapsule.org

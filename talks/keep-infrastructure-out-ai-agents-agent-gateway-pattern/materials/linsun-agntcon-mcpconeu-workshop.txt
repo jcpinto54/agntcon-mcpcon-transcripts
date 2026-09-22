@@ -1,0 +1,17 @@
+--- slide 1 ---
+Where the agentic stack is being built. 
+Keep Infrastructure Out of 
+Your AI Agents
+Lin Sun
+Head of Open Source
+
+--- slide 2 ---
+Where the agentic stack is being built. 
+Prerequisites
+• Python 3.11 or above
+• jq — https://jqlang.org/
+• Docker
+• Ollama — pull the Qwen 3 8B model:
+    ollama pull qwen3:8b
+• Jaeger Docker image:
+jaegertracing/all-in-one:latest

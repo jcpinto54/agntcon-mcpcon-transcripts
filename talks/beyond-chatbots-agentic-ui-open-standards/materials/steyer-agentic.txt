@@ -1,0 +1,374 @@
+--- slide 1 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+Beyond Chatbots:
+Agentic UI with Open Standards
+ANGULARarchitects.io
+
+--- slide 2 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+Let's imagine a
+„Killer App“ …
+2
+
+--- slide 3 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+3
+VisiCalc, 1979
+
+--- slide 4 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+4
+"Really, we need to chat now?"
+
+--- slide 5 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+5
+To chat or not to chat …
+… that's the wrong question!
+
+--- slide 6 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+6
+User 
+Intent
+Autonomous
+Behavior Goal
+High Level View on Agentic AI
+Iterative
+Tool Access
+
+--- slide 7 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+9
+
+--- slide 8 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+10
+
+--- slide 9 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+11
+
+--- slide 10 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+12
+
+--- slide 11 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+13
+
+--- slide 12 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+14
+
+--- slide 13 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+16
+Agent
+LLM
+Tools
+ComponentUI Runtime
+Tools
+HTTP (SSE, Web Sockets, etc.)
+Backend
+Frontend
+
+--- slide 14 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+19
+How to communicate with
+the Agent?
+How to prevent coupling to
+the server stack and LLM?
+
+--- slide 15 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+20
+How to support dynamic UI as
+an answer from the Agent?
+
+--- slide 16 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+21
+How to visualize tools
+provided by other systems?
+
+--- slide 17 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+22
+1) AG-UI: Agent Communication
+2) A2UI: Dynamic/ Generative UI
+3) MCP Apps: Visual Tools
+Agenda
+
+--- slide 18 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+23
+About Me
+(Remote) Angular Workshops
+and Consulting
+Google Developer Expert
+for Angular
+Blog, Books, Articles,
+and Talks about Angular
+Manfred Steyer, ANGULARarchitects.io
+
+--- slide 19 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+24
+How to communicate with
+the Agent?
+How to prevent coupling to
+the server stack and LLM?
+
+--- slide 20 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+26
+AG-UI for 
+Agent Communication
+
+--- slide 21 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+27
+
+--- slide 22 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+• LangGraph
+• CrewAI
+• Microsoft Agent Framework
+• Google ADK
+• AWS Strands Agents
+• AWS Bedrock AgentCore
+• Mastra
+• Spring AI
+• Pydantic AI
+• Agno
+• LlamaIndex
+• AG2
+• AWS Bedrock Agents
+• OpenAI Agent SDK
+• Cloudflare Agents
+28
+Supported Integrations
+
+--- slide 23 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+• TypeScript
+• Python
+• Kotlin
+• Golang
+• Dart
+• Langflow
+• Java
+• Rust
+• .NET
+• Nim
+• Flowise
+29
+SDKs
+
+--- slide 24 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+30
+DEMO
+
+--- slide 25 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+31
+How to support dynamic UI as
+an answer from the Agent?
+
+--- slide 26 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+32
+
+--- slide 27 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+33
+A2UI: 
+Dynamic UI
+
+--- slide 28 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+34
+
+--- slide 29 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+35
+Example
+{ "id": "root", "children": ["headline", "name", "..."] }
+{
+"id": "name", "component": "Text", "variant": "body"
+"text": { "path": "/passenger/name" }
+}
+{
+"id": "headline", "component": "Text", "variant": "h2"
+"text": "Passenger",  
+}
+
+--- slide 30 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+• React
+• Lit (Web Components)
+• Angular
+• Flutter
+• Dart
+• Android
+• SwiftUI, iOS
+36
+Renderer
+
+--- slide 31 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+37
+DEMO
+
+--- slide 32 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+38
+How to use tools provided by
+other systems?
+
+--- slide 33 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+39
+MCP Apps
+
+--- slide 34 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+40
+MCP Apps
+Visualize Tools 
+incl. Results
+Provides
+Client Code Sandbox
+Host Context:
+Theme, Size, …
+Messaging 
+w/ Widget
+
+--- slide 35 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+41
+DEMO
+
+--- slide 36 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+42
+Architectures with Open Standards
+Agentic UI with Angular
+220+ pages, PDF, EPUB
+Regular Free Updates!
+agentic-angular.com
+
+--- slide 37 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+43
+Conclusion
+Agentic AI/UI
+• Intent
+• Autonomy
+• Tools
+Standards
+• AG-UI
+• A2UI
+• MCP Apps
+Tactics
+• JSON Schema 
+• Processing Messages
+(Text, Widgets, Tools)
+
+--- slide 38 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+44
+Let's build the next "Killer App" …
+
+--- slide 39 ---
+• Textmasterformat bearbeiten
+• Zweite Ebene
+Mastertextformat bearbeiten
+45
+[LinkedIn, Twitter , Facebook] Manfred Steyer
+[web] ANGULARarchitects.io
+Manfred Steyer
+@ Manfred Steyer
+Slides, Examples, Book
+Remote Company Workshops 
+and Consulting
+http://angulararchitects.io

@@ -1,0 +1,261 @@
+--- slide 1 ---
+Delegated Authorization 
+for AI Agents
+1
+Sohan Maheshwar
+AuthZed 
+AAIF Ambassador
+Build an Agent with Fine-Grained Permissions
+
+--- slide 2 ---
+Throwback Thursday #tbt
+
+--- slide 3 ---
+Access Control in Google Products 
+3
+
+--- slide 4 ---
+4
+Access Control in ChatGPT Apps
+
+--- slide 5 ---
+OWASP Top Ten Web Apps Security Risks
+5
+●#1 Broken Access Control
+2021 and 2025
+●100% of apps tested had broken 
+access control issues
+owasp.org/Top10/2025/
+
+--- slide 6 ---
+Ambient Context
+●N users x M agents x O actions
+●Evolving graph of relationships, states, and entities (users, agents, resources) 
+●Not fully contained in tokens JWTs, ACLs, or request payloads. 
+●Too complex for coarse-grained techniques such as RBAC
+
+--- slide 7 ---
+7
+Primer on Authorization
+
+--- slide 8 ---
+8
+Access Control Types
+●Access Control Lists
+●Role-Based Access Control
+●Attribute-Based Access Control
+
+--- slide 9 ---
+Google Zanzibar
+●Globally distributed authorization 
+system
+●10 million client queries per second
+●From the developerʼs perspective - 
+it's an API
+●ReBAC
+9
+www.zanzibar.tech
+
+--- slide 10 ---
+Relationship Based Access Control
+10
+
+--- slide 11 ---
+●Represents a natural person or service 
+account
+User
+👩
+ userid: 10957135
+Object
+●Represents a non-user entity
+●Unique identifier prefixed with an object type
+doc:
+secret-doc-id
+folder:
+evilPlans
+
+--- slide 12 ---
+Relation
+●The way one object can be related to another object or user
+●Examples
+○member of a group
+○editor of a document
+○uploader of a video
+
+--- slide 13 ---
+Relation Tuple
+●Datum which expresses a single relationship
+document:123#owner@user:3
+User 3 is an owner of a document with identifier 123
+
+--- slide 14 ---
+What are we really doing here?
+
+--- slide 15 ---
+Build a Graph of course!
+
+--- slide 16 ---
+Build a Graph of course!
+
+--- slide 17 ---
+Check graph traversal example
+check(“document:somedocument”, “reader”, jill)
+
+--- slide 18 ---
+Check graph traversal example
+check(“document:somedocument”, “reader”, jill)
+
+--- slide 19 ---
+19
+Where do Zanzibar-like systems shine?
+●Low-latency
+●High-throughput authorization checks
+●Hierarchical permission models
+●Ambient Context access control
+
+--- slide 20 ---
+SpiceDB
+20
+●Open source implementation of Zanzibar
+●Widespread project adoption
+●Contributors from Fortune 500 companies
+github.com/authzed/spicedb
+7K 🌟
+s & counting!
+
+--- slide 21 ---
+21
+Goose by AAIF
+●General-purpose AI agent that runs on your machine
+●Connect to 70+ extensions 
+●Any LLM, including your subscriptions
+
+--- slide 22 ---
+22
+A DevOps Agent
+●Delegated Authorization
+●Has access to two environments
+○staging
+○production
+●Time-bound grants
+●Hierarchical contingencies
+
+--- slide 23 ---
+1.Delegated Authorization
+●Agent goose_alice acts on behalf of user:alice 
+●Permission is checked for every action
+✗ With RBAC / tokens: copying a human's roles onto the agent drifts and over-grants
+
+--- slide 24 ---
+24
+ a. Schema
+●Defines 
+○Types of objects found
+○How those objects relate to one another
+○Permissions that can be computed off of those relations.
+
+--- slide 25 ---
+25
+b. Relationships
+●Relationships bind together a Subject and a Resource via a Relation. 
+●A functioning Permissions System is the combination of Schema and Relationships 
+environment:staging#direct_deployer@user:alice
+
+--- slide 26 ---
+c. Permission Checks
+26
+●SpiceDB is called for all permission decisions
+●Three-way decision
+
+--- slide 27 ---
+2. Time-Bound Access
+● “Give prod access for the duration 
+of the incidentˮ
+✗ With RBAC/tokens: tokens lag; a cron leaves a window where a dead grant still works
+
+--- slide 28 ---
+28
+Expiring Relationships
+●Grant a user access to a resource for a limited time
+●The relationship is not deleted immediately
+○It is subject to garbage collection
+
+--- slide 29 ---
+29
+Add it to the relationship
+
+--- slide 30 ---
+3. Hierarchies
+●“The agent can deploy to prod only while it can 
+also deploy to stagingˮ
+●Model real-world hierarchies, nested groups and 
+dependencies.
+●Contingent evaluation ≠ cascading delete.
+✗ With RBAC/tokens: no role can depend on another - you drop into app code
+
+--- slide 31 ---
+3. Hierarchies
+●“The agent can deploy to prod only while it can 
+also deploy to stagingˮ
+●Model real-world hierarchies, nested groups and 
+dependencies.
+●Contingent evaluation ≠ cascading delete.
+✗ With RBAC/tokens: no role can depend on another - you drop into app code
+
+--- slide 32 ---
+Schema Operators
+32
+●+ Union
+●& Intersection
+●- Exclusion
+●-> Arrow
+
+--- slide 33 ---
+Many users, agents, environments
+33
+●Schema remains unchanged
+●Just add new relationships
+●No role explosion
+
+--- slide 34 ---
+34
+Recap
+Pattern How ReBAC does it Where Roles & Tokens break
+Delegated
+Authorization
+Agent holds its own grant, bounded to its 
+human via delegator
+Copy the human's roles onto the agent — 
+a snapshot that drifts and over-grants
+Expiring Grants agent_deployer: agent with expiration — 
+server-side, self-cleaning
+Tokens live till they expire; a cron leaves a 
+window where a dead grant still works
+Instant revocationDelete one relationship — the next check is 
+a live lookup
+Minted tokens stay valid; RBAC means 
+cleanup in N places, hoping you got them 
+all
+Hierarchical 
+contingencies 
+agent_deploy = agent_deployer & 
+gated_by->agent_deployer
+No role can depend on holding another 
+role — you drop into app code
+
+--- slide 35 ---
+35
+More Reading
+●goose docs
+○goose-docs.ai
+●Read the Zanzibar paper
+○zanzibar.tech
+●Working Demo Link
+○github.com/sohanmaheshwar/goose-spicedb-delegation
+
+--- slide 36 ---
+Sohan Maheshwar
+Thank You!
+36
+AuthZed 
+AAIF Ambassador

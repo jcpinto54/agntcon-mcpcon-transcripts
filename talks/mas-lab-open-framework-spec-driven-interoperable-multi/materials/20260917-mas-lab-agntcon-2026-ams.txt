@@ -1,0 +1,619 @@
+--- slide 1 ---
+Where the agentic stack is being built. 
+MAS-Lab:
+An Open Framework for Spec-Driven
+& Interoperable Multi-Agent Systems
+Jordan Augé (Cisco Systems)
+
+--- slide 2 ---
+Where the agentic stack is being built. 
+Who am I ?
+• Tech lead, Outshift @ Cisco since 2014
+• Mixed academic & Industrial background
+• Traffic engineering ; QoS modeling
+• Internet measurements & testbeds (PlanetLab team)
+• Information Centric Networking
+• Cloud Security & AI/ML
+• Agentic AI
+• Outshift @ Cisco (https://outshift.cisco.com/)
+– Quantum Networking & Agentic AI
+– Internet of Agents (AGNTCY: https://agntcy.org/)
+– Internet of Cognition (more at the end of the talk)
+• Chair of Accuracy and Reliability WG @ AAIF
+Observe & Eval project
+
+--- slide 3 ---
+Where the agentic stack is being built. 
+Outline
+• Motivations: testing and verifying agentic systems
+• MAS-Lab introduction: specs, runtime, labs, demo
+• Objective : Accuracy & Reliability for MultiAgent Systems
+• Example: Investigating Cognitive failures
+
+--- slide 4 ---
+Where the agentic stack is being built. 
+Motivation
+• J. Augé, S.Betts, G.Carofiglio, G. Grassi, M. Gysi, JK d’Souza - Aether: Network Validation Using Agentic AI and Digital 
+Twin – ArXiv preprint - https://arxiv.org/abs/2604.18233
+• G.Carofiglio, JK d’Souza, M. Gysi, O. Mabadeje - Driving autonomous network operations - How Swisscom and Outshift by 
+Cisco are redefining network reliability with AI agents – Whitepaper, 2025
+A2A
+Our stack: llamaindex
+MCP
+OpenTelemetry
+RESEARCH &
+LARGE-SCALE EVALUATIONDEPLOYMENTDEVELOPMENT
+joint work withMulti-Agent System + Network Digital Twin for network reliability
+Replay real incidents on a replica of production networks
+Logic & deployment mixed in code
+Lack of specs
+Breaking changes in frameworks
+Rapid iterations to design
+Versioning and benchmarking
+Test new solutions
+Hard to control, scale & parallelize
+Test logic only
+
+--- slide 5 ---
+Where the agentic stack is being built. 
+MAS-Lab overview
+SPECS Declares all system entities—agents, tools, models, and coordination
+edges in versioned YAML specifications. Grounding for observability.
+RUNTIME
+A modular & safe runtime allowing implementation of specs (logic, 
+control, infra) through plugins, on top of a stable API interface ( contracts), 
+with observability and governance as first-class citizens.
+LAB Allow system behaviour study and validation under controlled variations
+(explore design space, swap infrastructure, inject faults, replay traces)
+MAS-Lab is a declarative agentic framework for composition, validation, 
+experimentation and pre-production testing of agentic applications.
+
+--- slide 6 ---
+Where the agentic stack is being built. 
+Agentic apps environment
+User
+Infrastructure Access & Protocols
+Admin
+Management
+Policies
+HITL LLM
+(eg. openAI)
+Tools
+(eg. MCP)
+Network
+(eg. A2A)
+Agent / MAS
+(runtime logic)
+
+--- slide 7 ---
+Where the agentic stack is being built. 
+Agentic apps environment
+User
+Infrastructure Access & Protocols
+Dataset (Input, HITL, memory seeds, tool fixtures) + Ground Truth
+Admin
+Management
+Policies
+HITL
+LAB
+BENCHMARKS
+• Vary 1 parameter
+• Perform N runs
+• Evaluation
+• …
+LLM
+(eg. openAI)
+Tools
+(eg. MCP)
+Network
+(eg. A2A)
+Agent / MAS
+(runtime logic)
+
+--- slide 8 ---
+Where the agentic stack is being built. 
+Agentic apps environment
+User
+Infrastructure Access & Protocols
+Dataset (Input, HITL, memory seeds, tool fixtures) + Ground Truth
+Admin
+Management
+Policies
+HITL
+LAB
+BENCHMARKS
+• Vary 1 parameter
+• Perform N runs
+• Evaluation
+• …
+LLM
+(eg. openAI)
+Tools
+(eg. MCP)
+Network
+(eg. A2A)
+(runtime logic)
+LOGIC SPECS
+CONTROL SPECS INFRA SPECS
+RUNTIME
+LAB
+Overlays
+Overlays
+Execution
+Telemetry
+Overlays
+
+--- slide 9 ---
+Where the agentic stack is being built. 
+MAS-Lab workflows
+x
+Deployment
+flavour
+Infra.
+details
+APIs
+Secrets
+Local
+(single process,
+local bus)
+Production
+(MCP, A2A, etc.)
+Control
+plugins
+MAS 
+intent
+Agent
+artefacts
+xxxx
+MAS Agency & 
+Communication
+Observability;
+security
+policies;
+data access,
+etc.
+Tools
+Memory
+Skills
+Design pattern
+Context manager
+Model
+Agency Topology
+Agentic app design space = the logic Deployment&
+protocols
+Resources &
+environment
+Control &
+Governance
+
+--- slide 10 ---
+#AGNTCon #MCPConWhere the agentic stack is being built. 
+DEMO
+• MAS-Lab specs
+• Agent & MAS creation
+• Telemetry & plots
+• Labs benchmarks
+MAS-Lab tutorials
+https://outshift-open.github.io/mas -lab/tutorials/
+
+--- slide 11 ---
+Where the agentic stack is being built. 
+Runtime architecture
+OS / KERNELPLUGINS
+Internal state
+(context, status, etc.)
+AGENT LOGIC
+CONTROL
+etc.
++
++
+…
+Contrats / Protocols
+(local, gRPC)
+COUPLED MEALY MACHINES
+➔ proven behaviour (TLA+) 
+➔ natural MAS extension with Petri Nets
+COMPOSITION OF
+ISOLATED PLUGINS
+React DP
+CoT
+MCP
+…
+similar idea to MCP & A2A
+bound to runtime by specs
+
+--- slide 12 ---
+Where the agentic stack is being built. 
+Runtime architecture
+OS / KERNELPLUGINS
+Internal state
+(context, status, etc.)
+AGENT LOGIC
+CONTROL
+etc.
++
++
+…
+Contrats / Protocols
+(local, gRPC)
+COUPLED MEALY MACHINES
+➔ proven behaviour (TLA+) 
+➔ natural MAS extension with Petri Nets
+COMPOSITION OF
+ISOLATED PLUGINS
+React DP
+CoT
+MCP
+…
+similar idea to MCP & A2A
+bound to runtime by specs
+Verifiable runtime & MAS
+• Plugins get (restricted) access
+to resources through contracts
+• Enforced governance & 
+observability
+• Safety & proven behaviour: 
+concurrency; deadlock- & loop-
+free, …
+• Extensible state machine 
+(policies, etc.)
+• python → rust : memory safety
+
+--- slide 13 ---
+Where the agentic stack is being built. 
+Runtime architecture
+OS / KERNELPLUGINS
+Internal state
+(context, status, etc.)
+AGENT LOGIC
+CONTROL
+etc.
++
++
+…
+Contrats / Protocols
+(local, gRPC)
+COUPLED MEALY MACHINES
+➔ proven behaviour (TLA+) 
+➔ natural MAS extension with Petri Nets
+COMPOSITION OF
+ISOLATED PLUGINS
+React DP
+CoT
+MCP
+…
+similar idea to MCP & A2A
+bound to runtime by specs
+Verifiable plugins Verifiable runtime & MAS
+• Tested in isolation
+• Invariants
+• Unit and functoinal
+tests
+• Gated access to 
+runtime resources
+• Plugins get (restricted) access
+to resources through contracts
+• Enforced governance & 
+observability
+• Safety & proven behaviour: 
+concurrency; deadlock- & loop-
+free, …
+• Extensible state machine 
+(policies, etc.)
+• python → rust : memory safety
+
+--- slide 14 ---
+Where the agentic stack is being built. 
+Runtime architecture
+OS / KERNELPLUGINS
+Internal state
+(context, status, etc.)
+AGENT LOGIC
+CONTROL
+etc.
++
++
+…
+Contrats / Protocols
+(local, gRPC)
+COUPLED MEALY MACHINES
+➔ proven behaviour (TLA+) 
+➔ natural MAS extension with Petri Nets
+COMPOSITION OF
+ISOLATED PLUGINS
+React DP
+CoT
+MCP
+…
+similar idea to MCP & A2A
+bound to runtime by specs
+Verifiable plugins Verifiable specs Verifiable runtime & MAS
+• Tested in isolation
+• Invariants
+• Unit and functional
+tests
+• Gated access to 
+runtime resources
+• Spec can be
+validated before
+execution
+• Anchoring for 
+observability
+• Basis for 
+enforcement
+• Plugins get (restricted) access
+to resources through contracts
+• Enforced governance & 
+observability
+• Safety & proven behaviour: 
+concurrency; deadlock- & loop-
+free, …
+• Extensible state machine 
+(policies, etc.)
+• python → rust : memory safety
+
+--- slide 15 ---
+Where the agentic stack is being built. 
+Labs: designing experiments
+Application
+Scenario
+Test
+Run
+MAS
+Overlay(s)
+Dataset(s)
+Baseline application(s) configuration
+Variations through overlays
+(logic / control / infrastructure)
+Iterate over dataset
+(user prompt, test fixtures, memory seeds, …)
+Repeat N times
+(statistical confidence)
+
+--- slide 16 ---
+Where the agentic stack is being built. 
+Labs: designing experiments
+Application
+Scenario
+Test
+Run
+MAS
+Overlay(s)
+Dataset(s)
+PRE
+POST
+PRE
+POST
+PRE
+POST
+PRE
+POST
+
+--- slide 17 ---
+Where the agentic stack is being built. 
+Labs: designing experiments
+N=3 
+runs
+Application
+Scenario
+Test
+Run
+MAS
+Overlay(s)
+Dataset(s)
+PRE
+POST
+PRE
+POST
+PRE
+POST
+PRE
+POST
+otel collector deployment / provision
+telemetry collection, evaluation
+plot
+
+--- slide 18 ---
+Where the agentic stack is being built. 
+Brownfield experiments
+• The Native Architecture
+– MAS-Lab ships out-of-the-box powered entirely by its own native 
+runtime for optimal performance.
+– Example: Building a greenfield agent application directly designed for 
+the native execution engine.
+• Bridging External Frameworks
+– Integrate existing apps (brownfield projects) by writing custom adapters or wrapping third-party 
+frameworks.
+– Example: Wrapping an existing LangGraph app to inject external LLM/MCP proxies and collect
+OpenTelemetry.
+• Managing Trade-offs & Migration
+– Accept limitations on native flexibility and telemetry control in exchange for interoperability.
+– Example: Use these wrappers temporarily to prove functional equivalence, establish a baseline, and 
+guide your migration to a native MAS-Lab setup.
+
+--- slide 19 ---
+#AGNTCon #MCPConWhere the agentic stack is being built. 
+DEMO
+• Labs benchmarks
+MAS-Lab tutorials
+https://outshift-open.github.io/mas -lab/tutorials/
+
+--- slide 20 ---
+#AGNTCon #MCPConWhere the agentic stack is being built. 
+Reliability across the experiment lifecycle
+Handling cognitive failures
+
+--- slide 21 ---
+Where the agentic stack is being built. 
+Application lifecycle
+RESEARCH
+PLUGIN DEV
+AGENT or
+MAS DESIGN
+TEST
+PROD
+OPS
+Ship contribution as plugins & compose them transparently
+Reproducible experiment artefacts; benchmarks ( specs = agent identity)
+Invariants; unit & functional tests; interoperability ?
+Versionable specs
+Lightweight / systematic testing
+
+--- slide 22 ---
+Where the agentic stack is being built. 
+Application lifecycle
+RESEARCH
+PLUGIN DEV
+AGENT or
+MAS DESIGN
+TEST
+PROD
+OPS
+Ship contribution as plugins & compose them transparently
+Reproducible experiment artefacts; benchmarks ( specs = agent identity)
+Invariants; unit & functional tests; interoperability ?
+Versionable specs
+Lightweight / systematic testing
+Decoupling between logic, infrastructure & control with guarantees
+Dev can plan for governance, governance cannot change logic
+Same runtime across lifecycle
+Deep observability (all state machine events)
+For accountabiity, debugging, and analysis
+
+--- slide 23 ---
+Where the agentic stack is being built. 
+Cognitive failures
+Paper (under submission)
+Blog: Silent Failures, Loud Consequences: Cognitive Challenges in Multi-Agent Systems (paper under submission)
+https://outshift.cisco.com/blog/ai-ml/cognitive-challenges-in-multi-agent-systems
+Typical failures show up in logs Cognitive failures are silent: no error, plausible action…
+… but wrong reasons
+X
+X Tool call error; wrong parameter
+Handoff or network error
+Repeated steps; loops
+ Lack of verification
+Convergence issues
+Ungrounded claims!
+≠
+Frequency x 
+ImpactX X
+DESIGN INFRASTRUCTURE ENVIRONMENT
+System prompt
+Collaboration pattern
+Model
+…
+Tool availability User prompt Quantitative 
+numbers
+Methodology& 
+Tool
+Test your app !
+Dataset Examples of
+cognitive failures
+
+--- slide 24 ---
+Where the agentic stack is being built. 
+Cognitive failures
+Paper (under submission)
+Blog: Silent Failures, Loud Consequences: Cognitive Challenges in Multi-Agent Systems (paper under submission)
+https://outshift.cisco.com/blog/ai-ml/cognitive-challenges-in-multi-agent-systems
+Typical failures show up in logs Cognitive failures are silent: no error, plausible action…
+… but wrong reasons
+X
+X Tool call error; wrong parameter
+Handoff or network error
+Repeated steps; loops
+ Lack of verification
+Convergence issues
+Ungrounded claims!
+≠
+Frequency x 
+ImpactX X
+DESIGN INFRASTRUCTURE ENVIRONMENT
+System prompt
+Collaboration pattern
+Model
+…
+Tool availability User prompt Quantitative 
+numbers
+Methodology& 
+Tool
+Test your app !
+Dataset Examples of
+cognitive failures
+High prevalence of cognitive failures !
+• common test applications
+• popular agentic apps (eg. ChatDev)
+• even for moderator-based patterns (not only distributed)
+
+--- slide 25 ---
+Where the agentic stack is being built. 
+Cognitive failures taxonomy
+Different symtoms & root causes -> targeted remediation
+(Deep) Observability & Semantic Analysis
+DETECT
+CLASSIFY
+MITIGATE
+
+--- slide 26 ---
+Where the agentic stack is being built. 
+Paper results & next steps
+Agentic developer (specs & logic)
+- Vary design pattern & topology
+- Analysis pipeline with
+evaluation (Agntcy MCE)
+- Design tradeoffs (metrics vs 
+overhead)
+Enterprise operator (control & governance)
+Lifecycle control : From dev to production
+DEV PROD
+GOV
+(RELIABILITY)
+re-attempt circuit 
+breaker
+GOV.
+MODEL BUDGET
+GOV.
+TOOL CALL
+GUARDRAILS
+OBSERV.
+OpenTelemetry
+export
+Researcher (lab, plugins & telemetry)
+Extensions and reproducible research
+Memory benchmark:
+- Wrap OSS implementation
+- Insert through overlay
+- Leverage native observabilityfor performance 
+analysis
+Agent & MAS design space exploration
+
+--- slide 27 ---
+Where the agentic stack is being built. 
+MAS-Lab
+Initial release
+Agent runtime ; logic specs.; control plugins; labs/benchmark
+https://arxiv.org/abs/2606.30546
+v0.1
+v0.2 (end Sept’26)
+• AgentSkills.io; MCP; A2A; Otel; …
+• Collaboration patterns
+https://github.com/outshift -open/mas-lab
+
+--- slide 28 ---
+Where the agentic stack is being built. 
+Call to action
+MAS-Lab – Code, doc, blog, labs & tutorials
+We welcome feedback and collaborations to shape evolution of the tool, libraries and use cases.
+We want to make it a useful for the community.
+https://github.com/outshift -open/mas-lab
+We’ll have a hands on workshop soon ! 
+Silent Failures, loud consequences: hands-on diagnosis & remediation in Multi-Agent Systems with MAS-Lab & OXP
+Virtual event – Oct 27th, 2026 - - You can register !
+Blog : Silent Failures, Loud Consequences: Cognitive Challenges in Multi -Agent Systems
+https://outshift.cisco.com/blog/ai -ml/cognitive-challenges-in-multi-agent-systems
+Help progress the work on Accuracy and Reliability, join us !
+Contribute to the Accuracy and Reliability WG Survey
+
+--- slide 29 ---
+Where the agentic stack is being built.

@@ -1,0 +1,156 @@
+--- slide 1 ---
+Exploring   WebMCP
+What happens when AI agents
+start using websites?
+SYLWIA LASKOWSKA
+
+--- slide 2 ---
+WEBMCP / AGNTCON 02
+HELLO, I’M
+Sylwia
+Laskowska
+Senior Software Engineer
+10+ years in web development
+Atos · European Commission
+Frontend, performance & agentic AI
+AWS Community Builder
+linkedin.com/in/sylwia-laskowska-5a8467131
+dev.to/sylwia-lask
+
+--- slide 3 ---
+The web keeps adapting to changing needs 
+1
+RESPONSIVE
+devices
+2
+ACCESSIBLE
+people
+3
+AGENT-READY
+AI agents?
+HTML 4.01 → mobile → accessibility → ?
+
+--- slide 4 ---
+Today, agents have to guess
+DOM accessibility tree screenshot
+What should
+I click?
+The interface has semantics for humans — not an explicit 
+contract for agents.
+
+--- slide 5 ---
+WebMCP gives agents an explicit contract
+05
+WebMCP
+Experimental browser API
+Works in an open webpage
+Websites expose structured tools
+Agents discover and call them
+Less UI guessing
+
+--- slide 6 ---
+Is WebMCP ready? Not yet.
+EXPERIMENTAL
+Chrome Origin Trial
+Testing behind a flag
+API still evolving
+June September
+demo works  breaking
+changes 
+Early adopters explore and rewrite.
+
+--- slide 7 ---
+Two ways to expose tools
+DECLARATIVE IMPERATIVE
+HTML attributes
+Form-based interactions
+JavaScript
+Custom logic
+or
+
+--- slide 8 ---
+Declarative WebMCP lives in the form
+<form toolautosubmit
+  toolname="createSupportTicket"
+  tooldescription="Create a support ticket">
+  <input name="issue" ...>
+</form>
+Name.
+Purpose.
+Parameters.
+toolautosubmit 
+controls
+who submits the 
+form.
+
+--- slide 9 ---
+Imperative WebMCP exposes application logic
+await document.modelContext.registerTool({
+  name: "something",
+  description: "...",
+  inputSchema: { ... },
+  annotations: {
+    readOnlyHint: false,
+    consequentialHint: true,
+    untrustedContentHint: false
+  },
+  execute: async (args) => { ... }
+});
+name
+description
+input schema
+execute
+Custom logic
+
+--- slide 10 ---
+So I built an AI CEO simulator
+Typical startup management 
+now available as tools.
+Try it yourself → github.com/sylwia-lask/ai-ceo-webMCP
+
+--- slide 11 ---
+One prompt can fire half the company
+11
+ONE PROMPT PLAN MULTIPLE 
+CALLS
+CONSEQUENCES
+One sentence → several tool calls → unpredictable outcome
+
+--- slide 12 ---
+We just changed the trust model
+12
+HUMAN UI AGENT-MEDIATED
+user chooses
+an explicit action VS.
+intent
+interpret
+plan
+select tool(s)
+execute
+
+--- slide 13 ---
+Don’t give your agent a loaded gun
+MINIMUM CAPABILITY Narrow tools. Narrow permissions.
+VALIDATE EVERYTHING Agent output is untrusted input.
+CONFIRM 
+CONSEQUENCES Keep humans in the loop.
+ENFORCE 
+AUTHORIZATION Agent ≠ extra privileges.
+Capabilities don’t replace permissions.
+
+--- slide 14 ---
+Is this the future of frontend?
+WEB FOR
+HUMANS
+WEB FOR
+HUMANS + 
+AGENTS
+Maybe not the final destination.
+But possibly a bridge.
+
+--- slide 15 ---
+STOP
+making agents
+guess.
+Build the web for its
+next kind of client.

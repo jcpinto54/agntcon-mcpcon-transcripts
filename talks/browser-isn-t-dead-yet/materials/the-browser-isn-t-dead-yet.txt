@@ -1,0 +1,193 @@
+--- slide 1 ---
+I lied!
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 2 ---
+Rachel-Lee Nabors (they/them) nearestnabors.com
+v1.0.0
+The browser 
+Isn’t dead yet Status update on the 
+agentic web
+
+--- slide 3 ---
+web Access is changing
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 4 ---
+decrease in CTR when 
+Google presents AI 
+Overviews
+Pew Research 2025, Ahrefs 2026
+Rachel-Lee Nabors (they/them) nearestnabors.com
+50%
+
+--- slide 5 ---
+“[Non-humans] now make up the 
+majority of web traﬃc. ” 
+—WorkOS re: Cloudflare Radar, June 2026 
+workos.com/blog/ai-agent-web-traﬀic-what-developers-need-to-change
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 6 ---
+October 2016, mobile traﬃc 
+surpassed desktop for the ﬁrst time. 
+—Visual Capitalist, 2025-08-16 Visualized: Desktop vs. Mobile Global 
+Web Traﬀic Over Time 
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 7 ---
+If history rhymes, then
+could be the year  
+AI Assistant tra
+ﬃ
+c eclipses 
+apps and browsers 
+Rachel-Lee Nabors (they/them) nearestnabors.com
+2032
+
+--- slide 8 ---
+The browser is changing
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 9 ---
+Agent Browser Extensions
+Rachel-Lee Nabors (they/them) nearestnabors.com
+ Browse with 
+an agent!
+
+--- slide 10 ---
+Browsers with internal Agents
+Rachel-Lee Nabors (they/them) nearestnabors.com
+Now with  
+AI AGENT!
+
+--- slide 11 ---
+Rachel-Lee Nabors (they/them) nearestnabors.com
+Now with a 
+browser!
+Atlas
+Agents with internal browsers
+
+--- slide 12 ---
+Rachel-Lee Nabors (they/them) nearestnabors.com
+Browsers that are agents
+ACTUALLY Agents!
+
+--- slide 13 ---
+Rachel-Lee Nabors (they/them) nearestnabors.com
+ In court!
+
+--- slide 14 ---
+In eﬀect…
+When you direct an agent,  
+the agent is you.
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 15 ---
+The outcome of this suit shapes the 
+future of personal agents and the 
+Agentic Web.
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 16 ---
+The agentic browsers are less 
+soIware and more advocate.
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 17 ---
+agentic web tech
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 18 ---
+WebMCP
+Exposes website capabilities as structured tools for 
+any AI agent using a browser, headless or with 
+viewport.
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 19 ---
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 20 ---
+Public MCP servers
+You can make an MCP server available on a web 
+server. The server runs as a web service, listening at 
+an HTTP endpoint. Great with serverless setups.
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 21 ---
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 22 ---
+MCP Apps
+An inline, in-agent, rich media experience. Created by 
+bundling of HTML, CSS, and JavaScript into a single 
+file.
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 23 ---
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 24 ---
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 25 ---
+A2UI
+A declarative JSON format that lets agents 
+compose interfaces from a catalog of components.
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 26 ---
+Rachel-Lee Nabors (they/them) nearestnabors.com
+github.com/a2ui-project/a2ui
+
+--- slide 27 ---
+Get agentic web Ready
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 28 ---
+Ask yourself
+•Are my users using agents? 
+•Does it benefit us to make some things easier for a user to do 
+via an agent?
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 29 ---
+Adopt and investigate accordingly
+•Adopt WebMCP 
+•Deploy an MCP server 
+•Consider an MCP App 
+•Investigate A2UI
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 30 ---
+Team up
+•Frontend Team can help implement WebMCP 
+•API/backend Team can help decide what goes into an MCP 
+server 
+•Design System Team can provide UI atoms for MCP Apps
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 31 ---
+The web becomes what we build.
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 32 ---
+We are all allies now, building the 
+Agentic Web.
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 33 ---
+Don’t miss these talks
+Fri 9:29      Three Doors to One Tool: MCP vs WebMCP vs CLI  
+                       Frédéric Barthelet, Alpic & Dominic Farolino, Google 
+Fri 13:15    MCP Apps and the Nearly Headless Web 
+                       Liad Yosef 
+Fri 16:10    MCP Challenges & Opportunities 
+                       Angie Jones, Sam Morrow, Shaun Smith, Shub Argha
+Rachel-Lee Nabors (they/them) nearestnabors.com
+
+--- slide 34 ---
+Catch my writings on the Agentic Web at 
+agenticweb.nearestnabors.com
+Rachel-Lee Nabors (they/them) nearestnabors.com
