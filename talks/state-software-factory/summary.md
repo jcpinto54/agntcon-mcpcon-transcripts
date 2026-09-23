@@ -79,7 +79,7 @@ build.
 
 > unattended, models will not improve or maintain your codebase quality over time
 
-> we don't find out that the code was ugly until two months later when someone again is paged at three in the morning
+> We don't find out that the code was ugly until two months later when someone, again, is paged at 3 in the morning
 
 > planning is about eliminating expected pain
 

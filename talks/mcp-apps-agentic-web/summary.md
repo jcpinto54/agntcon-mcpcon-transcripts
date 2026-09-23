@@ -50,11 +50,11 @@ Discovery is what Yosef names as still missing: registering each tool with each 
 
 > So I call it like the nearly headless web, where most of the actions are happening headlessly behind the scene and you just see this last mile of interaction.
 
-> it doesn't make a lot of sense for us to try to guess what the agents need, and then build it, and then just expect they'd use it
+> it doesn't make a lot of sense for us to try to guess what the agents need and then build it and then just expect they'll use it
 
 > They invested a decade in building their UX and developer experience, and we just left them
 
-> So the new user experience is actually AX, which is the agent experience.
+> So the new user experience is actually AX, which is the agentic experience.
 
 ## Takeaways
 

@@ -40,7 +40,7 @@ Autonomy he treats through ReAct — reason and act — the formula describing a
 
 > And you see a very clear narrative of offloading human tasks in how we use AI today.
 
-> You can work in reasoning, you can do action and tool calling, so you sprinkle a little bit of React data during training. What do you have? An agent.
+> Gemma 4 can do reasoning, it can do action, and tool calling, so you sprinkle a little bit of ReAct data during training, and what do you have? An agent.
 
 > A next frontier won't just be about agents but perhaps about swarms, perhaps about harnesses, guardrails, evaluations and many of those things we're still doing by hand.
 

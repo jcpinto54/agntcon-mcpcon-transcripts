@@ -86,7 +86,9 @@ async function checkTools(client: Client, label: string): Promise<void> {
   const structured = search.structuredContent as { results: Array<{ talk: string; kind: string }> };
   assert.equal(structured.results.length, 2, `${label}: structured results`);
 
-  const sheet = await client.callTool({ name: 'read_talk', arguments: { talk: structured.results[0].talk, part: 'session' } });
+  const deck = structured.results.find((r) => r.talk === 'stateless-future-mcp-transports');
+  assert.ok(deck, `${label}: the transports deck is among the results`);
+  const sheet = await client.callTool({ name: 'read_talk', arguments: { talk: deck.talk, part: 'session' } });
   assert.match(textOf(sheet), /Kurtis Van Gent/, `${label}: session sheet`);
 
   const page = await client.callTool({ name: 'read_talk', arguments: { talk: 'no-central-brain', part: 'transcript', max_chars: 1500 } });

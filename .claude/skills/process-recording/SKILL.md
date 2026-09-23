@@ -227,7 +227,7 @@ Rules for the transcript body:
 - If the recording is partial, say so plainly at the point it cuts:
   `*[Recording begins mid-talk]*` or `*[Recording ends here]*`.
 
-## Stage 6 — Update the index
+## Stage 6 — Update the indexes and run the search tests
 
 Add the talk to the coverage table in `README.md` so the gap list stays
 accurate:
@@ -236,4 +236,29 @@ accurate:
 python3 .claude/skills/process-recording/scripts/build_index.py
 ```
 
-Then commit — transcript only; the audio stays local.
+Then run the search server's tests. The server's index is rebuilt from
+`talks/` on every run, so this is also the check that the new transcript is
+picked up rather than skipped:
+
+```bash
+cd server
+npm ci                # first time only
+npm test              # rebuilds the index, then the unit and relevance tests
+npm run test:e2e      # starts the Worker locally, drives it with a real MCP client
+```
+
+The build line `npm test` prints should count the new transcript; a file it
+skipped (no `session_id`, or one the guide does not know) is named on stderr.
+
+The relevance tests pin what a few queries return first, so a new transcript
+can legitimately move them. When the livestream keynotes arrived, Shaun
+Smith's transcript on stateless MCP went above the slide deck the tests
+expected — the archive's trust order working, not a regression. When a test
+fails, read the new ranking before touching the test
+(`node scripts/query.ts "<query>"`): update the expectation only if the new
+top result is the better answer; if it is not, the ranking is what needs
+fixing.
+
+Then commit — transcript only; the audio stays local. The deployed search
+server does not see the new talk until it is redeployed
+(`cd server && npm run deploy`).

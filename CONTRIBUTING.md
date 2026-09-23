@@ -78,7 +78,7 @@ transcript. Agents should read
 references behind the talk, anything they wrote up afterwards. It is
 independent of the other two files, so **a talk directory containing only
 `materials.md` is a complete contribution** — which is the normal shape for
-the 74 sessions nobody recorded, and the easiest way to add one.
+the 51 sessions with no transcript, and the easiest way to add one.
 
 **If the speaker sent you a file, commit the file.** Speakers hand over PDFs
 far more often than URLs, and a link to a deck on someone's drive preserves

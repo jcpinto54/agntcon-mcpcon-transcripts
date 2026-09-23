@@ -7,8 +7,9 @@ and answering questions out of it. Humans, see
 ## What this repo is
 
 A community transcript archive of **AGNTCon + MCPCon Europe 2026** (RAI
-Amsterdam, 17–18 September 2026). Attendees recorded the sessions they went to;
-this repo turns those recordings into searchable, permanent text.
+Amsterdam, 17–18 September 2026). Attendees recorded the sessions they went to,
+and the Agentic AI Foundation livestreamed the Auditorium; this repo turns those
+recordings into searchable, permanent text.
 
 It is an archive, not a blog. The value is in faithfully preserving what
 speakers actually said.
@@ -83,7 +84,7 @@ it was removed at the speaker's request without restating their reasons.
 
 **Material from a speaker goes in `materials.md`, and only what they sent.**
 A speaker may share slides, references, a link to their own recording or a
-writeup for any of the 93 sessions, including the 74 with no transcript.
+writeup for any of the 93 sessions, including the 51 with no transcript.
 Record what they gave
 and nothing else: do not search for a deck they did not mention, do not add a
 link you found yourself and file it as theirs, and do not summarise what is
@@ -132,7 +133,7 @@ when the answer turns on something being absent, say how much of the
 conference the archive actually holds.
 
 **An abstract is not a transcript.** `guide/sessions.json` carries a `desc` for
-all 93 sessions, including the 74 with no recording. It is what a speaker said
+all 93 sessions, including the 51 with no transcript. It is what a speaker said
 they would say, months earlier. Never quote, paraphrase or attribute it as
 something said on stage, and never use it to fill a gap in a recording. If the
 only thing the archive has on a session is its abstract, say so in those words.
@@ -226,6 +227,9 @@ index after writing one.
   sits beside it as `summary.md`.
 - Every transcript carries YAML frontmatter including `session_id`, which links
   it back to `guide/sessions.json` and drives the coverage index.
+- A transcript taken from the Agentic AI Foundation's YouTube livestream says so
+  in its header, and its `recording:` links the talk's exact start in the
+  stream, so anyone can check a quote against the video.
 - Mark gaps in a recording honestly: `*[Recording begins mid-talk]*`.
 - Where the recording runs past the talk, `## Q&A` marks the point it stops
   being the speaker. `write_summary.py` refuses quotes taken from below it.

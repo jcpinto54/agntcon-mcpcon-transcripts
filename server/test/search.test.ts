@@ -37,10 +37,12 @@ test('the index is consistent', () => {
   for (const s of index.sessions) if (s.slug) assert.equal(archive.session(s.slug), s);
 });
 
-test('stateless MCP finds the transports deck first and the security talk near it', () => {
+test('stateless MCP finds the stateless keynote first, the transports deck next and the security talk further down', () => {
   const slugs = slugsOf('stateless MCP transports');
-  assert.equal(slugs[0], 'stateless-future-mcp-transports');
-  assert.ok(slugs.includes('year-breaking-mcp-tells-builders-protocol-gaps-ships'), slugs.join(', '));
+  assert.equal(slugs[0], 'getting-stateless-mcp-production');
+  assert.equal(slugs[1], 'stateless-future-mcp-transports');
+  const more = slugsOf('stateless MCP transports', { limit: 20 });
+  assert.ok(more.includes('year-breaking-mcp-tells-builders-protocol-gaps-ships'), more.join(', '));
 });
 
 test('a precise protocol term finds the slide that defines it, in a talk nobody transcribed', () => {
@@ -166,7 +168,8 @@ test('documentText rebuilds a transcript with its header and the Q&A heading', (
 test('the tool layer renders search, read and list with coverage and caveats', () => {
   const search = searchArchive(archive, { query: 'stateless mcp', limit: 3 });
   assert.match(search.text, /^Archive coverage: \d+ of 93 sessions have a transcript/);
-  assert.match(search.text, /### 1\. Stateless: The Future of MCP Transports — Kurtis Van Gent, Shaun Smith/);
+  assert.match(search.text, /### 1\. Getting to Stateless MCP: In Production — Shaun Smith/);
+  assert.match(search.text, /### 2\. Stateless: The Future of MCP Transports — Kurtis Van Gent, Shaun Smith/);
   assert.match(search.text, /derived, not the speaker's words/);
   assert.equal((search.data.results as unknown[]).length, 3);
 

@@ -38,11 +38,11 @@ Liang says he used to be the developer who disabled antivirus and wanted everyth
 
 ## In their words
 
-> And we as human get far too much power, privilege, permissions than we need for our job.
+> we as human get far too much power, privilege, permissions than we need for our job.
 
-> AI control plane consists of an MCP gateway, an RM gateway, and a sandbox.
+> The AI control plane consists of an MCP gateway, LLM gateway, and sandbox.
 
-> I'm so sick of, you know, approving coding agent requests.
+> I'm so sick of approving coding agent requests.
 
 ## Takeaways
 

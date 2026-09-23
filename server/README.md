@@ -107,7 +107,7 @@ request only walks postings, which keeps a search well inside the free plan's
   summary 0.9, slides 0.75, abstract 0.6, materials 0.5. Very short chunks
   (title cards) are scaled down. Results are capped per talk, and then
   promoted to the transcript, as above — the weights alone never opened a
-  wide enough gap, and widening them would have buried the 41 talks that
+  wide enough gap, and widening them would have buried the talks that
   have only a deck.
 - **Keywords, not embeddings, on purpose.** The vocabulary is precise
   (SEP-2575, ID-JAG, elicitation, harness, speaker names), which is where
@@ -158,7 +158,7 @@ index (`data/index.json` and the `data/index.ts` the Worker bundles) is
 generated and not committed. A file with no `session_id`, or one the guide
 does not know, is reported and skipped rather than failing the build.
 
-Today the index is 2.9 MB for 60 sessions with anything at all; at full
+Today the index is 3.3 MB for 75 sessions with anything at all; at full
 coverage of all 93 it would be a few times that, against a 64 MiB Worker
 limit and a 1 s start-up budget — the same code, the same commands.
 

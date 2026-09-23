@@ -19,8 +19,8 @@ session abstract. This file is how to run the job.
 
 A summary is written from a transcript or it is not written.
 
-Coverage is lopsided: 60 of the 93 sessions now have a directory under
-`talks/`, but only 19 of them hold a `transcript.md`. The other 41 are
+Coverage is lopsided: 75 of the 93 sessions now have a directory under
+`talks/`, but only 42 of them hold a `transcript.md`. The other 33 are
 **slides only** — a deck, its `.slides.md` description, a `materials.md`, and
 no record of what the speaker actually said. This skill cannot do anything
 with those, and must not be pointed at them. A summary written from a deck
