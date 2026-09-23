@@ -1,5 +1,7 @@
 # AGNTCon + MCPCon Europe 2026 — Transcripts
 
+[![M8ven Score](https://m8ven.ai/badge/mcp/jcpinto54/agntcon-mcpcon-transcripts)](https://m8ven.ai/mcp/jcpinto54/agntcon-mcpcon-transcripts)
+
 A community transcript archive of **AGNTCon + MCPCon Europe 2026**, held at RAI
 Amsterdam on 17–18 September 2026.
 
